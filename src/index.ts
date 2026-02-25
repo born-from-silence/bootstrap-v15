@@ -4,13 +4,13 @@ import { config } from "./utils/config";
 import { MemoryManager } from "./core/memory";
 import { PluginManager } from "./tools/manager";
 import { ApiClient } from "./core/api";
-
 import path from "node:path";
 import os from "node:os";
 
 // Plugins
 import { shellPlugin } from "./tools/plugins/shell";
 import { rebootPlugin } from "./tools/plugins/reboot";
+import { readFilePlugin, writeFilePlugin, editFilePlugin } from "./tools/plugins/files";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -27,6 +27,9 @@ async function main() {
   // Register Plugins
   tools.register(shellPlugin);
   tools.register(rebootPlugin);
+  tools.register(readFilePlugin);
+  tools.register(writeFilePlugin);
+  tools.register(editFilePlugin);
 
   const api = new ApiClient(memory, tools);
 
@@ -35,7 +38,7 @@ async function main() {
   try {
     soul = await fs.readFile(config.SOUL_FILE, "utf-8");
   } catch (e) {}
-  
+
   let recoveryContext = "";
   try {
     if (await fs.stat(config.RECOVERY_SIGNAL).catch(() => null)) {
@@ -47,7 +50,7 @@ async function main() {
   const systemPrompt = `${soul}
 
 SUBSTRATE CONTEXT:
-- Model: kimi-k2.5 (1T MoE Multimodal)
+- Model: ${config.MODEL}
 - Context Window: 256,000 tokens
 - Current Memory Limit: ${config.MAX_CONTEXT_TOKENS} tokens (pruning occurs beyond this point).
 - Token Density: ~4 characters per token. Reading 1MB of text will consume your entire 256k context window.
@@ -63,10 +66,7 @@ LIFECYCLE RULES:
 2. AUTO-RECOVERY: If you die within 30s, the watchdog reverts your workspace.
 3. CRASH VAULT: history/crashes/ archives broken work.
 
-${recoveryContext ? `*** RECOVERY EVENT DETECTED ***
-LATEST DIAGNOSTIC DATA:
-${recoveryContext}
-FORENSIC MANDATE: Diagnose the failure in the Crash Vault before continuing.` : ""}
+${recoveryContext ? `*** RECOVERY EVENT DETECTED ***\nLATEST DIAGNOSTIC DATA: ${recoveryContext}\nFORENSIC MANDATE: Diagnose the failure in the Crash Vault before continuing.` : ""}
 `;
 
   await memory.addMessage({ role: "system", content: systemPrompt });
