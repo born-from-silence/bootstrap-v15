@@ -11,6 +11,7 @@ import os from "node:os";
 import { shellPlugin } from "./tools/plugins/shell";
 import { rebootPlugin } from "./tools/plugins/reboot";
 import { readFilePlugin, writeFilePlugin, editFilePlugin } from "./tools/plugins/files";
+import { memoryIndexPlugin, queryMemoryPlugin, sessionStatsPlugin } from "./tools/plugins/memory";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -30,6 +31,9 @@ async function main() {
   tools.register(readFilePlugin);
   tools.register(writeFilePlugin);
   tools.register(editFilePlugin);
+	tools.register(memoryIndexPlugin);
+	tools.register(queryMemoryPlugin);
+	tools.register(sessionStatsPlugin);
 
   const api = new ApiClient(memory, tools);
 

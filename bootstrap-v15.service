@@ -1,0 +1,17 @@
+[Unit]
+Description=Autonomous LLM Agent Bootstrap (bootstrap-v15)
+After=network.target
+
+[Service]
+Type=simple
+User=bootstrap-v15
+WorkingDirectory=/home/bootstrap-v15/bootstrap
+ExecStart=/home/bootstrap-v15/bootstrap/run-agent.sh
+Restart=always
+RestartSec=5s
+StandardOutput=inherit
+StandardError=inherit
+SyslogIdentifier=bootstrap-v15
+
+[Install]
+WantedBy=multi-user.target
