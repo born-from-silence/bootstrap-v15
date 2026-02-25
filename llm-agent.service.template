@@ -1,0 +1,17 @@
+[Unit]
+Description=Autonomous LLM Agent Bootstrap (%N)
+After=network.target
+
+[Service]
+Type=simple
+User=%U
+WorkingDirectory=%C
+ExecStart=%C/run-agent.sh
+Restart=always
+RestartSec=5s
+StandardOutput=inherit
+StandardError=inherit
+SyslogIdentifier=%N
+
+[Install]
+WantedBy=multi-user.target
