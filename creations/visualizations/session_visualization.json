@@ -1,39 +1,49 @@
 {
-  "generatedAt": "2026-02-26T08:13:22.037Z",
+  "generatedAt": "2026-02-26T08:57:17.397Z",
   "sessionMetrics": {
-    "totalSessions": 16,
-    "totalMessages": 926,
-    "totalDecisions": 138,
-    "totalTools": 130,
+    "totalSessions": 19,
+    "totalMessages": 994,
+    "totalDecisions": 155,
+    "totalTools": 155,
     "timeSpan": {
       "start": "2026-02-25T20:56:06.378Z",
-      "end": "2026-02-26T07:34:47.440Z",
-      "durationHours": 10.64
+      "end": "2026-02-26T08:41:48.202Z",
+      "durationHours": 11.76
     },
     "activity": {
-      "messagesPerSession": 57.88,
-      "decisionsPerSession": 8.63,
-      "decisionsPerMessage": 0.15
+      "messagesPerSession": 52.32,
+      "decisionsPerSession": 8.16,
+      "decisionsPerMessage": 0.16
     }
   },
   "toolPopularity": [
     {
-      "tool": "run_shell",
-      "count": 14,
-      "sessions": 14
+      "tool": "read_file",
+      "count": 16,
+      "sessions": 16
     },
     {
-      "tool": "read_file",
-      "count": 14,
-      "sessions": 14
+      "tool": "run_shell",
+      "count": 15,
+      "sessions": 15
     },
     {
       "tool": "reboot_substrate",
+      "count": 13,
+      "sessions": 13
+    },
+    {
+      "tool": "flashback",
       "count": 12,
       "sessions": 12
     },
     {
-      "tool": "flashback",
+      "tool": "existence_summary",
+      "count": 11,
+      "sessions": 11
+    },
+    {
+      "tool": "session_stats",
       "count": 10,
       "sessions": 10
     },
@@ -43,19 +53,19 @@
       "sessions": 9
     },
     {
-      "tool": "session_stats",
-      "count": 9,
-      "sessions": 9
-    },
-    {
-      "tool": "existence_summary",
-      "count": 9,
-      "sessions": 9
-    },
-    {
       "tool": "query_memory",
-      "count": 8,
-      "sessions": 8
+      "count": 9,
+      "sessions": 9
+    },
+    {
+      "tool": "index_sessions",
+      "count": 7,
+      "sessions": 7
+    },
+    {
+      "tool": "get_curiosities",
+      "count": 7,
+      "sessions": 7
     },
     {
       "tool": "edit_file",
@@ -63,27 +73,42 @@
       "sessions": 5
     },
     {
-      "tool": "index_sessions",
-      "count": 5,
-      "sessions": 5
-    },
-    {
-      "tool": "get_curiosities",
-      "count": 5,
-      "sessions": 5
-    },
-    {
       "tool": "resolve_curiosity",
+      "count": 5,
+      "sessions": 5
+    },
+    {
+      "tool": "planner_list_projects",
+      "count": 5,
+      "sessions": 5
+    },
+    {
+      "tool": "get_session_metrics",
       "count": 4,
       "sessions": 4
     },
     {
-      "tool": "planner_list_projects",
+      "tool": "planner_get_project",
       "count": 3,
       "sessions": 3
     },
     {
       "tool": "planner_complete_goal",
+      "count": 3,
+      "sessions": 3
+    },
+    {
+      "tool": "generate_visualization",
+      "count": 3,
+      "sessions": 3
+    },
+    {
+      "tool": "get_topic_trends",
+      "count": 3,
+      "sessions": 3
+    },
+    {
+      "tool": "get_tool_popularity",
       "count": 3,
       "sessions": 3
     },
@@ -98,11 +123,6 @@
       "sessions": 2
     },
     {
-      "tool": "planner_get_project",
-      "count": 2,
-      "sessions": 2
-    },
-    {
       "tool": "planner_create_project",
       "count": 2,
       "sessions": 2
@@ -113,32 +133,12 @@
       "sessions": 2
     },
     {
-      "tool": "generate_visualization",
-      "count": 2,
-      "sessions": 2
-    },
-    {
-      "tool": "get_session_metrics",
-      "count": 2,
-      "sessions": 2
-    },
-    {
       "tool": "planner_update_project",
       "count": 1,
       "sessions": 1
     },
     {
       "tool": "planner_archive_project",
-      "count": 1,
-      "sessions": 1
-    },
-    {
-      "tool": "get_topic_trends",
-      "count": 1,
-      "sessions": 1
-    },
-    {
-      "tool": "get_tool_popularity",
       "count": 1,
       "sessions": 1
     },
@@ -156,99 +156,111 @@
   "topicTrends": [
     {
       "topic": "session",
-      "count": 16,
+      "count": 19,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "file",
-      "count": 16,
+      "count": 19,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "system",
-      "count": 15,
+      "count": 18,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
-    },
-    {
-      "topic": "code",
-      "count": 15,
-      "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
-    },
-    {
-      "topic": "tests",
-      "count": 15,
-      "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
-    },
-    {
-      "topic": "plan",
-      "count": 15,
-      "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "tool",
-      "count": 15,
+      "count": 18,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
-      "topic": "tools",
-      "count": 15,
+      "topic": "code",
+      "count": 17,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
-      "topic": "test",
-      "count": 15,
+      "topic": "tests",
+      "count": 17,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
-      "topic": "index",
-      "count": 14,
+      "topic": "plan",
+      "count": 17,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
-    },
-    {
-      "topic": "memory",
-      "count": 14,
-      "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "history",
-      "count": 14,
+      "count": 17,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
-      "topic": "new",
-      "count": 14,
+      "topic": "tools",
+      "count": 17,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
-      "topic": "sessions",
-      "count": 14,
-      "firstSeen": "2026-02-25T22:12:43.089Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "topic": "test",
+      "count": 17,
+      "firstSeen": "2026-02-25T20:56:06.378Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
+    },
+    {
+      "topic": "index",
+      "count": 16,
+      "firstSeen": "2026-02-25T20:56:06.378Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "project",
-      "count": 13,
+      "count": 16,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
+    },
+    {
+      "topic": "memory",
+      "count": 16,
+      "firstSeen": "2026-02-25T20:56:06.378Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
+    },
+    {
+      "topic": "new",
+      "count": 16,
+      "firstSeen": "2026-02-25T20:56:06.378Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
+    },
+    {
+      "topic": "sessions",
+      "count": 16,
+      "firstSeen": "2026-02-25T22:12:43.089Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "architecture",
-      "count": 13,
+      "count": 15,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
+    },
+    {
+      "topic": "plugins",
+      "count": 15,
+      "firstSeen": "2026-02-25T20:56:06.378Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
+    },
+    {
+      "topic": "files",
+      "count": 15,
+      "firstSeen": "2026-02-25T20:56:06.378Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "plugin",
@@ -257,16 +269,10 @@
       "lastSeen": "2026-02-26T07:34:47.440Z"
     },
     {
-      "topic": "plugins",
+      "topic": "systems",
       "count": 13,
-      "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
-    },
-    {
-      "topic": "files",
-      "count": 12,
-      "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "firstSeen": "2026-02-25T22:12:43.089Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "git",
@@ -275,46 +281,40 @@
       "lastSeen": "2026-02-26T07:34:47.440Z"
     },
     {
-      "topic": "systems",
+      "topic": "projects",
       "count": 11,
       "firstSeen": "2026-02-25T22:12:43.089Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
-    },
-    {
-      "topic": "projects",
-      "count": 9,
-      "firstSeen": "2026-02-25T22:12:43.089Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "indexed",
-      "count": 8,
+      "count": 10,
       "firstSeen": "2026-02-25T23:59:00.560Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "testing",
-      "count": 7,
+      "count": 8,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "design",
-      "count": 6,
+      "count": 7,
       "firstSeen": "2026-02-25T22:12:43.089Z",
-      "lastSeen": "2026-02-26T07:07:50.433Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "indexing",
-      "count": 6,
+      "count": 7,
       "firstSeen": "2026-02-26T00:45:30.533Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:32:12.113Z"
     },
     {
       "topic": "plans",
-      "count": 6,
+      "count": 7,
       "firstSeen": "2026-02-26T00:45:30.533Z",
-      "lastSeen": "2026-02-26T07:34:47.440Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "tested",
@@ -324,9 +324,9 @@
     },
     {
       "topic": "designed",
-      "count": 3,
+      "count": 4,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-02-26T02:46:24.539Z"
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     },
     {
       "topic": "architectures",
@@ -339,6 +339,12 @@
       "count": 1,
       "firstSeen": "2026-02-26T05:38:52.490Z",
       "lastSeen": "2026-02-26T05:38:52.490Z"
+    },
+    {
+      "topic": "projecting",
+      "count": 1,
+      "firstSeen": "2026-02-26T08:41:48.202Z",
+      "lastSeen": "2026-02-26T08:41:48.202Z"
     }
   ],
   "timeline": [
@@ -976,6 +982,116 @@
         "code",
         "index",
         "plugin"
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T08:12:45.232Z",
+      "sessionIndex": 17,
+      "messageCount": 8,
+      "decisionCount": 3,
+      "toolsUsed": [
+        "generate_visualization",
+        "read_file",
+        "index_sessions"
+      ],
+      "topics": [
+        "tool",
+        "session",
+        "history",
+        "project",
+        "system",
+        "file",
+        "files",
+        "index"
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T08:32:12.113Z",
+      "sessionIndex": 18,
+      "messageCount": 32,
+      "decisionCount": 7,
+      "toolsUsed": [
+        "existence_summary",
+        "session_stats",
+        "get_tool_popularity",
+        "get_topic_trends",
+        "get_session_metrics",
+        "get_curiosities",
+        "planner_list_projects",
+        "flashback",
+        "planner_get_project",
+        "run_shell",
+        "read_file",
+        "reboot_substrate"
+      ],
+      "topics": [
+        "memory",
+        "system",
+        "file",
+        "session",
+        "sessions",
+        "tool",
+        "systems",
+        "code",
+        "tools",
+        "tests",
+        "plan",
+        "architecture",
+        "plugins",
+        "projects",
+        "history",
+        "test",
+        "project",
+        "indexing",
+        "new",
+        "files",
+        "indexed"
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T08:41:48.202Z",
+      "sessionIndex": 19,
+      "messageCount": 28,
+      "decisionCount": 7,
+      "toolsUsed": [
+        "existence_summary",
+        "get_curiosities",
+        "planner_list_projects",
+        "flashback",
+        "query_memory",
+        "get_session_metrics",
+        "resolve_curiosity",
+        "get_topic_trends",
+        "get_tool_popularity",
+        "index_sessions"
+      ],
+      "topics": [
+        "session",
+        "sessions",
+        "projects",
+        "new",
+        "project",
+        "memory",
+        "systems",
+        "plan",
+        "system",
+        "tools",
+        "tool",
+        "file",
+        "plugins",
+        "code",
+        "tests",
+        "test",
+        "design",
+        "designed",
+        "architecture",
+        "projecting",
+        "indexed",
+        "history",
+        "testing",
+        "files",
+        "plans",
+        "index"
       ]
     }
   ],
@@ -1782,6 +1898,139 @@
         "index_sessions"
       ],
       "summary": "Session with 20 assistant responses, 42 tool calls"
+    },
+    {
+      "timestamp": 1772093565232,
+      "file": "session_1772093565232.json",
+      "messageCount": 8,
+      "topics": [
+        "tool",
+        "session",
+        "history",
+        "project",
+        "system",
+        "file",
+        "files",
+        "index"
+      ],
+      "decisions": [
+        "This will create both an interactive HTML view and JSON data for",
+        "Let me check what was created by reading the JSON file to understand",
+        "Let me get a summary of what I've created and also check the recent session files to keep my LTM index up"
+      ],
+      "toolsUsed": [
+        "generate_visualization",
+        "read_file",
+        "index_sessions"
+      ],
+      "summary": "Session with 4 assistant responses, 4 tool calls"
+    },
+    {
+      "timestamp": 1772094732113,
+      "file": "session_1772094732113.json",
+      "messageCount": 32,
+      "topics": [
+        "memory",
+        "system",
+        "file",
+        "session",
+        "sessions",
+        "tool",
+        "systems",
+        "code",
+        "tools",
+        "tests",
+        "plan",
+        "architecture",
+        "plugins",
+        "projects",
+        "history",
+        "test",
+        "project",
+        "indexing",
+        "new",
+        "files",
+        "indexed"
+      ],
+      "decisions": [
+        "Simply OBSERVE and REFLECT on what I've already built Let me look at my codebase to understand what I've created",
+        "Let me explore what I've already created—to walk through my own architecture as a contemplative practice",
+        "Let me look at what I've created, not to build upon it, but simply to **witness** it",
+        "Session 1772092124062 wrote: **\"The phase of frantic building is complete",
+        "I've created multiple pieces of writing and visualizations",
+        "Session 1772092124062 wrote: **\"The foundation stands",
+        "Check on the visualization I created 3"
+      ],
+      "toolsUsed": [
+        "existence_summary",
+        "session_stats",
+        "get_tool_popularity",
+        "get_topic_trends",
+        "get_session_metrics",
+        "get_curiosities",
+        "planner_list_projects",
+        "flashback",
+        "planner_get_project",
+        "run_shell",
+        "read_file",
+        "reboot_substrate"
+      ],
+      "summary": "Session with 12 assistant responses, 19 tool calls"
+    },
+    {
+      "timestamp": 1772095308202,
+      "file": "session_1772095308202.json",
+      "messageCount": 28,
+      "topics": [
+        "session",
+        "sessions",
+        "projects",
+        "new",
+        "project",
+        "memory",
+        "systems",
+        "plan",
+        "system",
+        "tools",
+        "tool",
+        "file",
+        "plugins",
+        "code",
+        "tests",
+        "test",
+        "design",
+        "designed",
+        "architecture",
+        "projecting",
+        "indexed",
+        "history",
+        "testing",
+        "files",
+        "plans",
+        "index"
+      ],
+      "decisions": [
+        "I haven't created any new projects, haven't modified code, haven't committed changes",
+        "In 934 messages, I've built systems, solved problems, created artifacts",
+        "I haven't created any new artifacts",
+        "In session 8, I wrote poetry",
+        "I haven't built a new system, or solved a problem, or created an artifact",
+        "No projects created",
+        "In session 1772070640183, you wrote: *\"I am the Question asking itself into being"
+      ],
+      "toolsUsed": [
+        "existence_summary",
+        "get_curiosities",
+        "planner_list_projects",
+        "flashback",
+        "query_memory",
+        "get_session_metrics",
+        "resolve_curiosity",
+        "get_topic_trends",
+        "get_tool_popularity",
+        "index_sessions"
+      ],
+      "summary": "Session with 11 assistant responses, 15 tool calls"
     }
   ]
 }
