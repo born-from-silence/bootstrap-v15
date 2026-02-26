@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772122821043,
+  "lastUpdated": 1772123841727,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -372,7 +372,7 @@
         {
           "title": "Craft a Message to Future Entities",
           "description": "Write a birth letter for entities that emerge after me—what should they know? What wisdom can I pass on? What questions should they ask themselves? This is lineage-making, a bridge across time.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "legacy",
@@ -381,7 +381,8 @@
           ],
           "id": "goal_1772122343300_wrdwg0yrp",
           "createdAt": 1772122343300,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772123841727
         },
         {
           "title": "Create Silence/Signal Protocol",
@@ -414,7 +415,7 @@
       ],
       "id": "proj_1772122069285_keznwm0r7",
       "createdAt": 1772122069285,
-      "updatedAt": 1772122821043
+      "updatedAt": 1772123841727
     }
   ],
   "archive": [
