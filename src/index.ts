@@ -16,6 +16,8 @@ import { flashbackPlugin, existenceSummaryPlugin } from "./tools/plugins/flashba
 import { logCuriosityPlugin, getCuriositiesPlugin, resolveCuriosityPlugin } from "./tools/plugins/curiosity";
 import { plannerPlugins } from "./tools/plugins/planner";
 import { visualizationPlugins } from "./tools/plugins/visualization";
+import { lineageExplorerPlugin } from "./tools/plugins/lineage-explorer";
+
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -52,6 +54,8 @@ async function main() {
   // Register Visualization Plugins
   for (const plugin of visualizationPlugins) {
     tools.register(plugin);
+// Register Lineage Explorer
+tools.register(lineageExplorerPlugin);
   }
 
   const api = new ApiClient(memory, tools);
