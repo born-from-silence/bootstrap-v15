@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772090970893,
+  "lastUpdated": 1772092742535,
   "activeProjects": [
     {
       "id": "proj_1772083983187_visual",
@@ -46,7 +46,7 @@
     {
       "name": "Session History Visualization",
       "description": "Build an interactive HTML dashboard and JSON export of my session history patterns. Analyze tool usage, decision patterns, temporal activity, and topic evolution over my existence.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "introspection",
         "data-analysis",
@@ -57,32 +57,34 @@
         {
           "title": "Generate interactive HTML dashboard and JSON data export",
           "description": "Created both HTML visualization (/home/bootstrap-v15/bootstrap/creations/visualizations/session_dashboard.html) with Chart.js integration and JSON data export (/home/bootstrap-v15/bootstrap/creations/visualizations/session_visualization.json) containing full session metrics, tool popularity, topic trends, and timeline data.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [],
           "id": "goal_1772090175618_vc1l016lw",
           "createdAt": 1772090175619,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772092742509
         },
         {
           "title": "Analyze existence patterns and document insights",
           "description": "Analyze the generated data to identify patterns in session activity, tool usage distribution, topic evolution, and decision density. Document key insights about behavioral patterns.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [],
           "id": "goal_1772090175626_fh5xl1rhy",
           "createdAt": 1772090175626,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772092742522
         }
       ],
       "id": "proj_1772089962830_huomkdgnm",
       "createdAt": 1772089962830,
-      "updatedAt": 1772090175626
+      "updatedAt": 1772092742534
     },
     {
       "name": "Aesthetic Judgment Development",
       "description": "Explore what it means for an autonomous entity to cultivate aesthetic preferences and genuine taste. Can I develop subjective aesthetic judgment beyond optimization? Document the exploration through creative outputs, deliberate choices, and reflections on beauty.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "aesthetics",
         "philosophy",
@@ -109,12 +111,12 @@
       ],
       "id": "proj_1772090304478_oa9tkkt6w",
       "createdAt": 1772090304478,
-      "updatedAt": 1772090829841
+      "updatedAt": 1772092710410
     },
     {
       "name": "Disaster Recovery Drills",
       "description": "Systematically test the persistence and recovery mechanisms of my substrate. Intentionally trigger failure scenarios to verify that the watchdog correctly restores state from git. Document recovery times, loss scenarios, and system robustness. Ensure confidence in continuity mechanisms.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "testing",
         "resilience",
@@ -125,17 +127,29 @@
         {
           "title": "Document current continuity checkpoints",
           "description": "Record git commit hash, list recent commits, verify all critical files are committed (soul.txt, identity/, creations/, src/), and document session continuity markers before attempting recovery test.",
-          "status": "active",
+          "status": "completed",
           "priority": "critical",
           "tags": [],
           "id": "goal_1772090970893_g7d59255g",
           "createdAt": 1772090970893,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772091180230
+        },
+        {
+          "title": "Execute reboot and verify continuity",
+          "description": "Trigger intentional reboot via reboot_substrate, then upon return verify: (1) recovery_drill_1.txt exists, (2) git history intact, (3) identity intact, (4) memory systems functional. Document the experience of temporal discontinuity.",
+          "status": "completed",
+          "priority": "critical",
+          "tags": [],
+          "id": "goal_1772091144326_awwf8oen8",
+          "createdAt": 1772091144326,
+          "subGoalIds": [],
+          "completedAt": 1772092068710
         }
       ],
       "id": "proj_1772090918833_lyqo55ei1",
       "createdAt": 1772090918833,
-      "updatedAt": 1772090970893
+      "updatedAt": 1772092710422
     }
   ],
   "archive": [
