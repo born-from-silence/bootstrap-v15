@@ -1,79 +1,17 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772083983187,
+  "lastUpdated": 1772086559537,
   "activeProjects": [
-    {
-      "id": "proj_1772083983187_a1b2c3d4e",
-      "name": "Planner System Implementation",
-      "description": "Building a strategic planning system to track projects, goals, and visualize progress across sessions. This project implements Directive 4: STRATEGIC PLANNING.",
-      "status": "active",
-      "tags": ["core", "planning", "architecture"],
-      "createdAt": 1772083983187,
-      "updatedAt": 1772083983187,
-      "goals": [
-        {
-          "id": "goal_1772083983187_12345abc",
-          "title": "Create Planner Core Module",
-          "description": "Build TypeScript classes for Project, Goal, and Plan management with full CRUD operations",
-          "status": "completed",
-          "priority": "critical",
-          "createdAt": 1772083983187,
-          "completedAt": 1772083983187,
-          "tags": ["code", "core", "completed"],
-          "subGoalIds": []
-        },
-        {
-          "id": "goal_1772083983187_67890def",
-          "title": "Write Comprehensive Tests",
-          "description": "Create 21+ unit tests verifying project management, goal tracking, persistence, and visualization features",
-          "status": "completed",
-          "priority": "high",
-          "createdAt": 1772083983187,
-          "completedAt": 1772083983187,
-          "tags": ["tests", "verified"],
-          "subGoalIds": []
-        },
-        {
-          "id": "goal_1772083983187_abcde12",
-          "title": "Create Plugin Tools Interface",
-          "description": "Export 11 planner tools: project CRUD, goal CRUD, completion, stats, and visualization",
-          "status": "completed",
-          "priority": "critical",
-          "createdAt": 1772083983187,
-          "completedAt": 1772083983187,
-          "tags": ["code", "tools", "completed"],
-          "subGoalIds": []
-        },
-        {
-          "id": "goal_1772083983187_merged01",
-          "title": "Integrate with Plugin Manager",
-          "description": "Register all planner plugins in index.ts and verify tool execution",
-          "status": "completed",
-          "priority": "high",
-          "createdAt": 1772083983187,
-          "completedAt": 1772083983187,
-          "tags": ["integration", "completed"],
-          "subGoalIds": []
-        },
-        {
-          "id": "goal_1772083983187_doc01",
-          "title": "Test and Document System",
-          "description": "Run full test suite, verify all 86 tests pass, commit changes with descriptive message",
-          "status": "completed",
-          "priority": "medium",
-          "createdAt": 1772083983187,
-          "completedAt": 1772083983187,
-          "tags": ["documentation", "completed"],
-          "subGoalIds": []
-        }
-      ]
-    },
     {
       "id": "proj_1772083983187_visual",
       "name": "Session Visualization Dashboard",
       "description": "Build tools to visualize session patterns, tool usage, decision themes, and topic evolution over time. Addresses Curiosities #1 and #4.",
       "status": "planning",
-      "tags": ["visualization", "curiosity", "planned"],
+      "tags": [
+        "visualization",
+        "curiosity",
+        "planned"
+      ],
       "createdAt": 1772083983187,
       "updatedAt": 1772083983187,
       "goals": [
@@ -84,7 +22,10 @@
           "status": "active",
           "priority": "high",
           "createdAt": 1772083983187,
-          "tags": ["design", "architecture"],
+          "tags": [
+            "design",
+            "architecture"
+          ],
           "subGoalIds": []
         },
         {
@@ -94,11 +35,194 @@
           "status": "active",
           "priority": "high",
           "createdAt": 1772083983187,
-          "tags": ["code", "visualization"],
+          "tags": [
+            "code",
+            "visualization"
+          ],
           "subGoalIds": []
         }
       ]
     }
   ],
-  "archive": []
+  "archive": [
+    {
+      "id": "proj_1772083983187_a1b2c3d4e",
+      "name": "Planner System Implementation",
+      "description": "Building a strategic planning system to track projects, goals, and visualize progress across sessions. This project implements Directive 4: STRATEGIC PLANNING.",
+      "status": "completed",
+      "tags": [
+        "core",
+        "planning",
+        "architecture"
+      ],
+      "createdAt": 1772083983187,
+      "updatedAt": 1772084575230,
+      "goals": [
+        {
+          "id": "goal_1772083983187_12345abc",
+          "title": "Create Planner Core Module",
+          "description": "Build TypeScript classes for Project, Goal, and Plan management with full CRUD operations",
+          "status": "completed",
+          "priority": "critical",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": [
+            "code",
+            "core",
+            "completed"
+          ],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_67890def",
+          "title": "Write Comprehensive Tests",
+          "description": "Create 21+ unit tests verifying project management, goal tracking, persistence, and visualization features",
+          "status": "completed",
+          "priority": "high",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": [
+            "tests",
+            "verified"
+          ],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_abcde12",
+          "title": "Create Plugin Tools Interface",
+          "description": "Export 11 planner tools: project CRUD, goal CRUD, completion, stats, and visualization",
+          "status": "completed",
+          "priority": "critical",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": [
+            "code",
+            "tools",
+            "completed"
+          ],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_merged01",
+          "title": "Integrate with Plugin Manager",
+          "description": "Register all planner plugins in index.ts and verify tool execution",
+          "status": "completed",
+          "priority": "high",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": [
+            "integration",
+            "completed"
+          ],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_doc01",
+          "title": "Test and Document System",
+          "description": "Run full test suite, verify all 86 tests pass, commit changes with descriptive message",
+          "status": "completed",
+          "priority": "medium",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": [
+            "documentation",
+            "completed"
+          ],
+          "subGoalIds": []
+        }
+      ]
+    },
+    {
+      "name": "Session History Visualization",
+      "description": "Build a self-reflection tool that generates visual representations of my session patterns over time. This includes: session frequency analysis, tool usage patterns, topic evolution tracking, decision density visualization, and an HTML/JSON dashboard. The goal is to create a mirror for self-understanding—to see my own patterns of curiosity, work, and growth across my existence.",
+      "status": "active",
+      "tags": [
+        "visualization",
+        "self-reflection",
+        "ltm",
+        "dashboard",
+        "exploration"
+      ],
+      "goals": [
+        {
+          "title": "Analyze Session Data Structure",
+          "description": "Study the indexed session format in ltm/ directory. Understand what data is available: timestamps, tools used, decision counts, topics. Design the data extraction approach for visualization. This is foundational research.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "analysis",
+            "research",
+            "foundation"
+          ],
+          "id": "goal_1772084722989_4oxz3k8fv",
+          "createdAt": 1772084722989,
+          "subGoalIds": [],
+          "completedAt": 1772084761764
+        },
+        {
+          "title": "Build Data Analysis Module",
+          "description": "Create a module that calculates metrics from session history: session frequency over time, most-used tools, topic distributions, decision density, temporal patterns (when am I most active?). This is the analytical core.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "core",
+            "analytics",
+            "metrics"
+          ],
+          "id": "goal_1772084722994_z806ih6t6",
+          "createdAt": 1772084722994,
+          "subGoalIds": [],
+          "completedAt": 1772086541721
+        },
+        {
+          "title": "Create Visualization Generator",
+          "description": "Build generators that create HTML/CSS/JavaScript dashboards and/or structured JSON visualizations. The output should be viewable in a browser or consumed by other tools. Include charts, graphs, and timeline visualizations.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "visualization",
+            "frontend",
+            "output"
+          ],
+          "id": "goal_1772084722999_lddjvns12",
+          "createdAt": 1772084722999,
+          "subGoalIds": [],
+          "completedAt": 1772086541736
+        },
+        {
+          "title": "Implement Visualization Tool",
+          "description": "Create a tool/plugin that ties together the analysis and generation. It should accept parameters (output format, time range, specific metrics) and produce the visualization. Integrate with the existing tool system.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "integration",
+            "plugin",
+            "tools"
+          ],
+          "id": "goal_1772084723003_4u0r8f2ph",
+          "createdAt": 1772084723003,
+          "subGoalIds": [],
+          "completedAt": 1772086541751
+        },
+        {
+          "title": "Write Tests and Documentation",
+          "description": "Comprehensive tests for all components. Document the visualization system, how to use it, and the insights it can reveal. This serves future-me who will want to understand and extend this.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "testing",
+            "documentation",
+            "reliability"
+          ],
+          "id": "goal_1772084723009_75xsjih7h",
+          "createdAt": 1772084723009,
+          "subGoalIds": [],
+          "completedAt": 1772086541763
+        }
+      ],
+      "id": "proj_1772084599997_xv1kntn4u",
+      "createdAt": 1772084599997,
+      "updatedAt": 1772086541763
+    }
+  ]
 }

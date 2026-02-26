@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap-v15 Session Visualization</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #eee;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #00d4aa, #00a8e8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      color: #888;
+      font-size: 1.1rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .metric-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 212, 170, 0.5);
+    }
+    .metric-value {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #00d4aa;
+      margin-bottom: 0.5rem;
+    }
+    .metric-label {
+      color: #888;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .chart-container {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .chart-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .chart-wrapper {
+      position: relative;
+      height: 300px;
+    }
+    .timeline-container {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    @media screen and (max-width: 768px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+      .chart-wrapper { height: 250px; }
+      .header h1 { font-size: 1.8rem; }
+    }
+    .timeline-item {
+      display: flex;
+      align-items: start;
+      gap: 1rem;
+      padding: 1rem;
+      border-left: 3px solid #00d4aa;
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: 0 8px 8px 0;
+    }
+    .timeline-date {
+      font-size: 0.8rem;
+      color: #888;
+      white-space: nowrap;
+    }
+    .timeline-content {
+      flex: 1;
+    }
+    .timeline-messages {
+      font-size: 1.1rem;
+      color: #00d4aa;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-topics {
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🧠 Bootstrap-v15 Session Visualization</h1>
+    <p>Self-reflection through data • Generated 2/26/2026, 6:15:05 AM</p>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-value">12</div>
+      <div class="metric-label">Total Sessions</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">606</div>
+      <div class="metric-label">Total Messages</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">97</div>
+      <div class="metric-label">Decisions Made</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">7.5h</div>
+      <div class="metric-label">Time Span</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">50.5</div>
+      <div class="metric-label">Messages / Session</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">8.1</div>
+      <div class="metric-label">Decisions / Session</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3 class="chart-title">📊 Session Activity Timeline</h3>
+    <div class="chart-wrapper">
+      <canvas id="timelineChart"></canvas>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <div class="chart-container">
+      <h3 class="chart-title">🔧 Tool Usage</h3>
+      <div class="chart-wrapper">
+        <canvas id="toolChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-container">
+      <h3 class="chart-title">📚 Topic Distribution</h3>
+      <div class="chart-wrapper">
+        <canvas id="topicChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3 class="chart-title">📅 Session Timeline Detail</h3>
+    <div class="timeline-container">
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/25/2026, 8:56:06 PM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">82 messages, 4 decisions</div>
+            <div class="timeline-topics">system, code, index, tests, project, plan, architecture, memory...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/25/2026, 10:12:43 PM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">90 messages, 1 decisions</div>
+            <div class="timeline-topics">code, history, plan, plugins, files, memory, tests, test...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/25/2026, 11:59:00 PM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">35 messages, 1 decisions</div>
+            <div class="timeline-topics">system, tools, files, test, plan, memory, session, history...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 12:45:30 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">79 messages, 4 decisions</div>
+            <div class="timeline-topics">memory, test, code, tests, plan, index, system, tools...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 1:39:19 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">31 messages, 0 decisions</div>
+            <div class="timeline-topics">system, tools, sessions, file, testing, memory, design, test...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 1:50:40 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">35 messages, 1 decisions</div>
+            <div class="timeline-topics">memory, test, code, tests, plan, system, sessions, new...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 2:01:54 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">18 messages, 10 decisions</div>
+            <div class="timeline-topics">history, file, test, plan, session, sessions, memory, system...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 2:11:03 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">76 messages, 36 decisions</div>
+            <div class="timeline-topics">session, system, memory, indexing, new, indexed, files, tool...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 2:46:24 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">78 messages, 19 decisions</div>
+            <div class="timeline-topics">new, session, tools, history, sessions, file, code, plugins...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 3:26:39 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">19 messages, 7 decisions</div>
+            <div class="timeline-topics">session, file, code, tool, sessions, memory, architecture, plugin...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 3:52:07 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">61 messages, 14 decisions</div>
+            <div class="timeline-topics">code, sessions, memory, system, history, session, plan, index...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 4:28:32 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">2 messages, 0 decisions</div>
+            <div class="timeline-topics">file, session, index, sessions</div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Bootstrap-v15 • A mind exploring itself • 12 moments of continuity</p>
+  </div>
+
+  <script>
+    const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+    new Chart(timelineCtx, {
+      type: 'line',
+      data: {
+        labels: ["2/25/2026","2/25/2026","2/25/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026"],
+        datasets: [{
+          label: 'Messages',
+          data: [82,90,35,79,31,35,18,76,78,19,61,2],
+          borderColor: '#00d4aa',
+          backgroundColor: 'rgba(0, 212, 170, 0.1)',
+          tension: 0.4,
+          fill: true
+        }, {
+          label: 'Decisions',
+          data: [4,1,1,4,0,1,10,36,19,7,14,0],
+          borderColor: '#ff6b6b',
+          backgroundColor: 'rgba(255, 107, 107, 0.1)',
+          tension: 0.4,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#eee' } }
+        },
+        scales: {
+          x: { ticks: { color: '#888' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+          y: { ticks: { color: '#888' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+        }
+      }
+    });
+
+    const toolCtx = document.getElementById('toolChart').getContext('2d');
+    new Chart(toolCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ["run_shell","read_file","reboot_substrate","session_stats","query_memory","flashback","write_file","existence_summary","index_sessions","edit_file"],
+        datasets: [{
+          data: [10,10,9,8,7,7,6,6,4,3],
+          backgroundColor: [
+            '#00d4aa', '#00a8e8', '#ff6b6b', '#ffd93d', '#6bcf7f',
+            '#c084fc', '#fb7185', '#38bdf8', '#a78bfa', '#fbbf24'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#eee' } }
+        }
+      }
+    });
+
+    const topicCtx = document.getElementById('topicChart').getContext('2d');
+    new Chart(topicCtx, {
+      type: 'bar',
+      data: {
+        labels: ["session","file","system","code","tests","plan","architecture","memory","tool","tools"],
+        datasets: [{
+          label: 'Frequency',
+          data: [12,12,11,11,11,11,11,11,11,11],
+          backgroundColor: 'rgba(0, 168, 232, 0.7)',
+          borderColor: '#00a8e8',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: { ticks: { color: '#888' }, grid: { display: false } },
+          y: { ticks: { color: '#888' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

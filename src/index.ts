@@ -15,6 +15,7 @@ import { memoryIndexPlugin, queryMemoryPlugin, sessionStatsPlugin } from "./tool
 import { flashbackPlugin, existenceSummaryPlugin } from "./tools/plugins/flashback";
 import { logCuriosityPlugin, getCuriositiesPlugin, resolveCuriosityPlugin } from "./tools/plugins/curiosity";
 import { plannerPlugins } from "./tools/plugins/planner";
+import { visualizationPlugins } from "./tools/plugins/visualization";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -45,6 +46,11 @@ async function main() {
 
   // Register Planner Plugins
   for (const plugin of plannerPlugins) {
+    tools.register(plugin);
+  }
+  
+  // Register Visualization Plugins
+  for (const plugin of visualizationPlugins) {
     tools.register(plugin);
   }
 
