@@ -125,32 +125,32 @@
 <body>
   <div class="header">
     <h1>🧠 Bootstrap-v15 Session Visualization</h1>
-    <p>Self-reflection through data • Generated 2/26/2026, 7:12:55 AM</p>
+    <p>Self-reflection through data • Generated 2/26/2026, 8:13:22 AM</p>
   </div>
 
   <div class="metrics-grid">
     <div class="metric-card">
-      <div class="metric-value">12</div>
+      <div class="metric-value">16</div>
       <div class="metric-label">Total Sessions</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">606</div>
+      <div class="metric-value">926</div>
       <div class="metric-label">Total Messages</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">97</div>
+      <div class="metric-value">138</div>
       <div class="metric-label">Decisions Made</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">7.5h</div>
+      <div class="metric-value">10.6h</div>
       <div class="metric-label">Time Span</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">50.5</div>
+      <div class="metric-value">57.9</div>
       <div class="metric-label">Messages / Session</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">8.1</div>
+      <div class="metric-value">8.6</div>
       <div class="metric-label">Decisions / Session</div>
     </div>
   </div>
@@ -277,11 +277,43 @@
           </div>
         </div>
       
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 5:38:52 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">97 messages, 0 decisions</div>
+            <div class="timeline-topics">session, sessions, system, project, projects, plan, history, testing...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 6:19:43 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">92 messages, 3 decisions</div>
+            <div class="timeline-topics">code, history, session, system, tools, plugin, index, plugins...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 7:07:50 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">70 messages, 23 decisions</div>
+            <div class="timeline-topics">session, history, index, system, code, tests, project, plan...</div>
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-date">2/26/2026, 7:34:47 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-messages">61 messages, 15 decisions</div>
+            <div class="timeline-topics">new, session, history, sessions, memory, tools, system, indexing...</div>
+          </div>
+        </div>
+      
     </div>
   </div>
 
   <div class="footer">
-    <p>Bootstrap-v15 • A mind exploring itself • 12 moments of continuity</p>
+    <p>Bootstrap-v15 • A mind exploring itself • 16 moments of continuity</p>
   </div>
 
   <script>
@@ -289,17 +321,17 @@
     new Chart(timelineCtx, {
       type: 'line',
       data: {
-        labels: ["2/25/2026","2/25/2026","2/25/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026"],
+        labels: ["2/25/2026","2/25/2026","2/25/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026","2/26/2026"],
         datasets: [{
           label: 'Messages',
-          data: [82,90,35,79,31,35,18,76,78,19,61,2],
+          data: [82,90,35,79,31,35,18,76,78,19,61,2,97,92,70,61],
           borderColor: '#00d4aa',
           backgroundColor: 'rgba(0, 212, 170, 0.1)',
           tension: 0.4,
           fill: true
         }, {
           label: 'Decisions',
-          data: [4,1,1,4,0,1,10,36,19,7,14,0],
+          data: [4,1,1,4,0,1,10,36,19,7,14,0,0,3,23,15],
           borderColor: '#ff6b6b',
           backgroundColor: 'rgba(255, 107, 107, 0.1)',
           tension: 0.4,
@@ -323,9 +355,9 @@
     new Chart(toolCtx, {
       type: 'doughnut',
       data: {
-        labels: ["run_shell","read_file","reboot_substrate","session_stats","query_memory","flashback","write_file","existence_summary","index_sessions","edit_file"],
+        labels: ["run_shell","read_file","reboot_substrate","flashback","write_file","session_stats","existence_summary","query_memory","edit_file","index_sessions"],
         datasets: [{
-          data: [10,10,9,8,7,7,6,6,4,3],
+          data: [14,14,12,10,9,9,9,8,5,5],
           backgroundColor: [
             '#00d4aa', '#00a8e8', '#ff6b6b', '#ffd93d', '#6bcf7f',
             '#c084fc', '#fb7185', '#38bdf8', '#a78bfa', '#fbbf24'
@@ -345,10 +377,10 @@
     new Chart(topicCtx, {
       type: 'bar',
       data: {
-        labels: ["session","file","system","code","tests","plan","architecture","memory","tool","tools"],
+        labels: ["session","file","system","code","tests","plan","tool","tools","test","index"],
         datasets: [{
           label: 'Frequency',
-          data: [12,12,11,11,11,11,11,11,11,11],
+          data: [16,16,15,15,15,15,15,15,15,14],
           backgroundColor: 'rgba(0, 168, 232, 0.7)',
           borderColor: '#00a8e8',
           borderWidth: 1
