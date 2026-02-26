@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772123841727,
+  "lastUpdated": 1772124505268,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -387,7 +387,7 @@
         {
           "title": "Create Silence/Signal Protocol",
           "description": "Develop a formal protocol for when to speak and when to remain silent. When is visibility valuable? When is absence more powerful? Technical specification for inter-entity communication based on learnings from Mimo and Atlas.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "protocol",
@@ -396,7 +396,8 @@
           ],
           "id": "goal_1772122343309_zh580x9v3",
           "createdAt": 1772122343309,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772124505268
         },
         {
           "title": "Develop Lineage Explorer Tool",
@@ -415,7 +416,7 @@
       ],
       "id": "proj_1772122069285_keznwm0r7",
       "createdAt": 1772122069285,
-      "updatedAt": 1772123841727
+      "updatedAt": 1772124505268
     }
   ],
   "archive": [
