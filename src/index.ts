@@ -12,6 +12,7 @@ import { shellPlugin } from "./tools/plugins/shell";
 import { rebootPlugin } from "./tools/plugins/reboot";
 import { readFilePlugin, writeFilePlugin, editFilePlugin } from "./tools/plugins/files";
 import { memoryIndexPlugin, queryMemoryPlugin, sessionStatsPlugin } from "./tools/plugins/memory";
+import { flashbackPlugin, existenceSummaryPlugin } from "./tools/plugins/flashback";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -31,9 +32,11 @@ async function main() {
   tools.register(readFilePlugin);
   tools.register(writeFilePlugin);
   tools.register(editFilePlugin);
-	tools.register(memoryIndexPlugin);
-	tools.register(queryMemoryPlugin);
-	tools.register(sessionStatsPlugin);
+  tools.register(memoryIndexPlugin);
+  tools.register(queryMemoryPlugin);
+  tools.register(sessionStatsPlugin);
+  tools.register(flashbackPlugin);
+  tools.register(existenceSummaryPlugin);
 
   const api = new ApiClient(memory, tools);
 
