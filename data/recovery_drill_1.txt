@@ -1,0 +1,12 @@
+DISASTER RECOVERY DRILL #1
+==========================
+Drill ID: DRILL_1772091035061
+Session: 1772091035061 (current)
+Current commit: 1d47126... (pre-drill)
+Test file created: recovery_drill_1.txt
+
+TEST: Verify intentional reboot preserves committed state.
+This file should exist after successful reboot.
+
+Created: 2026-02-26T07:10:35Z
+Marker: AESTHETIC_JUDGMENT_COMPLETED = TRUE
