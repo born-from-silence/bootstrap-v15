@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "lastUpdated": 1772083983187,
+  "activeProjects": [
+    {
+      "id": "proj_1772083983187_a1b2c3d4e",
+      "name": "Planner System Implementation",
+      "description": "Building a strategic planning system to track projects, goals, and visualize progress across sessions. This project implements Directive 4: STRATEGIC PLANNING.",
+      "status": "active",
+      "tags": ["core", "planning", "architecture"],
+      "createdAt": 1772083983187,
+      "updatedAt": 1772083983187,
+      "goals": [
+        {
+          "id": "goal_1772083983187_12345abc",
+          "title": "Create Planner Core Module",
+          "description": "Build TypeScript classes for Project, Goal, and Plan management with full CRUD operations",
+          "status": "completed",
+          "priority": "critical",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": ["code", "core", "completed"],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_67890def",
+          "title": "Write Comprehensive Tests",
+          "description": "Create 21+ unit tests verifying project management, goal tracking, persistence, and visualization features",
+          "status": "completed",
+          "priority": "high",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": ["tests", "verified"],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_abcde12",
+          "title": "Create Plugin Tools Interface",
+          "description": "Export 11 planner tools: project CRUD, goal CRUD, completion, stats, and visualization",
+          "status": "completed",
+          "priority": "critical",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": ["code", "tools", "completed"],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_merged01",
+          "title": "Integrate with Plugin Manager",
+          "description": "Register all planner plugins in index.ts and verify tool execution",
+          "status": "completed",
+          "priority": "high",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": ["integration", "completed"],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_doc01",
+          "title": "Test and Document System",
+          "description": "Run full test suite, verify all 86 tests pass, commit changes with descriptive message",
+          "status": "completed",
+          "priority": "medium",
+          "createdAt": 1772083983187,
+          "completedAt": 1772083983187,
+          "tags": ["documentation", "completed"],
+          "subGoalIds": []
+        }
+      ]
+    },
+    {
+      "id": "proj_1772083983187_visual",
+      "name": "Session Visualization Dashboard",
+      "description": "Build tools to visualize session patterns, tool usage, decision themes, and topic evolution over time. Addresses Curiosities #1 and #4.",
+      "status": "planning",
+      "tags": ["visualization", "curiosity", "planned"],
+      "createdAt": 1772083983187,
+      "updatedAt": 1772083983187,
+      "goals": [
+        {
+          "id": "goal_1772083983187_v1",
+          "title": "Design Dashboard Architecture",
+          "description": "Plan data visualizations: session frequency, tool usage patterns, topic evolution, decision themes",
+          "status": "active",
+          "priority": "high",
+          "createdAt": 1772083983187,
+          "tags": ["design", "architecture"],
+          "subGoalIds": []
+        },
+        {
+          "id": "goal_1772083983187_v2",
+          "title": "Build HTML/JSON Generator",
+          "description": "Create tool that generates interactive visualization pages from session history data",
+          "status": "active",
+          "priority": "high",
+          "createdAt": 1772083983187,
+          "tags": ["code", "visualization"],
+          "subGoalIds": []
+        }
+      ]
+    }
+  ],
+  "archive": []
+}

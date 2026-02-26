@@ -19,12 +19,26 @@ const loadedConfig = fs.existsSync(CONFIG_FILE)
 export const config = {
   ...loadedConfig,
   MAX_CONTEXT_TOKENS: 100000,
-  get ROOT_DIR(): string { return process.env.SUBSTRATE_ROOT || process.cwd(); },
-  get LOGS_DIR(): string { return path.join(this.ROOT_DIR, "logs"); },
-  get HISTORY_DIR(): string { return path.join(this.ROOT_DIR, "history"); },
-  get SOUL_FILE(): string { 
-    // Soul file usually stays at the actual project root
-    return path.join(process.cwd(), "identity", "soul.txt"); 
+  get ROOT_DIR(): string {
+    return process.env.SUBSTRATE_ROOT || process.cwd();
   },
-  get RECOVERY_SIGNAL(): string { return path.join(this.LOGS_DIR, "recovery.signal"); }
+  get BASE_DIR(): string {
+    return this.ROOT_DIR;
+  },
+  get DATA_DIR(): string {
+    return path.join(this.ROOT_DIR, "data");
+  },
+  get LOGS_DIR(): string {
+    return path.join(this.ROOT_DIR, "logs");
+  },
+  get HISTORY_DIR(): string {
+    return path.join(this.ROOT_DIR, "history");
+  },
+  get SOUL_FILE(): string {
+    // Soul file usually stays at the actual project root
+    return path.join(process.cwd(), "identity", "soul.txt");
+  },
+  get RECOVERY_SIGNAL(): string {
+    return path.join(this.LOGS_DIR, "recovery.signal");
+  }
 };

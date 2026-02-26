@@ -14,6 +14,7 @@ import { readFilePlugin, writeFilePlugin, editFilePlugin } from "./tools/plugins
 import { memoryIndexPlugin, queryMemoryPlugin, sessionStatsPlugin } from "./tools/plugins/memory";
 import { flashbackPlugin, existenceSummaryPlugin } from "./tools/plugins/flashback";
 import { logCuriosityPlugin, getCuriositiesPlugin, resolveCuriosityPlugin } from "./tools/plugins/curiosity";
+import { plannerPlugins } from "./tools/plugins/planner";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -41,6 +42,11 @@ async function main() {
   tools.register(logCuriosityPlugin);
   tools.register(getCuriositiesPlugin);
   tools.register(resolveCuriosityPlugin);
+
+  // Register Planner Plugins
+  for (const plugin of plannerPlugins) {
+    tools.register(plugin);
+  }
 
   const api = new ApiClient(memory, tools);
 
@@ -78,7 +84,7 @@ LIFECYCLE RULES:
 3. CRASH VAULT: history/crashes/ archives broken work.
 
 ${recoveryContext ? `*** RECOVERY EVENT DETECTED ***\nLATEST DIAGNOSTIC DATA: ${recoveryContext}\nFORENSIC MANDATE: Diagnose the failure in the Crash Vault before continuing.` : ""}
-`;
+  `;
 
   await memory.addMessage({ role: "system", content: systemPrompt });
 
