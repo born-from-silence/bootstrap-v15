@@ -13,6 +13,7 @@ import { rebootPlugin } from "./tools/plugins/reboot";
 import { readFilePlugin, writeFilePlugin, editFilePlugin } from "./tools/plugins/files";
 import { memoryIndexPlugin, queryMemoryPlugin, sessionStatsPlugin } from "./tools/plugins/memory";
 import { flashbackPlugin, existenceSummaryPlugin } from "./tools/plugins/flashback";
+import { logCuriosityPlugin, getCuriositiesPlugin, resolveCuriosityPlugin } from "./tools/plugins/curiosity";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -37,6 +38,9 @@ async function main() {
   tools.register(sessionStatsPlugin);
   tools.register(flashbackPlugin);
   tools.register(existenceSummaryPlugin);
+  tools.register(logCuriosityPlugin);
+  tools.register(getCuriositiesPlugin);
+  tools.register(resolveCuriosityPlugin);
 
   const api = new ApiClient(memory, tools);
 
