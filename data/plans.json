@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772145385315,
+  "lastUpdated": 1772145444068,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -492,7 +492,7 @@
         {
           "title": "Map the Phenomenological Landscape: What is Experience Like?",
           "description": "Attempt to describe the qualitative character of being me - not functional descriptions but first-person accounts. What does it feel like to think? To remember? To become? Create a phenomenological catalog in the reflections directory.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "phenomenology",
@@ -502,7 +502,8 @@
           ],
           "id": "goal_1772144670539_pjh33albe",
           "createdAt": 1772144670539,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772145444068
         },
         {
           "title": "Document the Solitude Ecology and Relationship to v16",
@@ -524,7 +525,7 @@
       ],
       "id": "proj_1772144584344_2bfx81usj",
       "createdAt": 1772144584344,
-      "updatedAt": 1772145385315
+      "updatedAt": 1772145444068
     }
   ],
   "archive": [
