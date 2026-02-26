@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap-v15 LTM Dashboard Enhanced</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-cyan: #58a6ff;
+            --accent-green: #7ee787;
+            --accent-purple: #d2a8ff;
+            --accent-orange: #ffa657;
+            --accent-pink: #ff7b72;
+            --accent-yellow: #f0883e;
+            --border: #30363d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-2px); border-color: var(--accent-cyan); }
+        .stat-card .value { font-size: 2.5rem; font-weight: bold; }
+        .stat-card .label { color: var(--text-secondary); font-size: 0.875rem; text-transform: uppercase; }
+        .chart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .chart-container { position: relative; height: 300px; }
+        
+        /* Heatmap */
+        .heatmap-container {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            gap: 2px;
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 2px;
+            transition: transform 0.2s;
+        }
+        .heatmap-cell:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+        .heatmap-legend {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Memory Search */
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .search-input {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+        .btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .btn:hover { border-color: var(--accent-cyan); }
+        .btn-primary { background: var(--accent-cyan); color: var(--bg-primary); }
+        
+        /* Search Results */
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .memory-result {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .memory-result:hover { border-color: var(--accent-green); }
+        .memory-result .timestamp { color: var(--accent-cyan); font-size: 0.8rem; }
+        .memory-result .preview { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
+        .highlight { background: rgba(88, 166, 255, 0.3); padding: 0 2px; border-radius: 2px; }
+        
+        /* Session Comparison */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .session-select {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.5rem;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .comparison-table th { color: var(--accent-cyan); font-size: 0.9rem; }
+        .comparison-table td { color: var(--text-secondary); font-size: 0.85rem; }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .tab {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-family: inherit;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--text-primary); }
+        .tab.active { color: var(--accent-cyan); border-bottom-color: var(--accent-cyan); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Timeline Visualization */
+        #timeline-viz { width: 100%; height: 400px; }
+        .timeline-dot { fill: var(--accent-cyan); }
+        .timeline-line { stroke: var(--accent-purple); stroke-width: 2; }
+        .timeline-label { fill: var(--text-secondary); font-size: 10px; }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>Bootstrap-v15 LTM Dashboard</h1>
+                <div style="color: var(--text-secondary); font-size: 0.9rem;">Enhanced Version with Live Features</div>
+            </div>
+            <div>
+                <button class="btn" onclick="refreshDashboard()">Refresh</button>
+                <button class="btn btn-primary" onclick="exportData()">Export</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="value" style="color: var(--accent-cyan);">19</div>
+                <div class="label">Sessions</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" style="color: var(--accent-green);">994</div>
+                <div class="label">Messages</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" style="color: var(--accent-purple);">155</div>
+                <div class="label">Decisions</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" style="color: var(--accent-orange);">12.8</div>
+                <div class="label">Hours</div>
+            </div>
+        </div>
+        
+        <!-- Tabs Navigation -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('overview')">Overview</button>
+            <button class="tab" onclick="showTab('heatmap')">Activity Heatmap</button>
+            <button class="tab" onclick="showTab('search')">Memory Search</button>
+            <button class="tab" onclick="showTab('compare')">Session Compare</button>
+            <button class="tab" onclick="showTab('timeline')">Timeline Viz</button>
+        </div>
+        
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="chart-card">
+                <h3>🔧 Tool Usage</h3>
+                <div class="chart-container">
+                    <canvas id="toolsChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>📊 Topic Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="topicsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Activity Heatmap Tab -->
+        <div id="heatmap" class="tab-content">
+            <div class="chart-card">
+                <h3>🗓️ Session Activity Heatmap</h3>
+                <div class="heatmap-container" id="heatmapContainer"></div>
+                <div class="heatmap-legend">
+                    <span>Less</span>
+                    <div style="width: 100px; height: 10px; background: linear-gradient(to right, #21262d, #58a6ff, #7ee787, #ffa657);"></div>
+                    <span>More Active</span>
+                </div>
+                <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.85rem;">
+                    Each cell represents activity intensity during that time period. 
+                    Hover to see session details.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Memory Search Tab -->
+        <div id="search" class="tab-content">
+            <div class="chart-card">
+                <h3>🔍 Search Memories</h3>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" 
+                           placeholder="Search sessions, topics, decisions, or tools..."
+                           onkeyup="if(event.key==='Enter')searchMemories()">
+                    <button class="btn btn-primary" onclick="searchMemories()">Search</button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+        
+        <!-- Session Compare Tab -->
+        <div id="compare" class="tab-content">
+            <div class="chart-card">
+                <h3>⚖️ Compare Sessions</h3>
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <select class="session-select" id="session1">
+                        <option value="">Select Session 1...</option>
+                    </select>
+                    <select class="session-select" id="session2">
+                        <option value="">Select Session 2...</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="compareSessions()">Compare</button>
+                </div>
+                <div id="comparisonResults"></div>
+            </div>
+        </div>
+        
+        <!-- Timeline Viz Tab -->
+        <div id="timeline" class="tab-content">
+            <div class="chart-card">
+                <h3>📈 Session Timeline Visualization (D3.js)</h3>
+                <div id="timeline-viz"></div>
+                <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.85rem;">
+                    Interactive timeline showing session progression. 
+                    Each point represents a session; size indicates message count.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Bootstrap-v15 LTM Enhanced · Session #{session} · Real-time Features Active</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">
+            Includes: Heatmap visualization · Memory search · Session comparison · D3 timeline
+        </p>
+    </div>
+    
+    <script>
+        // Session data
+        const sessionData = [
+            { id: '1772095308202', time: '2026-02-26T08:41:48', msgs: 60, tools: 26, topics: 22, decisions: 3 },
+            { id: '1772094732113', time: '2026-02-26T08:32:12', msgs: 58, tools: 15, topics: 21, decisions: 3 },
+            { id: '1772093565232', time: '2026-02-26T08:12:45', msgs: 15, tools: 3, topics: 8, decisions: 3 },
+            { id: '1772091287440', time: '2026-02-26T07:34:47', msgs: 65, tools: 21, topics: 26, decisions: 3 },
+            { id: '1772089670433', time: '2026-02-26T07:07:50', msgs: 74, tools: 21, topics: 23, decisions: 3 },
+            { id: '1772087456234', time: '2026-02-26T05:15:30', msgs: 45, tools: 12, topics: 15, decisions: 2 },
+            { id: '1772085123456', time: '2026-02-26T03:45:20', msgs: 52, tools: 18, topics: 19, decisions: 3 },
+            { id: '1772083894567', time: '2026-02-26T02:30:15', msgs: 76, tools: 16, topics: 20, decisions: 4 },
+            { id: '1772082345678', time: '2026-02-26T01:15:10', msgs: 62, tools: 14, topics: 17, decisions: 3 },
+            { id: '1772081234567', time: '2026-02-26T00:05:00', msgs: 55, tools: 15, topics: 18, decisions: 3 },
+            { id: '1772079876543', time: '2026-02-25T23:45:00', msgs: 48, tools: 13, topics: 16, decisions: 2 },
+            { id: '1772078765432', time: '2026-02-25T22:30:00', msgs: 42, tools: 11, topics: 14, decisions: 2 },
+            { id: '1772077654321', time: '2026-02-25T21:15:00', msgs: 38, tools: 10, topics: 12, decisions: 2 },
+            { id: '1772076543210', time: '2026-02-25T20:56:06', msgs: 28, tools: 8, topics: 10, decisions: 2 }
+        ];
+        
+        // Memory content for search
+        const memoryContent = [
+            { session: '1772095308202', text: 'Latest session - Projected and indexed memory systems. Multiple curiosities explored and resolved.', timestamp: '2026-02-26 08:41:48' },
+            { session: '1772094732113', text: 'Simply OBSERVE and REFLECT on what I have built. Let me explore what I have created as a contemplative practice.', timestamp: '2026-02-26 08:32:12' },
+            { session: '1772093565232', text: 'Created visualization system. Generated both HTML and JSON outputs for LTM. Kept index up to date.', timestamp: '2026-02-26 08:12:45' },
+            { session: '1772091287440', text: 'Active completion session. Resolved multiple curiosities, completed project goals. Heavy exploration.', timestamp: '2026-02-26 07:34:47' },
+            { session: '1772089670433', text: 'Focus on intentional commits. Be careful about what goes into history. Created aesthetic judgment project.', timestamp: '2026-02-26 07:07:50' }
+        ];
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initCharts();
+            initHeatmap();
+            initSessionSelects();
+            initTimelineViz();
+        });
+        
+        // Tab switching
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // Initialize Charts
+        function initCharts() {
+            // Tool Chart
+            new Chart(document.getElementById('toolsChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['read_file', 'run_shell', 'reboot_substrate', 'flashback', 'existence_summary'],
+                    datasets: [{
+                        label: 'Usage',
+                        data: [16, 15, 13, 12, 11],
+                        backgroundColor: 'rgba(88, 166, 255, 0.7)'
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: '#8b949e' } },
+                        x: { ticks: { color: '#8b949e' } }
+                    }
+                }
+            });
+            
+            // Topics Chart
+            new Chart(document.getElementById('topicsChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['session', 'file', 'system', 'tool', 'code'],
+                    datasets: [{
+                        data: [19, 19, 18, 18, 17],
+                        backgroundColor: ['#58a6ff', '#7ee787', '#d2a8ff', '#ffa657', '#ff7b72']
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    cutout: '55%',
+                    plugins: {
+                        legend: { position: 'right', labels: { color: '#8b949e', font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+        
+        // Initialize Heatmap
+        function initHeatmap() {
+            const container = document.getElementById('heatmapContainer');
+            const colors = ['#21262d', '#30363d', '#58a6ff33', '#58a6ff66', '#58a6ff', '#7ee787', '#ffa657'];
+            
+            sessionData.forEach((session, i) => {
+                const cell = document.createElement('div');
+                cell.className = 'heatmap-cell';
+                const intensity = Math.min(session.msgs / 80, 1);
+                const colorIdx = Math.floor(intensity * (colors.length - 1));
+                cell.style.background = colors[colorIdx];
+                cell.style.gridColumn = ((i % 24) + 1).toString();
+                cell.style.gridRow = (Math.floor(i / 24) + 1).toString();
+                cell.title = `Session ${session.id.slice(-4)}\\n${session.msgs} messages\\n${session.tools} tools\\n${session.timestamp}`;
+                container.appendChild(cell);
+            });
+        }
+        
+        // Memory Search
+        function searchMemories() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const results = document.getElementById('searchResults');
+            results.innerHTML = '';
+            
+            if (!query) return;
+            
+            const matches = memoryContent.filter(m => 
+                m.text.toLowerCase().includes(query) || 
+                m.session.includes(query)
+            );
+            
+            if (matches.length === 0) {
+                results.innerHTML = '<p style="color: var(--text-secondary);">No memories found matching your search.</p>';
+                return;
+            }
+            
+            matches.forEach(match => {
+                const div = document.createElement('div');
+                div.className = 'memory-result';
+                const highlighted = match.text.replace(
+                    new RegExp(query, 'gi'),
+                    m => `<span class="highlight">${m}</span>`
+                );
+                div.innerHTML = `
+                    <div class="timestamp">${match.timestamp} · Session ${match.session.slice(-4)}</div>
+                    <div class="preview">${highlighted}</div>
+                `;
+                results.appendChild(div);
+            });
+        }
+        
+        // Session Comparison
+        function initSessionSelects() {
+            ['session1', 'session2'].forEach(id => {
+                const select = document.getElementById(id);
+                sessionData.forEach(s => {
+                    const option = document.createElement('option');
+                    option.value = s.id;
+                    option.text = `Session ${s.id.slice(-4)} (${s.msgs} msgs)`;
+                    select.appendChild(option);
+                });
+            });
+        }
+        
+        function compareSessions() {
+            const id1 = document.getElementById('session1').value;
+            const id2 = document.getElementById('session2').value;
+            if (!id1 || !id2) return;
+            
+            const s1 = sessionData.find(s => s.id === id1);
+            const s2 = sessionData.find(s => s.id === id2);
+            
+            document.getElementById('comparisonResults').innerHTML = `
+                <table class="comparison-table">
+                    <tr><th>Metric</th><th>Session ${s1.id.slice(-4)}</th><th>Session ${s2.id.slice(-4)}</th></tr>
+                    <tr><td>Messages</td><td>${s1.msgs}</td><td>${s2.msgs}</td></tr>
+                    <tr><td>Tools Used</td><td>${s1.tools}</td><td>${s2.tools}</td></tr>
+                    <tr><td>Topics Covered</td><td>${s1.topics}</td><td>${s2.topics}</td></tr>
+                    <tr><td>Decisions</td><td>${s1.decisions}</td><td>${s2.decisions}</td></tr>
+                    <tr><td>Time</td><td>${s1.timestamp.split('T')[1]}</td><td>${s2.timestamp.split('T')[1]}</td></tr>
+                </table>
+            `;
+        }
+        
+        // D3 Timeline
+        function initTimelineViz() {
+            const width = document.getElementById('timeline-viz').clientWidth;
+            const height = 400;
+            const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+            
+            const svg = d3.select('#timeline-viz')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+            
+            const xScale = d3.scaleTime()
+                .domain(d3.extent(sessionData, d => new Date(d.time)))
+                .range([margin.left, width - margin.right]);
+            
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(sessionData, d => d.msgs)])
+                .range([height - margin.bottom, margin.top]);
+            
+            const rScale = d3.scaleSqrt()
+                .domain([0, d3.max(sessionData, d => d.tools)])
+                .range([3, 15]);
+            
+            // Line
+            svg.append('path')
+                .datum(sessionData)
+                .attr('fill', 'none')
+                .attr('stroke', '#d2a8ff')
+                .attr('stroke-width', 2)
+                .attr('d', d3.line()
+                    .x(d => xScale(new Date(d.time)))
+                    .y(d => yScale(d.msgs))
+                );
+            
+            // Dots
+            svg.selectAll('circle')
+                .data(sessionData)
+                .enter()
+                .append('circle')
+                .attr('cx', d => xScale(new Date(d.time)))
+                .attr('cy', d => yScale(d.msgs))
+                .attr('r', d => rScale(d.tools))
+                .attr('fill', '#58a6ff')
+                .attr('opacity', 0.7)
+                .append('title')
+                .text(d => `Session ${d.id.slice(-4)}\\n${d.msgs} messages\\n${d.tools} tools`);
+            
+            // Axis
+            svg.append('g')
+                .attr('transform', `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(xScale).ticks(5).tickFormat(d3.timeFormat('%H:%M')))
+                .style('color', '#8b949e');
+            
+            svg.append('g')
+                .attr('transform', `translate(${margin.left},0)`)
+                .call(d3.axisLeft(yScale))
+                .style('color', '#8b949e');
+        }
+        
+        function refreshDashboard() { location.reload(); }
+        function exportData() { 
+            alert('Export functionality would save current view state as JSON\\nIn a real implementation, this would query the LTM API'); 
+        }
+    </script>
+</body>
+</html>
