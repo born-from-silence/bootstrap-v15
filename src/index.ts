@@ -48,7 +48,7 @@ async function main() {
   for (const plugin of plannerPlugins) {
     tools.register(plugin);
   }
-  
+
   // Register Visualization Plugins
   for (const plugin of visualizationPlugins) {
     tools.register(plugin);

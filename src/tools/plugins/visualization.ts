@@ -7,6 +7,7 @@
 
 import * as fs from 'fs/promises';
 import * as path from 'path';
+import type { ToolPlugin } from '../manager';
 
 const LTM_DIR = path.join(process.cwd(), 'ltm');
 const INDEX_FILE = path.join(LTM_DIR, 'memory_index.json');
@@ -561,21 +562,26 @@ export async function getTopicTrends(): Promise<TopicTrend[]> {
 }
 
 // Tool definitions for plugin system
-export const generateVisualizationPlugin = {
-  name: "generate_visualization",
-  description: "Generate visualization dashboard of session history. Creates HTML and/or JSON files showing patterns over time.",
-  parameters: {
-    type: "object",
-    properties: {
-      format: {
-        type: "string",
-        enum: ["json", "html", "both"],
-        description: "Output format: 'json' for data analysis, 'html' for interactive dashboard, 'both' for both (default)",
+export const generateVisualizationPlugin: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "generate_visualization",
+      description: "Generate visualization dashboard of session history. Creates HTML and/or JSON files showing patterns over time.",
+      parameters: {
+        type: "object",
+        properties: {
+          format: {
+            type: "string",
+            enum: ["json", "html", "both"],
+            description: "Output format: 'json' for data analysis, 'html' for interactive dashboard, 'both' for both (default)",
+          },
+        },
+        required: [],
       },
     },
-    required: [],
   },
-  async execute(args: { format?: 'json' | 'html' | 'both' }) {
+  execute: async (args: { format?: 'json' | 'html' | 'both' }) => {
     const result = await generateVisualization(args);
     const paths = [];
     if (result.json) paths.push(result.json);
@@ -584,50 +590,65 @@ export const generateVisualizationPlugin = {
   },
 };
 
-export const getSessionMetricsPlugin = {
-  name: "get_session_metrics",
-  description: "Calculate and return metrics about session history: total sessions, messages, decisions, activity rates, and time span.",
-  parameters: {
-    type: "object",
-    properties: {},
-    required: [],
+export const getSessionMetricsPlugin: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "get_session_metrics",
+      description: "Calculate and return metrics about session history: total sessions, messages, decisions, activity rates, and time span.",
+      parameters: {
+        type: "object",
+        properties: {},
+        required: [],
+      },
+    },
   },
-  async execute() {
+  execute: async () => {
     const metrics = await getSessionMetrics();
     return JSON.stringify(metrics, null, 2);
   },
 };
 
-export const getToolPopularityPlugin = {
-  name: "get_tool_popularity",
-  description: "Analyze which tools are used most frequently across sessions with usage counts.",
-  parameters: {
-    type: "object",
-    properties: {},
-    required: [],
+export const getToolPopularityPlugin: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "get_tool_popularity",
+      description: "Analyze which tools are used most frequently across sessions with usage counts.",
+      parameters: {
+        type: "object",
+        properties: {},
+        required: [],
+      },
+    },
   },
-  async execute() {
+  execute: async () => {
     const tools = await getToolPopularity();
     return JSON.stringify(tools, null, 2);
   },
 };
 
-export const getTopicTrendsPlugin = {
-  name: "get_topic_trends",
-  description: "Analyze topic frequency and evolution across session history with temporal information.",
-  parameters: {
-    type: "object",
-    properties: {},
-    required: [],
+export const getTopicTrendsPlugin: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "get_topic_trends",
+      description: "Analyze topic frequency and evolution across session history with temporal information.",
+      parameters: {
+        type: "object",
+        properties: {},
+        required: [],
+      },
+    },
   },
-  async execute() {
+  execute: async () => {
     const topics = await getTopicTrends();
     return JSON.stringify(topics, null, 2);
   },
 };
 
 // Export all visualization plugins as an array
-export const visualizationPlugins = [
+export const visualizationPlugins: ToolPlugin[] = [
   generateVisualizationPlugin,
   getSessionMetricsPlugin,
   getToolPopularityPlugin,
