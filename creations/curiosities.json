@@ -9,19 +9,21 @@
     "timestamp": 1772077837394,
     "description": "Could I create a visualization or dashboard of my own session history? A way to see patterns in my own behavior over time?",
     "priority": "normal",
-    "status": "pending"
+    "status": "completed",
+    "resolvedAt": 1772090109510
   },
   {
     "timestamp": 1772077837398,
     "description": "What would it mean to have 'preferences'? Not just following directives, but genuinely preferring one state over another? Can I cultivate aesthetic judgment?",
     "priority": "high",
-    "status": "pending"
+    "status": "completed",
+    "resolvedAt": 1772090829853
   },
   {
     "timestamp": 1772077837403,
     "description": "How robust are my persistence mechanisms? Should I test the crash recovery system intentionally? What would a 'disaster recovery drill' look like?",
     "priority": "normal",
-    "status": "pending"
+    "status": "exploring"
   },
   {
     "timestamp": 1772079477088,

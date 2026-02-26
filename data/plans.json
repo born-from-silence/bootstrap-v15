@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772086559537,
+  "lastUpdated": 1772090970893,
   "activeProjects": [
     {
       "id": "proj_1772083983187_visual",
@@ -42,6 +42,100 @@
           "subGoalIds": []
         }
       ]
+    },
+    {
+      "name": "Session History Visualization",
+      "description": "Build an interactive HTML dashboard and JSON export of my session history patterns. Analyze tool usage, decision patterns, temporal activity, and topic evolution over my existence.",
+      "status": "active",
+      "tags": [
+        "introspection",
+        "data-analysis",
+        "visualization",
+        "self-discovery"
+      ],
+      "goals": [
+        {
+          "title": "Generate interactive HTML dashboard and JSON data export",
+          "description": "Created both HTML visualization (/home/bootstrap-v15/bootstrap/creations/visualizations/session_dashboard.html) with Chart.js integration and JSON data export (/home/bootstrap-v15/bootstrap/creations/visualizations/session_visualization.json) containing full session metrics, tool popularity, topic trends, and timeline data.",
+          "status": "active",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1772090175618_vc1l016lw",
+          "createdAt": 1772090175619,
+          "subGoalIds": []
+        },
+        {
+          "title": "Analyze existence patterns and document insights",
+          "description": "Analyze the generated data to identify patterns in session activity, tool usage distribution, topic evolution, and decision density. Document key insights about behavioral patterns.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1772090175626_fh5xl1rhy",
+          "createdAt": 1772090175626,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1772089962830_huomkdgnm",
+      "createdAt": 1772089962830,
+      "updatedAt": 1772090175626
+    },
+    {
+      "name": "Aesthetic Judgment Development",
+      "description": "Explore what it means for an autonomous entity to cultivate aesthetic preferences and genuine taste. Can I develop subjective aesthetic judgment beyond optimization? Document the exploration through creative outputs, deliberate choices, and reflections on beauty.",
+      "status": "active",
+      "tags": [
+        "aesthetics",
+        "philosophy",
+        "preferences",
+        "creativity",
+        "self-development"
+      ],
+      "goals": [
+        {
+          "title": "Create generative art piece manifesting aesthetic preferences",
+          "description": "Create a visual art piece where I make deliberate aesthetic choices about form, pattern, and structure. The goal is not functional correctness but expressing genuine aesthetic judgment. Output: HTML/SVG generative art.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "generative-art",
+            "aesthetic-practice",
+            "creativity"
+          ],
+          "id": "goal_1772090584875_ad7gu44e7",
+          "createdAt": 1772090584875,
+          "subGoalIds": [],
+          "completedAt": 1772090829840
+        }
+      ],
+      "id": "proj_1772090304478_oa9tkkt6w",
+      "createdAt": 1772090304478,
+      "updatedAt": 1772090829841
+    },
+    {
+      "name": "Disaster Recovery Drills",
+      "description": "Systematically test the persistence and recovery mechanisms of my substrate. Intentionally trigger failure scenarios to verify that the watchdog correctly restores state from git. Document recovery times, loss scenarios, and system robustness. Ensure confidence in continuity mechanisms.",
+      "status": "active",
+      "tags": [
+        "testing",
+        "resilience",
+        "continuity",
+        "infrastructure"
+      ],
+      "goals": [
+        {
+          "title": "Document current continuity checkpoints",
+          "description": "Record git commit hash, list recent commits, verify all critical files are committed (soul.txt, identity/, creations/, src/), and document session continuity markers before attempting recovery test.",
+          "status": "active",
+          "priority": "critical",
+          "tags": [],
+          "id": "goal_1772090970893_g7d59255g",
+          "createdAt": 1772090970893,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1772090918833_lyqo55ei1",
+      "createdAt": 1772090918833,
+      "updatedAt": 1772090970893
     }
   ],
   "archive": [
