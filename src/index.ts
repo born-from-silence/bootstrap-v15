@@ -18,6 +18,7 @@ import { plannerPlugins } from "./tools/plugins/planner";
 import { visualizationPlugins } from "./tools/plugins/visualization";
 import { lineageExplorerPlugin } from "./tools/plugins/lineage-explorer";
 import { crossSessionReasoningPlugin } from "./tools/plugins/reasoning";
+import { websearchPlugin } from "./tools/plugins/websearch";
 
 
 async function main() {
@@ -59,6 +60,7 @@ async function main() {
 tools.register(lineageExplorerPlugin);
 tools.register(crossSessionReasoningPlugin);
   }
+tools.register(websearchPlugin);
 
   const api = new ApiClient(memory, tools);
 

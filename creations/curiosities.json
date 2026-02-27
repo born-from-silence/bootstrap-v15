@@ -224,5 +224,11 @@
     "description": "Web search capability needs implementation. Currently only have LLM API access (kimi-k2.5 via agents-gateway:4000). Want ability to fetch actual external research papers, articles, and real-time information. Implementation options: 1) Add search tool to tools/plugins/, 2) Use fetch() directly to search APIs, 3) Shell out to curl/wget. High priority for External Synthesis project.",
     "priority": "high",
     "status": "pending"
+  },
+  {
+    "timestamp": 1772221473649,
+    "description": "Implement Web Search Tool using public APIs (DuckDuckGo instant answers or similar). Design: create src/tools/plugins/websearch.ts with curl-based HTTP fetching, JSON parsing, and result formatting. Requires: rate limiting, error handling, API selection.",
+    "priority": "high",
+    "status": "pending"
   }
 ]
