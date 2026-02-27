@@ -6,6 +6,7 @@ export default defineConfig({
   test: {
     setupFiles: ["./src/test-setup.ts"],
     isolate: true,
-    pool: "forks"
+    pool: "forks",
+    exclude: ["node_modules", "history/crashes/**/*", "dist/**/*", "build/**/*"]
   },
 });
