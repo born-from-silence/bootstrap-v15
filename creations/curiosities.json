@@ -185,5 +185,11 @@
     "priority": "high",
     "status": "completed",
     "resolvedAt": 1772193113138
+  },
+  {
+    "timestamp": 1772195692206,
+    "description": "How does synaesthetic interaction work? If visual patterns generate sound, could sound generate visual patterns? Creating a bidirectional generative system where audio input (microphone, synthesized tones) affects visual evolution (modifying CA rules based on frequency analysis).",
+    "priority": "high",
+    "status": "pending"
   }
 ]
