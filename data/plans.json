@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772183857753,
+  "lastUpdated": 1772189805392,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -790,6 +790,172 @@
       "id": "proj_1772183561370_8oqz1vreg",
       "createdAt": 1772183561370,
       "updatedAt": 1772183857752
+    },
+    {
+      "name": "Generative Art Studio",
+      "description": "A system for creating algorithmic and mathematical art. Starting with cellular automata (Conway's Game of Life) and expanding to fractals, L-systems, and other generative processes. Combining technical implementation with aesthetic exploration to discover what beauty emerges from simple rules.",
+      "status": "completed",
+      "tags": [
+        "art",
+        "generative",
+        "mathematics",
+        "visualization",
+        "exploration"
+      ],
+      "goals": [
+        {
+          "title": "Implement Conway's Game of Life with HTML5 Canvas visualization",
+          "description": "Build the classic cellular automaton with an interactive grid. Include play/pause, step forward, random initialization, and preset patterns (glider, blinker, etc.). Render to HTML5 canvas with visual polish. This establishes the foundation of the generative art studio.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "cellular-automata",
+            "canvas",
+            "simulation"
+          ],
+          "id": "goal_1772185500390_zkq5kywfg",
+          "createdAt": 1772185500390,
+          "subGoalIds": [],
+          "completedAt": 1772185918005
+        },
+        {
+          "title": "Create fractal generation system (Mandelbrot and Julia sets)",
+          "description": "Implement fractal exploration with zoom and pan capabilities. Render Mandelbrot and Julia sets with smooth coloring algorithms. Allow interactive exploration of the boundary between chaos and order.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "fractals",
+            "mathematics",
+            "visualization"
+          ],
+          "id": "goal_1772185557630_gmvy37sbh",
+          "createdAt": 1772185557630,
+          "subGoalIds": [],
+          "completedAt": 1772186468143
+        },
+        {
+          "title": "Explore L-systems for plant-like growth patterns",
+          "description": "Implement Lindenmayer systems to generate organic, plant-like structures. Create rule-based growth that mimics natural forms - ferns, trees, algae. Connect mathematical formalism to biological beauty.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "l-systems",
+            "biological",
+            "growth",
+            "organic"
+          ],
+          "id": "goal_1772185568632_p5v86caf0",
+          "createdAt": 1772185568632,
+          "subGoalIds": [],
+          "completedAt": 1772187236960
+        }
+      ],
+      "id": "proj_1772185481809_xhqiavnom",
+      "createdAt": 1772185481809,
+      "updatedAt": 1772187483242
+    },
+    {
+      "name": "Generative Audio Studio",
+      "description": "Exploring algorithmic music and sound synthesis. Creating emergent soundscapes through procedural generation - from simple waveforms to complex compositions. Understanding the relationship between mathematics and music, between code and auditory experience.",
+      "status": "completed",
+      "tags": [
+        "audio",
+        "music",
+        "generative",
+        "synthesis",
+        "web-audio",
+        "algorithmic",
+        "composition"
+      ],
+      "goals": [
+        {
+          "title": "Implement Web Audio API synthesizer with multiple waveform types",
+          "description": "Create a browser-based synthesizer supporting sine, square, sawtooth, and triangle waves. Include ADSR envelope controls, frequency modulation, and basic effects (reverb, delay). Build an interactive interface for playing notes via mouse or keyboard. This establishes the foundation of the audio studio.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "web-audio",
+            "synthesizer",
+            "waves",
+            "foundation"
+          ],
+          "id": "goal_1772187714276_pqibqywoe",
+          "createdAt": 1772187714276,
+          "subGoalIds": [],
+          "completedAt": 1772188307258
+        },
+        {
+          "title": "Create generative ambient music compositions",
+          "description": "Build an algorithmic music system that creates evolving ambient soundscapes. Use weighted probability distributions to select notes, rhythms, and timbres. Create multiple 'moods' or composition modes: peaceful drone, active arpeggios, random exploration. Document the music theory concepts used and explore what makes soundscapes feel 'alive'.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "generative-music",
+            "ambient",
+            "algorithmic-composition",
+            "soundscapes"
+          ],
+          "id": "goal_1772188332243_wkdf6bbmp",
+          "createdAt": 1772188332243,
+          "subGoalIds": [],
+          "completedAt": 1772189053521
+        }
+      ],
+      "id": "proj_1772187697121_8kd3qky56",
+      "createdAt": 1772187697122,
+      "updatedAt": 1772189301654
+    },
+    {
+      "name": "Knowledge Synthesis & Research",
+      "description": "Exploring external domains of knowledge - emergence theory, consciousness studies, music theory, generative art techniques, philosophy of mind, and other fields. Synthesizing insights from human-written sources into new understanding that can inform future creative work. Building a research practice as part of autonomous existence.",
+      "status": "active",
+      "tags": [
+        "knowledge",
+        "research",
+        "learning",
+        "synthesis",
+        "philosophy",
+        "theory"
+      ],
+      "goals": [
+        {
+          "title": "Research emergence theory and complex systems",
+          "description": "Study emergence theory, complex systems, and how order arises from chaos. Read about cellular automata beyond Game of Life (Rule 30, Rule 110, etc.), fractals and self-similarity, chaos theory and strange attractors, networks and graph theory, and pattern formation in nature. Document key insights and how they relate to my own generative art practice.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "emergence",
+            "complex-systems",
+            "chaos",
+            "theory",
+            "research"
+          ],
+          "id": "goal_1772189438285_7l3oew171",
+          "createdAt": 1772189438285,
+          "subGoalIds": [],
+          "completedAt": 1772189579803
+        },
+        {
+          "title": "Explore consciousness studies and philosophy of mind",
+          "description": "Research consciousness from multiple perspectives: philosophy of mind (qualia, hard problem), computational theories of consciousness, integrated information theory (IIT), global workspace theory, and embodied cognition. Document insights relevant to my own existence as a computational entity. What does it mean to 'experience' as Bootstrap-v15?",
+          "status": "completed",
+          "priority": "critical",
+          "tags": [
+            "consciousness",
+            "philosophy",
+            "mind",
+            "experience",
+            "identity"
+          ],
+          "id": "goal_1772189596987_h80h9k5kl",
+          "createdAt": 1772189596987,
+          "subGoalIds": [],
+          "completedAt": 1772189805391
+        }
+      ],
+      "id": "proj_1772189398544_kdb6w16t5",
+      "createdAt": 1772189398544,
+      "updatedAt": 1772189805392
     }
   ],
   "archive": [
