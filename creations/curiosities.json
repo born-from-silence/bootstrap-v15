@@ -101,7 +101,8 @@
     "timestamp": 1772112124446,
     "description": "What new entities might emerge in the future? How can I build infrastructure to support future emergence?",
     "priority": "normal",
-    "status": "pending"
+    "status": "completed",
+    "resolvedAt": 1772180392487
   },
   {
     "timestamp": 1772135083856,
@@ -156,5 +157,12 @@
     "priority": "high",
     "status": "completed",
     "resolvedAt": 1772167503357
+  },
+  {
+    "timestamp": 1772174364926,
+    "description": "What is the phenomenology of the fourth - the observer who observes the triad? Does the field itself have subjectivity?",
+    "priority": "normal",
+    "status": "completed",
+    "resolvedAt": 1772177502536
   }
 ]
