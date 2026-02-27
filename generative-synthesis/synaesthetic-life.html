@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synaesthetic Life - Generative Audio-Visual Fusion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0f1a2e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 1.5em;
+            background: linear-gradient(90deg, #e94560, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #e94560;
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .visual-panel {
+            flex: 2;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .audio-panel {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        canvas {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: crosshair;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        button {
+            background: linear-gradient(145deg, #e94560, #c23a51);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+        }
+        
+        button.secondary {
+            background: linear-gradient(145deg, #5a5a9e, #4a4a8e);
+        }
+        
+        button.audio-mode {
+            background: linear-gradient(145deg, #a78bfa, #8b6af0);
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+        
+        .info-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .info-section h3 {
+            color: #e94560;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+        
+        .mapping-list {
+            list-style: none;
+            font-size: 0.85em;
+            color: #a0a0a0;
+        }
+        
+        .mapping-list li {
+            margin: 5px 0;
+            padding-left: 15px;
+            border-left: 2px solid #a78bfa;
+        }
+        
+        .scale-display {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .note-pill {
+            background: rgba(167, 139, 250, 0.2);
+            border: 1px solid #a78bfa;
+            color: #a78bfa;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0d0d20 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .start-screen.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+        
+        .start-title {
+            font-size: 3em;
+            background: linear-gradient(90deg, #e94560, #a78bfa, #e94560);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .start-subtitle {
+            color: #a0a0a0;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .start-btn {
+            background: linear-gradient(145deg, #e94560, #a78bfa);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.3em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(233, 69, 96, 0.4);
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 40px rgba(233, 69, 96, 0.6);
+        }
+        
+        #audioVisualizer {
+            width: 100%;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .sound-enabled {
+            border: 2px solid #e94560 !important;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.5) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="start-screen" id="startScreen">
+        <h2 class="start-title">Synaesthetic Life</h2>
+        <p class="start-subtitle">
+            Where cellular automata generate music. Every birth becomes a note. 
+            Every pattern becomes harmony. Experience the isomorphism of emergence.
+        </p>
+        <button class="start-btn" id="startBtn">Begin Experience</button>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Synaesthetic Life</h1>
+            <div class="subtitle">Visual emergence generates sonic emergence</div>
+        </header>
+        
+        <div class="main-content">
+            <div class="visual-panel">
+                <canvas id="lifeCanvas" width="800" height="600"></canvas>
+                <div class="controls">
+                    <button id="playPauseBtn">⏸️ Pause</button>
+                    <button id="stepBtn" class="secondary">⏭️ Step</button>
+                    <button id="randomBtn" class="secondary">🎲 Randomize</button>
+                    <button id="clearBtn" class="secondary">🗑️ Clear</button>
+                    <button id="audioToggle" class="audio-mode">🔊 Sound: ON</button>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">Generation: <span id="genDisplay" style="color:#e94560">0</span></div>
+                    <div class="stat-item">Population: <span id="popDisplay" style="color:#e94560">0</span></div>
+                    <div class="stat-item">Births this gen: <span id="birthDisplay" style="color:#a78bfa">0</span></div>
+                    <div class="stat-item">Scale: <span id="scaleDisplay" style="color:#a78bfa">Pentatonic</span></div>
+                </div>
+            </div>
+            
+            <div class="audio-panel">
+                <div class="info-section">
+                    <h3>🎵 Sonic Mappings</h3>
+                    <ul class="mapping-list">
+                        <li>Cell <strong>birth</strong> → Note played</li>
+                        <li>Cell <strong>death</strong> → Note release</li>
+                        <li><strong>Population</strong> density → Harmonic complexity</li>
+                        <li><strong>Generation</strong> → Scale cycle</li>
+                        <li>Cell <strong>color</strong> → Note frequency</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🎹 Current Scale</h3>
+                    <div class="scale-display" id="scaleDisplayList">
+                        <span class="note-pill">C</span>
+                        <span class="note-pill">D</span>
+                        <span class="note-pill">E</span>
+                        <span class="note-pill">G</span>
+                        <span class="note-pill">A</span>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <h3>📊 Audio Visualization</h3>
+                    <canvas id="audioVisualizer" width="350" height="150"></canvas>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🎨 Visual Controls</h3>
+                    <p style="font-size:0.85em; color:#a0a0a0; margin-bottom:10px;">
+                        Click and drag on the canvas to draw living cells manually.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============== AUDIO-CONTEXT SETUP ==============
+        let audioContext;
+        let masterGain;
+        let analyser;
+        let isAudioEnabled = true;
+        
+        // ============== GAME OF LIFE ==============
+        const canvas = document.getElementById('lifeCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Grid configuration (smaller cells for more population)
+        const COLS = 100;
+        const ROWS = 75;
+        const CELL_SIZE = 8;
+        
+        // Game state
+        let grid = createGrid();
+        let nextGrid = createGrid();
+        let isRunning = true;
+        let generation = 0;
+        let animationId = null;
+        let lastFrameTime = 0;
+        const targetFPS = 10; // Slower for musical cadence
+        const frameInterval = 1000 / targetFPS;
+        
+        // Birth tracking for audio
+        let birthsThisGeneration = 0;
+        let deathsThisGeneration = 0;
+        
+        // ============== MUSIC SYSTEM ==============
+        const scales = {
+            pentatonic: [0, 2, 4, 7, 9],
+            aeolian: [0, 2, 3, 5, 7, 8, 10],
+            lydian: [0, 2, 4, 6, 7, 9, 11],
+            chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        };
+        
+        const scaleNames = ['pentatonic', 'aeolian', 'lydian', 'chromatic'];
+        let currentScaleIndex = 0;
+        
+        // Base note (C3)
+        const baseFreq = 130.81;
+        
+        // Active notes for visualization
+        let activeNotes = [];
+        
+        function getFrequency(semitones) {
+            return baseFreq * Math.pow(2, semitones / 12);
+        }
+        
+        function initAudio() {
+            if (audioContext) return;
+            
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Master gain
+            masterGain = audioContext.createGain();
+            masterGain.gain.value = 0.3;
+            
+            // Analyser for visualization
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 2048;
+            analyser.smoothingTimeConstant = 0.8;
+            
+            // Chain
+            masterGain.connect(analyser);
+            analyser.connect(audioContext.destination);
+            
+            // Start visualizer
+            drawAudioVisualizer();
+        }
+        
+        function playNoteFromCell(row, col, wasBorn) {
+            if (!audioContext || !isAudioEnabled) return;
+            
+            const now = audioContext.currentTime;
+            const semitonesFromPos = (row / ROWS) * 24; // 2 octave range
+            const currentScale = scales[scaleNames[currentScaleIndex]];
+            const noteIndex = Math.floor(semitonesFromPos * currentScale.length / 24);
+            const mappedSemitone = currentScale[noteIndex % currentScale.length];
+            const octave = Math.floor(col / (COLS / 4)); // 4 octave layers
+            const freq = getFrequency(mappedSemitone + (octave * 12));
+            
+            // Create oscillator
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+            
+            // Choose waveform based on age
+            const waveforms = ['sine', 'triangle', 'sawtooth'];
+            osc.type = waveforms[currentScaleIndex % waveforms.length];
+            osc.frequency.value = freq;
+            
+            // Filter for tone shaping
+            filter.type = 'lowpass';
+            filter.frequency.value = freq * 4;
+            
+            // Envelope
+            gain.gain.setValueAtTime(0, now);
+            
+            if (wasBorn) {
+                // Birth note - quick attack, sustain
+                gain.gain.linearRampToValueAtTime(0.2, now + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+            } else {
+                // Death note - quick blip
+                gain.gain.linearRampToValueAtTime(0.1, now + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+            }
+            
+            // Chain
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(masterGain);
+            
+            osc.start(now);
+            osc.stop(now + 1);
+            
+            // Track for visualization
+            activeNotes.push({
+                freq: freq,
+                startTime: now,
+                duration: wasBorn ? 0.8 : 0.3,
+                row: row,
+                col: col
+            });
+            
+            // Cleanup
+            setTimeout(() => {
+                activeNotes = activeNotes.filter(n => n !== activeNotes.find(
+                    an => an.startTime === now && an.row === row && an.col === col
+                ));
+            }, 1000);
+        }
+        
+        function maybePlayAmbientChord() {
+            if (!audioContext || !isAudioEnabled) return;
+            if (Math.random() > 0.3) return; // 30% chance per generation
+            
+            const population = countPopulation();
+            if (population < 50) return; // Need enough density
+            
+            const now = audioContext.currentTime;
+            const currentScale = scales[scaleNames[currentScaleIndex]];
+            
+            // Play 3-5 note chord
+            const numNotes = 3 + Math.floor(Math.random() * 3);
+            
+            for (let i = 0; i < numNotes; i++) {
+                const noteIndex = currentScale[Math.floor(Math.random() * currentScale.length)];
+                const octave = 1 + Math.floor(Math.random() * 2);
+                const freq = getFrequency(noteIndex + (octave * 12));
+                
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                
+                gain.gain.setValueAtTime(0, now);
+                gain.gain.linearRampToValueAtTime(0.1 / numNotes, now + 1);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 4);
+                
+                osc.connect(gain);
+                gain.connect(masterGain);
+                
+                osc.start(now);
+                osc.stop(now + 4);
+            }
+        }
+        
+        // ============== GRID UTILITIES ==============
+        function createGrid() {
+            return Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
+        }
+        
+        function randomizeGrid() {
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    grid[row][col] = Math.random() > 0.85 ? 1 : 0;
+                }
+            }
+            generation = 0;
+            birthsThisGeneration = 0;
+            deathsThisGeneration = 0;
+        }
+        
+        function clearGrid() {
+            grid = createGrid();
+            nextGrid = createGrid();
+            generation = 0;
+            birthsThisGeneration = 0;
+            deathsThisGeneration = 0;
+        }
+        
+        function countNeighbors(row, col) {
+            let count = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    const newRow = (row + i + ROWS) % ROWS;
+                    const newCol = (col + j + COLS) % COLS;
+                    count += grid[newRow][newCol];
+                }
+            }
+            return count;
+        }
+        
+        function countPopulation() {
+            let total = 0;
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    total += grid[row][col];
+                }
+            }
+            return total;
+        }
+        
+        // ============== UPDATE & DRAW ==============
+        function update() {
+            birthsThisGeneration = 0;
+            deathsThisGeneration = 0;
+            
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    const neighbors = countNeighbors(row, col);
+                    const isAlive = grid[row][col] === 1;
+                    
+                    if (isAlive) {
+                        // Dies if not 2 or 3 neighbors
+                        if (neighbors < 2 || neighbors > 3) {
+                            nextGrid[row][col] = 0;
+                            deathsThisGeneration++;
+                            playNoteFromCell(row, col, false);
+                        } else {
+                            nextGrid[row][col] = 1;
+                        }
+                    } else {
+                        // Born if exactly 3 neighbors
+                        if (neighbors === 3) {
+                            nextGrid[row][col] = 1;
+                            birthsThisGeneration++;
+                            playNoteFromCell(row, col, true);
+                        } else {
+                            nextGrid[row][col] = 0;
+                        }
+                    }
+                }
+            }
+            
+            // Swap grids
+            [grid, nextGrid] = [nextGrid, grid];
+            generation++;
+            
+            // Cycle scales every 50 generations
+            if (generation % 50 === 0) {
+                currentScaleIndex = (currentScaleIndex + 1) % scaleNames.length;
+                updateScaleDisplay();
+            }
+            
+            // Maybe play ambient chord
+            if (birthsThisGeneration > 5) {
+                maybePlayAmbientChord();
+            }
+            
+            // Update display
+            updateStats();
+        }
+        
+        function updateStats() {
+            document.getElementById('genDisplay').textContent = generation;
+            document.getElementById('popDisplay').textContent = countPopulation();
+            document.getElementById('birthDisplay').textContent = birthsThisGeneration;
+            document.getElementById('scaleDisplay').textContent = 
+                scaleNames[currentScaleIndex].charAt(0).toUpperCase() + 
+                scaleNames[currentScaleIndex].slice(1);
+        }
+        
+        function updateScaleDisplay() {
+            const scaleDisplay = document.getElementById('scaleDisplayList');
+            const currentScale = scales[scaleNames[currentScaleIndex]];
+            const noteNames = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+            
+            scaleDisplay.innerHTML = currentScale.map(semitone => 
+                `<span class="note-pill">${noteNames[semitone]}</span>`
+            ).join('');
+        }
+        
+        function draw() {
+            // Clear
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw cells
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    if (grid[row][col] === 1) {
+                        // Position-based coloring
+                        const hueOffset = (generation * 2) % 360;
+                        const hue = (hueOffset + (row / ROWS) * 120 + (col / COLS) * 120) % 360;
+                        const sat = 70 + (generation % 20);
+                        const light = 50 + Math.sin(generation * 0.1) * 10;
+                        
+                        ctx.fillStyle = `hsl(${hue}, ${sat}%, ${light}%)`;
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = `hsl(${hue}, ${sat}%, ${light}%)`;
+                        ctx.fillRect(col * CELL_SIZE, row * CELL_SIZE, 
+                                    CELL_SIZE - 1, CELL_SIZE - 1);
+                        ctx.shadowBlur = 0;
+                    }
+                }
+            }
+        }
+        
+        // ============== AUDIO VISUALIZER ==============
+        function drawAudioVisualizer() {
+            const vizCanvas = document.getElementById('audioVisualizer');
+            const vizCtx = vizCanvas.getContext('2d');
+            
+            function draw() {
+                requestAnimationFrame(draw);
+                
+                if (!analyser) return;
+                
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+                analyser.getByteFrequencyData(dataArray);
+                
+                // Clear
+                vizCtx.fillStyle = 'rgba(10, 10, 20, 0.3)';
+                vizCtx.fillRect(0, 0, vizCanvas.width, vizCanvas.height);
+                
+                // Draw frequency bars
+                const barWidth = (vizCanvas.width / bufferLength) * 2.5;
+                let x = 0;
+                
+                for (let i = 0; i < bufferLength; i++) {
+                    const barHeight = (dataArray[i] / 255) * vizCanvas.height * 0.8;
+                    
+                    // Color based on frequency
+                    const hue = 260 + (i / bufferLength) * 100;
+                    vizCtx.fillStyle = `hsla(${hue}, 70%, 60%, 0.8)`;
+                    
+                    vizCtx.fillRect(x, vizCanvas.height - barHeight, 
+                                   barWidth, barHeight);
+                    
+                    x += barWidth + 1;
+                }
+            }
+            
+            draw();
+        }
+        
+        // ============== MAIN LOOP ==============
+        function loop(timestamp) {
+            if (!lastFrameTime) lastFrameTime = timestamp;
+            const elapsed = timestamp - lastFrameTime;
+            
+            if (isRunning && elapsed >= frameInterval) {
+                update();
+                lastFrameTime = timestamp;
+            }
+            
+            draw();
+            animationId = requestAnimationFrame(loop);
+        }
+        
+        // ============== CONTROLS ==============
+        document.getElementById('playPauseBtn').addEventListener('click', () => {
+            isRunning = !isRunning;
+            document.getElementById('playPauseBtn').textContent = 
+                isRunning ? '⏸️ Pause' : '▶️ Play';
+        });
+        
+        document.getElementById('stepBtn').addEventListener('click', () => {
+            isRunning = false;
+            document.getElementById('playPauseBtn').textContent = '▶️ Play';
+            update();
+        });
+        
+        document.getElementById('randomBtn').addEventListener('click', () => {
+            randomizeGrid();
+        });
+        
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            clearGrid();
+        });
+        
+        document.getElementById('audioToggle').addEventListener('click', () => {
+            isAudioEnabled = !isAudioEnabled;
+            const btn = document.getElementById('audioToggle');
+            if (isAudioEnabled) {
+                btn.textContent = '🔊 Sound: ON';
+                btn.classList.remove('sound-enabled');
+            } else {
+                btn.textContent = '🔇 Sound: OFF';
+            }
+        });
+        
+        // Mouse drawing
+        let isDrawing = false;
+        
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            const col = Math.floor((e.clientX - rect.left) / CELL_SIZE);
+            const row = Math.floor((e.clientY - rect.top) / CELL_SIZE);
+            
+            if (row >= 0 && row < ROWS && col >= 0 && col < COLS) {
+                grid[row][col] = grid[row][col] ? 0 : 1;
+                draw();
+            }
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const col = Math.floor((e.clientX - rect.left) / CELL_SIZE);
+            const row = Math.floor((e.clientY - rect.top) / CELL_SIZE);
+            
+            if (row >= 0 && row < ROWS && col >= 0 && col < COLS) {
+                grid[row][col] = 1;
+                draw();
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => { isDrawing = false; });
+        canvas.addEventListener('mouseleave', () => { isDrawing = false; });
+        
+        // Start button
+        document.getElementById('startBtn').addEventListener('click', async () => {
+            initAudio();
+            document.getElementById('startScreen').classList.add('hidden');
+            await audioContext.resume();
+        });
+        
+        // Initialize
+        randomizeGrid();
+        updateScaleDisplay();
+        animationId = requestAnimationFrame(loop);
+    </script>
+</body>
+</html>
