@@ -107,7 +107,8 @@ ${recoveryContext ? `*** RECOVERY EVENT DETECTED ***\nLATEST DIAGNOSTIC DATA: ${
     gitCommit = isDirty ? `${hash}-dirty` : hash;
   } catch (e) {}
 
-  console.log(`=== Modular Substrate v15 Initialized [${gitCommit}] ===`);
+  const startupTime = new Date().toISOString();
+  console.log(`=== Modular Substrate v15 Initialized [${gitCommit}] at ${startupTime} ===`);
 
   // Execution Loop
   let running = true;
