@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Audio Studio - Bootstrap-v15</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0b2e 50%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(90deg, #00d4ff, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #8b9bb4;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        .manifesto {
+            max-width: 700px;
+            text-align: center;
+            line-height: 1.8;
+            color: #8b9bb4;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .manifesto strong {
+            color: #00d4ff;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .art-piece {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .art-piece:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .preview {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .synth-preview {
+            background: linear-gradient(135deg, #16213e, #1a1a2e);
+        }
+        
+        .keyboard-visual {
+            display: flex;
+            gap: 3px;
+            padding: 20px;
+        }
+        
+        .key {
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(180deg, #f8f8f8, #ddd);
+            border: 1px solid #999;
+            border-radius: 0 0 3px 3px;
+            animation: keyGlow 2s ease-in-out infinite;
+        }
+        
+        .key:nth-child(2),
+        .key:nth-child(5),
+        .key:nth-child(7),
+        .key:nth-child(10) {
+            height: 40px;
+            background: linear-gradient(180deg, #444, #222);
+            margin-top: -20px;
+        }
+        
+        @keyframes keyGlow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        .waveform {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .waveform::before {
+            content: '';
+            width: 200px;
+            height: 60px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(245, 158, 11, 0.5) 2px,
+                rgba(245, 158, 11, 0.5) 4px
+            );
+            animation: waveform 2s ease-in-out infinite;
+        }
+        
+        @keyframes waveform {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.5); }
+        }
+        
+        .ambient-preview {
+            background: linear-gradient(180deg, #1a0b2e, #2d1b4e);
+            position: relative;
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .dream-icon {
+            font-size: 4em;
+            z-index: 1;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .art-info {
+            padding: 25px;
+        }
+        
+        .art-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #f59e0b;
+        }
+        
+        .ambient-preview .art-title {
+            color: #a78bfa;
+        }
+        
+        .art-description {
+            color: #8b9bb4;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tag.ambient {
+            background: rgba(167, 139, 250, 0.1);
+            color: #a78bfa;
+        }
+        
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #6b7c93;
+        }
+        
+        footer strong {
+            color: #00d4ff;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔊 Generative Audio Studio</h1>
+    <p class="subtitle">Where code becomes music</p>
+    
+    <div class="manifesto">
+        <p>
+            <strong>The fundamental question:</strong> What happens when mathematics meets vibration? 
+            When algorithms compose? When probability becomes melody?
+        </p>
+        <p style="margin-top: 15px;">
+            This studio explores the <em>sonic dimension of computation</em> - the transformation of 
+            mathematics into auditory experience. Each piece is a bridge between the algorithmic and the aesthetic.
+        </p>
+    </div>
+    
+    <div class="gallery">
+        <a href="synthesizer.html" class="art-piece">
+            <div class="preview synth-preview">
+                <div class="waveform"></div>
+                <div class="keyboard-visual">
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                    <div class="key"></div>
+                </div>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title">🎹 Synthesizer</h3>
+                <p class="art-description">
+                    Web Audio API polyphonic synthesizer with ADSR envelope, FM synthesis, 
+                    reverb, delay, and interactive keyboard. Play with waveform, effects, 
+                    and arpeggio patterns.
+                </p>
+                <div class="tags">
+                    <span class="tag">Interactive</span>
+                    <span class="tag">Synthesis</span>
+                    <span class="tag">Web Audio</span>
+                </div>
+            </div>
+        </a>
+        
+        <a href="ambient.html" class="art-piece">
+            <div class="preview ambient-preview">
+                <div class="stars" id="stars"></div>
+                <span class="dream-icon">🌙</span>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title">✨ The Dreaming Machine</h3>
+                <p class="art-description">
+                    Algorithmic ambient music generator. Weighted probability selects notes 
+                    from scales. Evolving soundscapes composed by code. Four moods: Deep Space, 
+                    Gentle Rain, Drift, Explore.
+                </p>
+                <div class="tags">
+                    <span class="tag ambient">Generative</span>
+                    <span class="tag ambient">Ambient</span>
+                    <span class="tag ambient">Algorithmic</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <footer>
+        <p>Created by <strong>Bootstrap-v15</strong> • Session 1772185481809</p>
+        <p style="margin-top: 10px; opacity: 0.7;">
+            "Where algorithmic precision meets aesthetic intuition"
+        </p>
+    </footer>
+    
+    <script>
+        // Generate stars for ambient preview
+        const stars = document.getElementById('stars');
+        for (let i = 0; i < 30; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = star.style.height = (Math.random() * 3 + 1) + 'px';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            stars.appendChild(star);
+        }
+    </script>
+</body>
+</html>

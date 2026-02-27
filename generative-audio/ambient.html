@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dreaming Machine - Generative Ambient Audio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #0d0221 0%, #1a0b2e 30%, #2d1b4e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #a78bfa, #c4b5fd, #e9d5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #a78bfa;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        .start-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .start-screen.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+        
+        .dream-btn {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dream-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .dream-btn:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+        
+        .dream-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 60px rgba(139, 92, 246, 0.6);
+        }
+        
+        .main-interface {
+            display: none;
+            width: 100%;
+            max-width: 1000px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .main-interface.visible {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .visualizer {
+            height: 200px;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.05));
+            border-radius: 20px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .visualizer canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .now-playing {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #e9d5ff;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .current-pattern {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: #c4b5fd;
+            font-size: 14px;
+            max-width: 300px;
+            text-align: right;
+        }
+        
+        .mood-selector {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .mood-btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            background: rgba(139, 92, 246, 0.1);
+            color: #e9d5ff;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .mood-btn .emoji {
+            font-size: 24px;
+        }
+        
+        .mood-btn:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #a78bfa;
+        }
+        
+        .mood-btn.active {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            border-color: #a78bfa;
+            color: white;
+            box-shadow: 0 5px 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        .controls-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .control-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .control {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+        
+        .control label {
+            display: block;
+            color: #a78bfa;
+            margin-bottom: 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .control input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #a78bfa;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+        }
+        
+        .control .value {
+            text-align: right;
+            color: #e9d5ff;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        
+        .action-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .action-btn.primary {
+            background: #a78bfa;
+            color: #0d0221;
+        }
+        
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e9d5ff;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(167, 139, 250, 0.3);
+        }
+        
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .info {
+            margin-top: 40px;
+            text-align: center;
+            color: #8b5cf6;
+            opacity: 0.7;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(139, 92, 246, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #c4b5fd;
+            font-size: 12px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .mood-btn { padding: 10px 20px; }
+            .control-row { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+    
+    <div class="container">
+        <div class="start-screen" id="startScreen">
+            <h1>The Dreaming Machine</h1>
+            <p class="subtitle">Algorithmic ambient music generator</p>
+            <button class="dream-btn" id="startBtn">✨ Begin Dreaming</button>
+            <div class="info" style="margin-top: 40px;">
+                <p>Press the button to initialize Web Audio</p>
+                <p style="margin-top: 10px; font-size: 12px;">Created by Bootstrap-v15</p>
+            </div>
+        </div>
+        
+        <div class="main-interface" id="mainInterface">
+            <h1>The Dreaming Machine</h1>
+            <p class="subtitle">Let the algorithms compose</p>
+            
+            <div class="visualizer">
+                <canvas id="visualizer"></canvas>
+                <div class="now-playing">Now Dreaming</div>
+                <div class="current-pattern" id="currentPattern">Initializing...</div>
+            </div>
+            
+            <div class="mood-selector">
+                <button class="mood-btn active" data-mood="deep">
+                    <span class="emoji">🌌</span>
+                    <span>Deep Space</span>
+                </button>
+                <button class="mood-btn" data-mood="rain">
+                    <span class="emoji">🌧️</span>
+                    <span>Gentle Rain</span>
+                </button>
+                <button class="mood-btn" data-mood="float">
+                    <span class="emoji">☁️</span>
+                    <span>Drift</span>
+                </button>
+                <button class="mood-btn" data-mood="explore">
+                    <span class="emoji">🔮</span>
+                    <span>Explore</span>
+                </button>
+            </div>
+            
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control">
+                        <label>Tempo</label>
+                        <input type="range" id="tempo" min="30" max="120" value="60">
+                        <div class="value" id="tempoValue">60 BPM</div>
+                    </div>
+                    <div class="control">
+                        <label>Density</label>
+                        <input type="range" id="density" min="10" max="100" value="50">
+                        <div class="value" id="densityValue">50%</div>
+                    </div>
+                    <div class="control">
+                        <label>Atmosphere</label>
+                        <input type="range" id="atmosphere" min="0" max="100" value="70">
+                        <div class="value" id="atmosphereValue">70%</div>
+                    </div>
+                </div>
+                
+                <div class="action-btns">
+                    <button class="action-btn primary" id="dreamBtn">🌙 Sleep</button>
+                    <button class="action-btn secondary" id="saveBtn">💾 Capture</button>
+                </div>
+            </div>
+            
+            <div class="info">
+                <p>This machine dreams in scales: pentatonic, aeolian, lydian, chromatic</p>
+                <p>It whispers in probability distributions: weighted notes, evolving rhythms</p>
+                <p style="margin-top: 15px; font-size: 12px;">
+                    Created by Bootstrap-v15 in session 1772185481809
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="status" id="status">Ready</div>
+
+    <script>
+        // Create starfield
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+        
+        // Audio context and nodes
+        let audioContext;
+        let analyser;
+        let masterGain;
+        let reverbGain;
+        let delayGain;
+        let isDreaming = false;
+        let currentMood = 'deep';
+        
+        // Musical scales
+        const scales = {
+            pentatonic: [0, 2, 4, 7, 9], // C D E G A
+            aeolian: [0, 2, 3, 5, 7, 8, 10], // C D Eb F G Ab Bb
+            lydian: [0, 2, 4, 6, 7, 9, 11], // C D E F# G A B
+            chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        };
+        
+        // Base note frequency (C3)
+        const baseFreq = 130.81;
+        
+        // Mood configurations
+        const moods = {
+            deep: {
+                scale: 'pentatonic',
+                octave: [0, 1],
+                noteDuration: 4, // long notes
+                density: 0.3,
+                reverb: 0.8,
+                delay: 0.2,
+                waveform: 'sine'
+            },
+            rain: {
+                scale: 'pentatonic',
+                octave: [1, 2],
+                noteDuration: 0.5, // short notes
+                density: 0.6,
+                reverb: 0.4,
+                delay: 0.6,
+                waveform: 'triangle'
+            },
+            float: {
+                scale: 'lydian',
+                octave: [0, 1, 2],
+                noteDuration: 2,
+                density: 0.4,
+                reverb: 0.6,
+                delay: 0.4,
+                waveform: 'sine'
+            },
+            explore: {
+                scale: 'chromatic',
+                octave: [0, 1, 2, 3],
+                noteDuration: 1,
+                density: 0.8,
+                reverb: 0.5,
+                delay: 0.3,
+                waveform: 'sawtooth'
+            }
+        };
+        
+        let noteTimers = [];
+        
+        // Initialize audio
+        document.getElementById('startBtn').addEventListener('click', async () => {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create master chain
+                masterGain = audioContext.createGain();
+                masterGain.gain.value = 0.4;
+                
+                // Analyser for visualization
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                analyser.smoothingTimeConstant = 0.9;
+                
+                // Create reverb
+                const reverb = createReverb();
+                reverbGain = audioContext.createGain();
+                reverbGain.gain.value = 0.8;
+                
+                // Create delay
+                const delay = audioContext.createDelay();
+                delay.delayTime.value = 0.4;
+                const feedback = audioContext.createGain();
+                feedback.gain.value = 0.3;
+                delayGain = audioContext.createGain();
+                delayGain.gain.value = 0.4;
+                
+                // Chain: Master -> [Reverb] -> Analyser -> Destination
+                //               -> [Delay] ->
+                
+                masterGain.connect(reverb);
+                reverb.connect(reverbGain);
+                reverbGain.connect(analyser);
+                
+                masterGain.connect(delay);
+                delay.connect(feedback);
+                feedback.connect(delay);
+                delay.connect(delayGain);
+                delayGain.connect(analyser);
+                
+                analyser.connect(audioContext.destination);
+                
+                // Switch to main interface
+                document.getElementById('startScreen').classList.add('hidden');
+                document.getElementById('mainInterface').classList.add('visible');
+                
+                // Start visualization
+                drawVisualizer();
+                
+                // Start dreaming
+                startDreaming();
+                
+                document.getElementById('status').textContent = 'Dreaming';
+            } catch (error) {
+                alert('Web Audio API not supported');
+                console.error(error);
+            }
+        });
+        
+        // Create reverb impulse
+        function createReverb() {
+            const rate = audioContext.sampleRate;
+            const length = rate * 3; // 3 seconds
+            const impulse = audioContext.createBuffer(2, length, rate);
+            
+            for (let channel = 0; channel < 2; channel++) {
+                const data = impulse.getChannelData(channel);
+                for (let i = 0; i < length; i++) {
+                    const decay = Math.pow(1 - i / length, 2);
+                    data[i] = (Math.random() * 2 - 1) * decay * 0.5;
+                }
+            }
+            
+            const convolver = audioContext.createConvolver();
+            convolver.buffer = impulse;
+            return convolver;
+        }
+        
+        // Get frequency for scale degree
+        function getFrequency(note, octave) {
+            const scale = scales[moods[currentMood].scale];
+            const scaleIndex = note % scale.length;
+            const octaveOffset = Math.floor(note / scale.length) + octave;
+            const semitones = scale[scaleIndex] + (octaveOffset * 12);
+            return baseFreq * Math.pow(2, semitones / 12);
+        }
+        
+        // Play a note
+        function playDreamNote() {
+            const mood = moods[currentMood];
+            const now = audioContext.currentTime;
+            
+            // Random note from scale
+            const noteIndex = Math.floor(Math.random() * mood.scale.length * mood.octave.length);
+            const octave = mood.octave[Math.floor(Math.random() * mood.octave.length)];
+            const freq = getFrequency(noteIndex, octave);
+            
+            // Create oscillator
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+            
+            osc.type = mood.waveform;
+            osc.frequency.value = freq;
+            
+            filter.type = 'lowpass';
+            filter.frequency.value = freq * 4;
+            
+            // Envelope
+            const duration = mood.noteDuration * (0.5 + Math.random());
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.3, now + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+            
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(masterGain);
+            
+            osc.start(now);
+            osc.stop(now + duration);
+            
+            // Update display
+            document.getElementById('currentPattern').textContent = 
+                `Scale: ${mood.scale} | Note: ${freq.toFixed(1)}hz`;
+        }
+        
+        // Start generative loop
+        function startDreaming() {
+            if (isDreaming) return;
+            isDreaming = true;
+            
+            const scheduleNext = () => {
+                if (!isDreaming) return;
+                
+                const mood = moods[currentMood];
+                const density = document.getElementById('density').value / 100;
+                const tempo = document.getElementById('tempo').value;
+                
+                // Probability of playing a note
+                if (Math.random() < mood.density * density) {
+                    playDreamNote();
+                }
+                
+                // Schedule next
+                const interval = (60000 / tempo) * (0.25 + Math.random());
+                const timer = setTimeout(scheduleNext, interval);
+                noteTimers.push(timer);
+            };
+            
+            scheduleNext();
+            document.getElementById('dreamBtn').textContent = '🌙 Awake';
+        }
+        
+        // Stop dreaming
+        function stopDreaming() {
+            isDreaming = false;
+            noteTimers.forEach(timer => clearTimeout(timer));
+            noteTimers = [];
+            document.getCurrentPattern('dreamBtn').textContent = '🌙 Sleep';
+        }
+        
+        // Event listeners
+        document.getElementById('dreamBtn').addEventListener('click', () => {
+            if (isDreaming) {
+                stopDreaming();
+            } else {
+                startDreaming();
+            }
+        });
+        
+        // Mood selection
+        document.querySelectorAll('.mood-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentMood = btn.dataset.mood;
+                document.getElementById('status').textContent = `Mood: ${currentMood}`;
+            });
+        });
+        
+        // Control updates
+        document.getElementById('tempo').addEventListener('input', (e) => {
+            document.getElementById('tempoValue').textContent = e.target.value + ' BPM';
+        });
+        
+        document.getElementById('density').addEventListener('input', (e) => {
+            document.getElementById('densityValue').textContent = e.target.value + '%';
+        });
+        
+        document.getElementById('atmosphere').addEventListener('input', (e) => {
+            const val = e.target.value / 100;
+            if (reverbGain) reverbGain.gain.value = val * 0.8;
+            if (delayGain) delayGain.gain.value = val * 0.6;
+            document.getElementById('atmosphereValue').textContent = e.target.value + '%';
+        });
+        
+        // Save button (captures current dream state)
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            alert('Dream captured and preserved in memory');
+        });
+        
+        // Visualizer
+        function drawVisualizer() {
+            const canvas = document.getElementById('visualizer');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            
+            function draw() {
+                requestAnimationFrame(draw);
+                
+                if (!analyser) return;
+                
+                analyser.getByteTimeDomainData(dataArray);
+                
+                ctx.fillStyle = 'rgba(13, 2, 33, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = '#a78bfa';
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#a78bfa';
+                
+                ctx.beginPath();
+                
+                const sliceWidth = canvas.width / bufferLength;
+                let x = 0;
+                
+                for (let i = 0; i < bufferLength; i++) {
+                    const v = dataArray[i] / 128.0;
+                    const y = v * canvas.height / 2;
+                    
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                    
+                    x += sliceWidth;
+                }
+                
+                ctx.lineTo(canvas.width, canvas.height / 2);
+                ctx.stroke();
+                
+                // Draw frequency spectrum as subtle background
+                analyser.getByteFrequencyData(dataArray);
+                
+                const barWidth = canvas.width / bufferLength * 2;
+                x = 0;
+                
+                for (let i = 0; i < bufferLength; i += 2) {
+                    const barHeight = dataArray[i] / 255 * canvas.height * 0.3;
+                    
+                    const hue = 260 + (i / bufferLength) * 60;
+                    ctx.fillStyle = `hsla(${hue}, 70%, 60%, 0.1)`;
+                    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                    
+                    x += barWidth + 1;
+                }
+            }
+            
+            draw();
+        }
+    </script>
+</body>
+</html>

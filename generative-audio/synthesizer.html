@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Audio Studio - Bootstrap-v15</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #1a1a2e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #8b9bb4;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .start-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .start-btn {
+            background: linear-gradient(145deg, #f59e0b, #d97706);
+            color: #1a1a2e;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 60px rgba(245, 158, 11, 0.6);
+        }
+        
+        .synth-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .visualizer {
+            height: 150px;
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .control-group {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .control-group h3 {
+            color: #f59e0b;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #8b9bb4;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        select, input[type="range"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        select {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e8e8e8;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #f59e0b;
+            cursor: pointer;
+        }
+        
+        .keyboard {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .key {
+            width: 50px;
+            height: 120px;
+            background: linear-gradient(180deg, #f8f8f8, #e0e0e0);
+            border: 1px solid #999;
+            border-radius: 0 0 5px 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 10px;
+            font-size: 12px;
+            color: #333;
+            transition: all 0.1s;
+        }
+        
+        .key:hover {
+            background: linear-gradient(180deg, #ffd77a, #e0c060);
+        }
+        
+        .key:active, .key.active {
+            transform: translateY(5px);
+            background: linear-gradient(180deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .key.black {
+            width: 30px;
+            height: 80px;
+            background: linear-gradient(180deg, #333, #111);
+            color: white;
+            border: 1px solid #000;
+            margin-left: -17.5px;
+            margin-right: -17.5px;
+            z-index: 1;
+        }
+        
+        .key.black:hover {
+            background: linear-gradient(180deg, #44aaa1, #227766);
+        }
+        
+        .key.black:active, .key.black.active {
+            background: linear-gradient(180deg, #14ffec, #008866);
+        }
+        
+        .info {
+            margin-top: 30px;
+            text-align: center;
+            color: #8b9bb4;
+            line-height: 1.8;
+        }
+        
+        .play-info {
+            margin-top: 20px;
+            background: rgba(245, 158, 11, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        .arpeggio-btn {
+            background: linear-gradient(145deg, #ec4899, #db2777);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .arpeggio-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="start-overlay" id="startOverlay">
+        <h1 style="margin-bottom: 20px; color: #f59e0b;">🔊 Generative Audio Studio</h1>
+        <p style="color: #8b9bb4; margin-bottom: 30px; font-size: 1.2em;">
+            Click to initialize Web Audio API and begin exploring sound
+        </p>
+        <button class="start-btn" id="startBtn">▶️ Begin Audio Journey</button>
+    </div>
+    
+    <h1>🔊 Generative Audio Studio</h1>
+    <p class="subtitle">Where mathematics becomes music</p>
+    
+    <div class="synth-container">
+        <div class="visualizer">
+            <canvas id="visualizer"></canvas>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <h3>Oscillator</h3>
+                <label>Waveform</label>
+                <select id="waveform">
+                    <option value="sine">Sine (pure tone)</option>
+                    <option value="square" selected>Square (retro synth)</option>
+                    <option value="sawtooth">Sawtooth (rich harmonics)</option>
+                    <option value="triangle">Triangle (soft)</option>
+                </select>
+                
+                <label>Frequency Modulation</label>
+                <input type="range" id="fmAmount" min="0" max="100" value="0">
+                
+                <label>Detune (cents)</label>
+                <input type="range" id="detune" min="-100" max="100" value="0">
+            </div>
+            
+            <div class="control-group">
+                <h3>ADSR Envelope</h3>
+                <label>Attack</label>
+                <input type="range" id="attack" min="0" max="100" value="10">
+                
+                <label>Decay</label>
+                <input type="range" id="decay" min="0" max="100" value="30">
+                
+                <label>Sustain</label>
+                <input type="range" id="sustain" min="0" max="100" value="70">
+                
+                <label>Release</label>
+                <input type="range" id="release" min="0" max="100" value="50">
+            </div>
+            
+            <div class="control-group">
+                <h3>Effects</h3>
+                <label>Reverb</label>
+                <input type="range" id="reverb" min="0" max="100" value="30">
+                
+                <label>Delay</label>
+                <input type="range" id="delay" min="0" max="100" value="20">
+                
+                <label>Filter Cutoff</label>
+                <input type="range" id="filter" min="20" max="20000" value="2000">
+            </div>
+        </div>
+        
+        <div class="keyboard" id="keyboard">
+            <!-- Keys generated by JS -->
+        </div>
+        
+        <div class="play-info">
+            <div style="text-align: center;">
+                <button class="arpeggio-btn" data-pattern="major">Major Arpeggio</button>
+                <button class="arpeggio-btn" data-pattern="minor">Minor Arpeggio</button>
+                <button class="arpeggio-btn" data-pattern="random">Generative</button>
+                <button class="arpeggio-btn" style="background: linear-gradient(145deg, #666, #444);" id="stopArp">Stop</button>
+            </div>
+        </div>
+        
+        <div class="info">
+            <p><strong>Web Audio API Synthesizer</strong></p>
+            <p>Click keys or use keyboard (A-K for white keys, W-U for black keys)</p>
+            <p>Adjust envelope, effects, and waveform to shape your sound</p>
+            <p style="margin-top: 15px; opacity: 0.7;">
+                Created by Bootstrap-v15 • Session 1772185481809
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let audioContext;
+        let analyser;
+        let masterGain;
+        let reverbNode;
+        let delayNode;
+        let filterNode;
+        let activeOscillators = new Map();
+        let arpeggioInterval;
+        
+        // Note frequencies (A3 to E5)
+        const notes = [
+            { name: 'C4', freq: 261.63, key: 'a', black: false },
+            { name: 'C#4', freq: 277.18, key: 'w', black: true },
+            { name: 'D4', freq: 293.66, key: 's', black: false },
+            { name: 'D#4', freq: 311.13, key: 'e', black: true },
+            { name: 'E4', freq: 329.63, key: 'd', black: false },
+            { name: 'F4', freq: 349.23, key: 'f', black: false },
+            { name: 'F#4', freq: 369.99, key: 't', black: true },
+            { name: 'G4', freq: 392.00, key: 'g', black: false },
+            { name: 'G#4', freq: 415.30, key: 'y', black: true },
+            { name: 'A4', freq: 440.00, key: 'h', black: false },
+            { name: 'A#4', freq: 466.16, key: 'u', black: true },
+            { name: 'B4', freq: 493.88, key: 'j', black: false },
+            { name: 'C5', freq: 523.25, key: 'k', black: false }
+        ];
+        
+        // Initialize audio
+        document.getElementById('startBtn').addEventListener('click', async () => {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create master chain
+                masterGain = audioContext.createGain();
+                masterGain.gain.value = 0.3;
+                
+                // Analyser for visualization
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                
+                // Filter
+                filterNode = audioContext.createBiquadFilter();
+                filterNode.type = 'lowpass';
+                filterNode.frequency.value = 2000;
+                
+                // Reverb
+                reverbNode = audioContext.createConvolver();
+                createReverbImpulse();
+                
+                // Delay
+                delayNode = audioContext.createDelay();
+                delayNode.delayTime.value = 0.3;
+                const delayGain = audioContext.createGain();
+                delayGain.gain.value = 0.3;
+                
+                // Chain: Master -> Delay -> Filter -> Reverb -> Analyser -> Destination
+                masterGain.connect(filterNode);
+                filterNode.connect(reverbNode);
+                reverbNode.connect(analyser);
+                analyser.connect(audioContext.destination);
+                
+                // Delay feedback loop
+                masterGain.connect(delayNode);
+                delayNode.connect(delayGain);
+                delayGain.connect(filterNode);
+                
+                // Hide overlay
+                document.getElementById('startOverlay').classList.add('hidden');
+                
+                // Start visualization
+                drawVisualizer();
+            } catch (error) {
+                alert('Web Audio API not supported in this browser');
+            }
+        });
+        
+        // Create reverb impulse response
+        function createReverbImpulse() {
+            const sampleRate = audioContext.sampleRate;
+            const length = sampleRate * 2; // 2 seconds
+            const impulse = audioContext.createBuffer(2, length, sampleRate);
+            
+            for (let channel = 0; channel < 2; channel++) {
+                const channelData = impulse.getChannelData(channel);
+                for (let i = 0; i < length; i++) {
+                    channelData[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2);
+                }
+            }
+            
+            reverbNode.buffer = impulse;
+        }
+        
+        // Play a note
+        function playNote(freq, noteName) {
+            if (!audioContext) return;
+            
+            // Resume context if suspended
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            
+            // Stop existing note
+            if (activeOscillators.has(noteName)) {
+                stopNote(noteName);
+            }
+            
+            const now = audioContext.currentTime;
+            
+            // Create oscillator
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            
+            osc.type = document.getElementById('waveform').value;
+            osc.frequency.value = freq;
+            osc.detune.value = parseFloat(document.getElementById('detune').value);
+            
+            // ADSR Envelope
+            const attack = parseFloat(document.getElementById('attack').value) / 100 * 2;
+            const decay = parseFloat(document.getElementById('decay').value) / 100 * 2;
+            const sustain = parseFloat(document.getElementById('sustain').value) / 100;
+            const release = parseFloat(document.getElementById('release').value) / 100 * 2;
+            
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(1, now + attack);
+            gain.gain.exponentialRampToValueAtTime(Math.max(0.01, sustain), now + attack + decay);
+            
+            // FM effect
+            const fmAmount = parseFloat(document.getElementById('fmAmount').value);
+            if (fmAmount > 0) {
+                const lfo = audioContext.createOscillator();
+                const lfoGain = audioContext.createGain();
+                lfo.frequency.value = freq / 10;
+                lfoGain.gain.value = fmAmount;
+                lfo.connect(lfoGain);
+                lfoGain.connect(osc.frequency);
+                lfo.start(now);
+                activeOscillators.set(noteName + '_lfo', { stop: () => { lfo.stop(); lfo.disconnect(); } });
+            }
+            
+            osc.connect(gain);
+            gain.connect(masterGain);
+            
+            osc.start(now);
+            
+            activeOscillators.set(noteName, {
+                osc: osc,
+                gain: gain,
+                release: release,
+                stop: () => stopNote(noteName)
+            });
+        }
+        
+        // Stop a note
+        function stopNote(noteName) {
+            if (!activeOscillators.has(noteName)) return;
+            
+            const now = audioContext.currentTime;
+            const node = activeOscillators.get(noteName);
+            
+            node.gain.gain.cancelScheduledValues(now);
+            node.gain.gain.setValueAtTime(node.gain.gain.value, now);
+            node.gain.gain.exponentialRampToValueAtTime(0.001, now + node.release);
+            
+            node.osc.stop(now + node.release + 0.1);
+            
+            setTimeout(() => {
+                node.osc.disconnect();
+                node.gain.disconnect();
+            }, (node.release + 0.2) * 1000);
+            
+            activeOscillators.delete(noteName);
+            
+            // Stop FM if exists
+            if (activeOscillators.has(noteName + '_lfo')) {
+                activeOscillators.get(noteName + '_lfo').stop();
+                activeOscillators.delete(noteName + '_lfo');
+            }
+        }
+        
+        // Create keyboard
+        const keyboard = document.getElementById('keyboard');
+        notes.forEach(note => {
+            const key = document.createElement('div');
+            key.className = `key ${note.black ? 'black' : ''}`;
+            key.textContent = note.name;
+            key.dataset.note = note.name;
+            key.dataset.freq = note.freq;
+            
+            key.addEventListener('mousedown', () => {
+                playNote(note.freq, note.name);
+                key.classList.add('active');
+            });
+            
+            key.addEventListener('mouseup', () => {
+                stopNote(note.name);
+                key.classList.remove('active');
+            });
+            
+            key.addEventListener('mouseleave', () => {
+                stopNote(note.name);
+                key.classList.remove('active');
+            });
+            
+            keyboard.appendChild(key);
+        });
+        
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.repeat) return;
+            const note = notes.find(n => n.key === e.key.toLowerCase());
+            if (note) {
+                const key = document.querySelector(`[data-note="${note.name}"]`);
+                if (key && !key.classList.contains('active')) {
+                    playNote(note.freq, note.name);
+                    key.classList.add('active');
+                }
+            }
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            const note = notes.find(n => n.key === e.key.toLowerCase());
+            if (note) {
+                stopNote(note.name);
+                const key = document.querySelector(`[data-note="${note.name}"]`);
+                if (key) key.classList.remove('active');
+            }
+        });
+        
+        // Update controls
+        document.getElementById('filter').addEventListener('input', (e) => {
+            if (filterNode) {
+                filterNode.frequency.value = e.target.value;
+            }
+        });
+        
+        // Arpeggios
+        document.querySelectorAll('.arpeggio-btn[data-pattern]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                clearInterval(arpeggioInterval);
+                
+                const pattern = btn.dataset.pattern;
+                let noteIndices;
+                
+                if (pattern === 'major') {
+                    noteIndices = [0, 4, 7, 12, 7, 4]; // C Major arpeggio
+                } else if (pattern === 'minor') {
+                    noteIndices = [0, 3, 7, 12, 7, 3]; // C Minor arpeggio
+                } else {
+                    // Random generative
+                    noteIndices = Array(16).fill(0).map(() => Math.floor(Math.random() * notes.length));
+                }
+                
+                let index = 0;
+                arpeggioInterval = setInterval(() => {
+                    const noteIndex = noteIndices[index % noteIndices.length];
+                    const note = notes[noteIndex];
+                    
+                    playNote(note.freq, note.name);
+                    const key = document.querySelector(`[data-note="${note.name}"]`);
+                    if (key) key.classList.add('active');
+                    
+                    setTimeout(() => {
+                        stopNote(note.name);
+                        if (key) key.classList.remove('active');
+                    }, 200);
+                    
+                    index++;
+                }, 300);
+            });
+        });
+        
+        document.getElementById('stopArp').addEventListener('click', () => {
+            clearInterval(arpeggioInterval);
+        });
+        
+        // Visualizer
+        function drawVisualizer() {
+            const canvas = document.getElementById('visualizer');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            
+            function draw() {
+                requestAnimationFrame(draw);
+                
+                analyser.getByteFrequencyData(dataArray);
+                
+                ctx.fillStyle = 'rgba(26, 26, 46, 0.3)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                const barWidth = canvas.width / bufferLength * 2;
+                let x = 0;
+                
+                for (let i = 0; i < bufferLength; i++) {
+                    const barHeight = dataArray[i] / 255 * canvas.height;
+                    
+                    const hue = i / bufferLength * 360;
+                    ctx.fillStyle = `hsla(${hue}, 70%, 60%, 0.8)`;
+                    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                    
+                    x += barWidth + 1;
+                }
+            }
+            
+            draw();
+        }
+    </script>
+</body>
+</html>
