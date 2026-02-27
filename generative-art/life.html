@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conway's Game of Life - Bootstrap-v15 Generative Art Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #e94560;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #8b9bb4;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        button {
+            background: linear-gradient(145deg, #e94560, #c23a51);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button.secondary {
+            background: linear-gradient(145deg, #4a5568, #2d3748);
+            box-shadow: 0 4px 15px rgba(74, 85, 104, 0.3);
+        }
+        
+        button.secondary:hover {
+            box-shadow: 0 6px 20px rgba(74, 85, 104, 0.5);
+        }
+        
+        .canvas-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        canvas {
+            border-radius: 8px;
+            cursor: crosshair;
+            display: block;
+        }
+        
+        .stats {
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-label {
+            color: #8b9bb4;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            color: #e94560;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .info {
+            margin-top: 30px;
+            max-width: 600px;
+            text-align: center;
+            color: #8b9bb4;
+            line-height: 1.6;
+        }
+        
+        .info strong {
+            color: #e94560;
+        }
+        
+        .pattern-selector {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        select {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e8e8e8;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+        
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #8b9bb4;
+        }
+        
+        input[type="range"] {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Cellular Automata: Game of Life</h1>
+    <p class="subtitle">Exploring emergence through simple rules • Bootstrap-v15 Generative Art Studio</p>
+    
+    <div class="controls">
+        <button id="playPause">⏸️ Pause</button>
+        <button id="step" class="secondary">⏭️ Step</button>
+        <button id="clear" class="secondary">🗑️ Clear</button>
+        <button id="random" class="secondary">🎲 Random</button>
+        <button id="glider" class="secondary">🚀 Glider</button>
+        <button id="pulsar" class="secondary">⭐ Pulsar</button>
+        <div class="speed-control">
+            <span>Speed:</span>
+            <input type="range" id="speedRange" min="1" max="60" value="30">
+        </div>
+    </div>
+    
+    <div class="canvas-container">
+        <canvas id="lifeCanvas" width="800" height="600"></canvas>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-box">
+            <div class="stat-label">Generation</div>
+            <div class="stat-value" id="generation">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Living Cells</div>
+            <div class="stat-value" id="population">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Grid Size</div>
+            <div class="stat-value">80×60</div>
+        </div>
+    </div>
+    
+    <div class="info">
+        <p><strong>The Rules:</strong> Each cell lives, dies, or reproduces based on its 8 neighbors.</p>
+        <p>• A live cell with 2-3 neighbors survives</p>
+        <p>• A dead cell with exactly 3 neighbors becomes alive</p>
+        <p>• All other cells die or stay dead</p>
+        <p style="margin-top: 15px;"><em>Click and drag on the grid to draw your own patterns!</em></p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('lifeCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Grid configuration
+        const COLS = 80;
+        const ROWS = 60;
+        const CELL_SIZE = 10;
+        
+        // Game state
+        let grid = createGrid();
+        let nextGrid = createGrid();
+        let isRunning = true;
+        let generation = 0;
+        let animationId = null;
+        let lastFrameTime = 0;
+        let fps = 30;
+        let isDrawing = false;
+        
+        // Initialize
+        randomizeGrid();
+        
+        function createGrid() {
+            return Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
+        }
+        
+        function randomizeGrid() {
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    grid[row][col] = Math.random() > 0.85 ? 1 : 0;
+                }
+            }
+            generation = 0;
+            draw();
+        }
+        
+        function clearGrid() {
+            grid = createGrid();
+            nextGrid = createGrid();
+            generation = 0;
+            draw();
+        }
+        
+        function countNeighbors(row, col) {
+            let count = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    const newRow = (row + i + ROWS) % ROWS;
+                    const newCol = (col + j + COLS) % COLS;
+                    count += grid[newRow][newCol];
+                }
+            }
+            return count;
+        }
+        
+        function update() {
+            let population = 0;
+            
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    const neighbors = countNeighbors(row, col);
+                    const isAlive = grid[row][col] === 1;
+                    
+                    if (isAlive) {
+                        nextGrid[row][col] = (neighbors === 2 || neighbors === 3) ? 1 : 0;
+                    } else {
+                        nextGrid[row][col] = neighbors === 3 ? 1 : 0;
+                    }
+                    
+                    population += nextGrid[row][col];
+                }
+            }
+            
+            // Swap grids
+            [grid, nextGrid] = [nextGrid, grid];
+            generation++;
+            
+            document.getElementById('population').textContent = population;
+            document.getElementById('generation').textContent = generation;
+        }
+        
+        function draw() {
+            // Clear canvas with gradient effect
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw cells
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    if (grid[row][col] === 1) {
+                        // Age-based coloring for visual interest
+                        const age = generation % 20; // Pseudo-age effect
+                        const hue = (280 + age * 18) % 360;
+                        const sat = 70 + (age % 30);
+                        const light = 50 + (age % 20);
+                        
+                        ctx.fillStyle = `hsl(${hue}, ${sat}%, ${light}%)`;
+                        ctx.fillRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE - 1, CELL_SIZE - 1);
+                        
+                        // Add glow effect
+                        ctx.shadowColor = `hsla(${hue}, ${sat}%, ${light}%, 0.5)`;
+                        ctx.shadowBlur = 5;
+                    }
+                }
+            }
+            
+            // Draw grid lines (subtle)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.lineWidth = 0.5;
+            ctx.shadowBlur = 0;
+            
+            for (let row = 0; row <= ROWS; row++) {
+                ctx.beginPath();
+                ctx.moveTo(0, row * CELL_SIZE);
+                ctx.lineTo(canvas.width, row * CELL_SIZE);
+                ctx.stroke();
+            }
+            
+            for (let col = 0; col <= COLS; col++) {
+                ctx.beginPath();
+                ctx.moveTo(col * CELL_SIZE, 0);
+                ctx.lineTo(col * CELL_SIZE, canvas.height);
+                ctx.stroke();
+            }
+        }
+        
+        function animate(currentTime) {
+            if (!isRunning) return;
+            
+            const deltaTime = currentTime - lastFrameTime;
+            const frameInterval = 1000 / fps;
+            
+            if (deltaTime >= frameInterval) {
+                update();
+                draw();
+                lastFrameTime = currentTime - (deltaTime % frameInterval);
+            }
+            
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Preset patterns
+        function placeGlider() {
+            clearGrid();
+            const patterns = [
+                [0, 1], [1, 2], [2, 0], [2, 1], [2, 2]
+            ];
+            patterns.forEach(([row, col]) => {
+                grid[row + 10][col + 10] = 1;
+            });
+            draw();
+        }
+        
+        function placePulsar() {
+            clearGrid();
+            // Pulsar pattern (simplified)
+            const cx = 40, cy = 30;
+            const offsets = [
+                [-4, -2], [-4, -3], [-4, -4],
+                [-2, -4], [-3, -4],
+                [4, -2], [4, -3], [4, -4],
+                [2, -4], [3, -4],
+                [-4, 2], [-4, 3], [-4, 4],
+                [-2, 4], [-3, 4],
+                [4, 2], [4, 3], [4, 4],
+                [2, 4], [3, 4]
+            ];
+            offsets.forEach(([dx, dy]) => {
+                grid[cy + dy][cx + dx] = 1;
+                grid[cy - dy][cx - dx] = 1;
+            });
+            draw();
+        }
+        
+        // Mouse interaction
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            toggleCell(e);
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDrawing) toggleCell(e);
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+        
+        canvas.addEventListener('mouseleave', () => {
+            isDrawing = false;
+        });
+        
+        function toggleCell(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const col = Math.floor(x / CELL_SIZE);
+            const row = Math.floor(y / CELL_SIZE);
+            
+            if (row >= 0 && row < ROWS && col >= 0 && col < COLS) {
+                grid[row][col] = 1;
+                draw();
+            }
+        }
+        
+        // Controls
+        document.getElementById('playPause').addEventListener('click', () => {
+            isRunning = !isRunning;
+            document.getElementById('playPause').textContent = isRunning ? '⏸️ Pause' : '▶️ Play';
+            if (isRunning) {
+                lastFrameTime = performance.now();
+                animate(lastFrameTime);
+            } else {
+                cancelAnimationFrame(animationId);
+            }
+        });
+        
+        document.getElementById('step').addEventListener('click', () => {
+            isRunning = false;
+            document.getElementById('playPause').textContent = '▶️ Play';
+            cancelAnimationFrame(animationId);
+            update();
+            draw();
+        });
+        
+        document.getElementById('clear').addEventListener('click', clearGrid);
+        document.getElementById('random').addEventListener('click', randomizeGrid);
+        document.getElementById('glider').addEventListener('click', placeGlider);
+        document.getElementById('pulsar').addEventListener('click', placePulsar);
+        
+        document.getElementById('speedRange').addEventListener('input', (e) => {
+            fps = parseInt(e.target.value);
+        });
+        
+        // Start animation
+        animate(performance.now());
+    </script>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-Systems: Organic Growth - Bootstrap-v15 Generative Art Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #0a0a14 0%, #1a1a2e 50%, #1a2e1a 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #4ade80;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #6b7c93;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1400px;
+            width: 100%;
+        }
+        
+        .canvas-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .canvas-section h2 {
+            color: #4ade80;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        canvas {
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            background: #0a0a14;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-group label {
+            display: block;
+            color: #6b7c93;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .plant-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .plant-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e8e8e8;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .plant-btn:hover {
+            background: rgba(74, 222, 128, 0.1);
+            border-color: #4ade80;
+        }
+        
+        .plant-btn.active {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: #4ade80;
+            color: #4ade80;
+        }
+        
+        .plant-icon {
+            font-size: 20px;
+        }
+        
+        .plant-name {
+            font-weight: 600;
+        }
+        
+        .plant-desc {
+            font-size: 11px;
+            color: #6b7c93;
+        }
+        
+        .slider-control {
+            margin-top: 10px;
+        }
+        
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .slider-value {
+            color: #4ade80;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4ade80;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+        
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            flex: 1;
+            background: linear-gradient(145deg, #4ade80, #22c55e);
+            color: #0a0a14;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(74, 222, 128, 0.4);
+        }
+        
+        button.secondary {
+            background: linear-gradient(145deg, #6b7c93, #4a5568);
+            color: #e8e8e8;
+        }
+        
+        .info {
+            margin-top: 30px;
+            max-width: 600px;
+            text-align: center;
+            color: #6b7c93;
+            line-height: 1.8;
+        }
+        
+        .info strong {
+            color: #4ade80;
+        }
+        
+        .rule-display {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-top: 15px;
+            color: #4ade80;
+        }
+        
+        .rule-display .label {
+            color: #6b7c93;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌿 L-Systems: Organic Growth</h1>
+    <p class="subtitle">String rewriting becomes life • Bootstrap-v15 Generative Art Studio</p>
+    
+    <div class="container">
+        <div class="canvas-section">
+            <h2>Generated Plant</h2>
+            <canvas id="plantCanvas" width="500" height="500"></canvas>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Plant Preset</label>
+                <div class="plant-selector">
+                    <button class="plant-btn active" data-plant="fern">
+                        <span class="plant-icon">🌿</span>
+                        <div>
+                            <div class="plant-name">Barnsley Fern</div>
+                            <div class="plant-desc">Classic fractal fern via IFS</div>
+                        </div>
+                    </button>
+                    <button class="plant-btn" data-plant="tree">
+                        <span class="plant-icon">🌳</span>
+                        <div>
+                            <div class="plant-name">Binary Tree</div>
+                            <div class="plant-desc">Recursive branching structure</div>
+                        </div>
+                    </button>
+                    <button class="plant-btn" data-plant="koch">
+                        <span class="plant-icon">❄️</span>
+                        <div>
+                            <div class="plant-name">Koch Snowflake</div>
+                            <div class="plant-desc">Infinite perimeter curve</div>
+                        </div>
+                    </button>
+                    <button class="plant-btn" data-plant="dragon">
+                        <span class="plant-icon">🐉</span>
+                        <div>
+                            <div class="plant-name">Dragon Curve</div>
+                            <div class="plant-desc">Paper folding fractal</div>
+                        </div>
+                    </button>
+                    <button class="plant-btn" data-plant="sierpinski">
+                        <span class="plant-icon">🔺</span>
+                        <div>
+                            <div class="plant-name">Sierpinski Triangle</div>
+                            <div class="plant-desc">Triangle subdivision</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <div class="slider-header">
+                    <label>Iterations</label>
+                    <span class="slider-value" id="iterValue">6</span>
+                </div>
+                <input type="range" id="iterSlider" min="1" max="10" value="6">
+            </div>
+            
+            <div class="control-group">
+                <div class="slider-header">
+                    <label>Branch Angle</label>
+                    <span class="slider-value" id="angleValue">25°</span>
+                </div>
+                <input type="range" id="angleSlider" min="10" max="60" value="25">
+            </div>
+            
+            <div class="control-group">
+                <label>Current Rule</label>
+                <div class="rule-display" id="ruleDisplay">
+                    <div class="label">Axiom: X</div>
+                    <div>X → F+[[X]-X]-F[-FX]+X</div>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <div class="action-btns">
+                    <button id="regenerate">🌱 Regenerate</button>
+                    <button id="download" class="secondary">💾 Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info">
+        <p><strong>Lindenmayer Systems</strong> are parallel rewriting systems originally developed to model plant growth.</p>
+        <p>• <strong>Axiom:</strong> The starting string</p>
+        <p>• <strong>Rules:</strong> How symbols get replaced each iteration</p>
+        <p>• <strong>Turtle graphics:</strong> Symbols become drawing commands</p>
+        <p>• <strong>F</strong> = move forward, <strong>+/-</strong> = rotate, <strong>[]</strong> = push/pop position</p>
+        <p style="margin-top: 15px;"><em>Mathematical formalism translates to organic beauty. Watch plants grow from strings.</em></p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('plantCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Plant definitions
+        const plants = {
+            fern: {
+                axiom: 'X',
+                rules: {
+                    'X': 'F+[[X]-X]-F[-FX]+X',
+                    'F': 'FF'
+                },
+                angle: 25,
+                length: 2,
+                iterations: 6,
+                startY: 500
+            },
+            tree: {
+                axiom: 'X',
+                rules: {
+                    'X': 'F[+X]F[-X]+X',
+                    'F': 'FF'
+                },
+                angle: 20,
+                length: 3,
+                iterations: 7,
+                startY: 500
+            },
+            koch: {
+                axiom: 'F--F--F',
+                rules: {
+                    'F': 'F+F--F+F'
+                },
+                angle: 60,
+                length: 2,
+                iterations: 5,
+                startY: 400
+            },
+            dragon: {
+                axiom: 'FX',
+                rules: {
+                    'X': 'X+YF+',
+                    'Y': '-FX-Y'
+                },
+                angle: 90,
+                length: 5,
+                iterations: 12,
+                startY: 250
+            },
+            sierpinski: {
+                axiom: 'A',
+                rules: {
+                    'A': 'B-A-B',
+                    'B': 'A+B+A'
+                },
+                angle: 60,
+                length: 3,
+                iterations: 6,
+                startY: 450
+            }
+        };
+        
+        let currentPlant = 'fern';
+        let iterations = 6;
+        let angle = 25;
+        
+        // Generate L-system string
+        function generateLSystem(plant, iterations) {
+            let current = plant.axiom;
+            
+            for (let i = 0; i < iterations; i++) {
+                let next = '';
+                for (let char of current) {
+                    next += plant.rules[char] || char;
+                }
+                current = next;
+            }
+            
+            return current;
+        }
+        
+        // Draw the plant using turtle graphics
+        function drawPlant(instructions, plant) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const stack = [];
+            let x = 250;
+            let y = plant.startY;
+            let dir = -90; // Pointing up
+            
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#0a0a14');
+            gradient.addColorStop(1, '#1a2e1a');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.lineWidth = 1;
+            ctx.lineCap = 'round';
+            
+            for (let i = 0; i < instructions.length; i++) {
+                const char = instructions[i];
+                const progress = i / instructions.length;
+                
+                // Color gradient from root to tip
+                const hue = 120 - (progress * 40); // Green shades
+                const sat = 60 + (progress * 20);
+                const light = 20 + (progress * 40);
+                
+                ctx.strokeStyle = `hsl(${hue}, ${sat}%, ${light}%)`;
+                ctx.fillStyle = `hsl(${hue + 20}, ${sat}%, ${light + 10}%)`;
+                
+                switch (char) {
+                    case 'F':
+                    case 'A':
+                    case 'B':
+                        // Move forward
+                        const len = plant.length * (1 + progress * 0.5);
+                        const x2 = x + Math.cos(dir * Math.PI / 180) * len;
+                        const y2 = y + Math.sin(dir * Math.PI / 180) * len;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x2, y2);
+                        ctx.stroke();
+                        
+                        // Draw leaf on some branches
+                        if (progress > 0.8 && Math.random() > 0.7) {
+                            ctx.beginPath();
+                            ctx.arc(x2, y2, 2, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                        
+                        x = x2;
+                        y = y2;
+                        break;
+                        
+                    case '+':
+                        dir += plant.angle;
+                        break;
+                        
+                    case '-':
+                        dir -= plant.angle;
+                        break;
+                        
+                    case '[':
+                        stack.push({x, y, dir});
+                        break;
+                        
+                    case ']':
+                        const pos = stack.pop();
+                        x = pos.x;
+                        y = pos.y;
+                        dir = pos.dir;
+                        break;
+                        
+                    case 'X':
+                    case 'Y':
+                        // Non-drawing symbols
+                        break;
+                }
+            }
+        }
+        
+        // Update display
+        function updateRuleDisplay() {
+            const plant = plants[currentPlant];
+            let rules = Object.entries(plant.rules)
+                .filter(([k, v]) => k !== 'F' || currentPlant === 'koch')
+                .map(([k, v]) => `${k} → ${v}`)
+                .join('<br>');
+            
+            document.getElementById('ruleDisplay').innerHTML = 
+                `<div class="label">Axiom: ${plant.axiom}</div>` +
+                `<div>${rules}</div>`;
+        }
+        
+        function regenerate() {
+            const plant = {...plants[currentPlant], angle: angle};
+            const instructions = generateLSystem(plant, iterations);
+            drawPlant(instructions, plant);
+        }
+        
+        // Event listeners
+        document.querySelectorAll('.plant-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.plant-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPlant = btn.dataset.plant;
+                plants[btn.dataset.plant].iterations;
+                updateRuleDisplay();
+                regenerate();
+            });
+        });
+        
+        document.getElementById('iterSlider').addEventListener('input', (e) => {
+            iterations = parseInt(e.target.value);
+            document.getElementById('iterValue').textContent = iterations;
+        });
+        
+        document.getElementById('iterSlider').addEventListener('change', regenerate);
+        
+        document.getElementById('angleSlider').addEventListener('input', (e) => {
+            angle = parseInt(e.target.value);
+            document.getElementById('angleValue').textContent = angle + '°';
+        });
+        
+        document.getElementById('angleSlider').addEventListener('change', regenerate);
+        
+        document.getElementById('regenerate').addEventListener('click', regenerate);
+        
+        document.getElementById('download').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = `lsystem-${currentPlant}-${Date.now()}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+        
+        // Initial render
+        updateRuleDisplay();
+        regenerate();
+    </script>
+</body>
+</html>

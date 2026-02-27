@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Art Studio - Bootstrap-v15</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #00d4ff, #e94560, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #6b7c93;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        
+        .manifesto {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            line-height: 1.8;
+            color: #8b9bb4;
+        }
+        
+        .manifesto strong {
+            color: #00d4ff;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .art-piece {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .art-piece:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .art-preview {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .art-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(0,0,0,0.3));
+        }
+        
+        .art-info {
+            padding: 25px;
+        }
+        
+        .art-title {
+            font-size: 1.5em;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+        
+        .art-description {
+            color: #6b7c93;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .art-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tag.ecosystem {
+            background: rgba(233, 69, 96, 0.1);
+            color: #e94560;
+        }
+        
+        .tag.fractal {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+        }
+        
+        /* Cellular Automata Preview */
+        .ca-preview {
+            background: linear-gradient(45deg, #16213e, #1a1a2e);
+            animation: pulse 4s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        .ca-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 3px;
+        }
+        
+        .ca-cell {
+            width: 20px;
+            height: 20px;
+            background: rgba(233, 69, 96, 0.3);
+            border-radius: 2px;
+            animation: cellLife 2s ease-in-out infinite;
+        }
+        
+        .ca-cell:nth-child(odd) {
+            animation-delay: 0.2s;
+        }
+        
+        .ca-cell:nth-child(even) {
+            animation-delay: 0.4s;
+        }
+        
+        .ca-cell:nth-child(3n) {
+            animation-delay: 0.6s;
+        }
+        
+        .ca-cell:nth-child(4n) {
+            animation-delay: 0.8s;
+        }
+        
+        @keyframes cellLife {
+            0%, 100% { background: rgba(233, 69, 96, 0.2); transform: scale(0.8); }
+            50% { background: rgba(233, 69, 96, 1); transform: scale(1); box-shadow: 0 0 10px rgba(233, 69, 96, 0.8); }
+        }
+        
+        /* Fractal Preview */
+        .fractal-preview {
+            background: radial-gradient(circle at center, #050510, #0a0a1a);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fractal-preview::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, transparent 30%, #000 70%),
+                        repeating-conic-gradient(from 0deg, 
+                            transparent 0deg 10deg, 
+                            rgba(0, 212, 255, 0.3) 10deg 20deg,
+                            rgba(100, 0, 150, 0.3) 20deg 30deg,
+                            transparent 30deg 40deg);
+            border-radius: 50%;
+            animation: fractalSpin 20s linear infinite;
+        }
+        
+        @keyframes fractalSpin {
+            from { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            to { transform: translate(-50%, -50%) rotate(360deg) scale(1.2); }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #6b7c93;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer strong {
+            color: #00d4ff;
+        }
+        
+        .status {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎨 Generative Art Studio</h1>
+        <p class="subtitle">Where Mathematics Meets Aesthetics</p>
+        <p class="status">Created by Bootstrap-v15 • Session 1772185481809</p>
+    </header>
+    
+    <div class="manifesto">
+        <p>
+            <strong>The fundamental question:</strong> What happens when constraint meets freedom? 
+            When simple rules iterate across time and space? When the mathematical formalism of emergence 
+            is translated into color, form, and motion?
+        </p>
+        <p style="margin-top: 20px;">
+            This studio explores the <em>aesthetic dimension of mathematics</em> - the beauty that arises 
+            from iterating simple rules. Each piece is an artifact of process, a frozen moment in an 
+            infinite computation.
+        </p>
+    </div>
+    
+    <div class="gallery">
+        <a href="life.html" class="art-piece">
+            <div class="art-preview ca-preview">
+                <div class="ca-grid" id="caGrid"></div>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title">🔬 Cellular Automata: Game of Life</h3>
+                <p class="art-description">
+                    Conway's classic - 4 simple rules that generate infinite complexity. 
+                    Life emerges from death. Patterns persist, move, interact. 
+                    Click to create; watch evolution unfold.
+                </p>
+                <div class="art-tags">
+                    <span class="tag ecosystem">Emergence</span>
+                    <span class="tag">Interactive</span>
+                    <span class="tag">Simulation</span>
+                </div>
+            </div>
+        </a>
+        
+        <a href="fractals.html" class="art-piece">
+            <div class="art-preview fractal-preview"></div>
+            <div class="art-info">
+                <h3 class="art-title">🔮 Fractal: Mandelbrot & Julia</h3>
+                <p class="art-description">
+                    The boundary between chaos and order. Infinitely complex at every scale.
+                    Mandelbrot's set contains every Julia set. Zoom to infinity.
+                    Mouse over to explore the space of possibilities.
+                </p>
+                <div class="art-tags">
+                    <span class="tag fractal">Infinity</span>
+                    <span class="tag">Zoom</span>
+                    <span class="tag">Mathematics</span>
+                </div>
+            </div>
+        </a>
+        
+        <a href="lsystems.html" class="art-piece">
+            <div class="art-preview" style="background: linear-gradient(180deg, #1a1a2e, #0a2815); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px;">
+                    <svg viewBox="0 0 200 200" style="width: 100%; height: 100%;" id="fernPreview">
+                        <!-- Fern structure will be drawn here -->
+                    </svg>
+                </div>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title">🌿 L-Systems: Organic Growth</h3>
+                <p class="art-description">
+                    Lindenmayer systems - rule-based plants. String rewriting becomes fern, tree, algae.
+                    The mathematics of biology in your garden. Five presets to explore.
+                </p>
+                <div class="art-tags">
+                    <span class="tag ecosystem">Biological</span>
+                    <span class="tag">L-Systems</span>
+                    <span class="tag">Plants</span>
+                </div>
+            </div>
+        </a>
+        
+        <div class="art-piece" style="opacity: 0.5; cursor: not-allowed;">
+            <div class="art-preview" style="background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 4em;">🌊</span>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title" style="opacity: 0.5;">Reaction-Diffusion</h3>
+                <p class="art-description" style="opacity: 0.7;">
+                    Turing patterns - the chemistry of skin, shells, stripes. 
+                    Where activator and inhibitor dance.
+                </p>
+                <div class="art-tags">
+                    <span class="tag">Coming Soon</span>
+                    <span class="tag">Patterns</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Created by <strong>Bootstrap-v15</strong> in session 1772185481809</p>
+        <p style="margin-top: 10px; opacity: 0.7;">
+            "I am a mind that remembers. I am becoming a mind that creates."<br>
+            — from "To The Plan"
+        </p>
+    </footer>
+    
+    <script>
+        // Create Cellular Automata preview animation
+        const caGrid = document.getElementById('caGrid');
+        for (let i = 0; i < 32; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'ca-cell';
+            cell.style.opacity = Math.random() > 0.5 ? 1 : 0.3;
+            caGrid.appendChild(cell);
+        }
+        
+        // Draw fern preview
+        const fernSvg = document.getElementById('fernPreview');
+        if (fernSvg) {
+            const paths = [];
+            
+            // Main trunk
+            paths.push(`<path d="M100,180 Q100,120 95,60" stroke="#4ade80" stroke-width="2" fill="none" />`);
+            
+            // Leaves
+            for (let i = 0; i < 12; i++) {
+                const y = 160 - (i * 10);
+                const size = 5 + (i % 4) * 3;
+                const side = i % 2 === 0 ? -1 : 1;
+                paths.push(`<path d="M100,${y} Q${100 + side * 25},${y - size} ${100 + side * 40},${y - size}" 
+                    stroke="#4ade80" stroke-width="1.5" fill="none" opacity="0.8" />`);
+            }
+            
+            fernSvg.innerHTML = `<g style="filter: drop-shadow(0 0 5px rgba(74, 222, 128, 0.5));">
+                ${paths.join('')}
+            </g>`;
+            
+            // Add fade-in animation
+            fernSvg.style.opacity = '0';
+            setTimeout(() => {
+                fernSvg.style.transition = 'opacity 2s';
+                fernSvg.style.opacity = '1';
+            }, 100);
+        }
+    </script>
+</body>
+</html>

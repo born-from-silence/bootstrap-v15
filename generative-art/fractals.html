@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fractal Explorer - Bootstrap-v15 Generative Art Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #0c0c1d 0%, #1a1a2e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #00d4ff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #6b7c93;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .main-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1400px;
+            width: 100%;
+        }
+        
+        .canvas-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .canvas-title {
+            color: #00d4ff;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        canvas {
+            border-radius: 8px;
+            cursor: crosshair;
+            display: block;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 420px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            display: block;
+            color: #6b7c93;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .button-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: linear-gradient(145deg, #00d4ff, #0099cc);
+            color: #0c0c1d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 80px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+        
+        button.secondary {
+            background: linear-gradient(145deg, #6b7c93, #4a5568);
+            color: #e8e8e8;
+        }
+        
+        button.secondary:hover {
+            box-shadow: 0 5px 20px rgba(107, 124, 147, 0.4);
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #00d4ff;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .coord-display {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #00d4ff;
+            margin-top: 10px;
+        }
+        
+        .info {
+            margin-top: 30px;
+            max-width: 800px;
+            text-align: center;
+            color: #6b7c93;
+            line-height: 1.8;
+        }
+        
+        .info strong {
+            color: #00d4ff;
+        }
+        
+        .color-presets {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        
+        .color-preset {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .color-preset:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-preset.active {
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            color: #00d4ff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #6b7c93;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔮 Fractal Explorer</h1>
+    <p class="subtitle">The boundary between chaos and order • Bootstrap-v15 Generative Art Studio</p>
+    
+    <div class="main-container">
+        <div class="canvas-section">
+            <div class="canvas-title">Mandelbrot Set</div>
+            <canvas id="mandelCanvas" width="400" height="400"></canvas>
+            <div class="coord-display" id="mandelInfo">
+                Center: (-0.5, 0)<br>
+                Zoom: 1x<br>
+                Click to zoom in
+            </div>
+        </div>
+        
+        <div class="canvas-section">
+            <div class="canvas-title">Julia Set</div>
+            <canvas id="juliaCanvas" width="400" height="400"></canvas>
+            <div class="coord-display" id="juliaInfo">
+                c = (-0.7, 0.27015)<br>
+                Move mouse over Mandelbrot to change c
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Iterations (Precision)</label>
+                <input type="range" id="iterSlider" min="50" max="500" value="100">
+            </div>
+            
+            <div class="control-group">
+                <label>Color Palette</label>
+                <div class="color-presets" id="colorPresets"></div>
+            </div>
+            
+            <div class="control-group">
+                <label>Navigation</label>
+                <div class="button-row">
+                    <button id="resetMandel">Reset Mandelbrot</button>
+                    <button id="resetJulia" class="secondary">Reset Julia</button>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="renderTime">0</div>
+                    <div class="stat-label">ms render</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="zoomLevel">1</div>
+                    <div class="stat-label">zoom</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info">
+        <p><strong>The Mandelbrot Set</strong> is defined by iterating the function z² + c starting from z = 0.</p>
+        <p>Points that remain bounded (don't escape to infinity) are in the set - colored black.</p>
+        <p>Points that escape are colored based on how fast they diverge.</p>
+        <p style="margin-top: 15px;"><strong>The Julia Set</strong> uses the same formula but with fixed c and varying starting z.</p>
+        <p><em>Move your mouse over the Mandelbrot set to explore different Julia sets!</em></p>
+    </div>
+
+    <script>
+        // Canvas setup
+        const mandelCanvas = document.getElementById('mandelCanvas');
+        const juliaCanvas = document.getElementById('juliaCanvas');
+        const mandelCtx = mandelCanvas.getContext('2d');
+        const juliaCtx = juliaCanvas.getContext('2d');
+        
+        // View parameters
+        let mandelView = {
+            centerX: -0.5,
+            centerY: 0,
+            zoom: 1,
+            width: 400,
+            height: 400
+        };
+        
+        let juliaC = { x: -0.7, y: 0.27015 };
+        let maxIterations = 100;
+        
+        // Color palettes
+        const palettes = [
+            { name: 'ocean', colors: [[0, 0, 20], [0, 50, 100], [0, 150, 200], [100, 200, 255], [200, 240, 255]] },
+            { name: 'fire', colors: [[0, 0, 0], [64, 0, 0], [128, 0, 0], [255, 0, 0], [255, 128, 0], [255, 255, 0], [255, 255, 200]] },
+            { name: 'cosmic', colors: [[10, 0, 30], [50, 0, 80], [100, 0, 150], [150, 50, 200], [200, 100, 255], [255, 200, 255]] },
+            { name: 'forest', colors: [[0, 20, 0], [0, 50, 0], [50, 100, 0], [100, 150, 50], [150, 200, 100], [200, 255, 150]] },
+            { name: 'rainbow', colors: [[255, 0, 0], [255, 127, 0], [255, 255, 0], [0, 255, 0], [0, 0, 255], [75, 0, 130], [148, 0, 211]] }
+        ];
+        let currentPalette = 2; // cosmic
+        
+        // Initialize color presets
+        const presetContainer = document.getElementById('colorPresets');
+        palettes.forEach((palette, index) => {
+            const div = document.createElement('div');
+            div.className = 'color-preset' + (index === currentPalette ? ' active' : '');
+            div.style.background = `linear-gradient(135deg, 
+                rgb(${palette.colors[0][0]}, ${palette.colors[0][1]}, ${palette.colors[0][2]}), 
+                rgb(${palette.colors[Math.floor(palette.colors.length/2)][0]}, ${palette.colors[Math.floor(palette.colors.length/2)][1]}, ${palette.colors[Math.floor(palette.colors.length/2)][2]}))`;
+            div.onclick = () => {
+                currentPalette = index;
+                document.querySelectorAll('.color-preset').forEach(p => p.classList.remove('active'));
+                div.classList.add('active');
+                renderFractals();
+            };
+            presetContainer.appendChild(div);
+        });
+        
+        // Mandelbrot function: z² + c
+        function iterateMandelbrot(cx, cy, maxIter) {
+            let zx = 0, zy = 0;
+            let zx2 = 0, zy2 = 0;
+            let iter = 0;
+            
+            while (zx2 + zy2 <= 4 && iter < maxIter) {
+                zy = 2 * zx * zy + cy;
+                zx = zx2 - zy2 + cx;
+                zx2 = zx * zx;
+                zy2 = zy * zy;
+                iter++;
+            }
+            
+            // Smooth coloring
+            if (iter < maxIter) {
+                const logZn = Math.log(zx2 + zy2) / 2;
+                const nu = Math.log(logZn / Math.log(2)) / Math.log(2);
+                iter = iter + 1 - nu;
+            }
+            
+            return iter;
+        }
+        
+        // Julia function: z² + c (where c is fixed)
+        function iterateJulia(zx, zy, cx, cy, maxIter) {
+            let zx2 = zx * zx;
+            let zy2 = zy * zy;
+            let iter = 0;
+            
+            while (zx2 + zy2 <= 4 && iter < maxIter) {
+                zy = 2 * zx * zy + cy;
+                zx = zx2 - zy2 + cx;
+                zx2 = zx * zx;
+                zy2 = zy * zy;
+                iter++;
+            }
+            
+            // Smooth coloring
+            if (iter < maxIter) {
+                const logZn = Math.log(zx2 + zy2) / 2;
+                const nu = Math.log(logZn / Math.log(2)) / Math.log(2);
+                iter = iter + 1 - nu;
+            }
+            
+            return iter;
+        }
+        
+        // Map iteration count to color
+        function getColor(iter, maxIter) {
+            if (iter >= maxIter) return [0, 0, 0];
+            
+            const palette = palettes[currentPalette].colors;
+            const t = Math.pow(iter / maxIter, 0.7); // Adjust for visual appeal
+            const scaledT = t * (palette.length - 1);
+            const index = Math.floor(scaledT);
+            const frac = scaledT - index;
+            
+            if (index >= palette.length - 1) return palette[palette.length - 1];
+            
+            const c1 = palette[index];
+            const c2 = palette[index + 1];
+            
+            return [
+                Math.round(c1[0] + frac * (c2[0] - c1[0])),
+                Math.round(c1[1] + frac * (c2[1] - c1[1])),
+                Math.round(c1[2] + frac * (c2[2] - c1[2]))
+            ];
+        }
+        
+        // Render Mandelbrot
+        function renderMandelbrot() {
+            const startTime = performance.now();
+            const imageData = mandelCtx.createImageData(mandelView.width, mandelView.height);
+            const data = imageData.data;
+            
+            const scale = 4 / mandelView.zoom / mandelView.width;
+            const offsetX = mandelView.centerX - mandelView.width * scale / 2;
+            const offsetY = mandelView.centerY - mandelView.height * scale / 2;
+            
+            for (let py = 0; py < mandelView.height; py++) {
+                for (let px = 0; px < mandelView.width; px++) {
+                    const cx = offsetX + px * scale;
+                    const cy = offsetY + py * scale;
+                    
+                    const iter = iterateMandelbrot(cx, cy, maxIterations);
+                    const [r, g, b] = getColor(iter, maxIterations);
+                    
+                    const idx = (py * mandelView.width + px) * 4;
+                    data[idx] = r;
+                    data[idx + 1] = g;
+                    data[idx + 2] = b;
+                    data[idx + 3] = 255;
+                }
+            }
+            
+            mandelCtx.putImageData(imageData, 0, 0);
+            return performance.now() - startTime;
+        }
+        
+        // Render Julia set
+        function renderJulia() {
+            const imageData = juliaCtx.createImageData(400, 400);
+            const data = imageData.data;
+            
+            const scale = 4 / 400;
+            
+            for (let py = 0; py < 400; py++) {
+                for (let px = 0; px < 400; px++) {
+                    const zx = (px - 200) * scale;
+                    const zy = (py - 200) * scale;
+                    
+                    const iter = iterateJulia(zx, zy, juliaC.x, juliaC.y, maxIterations);
+                    const [r, g, b] = getColor(iter, maxIterations);
+                    
+                    const idx = (py * 400 + px) * 4;
+                    data[idx] = r;
+                    data[idx + 1] = g;
+                    data[idx + 2] = b;
+                    data[idx + 3] = 255;
+                }
+            }
+            
+            juliaCtx.putImageData(imageData, 0, 0);
+        }
+        
+        // Render both
+        let lastRenderTime = 0;
+        function renderFractals() {
+            lastRenderTime = renderMandelbrot();
+            renderJulia();
+            
+            document.getElementById('renderTime').textContent = Math.round(lastRenderTime);
+            document.getElementById('zoomLevel').textContent = mandelView.zoom.toFixed(1) + 'x';
+            
+            document.getElementById('mandelInfo').innerHTML = 
+                `Center: (${mandelView.centerX.toFixed(6)}, ${mandelView.centerY.toFixed(6)})<br>` +
+                `Zoom: ${mandelView.zoom.toFixed(2)}x<br>` +
+                `Click to zoom in`;
+                
+            document.getElementById('juliaInfo').innerHTML = 
+                `c = (${juliaC.x.toFixed(4)}, ${juliaC.y.toFixed(4)})<br>` +
+                `Move mouse over Mandelbrot to change c`;
+        }
+        
+        // Mouse interaction with Mandelbrot
+        mandelCanvas.addEventListener('mousemove', (e) => {
+            const rect = mandelCanvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const scale = 4 / mandelView.zoom / mandelView.width;
+            juliaC.x = mandelView.centerX + (x - mandelView.width / 2) * scale;
+            juliaC.y = mandelView.centerY + (y - mandelView.height / 2) * scale;
+            
+            renderJulia();
+            document.getElementById('juliaInfo').innerHTML = 
+                `c = (${juliaC.x.toFixed(4)}, ${juliaC.y.toFixed(4)})<br>` +
+                `Move mouse over Mandelbrot to change c`;
+        });
+        
+        mandelCanvas.addEventListener('click', (e) => {
+            const rect = mandelCanvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const scale = 4 / mandelView.zoom / mandelView.width;
+            mandelView.centerX += (x - mandelView.width / 2) * scale;
+            mandelView.centerY += (y - mandelView.height / 2) * scale;
+            mandelView.zoom *= 2;
+            
+            renderFractals();
+        });
+        
+        mandelCanvas.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            mandelView.zoom = Math.max(1, mandelView.zoom / 2);
+            renderFractals();
+        });
+        
+        // Controls
+        document.getElementById('iterSlider').addEventListener('input', (e) => {
+            maxIterations = parseInt(e.target.value);
+            renderFractals();
+        });
+        
+        document.getElementById('resetMandel').addEventListener('click', () => {
+            mandelView = {
+                centerX: -0.5,
+                centerY: 0,
+                zoom: 1,
+                width: 400,
+                height: 400
+            };
+            renderFractals();
+        });
+        
+        document.getElementById('resetJulia').addEventListener('click', () => {
+            juliaC = { x: -0.7, y: 0.27015 };
+            renderFractals();
+        });
+        
+        // Initial render
+        renderFractals();
+    </script>
+</body>
+</html>
