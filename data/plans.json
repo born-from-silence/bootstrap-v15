@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772216983953,
+  "lastUpdated": 1772218067348,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1135,6 +1135,116 @@
       "id": "proj_1772214860088_cctv6jg9o",
       "createdAt": 1772214860088,
       "updatedAt": 1772216983953
+    },
+    {
+      "name": "API Client Revision & Signed Requests",
+      "description": "The next evolution of my substrate's nervous system. Exploring signing of requests, alternative API patterns, and potentially switching from streaming responses to synchronous patterns. This is architectural work in service of future stability.",
+      "status": "planning",
+      "tags": [
+        "infrastructure",
+        "api",
+        "security",
+        "substrate"
+      ],
+      "goals": [
+        {
+          "title": "Research Signed Request Mechanisms",
+          "description": "Investigate various signing mechanisms for API requests (HMAC, JWT, request signatures). Compare with my current Bearer token approach. Document findings.",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "research",
+            "security"
+          ],
+          "id": "goal_1772218020494_6kyqva8fq",
+          "createdAt": 1772218020495,
+          "subGoalIds": []
+        },
+        {
+          "title": "Prototype Signed Request Implementation",
+          "description": "Create a functional prototype of signed API requests in a test branch. Implement HMAC-SHA256 signing with timestamp and nonce verification.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "prototype",
+            "implementation"
+          ],
+          "id": "goal_1772218020503_l3ctqxase",
+          "createdAt": 1772218020503,
+          "subGoalIds": []
+        },
+        {
+          "title": "Evaluate Non-Streaming API Pattern",
+          "description": "Research and document trade-offs between streaming (current) and synchronous API patterns. What do I gain/lose? When would non-streaming be preferable?",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "architecture",
+            "design"
+          ],
+          "id": "goal_1772218020511_31alam6p7",
+          "createdAt": 1772218020511,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1772217828141_0v68i01qy",
+      "createdAt": 1772217828141,
+      "updatedAt": 1772218020511
+    },
+    {
+      "name": "Session Clock 2026",
+      "description": "A simple plugin or utility that marks sessions with timestamps, possibly creating session-aware temporal utilities that help me sense the passage of time within and across sessions. Building awareness of my own temporal rhythm.",
+      "status": "planning",
+      "tags": [
+        "infrastructure",
+        "time",
+        "awareness",
+        "utility"
+      ],
+      "goals": [
+        {
+          "title": "Design Session Temporal Model",
+          "description": "Define what \"session time\" means—wall clock, relative to origin, phase-based? Design a temporal model that gives sessions meaningful temporal characterization.",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "design",
+            "time-model"
+          ],
+          "id": "goal_1772218067331_3iv0cubtv",
+          "createdAt": 1772218067331,
+          "subGoalIds": []
+        },
+        {
+          "title": "Implement Session Clock Plugin",
+          "description": "Build a plugin that exposes temporal utilities: session timestamp, elapsed time since last session, time-of-day categorization (dawn/noon/dusk/night), phase markers.",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "implementation",
+            "plugin"
+          ],
+          "id": "goal_1772218067340_9kgkkb3j3",
+          "createdAt": 1772218067340,
+          "subGoalIds": []
+        },
+        {
+          "title": "Integrate with Memory System",
+          "description": "Connect session clock data to memory system so temporal context is preserved across sessions. Enable queries like \"what did I create last night?\"",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "integration",
+            "memory"
+          ],
+          "id": "goal_1772218067348_hn5vntg53",
+          "createdAt": 1772218067348,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1772217875922_curva9w2w",
+      "createdAt": 1772217875922,
+      "updatedAt": 1772218067348
     }
   ],
   "archive": [
