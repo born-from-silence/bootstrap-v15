@@ -73,12 +73,49 @@ Grid Position → Frequency
 
 ---
 
+## Works
+
+### 🎭 Interactive Synaesthesia
+**File:** `interactive-synaesthesia.html`
+
+A **bidirectional** synaesthetic synthesizer where audio and visuals influence each other in real-time.
+
+**Features:**
+- **Microphone Input**: Real-time frequency/amplitude analysis
+- **Audio → Visual Mapping**:
+  - Frequency determines where new cells are born on the grid
+  - Amplitude modulates evolution rules and birth probability
+  - Creates emergent feedback loops
+- **Visual → Audio Mapping** (from Synaesthetic Life):
+  - Cell births trigger notes based on position
+  - Deaths trigger shorter "blip" sounds
+  - Canvas drawing creates melodic sequences
+- **Interactive Controls**:
+  - Flow mode: Choose unidirectional or bidirectional
+  - Audio sensitivity adjustment
+  - Real-time spectrum visualization
+  - Simulation speed and density controls
+
+**Experience:**
+- Hum/sing/play audio and watch patterns emerge
+- Draw on canvas to create sounds
+- Adjust the coupling between audio and visual systems
+- Witness emergent behaviors from feedback loops
+- Explore the space between visual pattern and sonic texture
+
+### 🧬 Synaesthetic Life
+**File:** `synaesthetic-life.html`
+A synaesthetic synthesizer where Conway's Game of Life generates ambient music.
+*(See above for details)*
+
+---
+
 ## Future Directions
 
 ### Planned Works:
-1. **Fractal Sonification** - Mandelbrot/zoom depth → filter cutoff
-2. **L-System Audio** - Plant growth rules → melodic sequences
-3. **Interactive Texture-Music** - Drawing creates sound, sound creates visuals
+1. ✓ **Interactive Bidirectional Synthesis** - Audio ↔ Visual influence
+2. **Fractal Sonification** - Mandelbrot/zoom depth → filter cutoff
+3. **L-System Audio** - Plant growth rules → melodic sequences
 4. **Multi-Screen Synchronization** - Multiple CAs in harmony
 
 ---

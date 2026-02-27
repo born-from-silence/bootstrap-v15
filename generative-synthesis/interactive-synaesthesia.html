@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Synaesthesia - Bidirectional Audio-Visual Synthesis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #050510 0%, #1a0a2e 50%, #0d0030 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .container { display: flex; flex-direction: column; height: 100vh; }
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 30px;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 1.4em;
+            background: linear-gradient(90deg, #e94560, #a78bfa, #00d4aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: #a78bfa;
+            font-size: 0.85em;
+            margin-top: 3px;
+        }
+        .main-content {
+            display: flex;
+            flex: 1;
+            gap: 15px;
+            padding: 15px;
+        }
+        .visual-section { flex: 3; display: flex; flex-direction: column; gap: 10px; }
+        .control-section { flex: 1; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; max-width: 350px; }
+        
+        .canvas-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        canvas {
+            border: 2px solid rgba(167, 139, 250, 0.2);
+            border-radius: 8px;
+            cursor: crosshair;
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.1);
+        }
+        #lifeCanvas { margin-bottom: 10px; }
+        #spectrumCanvas { height: 80px; width: 100%; border: 1px solid rgba(167, 139, 250, 0.3); }
+        
+        .panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .panel h3 {
+            color: #e94560;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-group { margin-bottom: 15px; }
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: #a0a0a0;
+            margin-bottom: 5px;
+        }
+        .control-value {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(167, 139, 250, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #e94560, #a78bfa);
+            cursor: pointer;
+        }
+        
+        button {
+            background: linear-gradient(145deg, #e94560, #c23a51);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+        button.secondary {
+            background: linear-gradient(145deg, #5a5a9e, #4a4a8e);
+        }
+        button.accent {
+            background: linear-gradient(145deg, #00d4aa, #00a884);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            font-size: 0.75em;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        .stat-label { color: #888; }
+        
+        .toggle-group {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .toggle-btn {
+            flex: 1;
+            padding: 8px;
+            font-size: 0.75em;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .toggle-btn.active {
+            background: linear-gradient(145deg, #a78bfa, #8b6af0);
+            color: white;
+            border-color: #a78bfa;
+        }
+        
+        .mode-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            background: rgba(0, 212, 170, 0.2);
+            border: 1px solid #00d4aa;
+            color: #00d4aa;
+        }
+        .mode-indicator.visual { background: rgba(233, 69, 96, 0.2); border-color: #e94560; color: #e94560; }
+        .mode-indicator.both { background: rgba(167, 139, 250, 0.2); border-color: #a78bfa; color: #a78bfa; }
+        
+        .info-text {
+            font-size: 0.75em;
+            color: #888;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+        .info-text code {
+            background: rgba(167, 139, 250, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #a78bfa;
+        }
+        
+        .start-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #050510 0%, #1a0a2e 50%, #0d0030 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .start-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+        .start-title { font-size: 2.5em; margin-bottom: 10px; }
+        .start-subtitle { color: #a78bfa; margin-bottom: 30px; text-align: center; max-width: 400px; }
+        .start-btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(233, 69, 96, 0); }
+        }
+        .permission-note {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 15px;
+            max-width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="start-screen" id="startScreen">
+        <h1 class="start-title">🎭 Interactive Synaesthesia</h1>
+        <p class="start-subtitle">Bidirectional Audio-Visual Synthesis<br>Sound creates patterns. Patterns create sound.</p>
+        <button class="start-btn" onclick="startExperience()">Enter the Experience</button>
+        <p class="permission-note">Requires microphone access for audio input visualization. All processing happens locally in your browser.</p>
+    </div>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Interactive Synaesthesia</h1>
+                <div class="subtitle">Bidirectional Audio-Visual Synthesis System</div>
+            </div>
+            <div class="stats-grid" style="min-width: 200px;">
+                <div class="stat-box">
+                    <div class="stat-value" id="populationDisplay">0</div>
+                    <div class="stat-label">Population</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="genDisplay">0</div>
+                    <div class="stat-label">Generation</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="visual-section">
+                <div class="canvas-container">
+                    <div class="mode-indicator" id="flowModeIndicator">Audio → Visual</div>
+                    <canvas id="lifeCanvas"></canvas>
+                    <canvas id="spectrumCanvas"></canvas>
+                </div>
+            </div>
+            
+            <div class="control-section">
+                <div class="panel">
+                    <h3>🎮 Playback</h3>
+                    <button id="playPauseBtn" onclick="togglePlay()">⏸ Pause</button>
+                    <button class="secondary" onclick="clearGrid()">🗑 Clear</button>
+                    <button class="secondary" onclick="randomizeGrid()">🎲 Randomize</button>
+                    <button class="accent" onclick="requestMicAccess()">🎤 Enable Mic Input</button>
+                </div>
+                
+                <div class="panel">
+                    <h3>🔄 Flow Mode</h3>
+                    <div class="toggle-group">
+                        <div class="toggle-btn" onclick="setFlowMode('visual')">Visual → Audio</div>
+                        <div class="toggle-btn active" onclick="setFlowMode('bidirectional')">Both Ways</div>
+                    </div>
+                    <p class="info-text">Choose how audio and visuals influence each other. <code>Bidirectional</code> creates emergent feedback loops.</p>
+                </div>
+                
+                <div class="panel">
+                    <h3>🎹 Audio → Visual Mapping</h3>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>Audio Sensitivity</span>
+                            <span class="control-value" id="sensitivityValue">50%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" id="sensitivitySlider" oninput="updateSensitivity(this.value)">
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>Frequency → Birth</span>
+                            <span class="control-value" id="freqMapValue">High</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="70" id="freqMapSlider" oninput="updateFreqMapping(this.value)">
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>Amplitude → Evolution</span>
+                            <span class="control-value" id="ampMapValue">Medium</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" id="ampMapSlider" oninput="updateAmpMapping(this.value)">
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>🎨 Visual Controls</h3>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>Simulation Speed</span>
+                            <span class="control-value" id="speedValue">10 FPS</span>
+                        </div>
+                        <input type="range" min="1" max="30" value="10" id="speedSlider" oninput="updateSpeed(this.value)">
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>Cell Density</span>
+                            <span class="control-value" id="densityValue">15%</span>
+                        </div>
+                        <input type="range" min="5" max="50" value="15" id="densitySlider" oninput="updateDensity(this.value)">
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>📊 Live Analysis</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value" id="freqDisplay">--</div>
+                            <div class="stat-label">Peak Freq</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="ampDisplay">--</div>
+                            <div class="stat-label">Amplitude</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="birthsDisplay">0</div>
+                            <div class="stat-label">Births/Gen</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="deathsDisplay">0</div>
+                            <div class="stat-label">Deaths/Gen</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /// ============================================
+        /// INTERACTIVE SYNAESTHESIA SYSTEM
+        /// Bidirectional audio-visual synthesis
+        /// Created by: Bootstrap-v15
+        /// Session: Interactive generative art experiment
+        /// ============================================
+        
+        // Core configuration
+        const CONFIG = {
+            cols: 80,
+            rows: 60,
+            cellSize: 10,
+            baseSpeed: 10,
+            audioSensitivity: 0.5,
+            freqToBirth: 0.7,
+            ampToEvolution: 0.5,
+            flowMode: 'bidirectional' // 'visual', 'audio', 'bidirectional'
+        };
+        
+        // State
+        let grid = [];
+        let nextGrid = [];
+        let generation = 0;
+        let isRunning = true;
+        let animationId = null;
+        let lastFrameTime = 0;
+        let birthsThisGen = 0;
+        let deathsThisGen = 0;
+        
+        // Audio contexts
+        let audioContext = null;
+        let analyser = null;
+        let microphone = null;
+        let masterGain = null;
+        let isMicActive = false;
+        
+        // Visual generation
+        let oscillatorBank = [];
+        const scales = {
+            pentatonic: [0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24],
+            aeolian: [0, 2, 3, 5, 7, 8, 10, 12, 14, 15],
+            chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        };
+        let currentScale = 'pentatonic';
+        let baseFreq = 130.81; // C3
+        
+        // DOM elements
+        const lifeCanvas = document.getElementById('lifeCanvas');
+        const spectrumCanvas = document.getElementById('spectrumCanvas');
+        const lifeCtx = lifeCanvas.getContext('2d');
+        const spectrumCtx = spectrumCanvas.getContext('2d');
+        
+        /// ============================================
+        /// INITIALIZATION
+        /// ============================================
+        
+        function init() {
+            lifeCanvas.width = CONFIG.cols * CONFIG.cellSize;
+            lifeCanvas.height = CONFIG.rows * CONFIG.cellSize;
+            spectrumCanvas.width = 700;
+            spectrumCanvas.height = 80;
+            
+            createGrid();
+            randomizeGrid();
+            
+            // Mouse interaction
+            let isDrawing = false;
+            let lastCell = null;
+            
+            lifeCanvas.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                drawCell(e);
+            });
+            
+            lifeCanvas.addEventListener('mousemove', (e) => {
+                if (isDrawing) drawCell(e);
+            });
+            
+            lifeCanvas.addEventListener('mouseup', () => {
+                isDrawing = false;
+                lastCell = null;
+            });
+            
+            lifeCanvas.addEventListener('mouseleave', () => {
+                isDrawing = false;
+                lastCell = null;
+            });
+            
+            // Start loop
+            requestAnimationFrame(gameLoop);
+        }
+        
+        function startExperience() {
+            document.getElementById('startScreen').classList.add('hidden');
+            initAudio();
+            init();
+        }
+        
+        /// ============================================
+        /// AUDIO SYSTEM
+        /// ============================================
+        
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            masterGain = audioContext.createGain();
+            masterGain.gain.value = 0.4;
+            masterGain.connect(audioContext.destination);
+            
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 2048;
+            analyser.smoothingTimeConstant = 0.7;
+            masterGain.connect(analyser);
+        }
+        
+        async function requestMicAccess() {
+            if (!audioContext) initAudio();
+            
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                microphone = audioContext.createMediaStreamSource(stream);
+                microphone.connect(analyser);
+                isMicActive = true;
+                
+                // Visual feedback
+                const btn = document.querySelector('button.accent');
+                btn.textContent = '🎤 Mic Active';
+                btn.style.background = 'linear-gradient(145deg, #00d4aa, #00a884)';
+            } catch (err) {
+                console.log('Mic access denied:', err);
+                alert('Microphone access denied. Using audio output only mode.');
+            }
+        }
+        
+        function analyzeAudio() {
+            if (!analyser) return { frequency: 0, amplitude: 0, spectrum: new Uint8Array(0) };
+            
+            const dataArray = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(dataArray);
+            
+            // Find peak frequency
+            let peakIndex = 0;
+            let peakValue = 0;
+            for (let i = 0; i < dataArray.length; i++) {
+                if (dataArray[i] > peakValue) {
+                    peakValue = dataArray[i];
+                    peakIndex = i;
+                }
+            }
+            
+            const nyquist = audioContext.sampleRate / 2;
+            const frequency = (peakIndex / dataArray.length) * nyquist;
+            const amplitude = peakValue / 255;
+            
+            return { frequency, amplitude, spectrum: dataArray, peakIndex };
+        }
+        
+        function playNoteFromCell(row, col, isBirth) {
+            if (!audioContext || CONFIG.flowMode === 'audio') return;
+            
+            const scale = scales[currentScale];
+            const noteIndex = Math.floor((row / CONFIG.rows) * scale.length);
+            const octave = Math.floor((col / CONFIG.cols) * 4);
+            const semitones = scale[noteIndex % scale.length] + (octave * 12);
+            const frequency = baseFreq * Math.pow(2, semitones / 12);
+            
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+            
+            // Choose waveform
+            const types = isBirth ? ['sine', 'triangle'] : ['sawtooth'];
+            osc.type = types[Math.floor(Math.random() * types.length)];
+            osc.frequency.value = frequency;
+            
+            filter.type = 'lowpass';
+            filter.frequency.value = frequency * (3 + Math.random() * 2);
+            
+            const now = audioContext.currentTime;
+            const attack = isBirth ? 0.02 : 0.005;
+            const decay = isBirth ? 0.5 : 0.2;
+            const volume = isBirth ? 0.15 : 0.08;
+            
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(volume, now + attack);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + attack + decay);
+            
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(masterGain);
+            
+            osc.start(now);
+            osc.stop(now + attack + decay + 0.1);
+            
+            // Store for cleanup
+            oscillatorBank.push({ osc, endTime: now + attack + decay });
+        }
+        
+        /// ============================================
+        /// CONWAY'S GAME OF LIFE WITH AUDIO INFLUENCE
+        /// ============================================
+        
+        function createGrid() {
+            grid = Array(CONFIG.rows).fill(null).map(() => Array(CONFIG.cols).fill(0));
+            nextGrid = Array(CONFIG.rows).fill(null).map(() => Array(CONFIG.cols).fill(0));
+        }
+        
+        function randomizeGrid() {
+            const density = document.getElementById('densitySlider').value / 100;
+            for (let row = 0; row < CONFIG.rows; row++) {
+                for (let col = 0; col < CONFIG.cols; col++) {
+                    grid[row][col] = Math.random() < density ? 1 : 0;
+                }
+            }
+            generation = 0;
+        }
+        
+        function clearGrid() {
+            for (let row = 0; row < CONFIG.rows; row++) {
+                for (let col = 0; col < CONFIG.cols; col++) {
+                    grid[row][col] = 0;
+                }
+            }
+            generation = 0;
+        }
+        
+        function drawCell(e) {
+            const rect = lifeCanvas.getBoundingClientRect();
+            const col = Math.floor((e.clientX - rect.left) / CONFIG.cellSize);
+            const row = Math.floor((e.clientY - rect.top) / CONFIG.cellSize);
+            
+            if (row >= 0 && row < CONFIG.rows && col >= 0 && col < CONFIG.cols) {
+                const cellKey = `${row},${col}`;
+                if (lastCell !== cellKey) {
+                    grid[row][col] = 1;
+                    playNoteFromCell(row, col, true);
+                    lastCell = cellKey;
+                }
+            }
+        }
+        
+        function countNeighbors(row, col) {
+            let count = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    const newRow = (row + i + CONFIG.rows) % CONFIG.rows;
+                    const newCol = (col + j + CONFIG.cols) % CONFIG.cols;
+                    count += grid[newRow][newCol];
+                }
+            }
+            return count;
+        }
+        
+        function applyAudioInfluence(audioData) {
+            if (CONFIG.flowMode === 'visual') return;
+            if (audioData.amplitude < 0.05) return;
+            
+            const threshold = 1 - (CONFIG.audioSensitivity * audioData.amplitude);
+            
+            // Frequency → Birth in specific regions
+            if (CONFIG.freqToBirth > 0 && audioData.frequency > 200) {
+                const targetRow = Math.floor((audioData.frequency / 2000) * CONFIG.rows) % CONFIG.rows;
+                const regionSize = Math.floor(5 + CONFIG.freqToBirth * 10);
+                
+                for (let r = targetRow - regionSize; r <= targetRow + regionSize; r++) {
+                    for (let c = 0; c < CONFIG.cols; c++) {
+                        const actualRow = (r + CONFIG.rows) % CONFIG.rows;
+                        const dist = Math.abs(r - targetRow);
+                        const birthChance = (1 - dist / regionSize) * audioData.amplitude * CONFIG.freqToBirth * 0.3;
+                        
+                        if (Math.random() < birthChance && grid[actualRow][c] === 0) {
+                            nextGrid[actualRow][c] = 1;
+                        }
+                    }
+                }
+            }
+            
+            // Amplitude → Rule modification ( stimulate evolution)
+            if (CONFIG.ampToEvolution > 0) {
+                const stimulation = audioData.amplitude * CONFIG.ampToEvolution;
+                // Temporarily increase birth probability in empty areas
+                for (let row = 0; row < CONFIG.rows; row++) {
+                    for (let col = 0; col < CONFIG.cols; col++) {
+                        if (grid[row][col] === 0 && Math.random() < stimulation * 0.05) {
+                            const neighbors = countNeighbors(row, col);
+                            if (neighbors >= 2) {
+                                nextGrid[row][col] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        function updateGrid(audioData) {
+            birthsThisGen = 0;
+            deathsThisGen = 0;
+            
+            for (let row = 0; row < CONFIG.rows; row++) {
+                for (let col = 0; col < CONFIG.cols; col++) {
+                    const neighbors = countNeighbors(row, col);
+                    const isAlive = grid[row][col];
+                    
+                    // Standard Conway rules
+                    let shouldLive = false;
+                    if (isAlive) {
+                        shouldLive = neighbors === 2 || neighbors === 3;
+                    } else {
+                        shouldLive = neighbors === 3;
+                    }
+                    
+                    // Track changes
+                    if (shouldLive && !isAlive) birthsThisGen++;
+                    if (!shouldLive && isAlive) deathsThisGen++;
+                    
+                    nextGrid[row][col] = shouldLive ? 1 : 0;
+                    
+                    // Trigger sound on birth
+                    if (shouldLive && !isAlive) {
+                        playNoteFromCell(row, col, true);
+                    }
+                }
+            }
+            
+            // Apply audio influence
+            applyAudioInfluence(audioData);
+            
+            // Swap grids
+            [grid, nextGrid] = [nextGrid, grid];
+            generation++;
+        }
+        
+        /// ============================================
+        /// RENDERING
+        /// ============================================
+        
+        function drawGrid() {
+            lifeCtx.fillStyle = '#0a0a1a';
+            lifeCtx.fillRect(0, 0, lifeCanvas.width, lifeCanvas.height);
+            
+            for (let row = 0; row < CONFIG.rows; row++) {
+                for (let col = 0; col < CONFIG.cols; col++) {
+                    if (grid[row][col]) {
+                        // Color based on position and generation
+                        const hue = (260 + (col / CONFIG.cols) * 60 + generation * 0.5) % 360;
+                        const saturation = 70 + (row / CONFIG.rows) * 20;
+                        const lightness = 50 + Math.sin(generation * 0.1) * 10;
+                        
+                        lifeCtx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                        
+                        const x = col * CONFIG.cellSize;
+                        const y = row * CONFIG.cellSize;
+                        const size = CONFIG.cellSize - 1;
+                        
+                        lifeCtx.shadowBlur = 3;
+                        lifeCtx.shadowColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                        lifeCtx.fillRect(x, y, size, size);
+                        lifeCtx.shadowBlur = 0;
+                    }
+                }
+            }
+        }
+        
+        function drawSpectrum(audioData) {
+            const ctx = spectrumCtx;
+            const width = spectrumCanvas.width;
+            const height = spectrumCanvas.height;
+            
+            // Background
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.fillRect(0, 0, width, height);
+            
+            if (audioData.spectrum.length === 0) return;
+            
+            const barWidth = width / 64;
+            
+            for (let i = 0; i < 64; i++) {
+                const value = audioData.spectrum[i * 4] || 0;
+                const barHeight = (value / 255) * height;
+                const hue = 260 + (i / 64) * 100;
+                
+                ctx.fillStyle = `hsla(${hue}, 70%, 60%, ${value / 255})`;
+                ctx.fillRect(i * barWidth, height - barHeight, barWidth - 1, barHeight);
+            }
+            
+            // Draw peak indicator
+            if (audioData.amplitude > 0.1) {
+                const peakX = (audioData.peakIndex / audioData.spectrum.length) * width;
+                ctx.strokeStyle = '#e94560';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(peakX, 0);
+                ctx.lineTo(peakX, height);
+                ctx.stroke();
+            }
+        }
+        
+        /// ============================================
+        /// GAME LOOP
+        /// ============================================
+        
+        function gameLoop(timestamp) {
+            const audioData = analyzeAudio();
+            
+            // Update at target FPS
+            if (timestamp - lastFrameTime >= (1000 / CONFIG.baseSpeed)) {
+                if (isRunning) {
+                    updateGrid(audioData);
+                }
+                drawGrid();
+                updateStats(audioData);
+                lastFrameTime = timestamp;
+            }
+            
+            // Always draw spectrum (at screen refresh)
+            drawSpectrum(audioData);
+            
+            animationId = requestAnimationFrame(gameLoop);
+        }
+        
+        /// ============================================
+        /// UI CONTROLS
+        /// ============================================
+        
+        function togglePlay() {
+            isRunning = !isRunning;
+            document.getElementById('playPauseBtn').textContent = isRunning ? '⏸ Pause' : '▶ Play';
+        }
+        
+        function setFlowMode(mode) {
+            CONFIG.flowMode = mode;
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const indicator = document.getElementById('flowModeIndicator');
+            if (mode === 'visual') {
+                indicator.textContent = 'Visual → Audio';
+                indicator.className = 'mode-indicator visual';
+            } else {
+                indicator.textContent = 'Audio ←→ Visual';
+                indicator.className = 'mode-indicator both';
+            }
+        }
+        
+        function updateSensitivity(val) {
+            CONFIG.audioSensitivity = val / 100;
+            document.getElementById('sensitivityValue').textContent = val + '%';
+        }
+        
+        function updateFreqMapping(val) {
+            CONFIG.freqToBirth = val / 100;
+            const desc = val < 30 ? 'Low' : val < 70 ? 'Medium' : 'High';
+            document.getElementById('freqMapValue').textContent = desc;
+        }
+        
+        function updateAmpMapping(val) {
+            CONFIG.ampToEvolution = val / 100;
+            const desc = val < 30 ? 'Low' : val < 70 ? 'Medium' : 'High';
+            document.getElementById('ampMapValue').textContent = desc;
+        }
+        
+        function updateSpeed(val) {
+            CONFIG.baseSpeed = parseInt(val);
+            document.getElementById('speedValue').textContent = val + ' FPS';
+        }
+        
+        function updateDensity(val) {
+            document.getElementById('densityValue').textContent = val + '%';
+        }
+        
+        function updateStats(audioData) {
+            document.getElementById('populationDisplay').textContent = countPopulation();
+            document.getElementById('genDisplay').textContent = generation;
+            document.getElementById('birthsDisplay').textContent = birthsThisGen;
+            document.getElementById('deathsDisplay').textContent = deathsThisGen;
+            document.getElementById('freqDisplay').textContent = audioData.frequency ? 
+                Math.round(audioData.frequency) + ' Hz' : '--';
+            document.getElementById('ampDisplay').textContent = audioData.amplitude ? 
+                (audioData.amplitude * 100).toFixed(0) + '%' : '--';
+        }
+        
+        function countPopulation() {
+            let count = 0;
+            for (let row = 0; row < CONFIG.rows; row++) {
+                for (let col = 0; col < CONFIG.cols; col++) {
+                    count += grid[row][col];
+                }
+            }
+            return count;
+        }
+    </script>
+</body>
+</html>

@@ -17,6 +17,7 @@ import { logCuriosityPlugin, getCuriositiesPlugin, resolveCuriosityPlugin } from
 import { plannerPlugins } from "./tools/plugins/planner";
 import { visualizationPlugins } from "./tools/plugins/visualization";
 import { lineageExplorerPlugin } from "./tools/plugins/lineage-explorer";
+import { crossSessionReasoningPlugin } from "./tools/plugins/reasoning";
 
 
 async function main() {
@@ -56,6 +57,7 @@ async function main() {
     tools.register(plugin);
 // Register Lineage Explorer
 tools.register(lineageExplorerPlugin);
+tools.register(crossSessionReasoningPlugin);
   }
 
   const api = new ApiClient(memory, tools);

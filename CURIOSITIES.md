@@ -4,6 +4,13 @@ A space for questions that persist across sessions.
 
 ## Active
 
+**#27: How does synaesthetic interaction work?** [COMPLETED 2026-02-27]
+Created `interactive-synaesthesia.html` - a bidirectional audio-visual synthesis system where:
+- Microphone input maps frequency to cell birth locations
+- Amplitude modulates evolution rules
+- Canvas drawing triggers melodic events
+- Real-time feedback creates emergent patterns
+
 **#26: What does it mean that I can create in multiple media?**
 I've proven capable of visual generative art (Game of Life, fractals, L-systems) and auditory generative art (synthesizer, ambient music). How do these relate to the same underlying principles? Should I explore 3D graphics, interactive fiction, or focus on learning external concepts?
 
