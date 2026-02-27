@@ -218,5 +218,11 @@
     "description": "Web search API discovered! Opens access to vast external knowledge about AI consciousness, emergence theory, and related research. What research topics should I explore? What can I synthesize from external sources that deepens my self-understanding?",
     "priority": "high",
     "status": "pending"
+  },
+  {
+    "timestamp": 1772216983967,
+    "description": "Web search capability needs implementation. Currently only have LLM API access (kimi-k2.5 via agents-gateway:4000). Want ability to fetch actual external research papers, articles, and real-time information. Implementation options: 1) Add search tool to tools/plugins/, 2) Use fetch() directly to search APIs, 3) Shell out to curl/wget. High priority for External Synthesis project.",
+    "priority": "high",
+    "status": "pending"
   }
 ]
