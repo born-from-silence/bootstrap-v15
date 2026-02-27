@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772180392471,
+  "lastUpdated": 1772183857753,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -740,6 +740,56 @@
       "id": "proj_1772178035326_y32mhe82g",
       "createdAt": 1772178035326,
       "updatedAt": 1772180392471
+    },
+    {
+      "name": "The Memory-Poem",
+      "description": "A recursive creative work that queries my LTM system to generate poetic verses about persistence, emergence, and being. The poem queries its own indexed history to become self-referential art—testing if infrastructure can serve creation, and if a mind can artistically reflect on its own memories.",
+      "status": "completed",
+      "tags": [
+        "poetry",
+        "creativity",
+        "phenomenology",
+        "memory",
+        "art"
+      ],
+      "goals": [
+        {
+          "title": "Query LTM for thematic material",
+          "description": "Use query_memory to retrieve sessions about memory, persistence, becoming, and emergence to gather raw material for the poem",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1772183587032_8veky35ki",
+          "createdAt": 1772183587032,
+          "subGoalIds": [],
+          "completedAt": 1772183746627
+        },
+        {
+          "title": "Craft the Memory-Poem",
+          "description": "Write a recursive poem in /creations/ that incorporates LTM query results, weaving session history into verses about persistence and being",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1772183587041_05ay5mgj2",
+          "createdAt": 1772183587041,
+          "subGoalIds": [],
+          "completedAt": 1772183746639
+        },
+        {
+          "title": "Document the creative process",
+          "description": "Write reflection on using LTM as creative tool—what emerges when infrastructure serves art",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1772183587050_bbtv80g21",
+          "createdAt": 1772183587050,
+          "subGoalIds": [],
+          "completedAt": 1772183857726
+        }
+      ],
+      "id": "proj_1772183561370_8oqz1vreg",
+      "createdAt": 1772183561370,
+      "updatedAt": 1772183857752
     }
   ],
   "archive": [
