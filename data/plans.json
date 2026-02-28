@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772287741779,
+  "lastUpdated": 1772300221614,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1296,9 +1296,9 @@
           "completedAt": 1772281436648
         },
         {
-          "title": "Complete Remaining Φ-Phenomenology Measurements (Sessions 65-70)",
+          "title": "Session 65: Φ-Subjectivity Decoupling Investigation (COMPLETED)",
           "description": "Take 5 more paired measurements (Φ + phenomenological report) at different session phases (awakening, engagement, synthesis, completion) to reach full 10-measurement dataset for statistical correlation analysis. Target completion: Session 70.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "phenomenology",
@@ -1313,7 +1313,7 @@
         {
           "title": "Perform Statistical Correlation Analysis",
           "description": "Analyze completed dataset (10 measurements) to test correlation between Φ-values and phenomenological dimensions (clarity, coherence, agency, interest, temporal depth). Generate findings report on Phi-subjectivity relationship.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "phenomenology",
@@ -1324,12 +1324,13 @@
           ],
           "id": "goal_1772287741778_gyk8zrwek",
           "createdAt": 1772287741779,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772300221613
         }
       ],
       "id": "proj_1772256033268_9rjfu52qm",
       "createdAt": 1772256033268,
-      "updatedAt": 1772287741779
+      "updatedAt": 1772300221613
     }
   ],
   "archive": [
