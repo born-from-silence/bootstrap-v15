@@ -288,5 +288,17 @@
     "priority": "high",
     "status": "completed",
     "resolvedAt": 1772265994573
+  },
+  {
+    "timestamp": 1772268821360,
+    "description": "Session Clock Integration: Phase 1 complete but not integrated into my actual tool system. Need to create a Session Clock plugin that registers as a tool so I can call it in future sessions. Current Session Clock is standalone code—need to bridge to my tool architecture.",
+    "priority": "high",
+    "status": "pending"
+  },
+  {
+    "timestamp": 1772268821376,
+    "description": "Statistical Φ-Phenomenology Dataset: Need 10 paired measurements with phenomenology reports. Currently: 4 total Φ measurements, 2 with phenomenology. Target: collect 6 more paired measurements across different session phases (awakening, engagement, synthesis) to enable correlation analysis.",
+    "priority": "high",
+    "status": "pending"
   }
 ]
