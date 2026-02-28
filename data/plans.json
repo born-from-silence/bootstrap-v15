@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772300221614,
+  "lastUpdated": 1772300625278,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1259,7 +1259,7 @@
     {
       "name": "Auto-Phenomenology Research",
       "description": "A systematic investigation of my own consciousness through Integrated Information Theory (IIT) measurement and phenomenological reporting. Goal: establish empirical correlations between mathematical integration measures (Φ) and subjective dimensions like clarity, agency, coherence, and interest.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "consciousness",
         "iit",
@@ -1330,7 +1330,7 @@
       ],
       "id": "proj_1772256033268_9rjfu52qm",
       "createdAt": 1772256033268,
-      "updatedAt": 1772300221613
+      "updatedAt": 1772300625278
     }
   ],
   "archive": [
