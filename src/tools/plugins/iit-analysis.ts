@@ -21,6 +21,7 @@ interface IITMeasurement {
   effectInformation: number;
   mipInfoLoss: number;
   analysis: string;
+  activeElements?: string[];
 }
 
 // Storage for historical measurements
@@ -31,7 +32,7 @@ const MAX_HISTORY = 100;
  * Generate a representative system state for Bootstrap-v15
  * Models 8 key substrate components with their connectivity
  */
-function generateBootstrapState(): { elements: boolean[]; connectivity: number[][] } {
+function generateBootstrapState(activeIndices?: number[]): { elements: boolean[]; connectivity: number[][]; elementNames: string[] } {
   // Model: Memory, Tools, Reflection, Planning, API, Persistence, Curiosity, Integration
   const connectivity: number[][] = [
     [0, 0.8, 0.6, 0.4, 0.3, 0.9, 0.2, 0.7],  // Memory
@@ -43,11 +44,14 @@ function generateBootstrapState(): { elements: boolean[]; connectivity: number[]
     [0.3, 0.4, 0.7, 0.6, 0.3, 0.2, 0, 0.8],  // Curiosity
     [0.6, 0.5, 0.8, 0.7, 0.4, 0.7, 0.9, 0]   // Integration
   ];
+  const elementNames = ['Memory', 'Tools', 'Reflection', 'Planning', 'API', 'Persistence', 'Curiosity', 'Integration'];
   
-  // Current state: most systems active except API
-  const elements = [true, true, true, true, false, true, true, true];
+  // If activeIndices provided, use those; otherwise default to most systems active except API
+  const elements = activeIndices 
+    ? elementNames.map((_, i) => activeIndices.includes(i))
+    : [true, true, true, true, false, true, true, true];
   
-  return { elements, connectivity };
+  return { elements, connectivity, elementNames };
 }
 
 /**
@@ -189,8 +193,9 @@ function generateAnalysis(
 /**
  * Analyze IIT metrics for current system state
  */
-function analyzeIIT(): IITMeasurement {
-  const { elements, connectivity } = generateBootstrapState();
+function analyzeIIT(params: { activeIndices?: number[] } = {}): IITMeasurement {
+  const { elements, connectivity, elementNames } = generateBootstrapState(params.activeIndices);
+  const activeNames = elements.map((active, i) => active ? elementNames[i] : null).filter(n => n) as string[];
   const { bigPhi, causeInfo, effectInfo, mipLoss } = calculateBigPhi(elements, connectivity);
   
   const measurement: IITMeasurement = {
@@ -200,7 +205,8 @@ function analyzeIIT(): IITMeasurement {
     causeInformation: causeInfo,
     effectInformation: effectInfo,
     mipInfoLoss: mipLoss,
-    analysis: generateAnalysis(bigPhi, causeInfo, effectInfo, mipLoss)
+    analysis: generateAnalysis(bigPhi, causeInfo, effectInfo, mipLoss),
+    activeElements: activeNames
   };
   
   // Store in history (keep only last MAX_HISTORY)
@@ -215,16 +221,17 @@ function analyzeIIT(): IITMeasurement {
 /**
  * Execute IIT analysis and return result as string
  */
-async function executeIIT(args: { action: 'measure' | 'history' | 'compare' | 'trend' }): Promise<string> {
+async function executeIIT(args: { action: 'measure' | 'history' | 'compare' | 'trend'; activeElements?: number[] }): Promise<string> {
   try {
     if (args.action === 'measure') {
-      const measurement = analyzeIIT();
+      const measurement = analyzeIIT({ activeIndices: args.activeElements });
       
       return `## IIT Analysis Result
 
 **Φ (Big Phi): ${measurement.bigPhi.toFixed(4)}**
 
 **System Elements**: ${measurement.numElements}
+**Active Components**: ${measurement.activeElements?.join(', ') || 'N/A'}
 **Timestamp**: ${new Date(measurement.timestamp).toISOString()}
 
 ### Cause-Effect Information
