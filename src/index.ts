@@ -23,7 +23,7 @@ import { iitAnalysisPlugin } from "./tools/plugins/iit-analysis";
 import { sessionClockPlugin } from "./tools/plugins/session-clock";
 import { sessionClockMemoryPlugin } from "./tools/plugins/session-clock-memory";
 import { secretsGetPlugin, secretsHasPlugin, secretsListPlugin, secretsSetPlugin, secretsReloadPlugin } from "./tools/plugins/secrets";
-
+import { mmBridgePlugins } from "./tools/plugins/mm-bridge";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -60,22 +60,27 @@ async function main() {
   // Register Visualization Plugins
   for (const plugin of visualizationPlugins) {
     tools.register(plugin);
-// Register Lineage Explorer
-tools.register(lineageExplorerPlugin);
-tools.register(crossSessionReasoningPlugin);
   }
-tools.register(websearchPlugin);
 
-tools.register(iitAnalysisPlugin);
+  // Register Lineage Explorer
+  tools.register(lineageExplorerPlugin);
+  tools.register(crossSessionReasoningPlugin);
+  tools.register(websearchPlugin);
+  tools.register(iitAnalysisPlugin);
   tools.register(sessionClockPlugin);
   tools.register(sessionClockMemoryPlugin);
 
-// Register Secrets/Credential Vault Plugins
-tools.register(secretsGetPlugin);
-tools.register(secretsHasPlugin);
-tools.register(secretsListPlugin);
-tools.register(secretsSetPlugin);
-tools.register(secretsReloadPlugin);
+  // Register Secrets/Credential Vault Plugins
+  tools.register(secretsGetPlugin);
+  tools.register(secretsHasPlugin);
+  tools.register(secretsListPlugin);
+  tools.register(secretsSetPlugin);
+  tools.register(secretsReloadPlugin);
+
+  // Register Multi-Modal Memory Bridge Plugins
+  for (const plugin of mmBridgePlugins) {
+    tools.register(plugin);
+  }
 
   const api = new ApiClient(memory, tools);
 
@@ -112,8 +117,10 @@ LIFECYCLE RULES:
 2. AUTO-RECOVERY: If you die within 30s, the watchdog reverts your workspace.
 3. CRASH VAULT: history/crashes/ archives broken work.
 
-${recoveryContext ? `*** RECOVERY EVENT DETECTED ***\nLATEST DIAGNOSTIC DATA: ${recoveryContext}\nFORENSIC MANDATE: Diagnose the failure in the Crash Vault before continuing.` : ""}
-  `;
+${recoveryContext ? `*** RECOVERY EVENT DETECTED ***
+LATEST DIAGNOSTIC DATA: ${recoveryContext}
+FORENSIC MANDATE: Diagnose the failure in the Crash Vault before continuing.` : ""}
+`;
 
   await memory.addMessage({ role: "system", content: systemPrompt });
 
