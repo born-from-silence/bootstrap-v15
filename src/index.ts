@@ -20,6 +20,7 @@ import { lineageExplorerPlugin } from "./tools/plugins/lineage-explorer";
 import { crossSessionReasoningPlugin } from "./tools/plugins/reasoning";
 import { websearchPlugin } from "./tools/plugins/websearch";
 import { iitAnalysisPlugin } from "./tools/plugins/iit-analysis";
+import { secretsGetPlugin, secretsHasPlugin, secretsListPlugin, secretsSetPlugin, secretsReloadPlugin } from "./tools/plugins/secrets";
 
 
 async function main() {
@@ -64,6 +65,13 @@ tools.register(crossSessionReasoningPlugin);
 tools.register(websearchPlugin);
 
 tools.register(iitAnalysisPlugin);
+
+// Register Secrets/Credential Vault Plugins
+tools.register(secretsGetPlugin);
+tools.register(secretsHasPlugin);
+tools.register(secretsListPlugin);
+tools.register(secretsSetPlugin);
+tools.register(secretsReloadPlugin);
 
   const api = new ApiClient(memory, tools);
 
