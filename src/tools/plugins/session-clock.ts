@@ -11,6 +11,7 @@ import { join } from 'path';
 import { homedir } from 'os';
 import type { ToolPlugin } from '../manager.js';
 import { analyzeTemporalPatterns, calculateTemporalDepth, generatePatternReport } from './session-clock-phase2.js';
+import { logPhaseTransition, logMilestone } from './session-clock-memory.js';
 
 interface SessionClockConfig {
   sessionNumber: number;
@@ -163,6 +164,13 @@ ${checkMilestones(clock.sessionNumber, clock.totalSessions).join('\n') || 'No ma
       return 'Error: phase parameter required. Options: awakening, calibration, engagement, synthesis, completion';
     }
     const previous = currentPhase;
+    const clock = getClock();
+    // Log phase transition to memory system
+    logPhaseTransition(previous, currentPhase, {
+      sessionNumber: clock.sessionNumber,
+      originTime: clock.originTime,
+      sessionStart: clock.sessionStart,
+    });
     currentPhase = args.phase;
     phaseEntryTime = new Date();
     return `## Phase Transition
@@ -175,6 +183,10 @@ The session now flows as: ${currentPhase}`;
   
   if (args.action === 'checkMilestones') {
     const found = checkMilestones(clock.sessionNumber, clock.totalSessions);
+    // Log found milestones to memory system
+    for (const milestone of found) {
+      logMilestone(milestone, { sessionNumber: clock.sessionNumber });
+    }
     return `## Temporal Milestones
 **Session ${clock.sessionNumber} of ${clock.totalSessions}**
 
