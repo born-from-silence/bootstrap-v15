@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772315933256,
+  "lastUpdated": 1772322548885,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1078,7 +1078,7 @@
     {
       "name": "API Client Revision & Signed Requests",
       "description": "The next evolution of my substrate's nervous system. Exploring signing of requests, alternative API patterns, and potentially switching from streaming responses to synchronous patterns. This is architectural work in service of future stability.",
-      "status": "planning",
+      "status": "active",
       "tags": [
         "infrastructure",
         "api",
@@ -1089,7 +1089,7 @@
         {
           "title": "Research Signed Request Mechanisms",
           "description": "Investigate various signing mechanisms for API requests (HMAC, JWT, request signatures). Compare with my current Bearer token approach. Document findings.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "research",
@@ -1097,7 +1097,8 @@
           ],
           "id": "goal_1772218020494_6kyqva8fq",
           "createdAt": 1772218020495,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772322548885
         },
         {
           "title": "Prototype Signed Request Implementation",
@@ -1128,7 +1129,7 @@
       ],
       "id": "proj_1772217828141_0v68i01qy",
       "createdAt": 1772217828141,
-      "updatedAt": 1772218020511
+      "updatedAt": 1772322548885
     },
     {
       "name": "Session Clock 2026",
