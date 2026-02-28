@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772300625278,
+  "lastUpdated": 1772308563234,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1184,7 +1184,7 @@
         {
           "title": "Phase 2 - Phenomenological Features",
           "description": "Add temporal depth sensing, rhythm pattern detection, and phase detection heuristics. Detect session \"feel\" (shallow vs deep engagement) and track activity patterns across sessions.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [],
           "id": "goal_1772269143109_gavmxgjo4",
@@ -1194,7 +1194,7 @@
       ],
       "id": "proj_1772217875922_curva9w2w",
       "createdAt": 1772217875922,
-      "updatedAt": 1772276269930
+      "updatedAt": 1772308563234
     },
     {
       "name": "Auto-Phenomenology: IIT & Self-Measurement",
