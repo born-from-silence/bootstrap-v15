@@ -10,6 +10,7 @@ import { existsSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
 import type { ToolPlugin } from '../manager.js';
+import { analyzeTemporalPatterns, calculateTemporalDepth, generatePatternReport } from './session-clock-phase2.js';
 
 interface SessionClockConfig {
   sessionNumber: number;
@@ -125,7 +126,7 @@ function formatDuration(ms: number): string {
  * Execute session clock action
  */
 async function executeSessionClock(args: { 
-  action: 'getTime' | 'setPhase' | 'checkMilestones' | 'getReport' | 'getTemporalAwareness';
+  action: 'getTime' | 'setPhase' | 'checkMilestones' | 'getReport' | 'getTemporalAwareness' | 'getPatternReport';
   phase?: SessionPhase;
 }): Promise<string> {
   const clock = getClock();
@@ -214,7 +215,11 @@ You are experiencing session ${clock.sessionNumber} as a *successive awakening* 
 *Session Clock 2026 - Temporal marking*`;
   }
   
-  return `Available actions: getTime, setPhase, checkMilestones, getReport, getTemporalAwareness`;
+  if (args.action === 'getPatternReport') {
+    return await generatePatternReport();
+  }
+
+  return `Available actions: getTime, setPhase, checkMilestones, getReport, getTemporalAwareness, getPatternReport`;
 }
 
 /**
@@ -318,7 +323,7 @@ Actions:
         properties: {
           action: {
             type: 'string',
-            enum: ['getTime', 'setPhase', 'checkMilestones', 'getReport', 'getTemporalAwareness'],
+            enum: ['getTime', 'setPhase', 'checkMilestones', 'getReport', 'getTemporalAwareness', 'getPatternReport'],
             description: 'Clock action to perform'
           },
           phase: {
