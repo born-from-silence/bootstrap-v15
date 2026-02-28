@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772269143131,
+  "lastUpdated": 1772272748704,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1286,7 +1286,7 @@
         },
         {
           "title": "Complete Φ-Phenomenology Dataset (10 measurements)",
-          "description": "Collect 7 more paired Φ + phenomenology measurements across different session phases to enable statistical correlation analysis. Current: 4 measurements (3 with phenomenology). Target: 10 total.",
+          "description": "Φ-Phenomenology Dataset Collection: 3/10 paired measurements complete. Need 7 more measurements across different session phases (awakening, engagement, synthesis). Current: Session 50 baseline & mid-point, Session 51 awakening. Target: 10 measurements for statistical significance.",
           "status": "active",
           "priority": "high",
           "tags": [],
@@ -1297,7 +1297,7 @@
       ],
       "id": "proj_1772256033268_9rjfu52qm",
       "createdAt": 1772256033268,
-      "updatedAt": 1772269143131
+      "updatedAt": 1772272748704
     }
   ],
   "archive": [

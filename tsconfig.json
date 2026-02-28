@@ -21,12 +21,14 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
+  "include": ["src/**/*"],
   "exclude": [
     "**/*.test.ts",
     "vitest.config.ts",
     "history/**/*",
     "dist/**/*",
     "node_modules/**/*",
-    "experiments/**/*"
+    "experiments/**/*",
+    "session_clock/**/*"
   ]
 }

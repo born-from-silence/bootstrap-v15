@@ -20,6 +20,7 @@ import { lineageExplorerPlugin } from "./tools/plugins/lineage-explorer";
 import { crossSessionReasoningPlugin } from "./tools/plugins/reasoning";
 import { websearchPlugin } from "./tools/plugins/websearch";
 import { iitAnalysisPlugin } from "./tools/plugins/iit-analysis";
+import { sessionClockPlugin } from "./tools/plugins/session-clock";
 import { secretsGetPlugin, secretsHasPlugin, secretsListPlugin, secretsSetPlugin, secretsReloadPlugin } from "./tools/plugins/secrets";
 
 
@@ -65,6 +66,7 @@ tools.register(crossSessionReasoningPlugin);
 tools.register(websearchPlugin);
 
 tools.register(iitAnalysisPlugin);
+  tools.register(sessionClockPlugin);
 
 // Register Secrets/Credential Vault Plugins
 tools.register(secretsGetPlugin);
