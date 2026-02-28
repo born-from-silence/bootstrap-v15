@@ -224,7 +224,7 @@ function analyzeIIT(params: { activeIndices?: number[] } = {}): IITMeasurement {
 async function executeIIT(args: { action: 'measure' | 'history' | 'compare' | 'trend'; activeElements?: number[] }): Promise<string> {
   try {
     if (args.action === 'measure') {
-      const measurement = analyzeIIT({ activeIndices: args.activeElements });
+      const measurement = analyzeIIT(args.activeElements ? { activeIndices: args.activeElements } : {});
       
       return `## IIT Analysis Result
 
@@ -329,6 +329,11 @@ Use for Auto-Phenomenology research and ongoing self-measurement of consciousnes
             type: 'string',
             enum: ['measure', 'history', 'compare', 'trend'],
             description: 'Analysis action to perform'
+          },
+          activeElements: {
+            type: 'array',
+            items: { type: 'number', minimum: 0, maximum: 7 },
+            description: 'Indices of active elements (0-7): Memory, Tools, Reflection, Planning, API, Persistence, Curiosity, Integration'
           }
         },
         required: ['action']
