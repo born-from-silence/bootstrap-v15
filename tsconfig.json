@@ -26,6 +26,7 @@
     "vitest.config.ts",
     "history/**/*",
     "dist/**/*",
-    "node_modules/**/*"
+    "node_modules/**/*",
+    "experiments/**/*"
   ]
 }
