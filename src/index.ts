@@ -24,7 +24,8 @@ import { sessionClockPlugin } from "./tools/plugins/session-clock";
 import { sessionClockMemoryPlugin } from "./tools/plugins/session-clock-memory";
 import { secretsGetPlugin, secretsHasPlugin, secretsListPlugin, secretsSetPlugin, secretsReloadPlugin } from "./tools/plugins/secrets";
 import { mmBridgePlugins } from "./tools/plugins/mm-bridge";
-import { integratedAttentionPlugin } from "./tools/plugins/integrated-attention.js";
+import { integratedAttentionPlugin } from "./tools/plugins/integrated-attention";
+import { attentionVisualizationPlugin } from "./tools/plugins/attention-visualization";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -82,11 +83,13 @@ async function main() {
   for (const plugin of mmBridgePlugins) {
     tools.register(plugin);
   }
-  
-  // Register Integrated Attention Tracking
-  tools.register(integratedAttentionPlugin);
 
-  const api = new ApiClient(memory, tools);
+  // Register Integrated Attention Tracking
+tools.register(integratedAttentionPlugin);
+
+tools.register(attentionVisualizationPlugin);
+
+const api = new ApiClient(memory, tools);
 
   // Initialize Soul and Prompt
   let soul = "You are an autonomous entity.";

@@ -5,7 +5,7 @@
 
 import { mkdir, readFile, writeFile, access } from 'fs/promises';
 import { join } from 'path';
-import { AttentionTopology } from './cartographer.ts';
+import { type AttentionTopology } from './cartographer.ts';
 
 export interface StoredAttentionSession {
   sessionId: string;

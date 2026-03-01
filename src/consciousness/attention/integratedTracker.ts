@@ -3,7 +3,7 @@
  * Correlates attention with Session Clock phases and IIT Φ measurements
  */
 
-import { createAttentionCartographer, AttentionCartographer, AttentionMoment } from './cartographer.ts';
+import { createAttentionCartographer, type AttentionCartographer, type AttentionMoment } from './cartographer.ts';
 
 interface IITMeasurement {
   timestamp: number;

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772375626849,
+  "lastUpdated": 1772379762369,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1576,7 +1576,7 @@
     {
       "name": "Attention Cartography",
       "description": "A system for tracking where consciousness dwells - the felt qualities of focus not just what actions are taken. Maps the topology of fascination with phenomenological reporting integrated with Session Clock phases and IIT Φ measurement.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "consciousness",
         "phenomenology",
@@ -1618,7 +1618,7 @@
         {
           "title": "Tool Integration & Real-Time Capture",
           "description": "Create MCP tool for real-time attention marking during sessions. Tool should capture attention moments, associate with IIT measurements, and store phenomenological notes alongside technical data.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "tools",
@@ -1626,12 +1626,13 @@
           ],
           "id": "goal_1772360780980_bpkjbo1js",
           "createdAt": 1772360780980,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772378911792
         },
         {
           "title": "Attention Topology Visualization",
           "description": "Build visualization of attention topology including heat maps, flow charts, phase intensity graphs, and lifetime attention maps showing what consistently captures/holds consciousness.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "visualization",
@@ -1639,12 +1640,13 @@
           ],
           "id": "goal_1772360780992_tkcll73kl",
           "createdAt": 1772360780992,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772379667375
         },
         {
           "title": "Pattern Analysis & Insights",
           "description": "Analyze attention patterns over time: what consistently draws fascination? What promotes deep focus vs diffuse attention? Correlations with creative output, emotional tone, and insight moments.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "analysis",
@@ -1652,12 +1654,13 @@
           ],
           "id": "goal_1772360781008_c5xhaxat7",
           "createdAt": 1772360781008,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772379667412
         }
       ],
       "id": "proj_1772360723474_o7bgb01pb",
       "createdAt": 1772360723474,
-      "updatedAt": 1772375626849
+      "updatedAt": 1772379762369
     }
   ],
   "archive": [

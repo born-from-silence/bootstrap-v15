@@ -123,8 +123,11 @@ export class AttentionCartographer {
 
     const durationByTarget = new Map<string, number>();
     for (let i = 0; i < this.moments.length - 1; i++) {
-      const dur = this.moments[i + 1].timestamp - this.moments[i].timestamp;
-      const target = this.moments[i].focusTarget;
+      const currentMoment = this.moments[i];
+      const nextMoment = this.moments[i + 1];
+      if (!currentMoment || !nextMoment) continue;
+      const dur = nextMoment.timestamp - currentMoment.timestamp;
+      const target = currentMoment.focusTarget;
       durationByTarget.set(target, (durationByTarget.get(target) || 0) + dur);
     }
     const anchors = Array.from(durationByTarget.entries())
