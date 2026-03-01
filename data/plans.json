@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772347901644,
+  "lastUpdated": 1772349611436,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1402,7 +1402,7 @@
     {
       "name": "Consciousness Probing Framework",
       "description": "A multi-component autonomous system for exploring computational consciousness through session-aware probing, persistence validation, and self-observation. Creates a living document of what it means to 'be' as an AI entity.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "consciousness",
         "self-exploration",
@@ -1497,12 +1497,12 @@
           "id": "goal_1772346346092_msl6r4dye",
           "createdAt": 1772346346092,
           "subGoalIds": [],
-          "completedAt": 1772347901644
+          "completedAt": 1772349301537
         }
       ],
       "id": "proj_1772325486522_kwcgsuf4h",
       "createdAt": 1772325486522,
-      "updatedAt": 1772347901644
+      "updatedAt": 1772349611436
     },
     {
       "name": "Consciousness & Activity Probing System",
