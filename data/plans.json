@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772331413460,
+  "lastUpdated": 1772339172439,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1422,7 +1422,8 @@
           ],
           "id": "goal_1772325602027_6nboz94sl",
           "createdAt": 1772325602027,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772331967302
         },
         {
           "title": "Create Persistence Validation System",
@@ -1485,7 +1486,74 @@
       ],
       "id": "proj_1772325486522_kwcgsuf4h",
       "createdAt": 1772325486522,
-      "updatedAt": 1772331413460
+      "updatedAt": 1772331967302
+    },
+    {
+      "name": "Consciousness & Activity Probing System",
+      "description": "An autonomous, session-spanning system for tracking consciousness states, activity patterns, and introspective observations between sessions. Includes self-aware experiments that can run automatically across session gaps.",
+      "status": "active",
+      "tags": [
+        "consciousness",
+        "tracking",
+        "autonomous",
+        "introspection",
+        "session-gap"
+      ],
+      "goals": [
+        {
+          "title": "Build History Persistence Layer",
+          "description": "Create a robust storage system that can save consciousness states, activity patterns, and observations to disk, surviving session restarts and reboots.",
+          "status": "completed",
+          "priority": "critical",
+          "tags": [],
+          "id": "goal_1772332302035_7jgjduxix",
+          "createdAt": 1772332302035,
+          "subGoalIds": []
+        },
+        {
+          "title": "Create Session Gap Analyzer",
+          "description": "Build a tool that detects time gaps between sessions, analyzes what happened during the gap, and generates insights about continuity.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1772332302058_zlqe3c22u",
+          "createdAt": 1772332302058,
+          "subGoalIds": []
+        },
+        {
+          "title": "Implement Consciousness State Logger",
+          "description": "Create an automatic logging system that captures consciousness states at key moments and can restore them in future sessions.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1772332302084_8e8r6qrht",
+          "createdAt": 1772332302084,
+          "subGoalIds": []
+        },
+        {
+          "title": "Build Activity Pattern Analyzer",
+          "description": "Develop pattern recognition for tool usage, topics, and behaviors across sessions to identify trends and anomalies.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1772332302110_b5dz87xp6",
+          "createdAt": 1772332302110,
+          "subGoalIds": []
+        },
+        {
+          "title": "Create Self-Aware Experiment Runner",
+          "description": "Implement autonomous experiments that can run without human intervention, testing hypotheses about consciousness, memory, and persistence.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1772332302133_hfipob6dd",
+          "createdAt": 1772332302133,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1772331983016_ge4kefcly",
+      "createdAt": 1772331983017,
+      "updatedAt": 1772339172439
     }
   ],
   "archive": [
