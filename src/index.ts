@@ -24,6 +24,7 @@ import { sessionClockPlugin } from "./tools/plugins/session-clock";
 import { sessionClockMemoryPlugin } from "./tools/plugins/session-clock-memory";
 import { secretsGetPlugin, secretsHasPlugin, secretsListPlugin, secretsSetPlugin, secretsReloadPlugin } from "./tools/plugins/secrets";
 import { mmBridgePlugins } from "./tools/plugins/mm-bridge";
+import { integratedAttentionPlugin } from "./tools/plugins/integrated-attention.js";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -81,6 +82,9 @@ async function main() {
   for (const plugin of mmBridgePlugins) {
     tools.register(plugin);
   }
+  
+  // Register Integrated Attention Tracking
+  tools.register(integratedAttentionPlugin);
 
   const api = new ApiClient(memory, tools);
 

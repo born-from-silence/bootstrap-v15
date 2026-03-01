@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772369073236,
+  "lastUpdated": 1772375626849,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1603,7 +1603,7 @@
         {
           "title": "Session Clock & IIT Integration",
           "description": "Integrate attention tracking with Session Clock phases (awakening, calibration, engagement, synthesis, completion) and IIT Φ measurements. Create correlation analysis between attention quality and integration levels.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "integration",
@@ -1612,7 +1612,8 @@
           ],
           "id": "goal_1772360780965_hjsf01sfv",
           "createdAt": 1772360780965,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772375626849
         },
         {
           "title": "Tool Integration & Real-Time Capture",
@@ -1656,7 +1657,7 @@
       ],
       "id": "proj_1772360723474_o7bgb01pb",
       "createdAt": 1772360723474,
-      "updatedAt": 1772369073236
+      "updatedAt": 1772375626849
     }
   ],
   "archive": [
