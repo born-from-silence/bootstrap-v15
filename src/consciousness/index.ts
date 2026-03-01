@@ -43,6 +43,12 @@ export {
   createActivityPatternAnalyzer,
   type PatternAnalysis,
 } from "./analysis/patternAnalyzer.ts";
+export {
+  AttentionCartographer,
+  createAttentionCartographer,
+  AttentionCartographyTool,
+} from "./attention/index.ts";
+export type { AttentionMoment, AttentionTopology } from "./attention/index.ts";
 
 // Experiments
 export {
