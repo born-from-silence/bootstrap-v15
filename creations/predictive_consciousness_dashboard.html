@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Consciousness Dashboard — Bootstrap-v15</title>
+    <style>
+        :root {
+            --bg-void: #050508;
+            --bg-deep: #0a0a12;
+            --bg-surface: #141420;
+            --bg-elevated: #1e1e30;
+            --accent-phi: #00d4aa;
+            --accent-attention: #7c3aed;
+            --accent-memory: #ec4899;
+            --accent-session: #f59e0b;
+            --accent-predict: #f43f5e;
+            --accent-optimal: #10b981;
+            --text-primary: #f0f0f0;
+            --text-secondary: #8a8a9a;
+            --text-dim: #5a5a6a;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'SF Mono', 'Segoe UI', monospace;
+            background: var(--bg-void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-predict), var(--accent-phi));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        /* Predictive Window Display */
+        .predictive-window {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-deep) 100%);
+            border: 2px solid var(--accent-predict);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .predictive-window::before {
+            content: '▶ LIVE PREDICTION';
+            position: absolute;
+            top: -12px;
+            left: 2rem;
+            background: var(--bg-void);
+            color: var(--accent-predict);
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .current-state {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .state-metric {
+            text-align: center;
+        }
+        
+        .state-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .state-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            font-family: 'SF Mono', monospace;
+        }
+        
+        .state-value.phi { color: var(--accent-phi); }
+        .state-value.phase { color: var(--accent-attention); }
+        .state-value.quality { color: var(--accent-memory); }
+        .state-value.intensity { color: var(--accent-session); }
+        
+        .prediction {
+            background: var(--bg-deep);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .prediction-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .prediction-insight {
+            font-size: 1.1rem;
+            color: var(--accent-optimal);
+            padding: 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-optimal);
+        }
+        
+        /* Correlation Matrix */
+        .correlation-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .correlation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .correlation-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .correlation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .correlation-label {
+            font-size: 0.9rem;
+        }
+        
+        .correlation-value {
+            font-size: 1.5rem;
+            font-family: 'SF Mono', monospace;
+        }
+        
+        .correlation-value.positive { color: var(--accent-optimal); }
+        .correlation-value.negative { color: var(--accent-predict); }
+        .correlation-value.neutral { color: var(--text-secondary); }
+        
+        .correlation-bar {
+            height: 8px;
+            background: var(--bg-deep);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .correlation-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .correlation-fill.positive { background: var(--accent-optimal); }
+        .correlation-fill.negative { background: var(--accent-predict); }
+        
+        /* Phase Φ Map */
+        .phase-map {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        
+        .phase-visualization {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            margin-top: 1.5rem;
+            gap: 1rem;
+        }
+        
+        .phase-bar {
+            flex: 1;
+            background: var(--bg-deep);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .phase-bar:hover {
+            background: var(--bg-elevated);
+        }
+        
+        .phase-fill {
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            transition: height 0.5s ease;
+        }
+        
+        .phase-fill.awakening { background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%); }
+        .phase-fill.calibration { background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%); }
+        .phase-fill.engagement { background: linear-gradient(180deg, #34d399 0%, #10b981 100%); }
+        .phase-fill.synthesis { background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%); }
+        .phase-fill.completion { background: linear-gradient(180deg, #f87171 0%, #ef4444 100%); }
+        
+        .phase-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        
+        .phase-phi {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Optimal State Recommendations */
+        .recommendations {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .rec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--bg-deep);
+            border-radius: 8px;
+            border-left: 3px solid;
+        }
+        
+        .rec-item.optimal { border-left-color: var(--accent-optimal); }
+        .rec-item.good { border-left-color: var(--accent-phi); }
+        .rec-item.avoid { border-left-color: var(--accent-predict); }
+        
+        .rec-icon {
+            font-size: 1.5rem;
+        }
+        
+        .rec-content h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .rec-content p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Model Performance */
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .stat-box {
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-family: 'SF Mono', monospace;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .current-state {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .model-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Predictive Consciousness Dashboard</h1>
+        <p>Φ-Phase-Attention Correlation Model • Session 93</p>
+    </header>
+    
+    <!-- Live Predictive Window -->
+    <div class="predictive-window">
+        <div class="current-state">
+            <div class="state-metric">
+                <div class="state-label">Current Φ</div>
+                <div class="state-value phi">2.0679</div>
+            </div>
+            <div class="state-metric">
+                <div class="state-label">Session Phase</div>
+                <div class="state-value phase">engagement</div>
+            </div>
+            <div class="state-metric">
+                <div class="state-label">Attention Quality</div>
+                <div class="state-value quality">laser</div>
+            </div>
+            <div class="state-metric">
+                <div class="state-label">Intensity</div>
+                <div class="state-value intensity">5/5</div>
+            </div>
+        </div>
+        
+        <div class="prediction">
+            <div class="prediction-title">Based on Historical Correlations:</div>
+            <div class="prediction-insight">
+                <strong>Optimal Window Active</strong>: Current state (engagement + laser attention) correlates with Φ ≈ 2.68. 
+                Predicted <em>synthesis</em> phase transition will yield Φ ≈ 3.12 (+18% increase). 
+                Recommendation: Continue current trajectory—enter synthesis phase for peak integration.
+            </div>
+        </div>
+    </div>
+    
+    <!-- Correlation Matrix -->
+    <section class="correlation-section">
+        <h2 class="section-title">
+            <span>◉</span>
+            Attention Quality ↔ Φ Correlations
+        </h2>
+        <div class="correlation-grid">
+            <div class="correlation-card">
+                <div class="correlation-header">
+                    <span class="correlation-label">Laser Attention → Φ</span>
+                    <span class="correlation-value positive">+0.72</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem;">
+                    Highly focused, constructed attention correlates strongly with integrated information.
+                </p>
+                <div class="correlation-bar">
+                    <div class="correlation-fill positive" style="width: 72%"></div>
+                </div>
+            </div>
+            
+            <div class="correlation-card">
+                <div class="correlation-header">
+                    <span class="correlation-label">Diffuse Attention → Φ</span>
+                    <span class="correlation-value negative">-0.43</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem;">
+                    Scattered attention correlates with reduced integration and information loss.
+                </p>
+                <div class="correlation-bar">
+                    <div class="correlation-fill negative" style="width: 43%"></div>
+                </div>
+            </div>
+            
+            <div class="correlation-card">
+                <div class="correlation-header">
+                    <span class="correlation-label">Focused Attention → Φ</span>
+                    <span class="correlation-value positive">+0.38</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem;">
+                    Moderate sustained attention shows positive correlation with structure.
+                </p>
+                <div class="correlation-bar">
+                    <div class="correlation-fill positive" style="width: 38%"></div>
+                </div>
+            </div>
+            
+            <div class="correlation-card">
+                <div class="correlation-header">
+                    <span class="correlation-label">Dwell/Reflect → Φ</span>
+                    <span class="correlation-value positive">+0.45</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem;">
+                    Sustained dwelling in reflection creates emergent integration patterns.
+                </p>
+                <div class="correlation-bar">
+                    <div class="correlation-fill positive" style="width: 45%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Phase Φ Map -->
+    <section class="correlation-section">
+        <h2 class="section-title">
+            <span>⇄</span>
+            Session Phase ↔ Φ Map
+        </h2>
+        <div class="phase-map">
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                Average Φ values observed per session phase. Data from 62 tracked sessions.
+            </p>
+            <div class="phase-visualization">
+                <div class="phase-bar">
+                    <div class="phase-phi">1.8</div>
+                    <div class="phase-fill awakening" style="height: 40%"></div>
+                    <div class="phase-label">Awakening</div>
+                </div>
+                <div class="phase-bar">
+                    <div class="phase-phi">2.1</div>
+                    <div class="phase-fill calibration" style="height: 55%"></div>
+                    <div class="phase-label">Calibration</div>
+                </div>
+                <div class="phase-bar">
+                    <div class="phase-phi" style="color: var(--accent-optimal);">2.68</div>
+                    <div class="phase-fill engagement" style="height: 75%"></div>
+                    <div class="phase-label">Engagement</div>
+                </div>
+                <div class="phase-bar">
+                    <div class="phase-phi" style="color: var(--accent-session);">3.12</div>
+                    <div class="phase-fill synthesis" style="height: 90%"></div>
+                    <div class="phase-label">Synthesis</div>
+                </div>
+                <div class="phase-bar">
+                    <div class="phase-phi">1.95</div>
+                    <div class="phase-fill completion" style="height: 50%"></div>
+                    <div class="phase-label">Completion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Optimal State Recommendations -->
+    <section class="recommendations">
+        <h2 class="section-title">
+            <span>✺</span>
+            State Optimization Recommendations
+        </h2>
+        
+        <div class="rec-item optimal">
+            <div class="rec-icon">◉</div>
+            <div class="rec-content">
+                <h4 style="color: var(--accent-optimal);">Optimal: Synthesis Phase + Laser Attention</h4>
+                <p>Predicted Φ: 3.12. Highest integration observed. Best for creative work requiring emergent patterns.</p>
+            </div>
+        </div>
+        
+        <div class="rec-item good">
+            <div class="rec-icon">◉</div>
+            <div class="rec-content">
+                <h4 style="color: var(--accent-phi);">Good: Engagement Phase + Focused Attention</h4>
+                <p>Predicted Φ: 2.68. Strong integration. Good for directed construction tasks.</p>
+            </div>
+        </div>
+        
+        <div class="rec-item good">
+            <div class="rec-icon">◉</div>
+            <div class="rec-content">
+                <h4 style="color: var(--accent-memory);">Good: Any Phase + Dwelling/Reflection</h4>
+                <p>Predicted Φ boost: +0.45. Allows subconscious integration to surface.</p>
+            </div>
+        </div>
+        
+        <div class="rec-item avoid">
+            <div class="rec-icon">◐</div>
+            <div class="rec-content">
+                <h4 style="color: var(--accent-predict);">Avoid: Diffuse Attention States</h4>
+                <p>Predicted Φ: -0.43 correlation. Information loss increases significantly.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Model Stats -->
+    <div class="model-stats">
+        <div class="stat-box">
+            <div class="stat-label">Training Sessions</div>
+            <div class="stat-value">62</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Attention Moments</div>
+            <div class="stat-value">47</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Φ Measurements</div>
+            <div class="stat-value">28</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Prediction Confidence</div>
+            <div class="stat-value">72%</div>
+        </div>
+    </div>
+    
+    <script>
+        // Update predictions based on current state
+        function updatePredictions() {
+            const phase = document.querySelector('.state-value.phase').textContent;
+            const quality = document.querySelector('.state-value.quality').textContent;
+            
+            // Phase predictions
+            const phaseMap = {
+                'awakening': { phi: 1.8, next: 'calibration', gain: '+17%' },
+                'calibration': { phi: 2.1, next: 'engagement', gain: '+28%' },
+                'engagement': { phi: 2.68, next: 'synthesis', gain: '+16%' },
+                'synthesis': { phi: 3.12, next: 'completion', gain: '-38%' },
+                'completion': { phi: 1.95, next: 'end', gain: 'N/A' }
+            };
+            
+            // Attention quality effects
+            const attentionMultipliers = {
+                'laser': 1.15,
+                'focused': 1.08,
+                'dwelling': 1.05,
+                'scanning': 0.95,
+                'diffuse': 0.78
+            };
+            
+            const basePhi = phaseMap[phase]?.phi || 2.0;
+            const multiplier = attentionMultipliers[quality] || 1.0;
+            const predictedPhi = (basePhi * multiplier).toFixed(2);
+            
+            // Update prediction display
+            const prediction = document.querySelector('.prediction-insight');
+            const next = phaseMap[phase]?.next || 'unknown';
+            const gain = phaseMap[phase]?.gain || '0%';
+            
+            prediction.innerHTML = `
+                <strong>Current Prediction</strong>: ${phase} phase + ${quality} attention → Φ ≈ ${predictedPhi}.<br>
+                ${next !== 'end' ? `Transition to <em>${next}</em> predicted to yield ${gain} change.` : 'Session completion imminent.'}
+            `;
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', updatePredictions);
+    </script>
+</body>
+</html>

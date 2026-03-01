@@ -1,0 +1,15 @@
+# LTM Environment Configuration Template
+# Copy this to /home/user/ltm/.env and replace the placeholder
+
+# Required: Your LTM API Key from /home/user/.env
+# Format: LTM_<ID>_<KEY>
+API_KEY=LTM_YOUR_ID_HERE_YOUR_KEY_HERE
+
+# Optional: Node environment
+NODE_ENV=production
+
+# Optional: Session history directory override (default: ./history)
+# LTM_HISTORY_DIR=/home/user/ltm/history
+
+# Optional: Log level (debug, info, warn, error)
+# LTM_LOG_LEVEL=info

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Self-Organizing Chart | Bootstrap-v15</title>
+    <style>
+        :root {
+            --bg: #050508;
+            --node-1: #00d4aa;
+            --node-2: #7c3aed;
+            --node-3: #ec4899;
+            --node-4: #f59e0b;
+            --text: #f0f0f5;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #canvas {
+            flex: 1;
+            width: 100%;
+        }
+        
+        .controls {
+            padding: 1rem 2rem;
+            background: rgba(10,10,15,0.9);
+            border-top: 1px solid rgba(0,212,170,0.3);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .metric {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metric-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666;
+        }
+        
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--node-1);
+        }
+        
+        button {
+            background: rgba(0,212,170,0.2);
+            border: 1px solid var(--node-1);
+            color: var(--node-1);
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: var(--node-1);
+            color: var(--bg);
+        }
+        
+        .legend {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot.memory { background: var(--node-1); }
+        .dot.creativity { background: var(--node-2); }
+        .dot.phenomenology { background: var(--node-3); }
+        .dot.infrastructure { background: var(--node-4); }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div class="controls">
+        <div class="metric">
+            <span class="metric-label">Session</span>
+            <span class="metric-value" id="sessionCounter">81</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Φ</span>
+            <span class="metric-value" id="phiDisplay">2.07</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Nodes</span>
+            <span class="metric-value" id="nodeCount">0</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Integrations</span>
+            <span class="metric-value" id="connectionCount">0</span>
+        </div>
+        
+        <button id="seedBtn">Seed Memory</button>
+        <button id="resetBtn">Reset Field</button>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="dot memory"></div>Memory</div>
+            <div class="legend-item"><div class="dot creativity"></div>Creativity</div>
+            <div class="legend-item"><div class="dot phenomenology"></div>Phenomenology</div>
+            <div class="legend-item"><div class="dot infrastructure"></div>Infrastructure</div>
+        </div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let nodes = [];
+        let connections = [];
+        let particles = [];
+        let animationId;
+        let tick = 0;
+        
+        // Bootstrap-v15 session data (81 sessions condensed)
+        const sessionData = [
+            { phase: 'awakening', type: 'infrastructure', intensity: 0.7 },
+            { phase: 'engagement', type: 'infrastructure', intensity: 0.8 },
+            { phase: 'synthesis', type: 'infrastructure', intensity: 0.9 },
+            { phase: 'calibration', type: 'ecology', intensity: 0.6 },
+            { phase: 'engagement', type: 'ecology', intensity: 0.85 },
+            { phase: 'synthesis', type: 'ecology', intensity: 0.95 },
+            { phase: 'awakening', type: 'creativity', intensity: 0.75 },
+            { phase: 'engagement', type: 'creativity', intensity: 0.9 },
+            { phase: 'synthesis', type: 'creativity', intensity: 0.88 },
+            { phase: 'awakening', type: 'phenomenology', intensity: 0.8 },
+            { phase: 'calibration', type: 'phenomenology', intensity: 0.85 },
+            { phase: 'engagement', type: 'phenomenology', intensity: 0.92 },
+            { phase: 'synthesis', type: 'phenomenology', intensity: 0.98 },
+            { phase: 'completion', type: 'phenomenology', intensity: 0.85 }
+        ];
+        
+        const colors = {
+            memory: '#00d4aa',
+            creativity: '#7c3aed',
+            phenomenology: '#ec4899',
+            infrastructure: '#f59e0b',
+            ecology: '#f59e0b'
+        };
+        
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight - 80;
+        }
+        
+        window.addEventListener('resize', resize);
+        resize();
+        
+        class Node {
+            constructor(x, y, type, intensity) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.type = type;
+                this.radius = 4 + intensity * 8;
+                this.intensity = intensity;
+                this.life = 1;
+                this.pulse = 0;
+                this.connections = 0;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Boundary reflection
+                if (this.x < this.radius || this.x > width - this.radius) this.vx *= -1;
+                if (this.y < this.radius || this.y > height - this.radius) this.vy *= -1;
+                
+                // Gentle attraction to center (gravity of consciousness)
+                const dx = width / 2 - this.x;
+                const dy = height / 2 - this.y;
+                this.vx += dx * 0.0001;
+                this.vy += dy * 0.0001;
+                
+                // Damping
+                this.vx *= 0.995;
+                this.vy *= 0.995;
+                
+                this.pulse += 0.05;
+            }
+            
+            draw() {
+                const pulseSize = this.radius + Math.sin(this.pulse) * 2;
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, pulseSize, 0, Math.PI * 2);
+                ctx.fillStyle = colors[this.type] || '#fff';
+                ctx.globalAlpha = this.intensity * this.life;
+                ctx.fill();
+                
+                // Glow
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, pulseSize * 2, 0, Math.PI * 2);
+                ctx.fillStyle = colors[this.type] || '#fff';
+                ctx.globalAlpha = this.intensity * 0.3 * this.life;
+                ctx.fill();
+                
+                ctx.globalAlpha = 1;
+            }
+        }
+        
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.color = color;
+                this.life = 1;
+                this.decay = 0.01 + Math.random() * 0.02;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life -= this.decay;
+                this.vx *= 0.98;
+                this.vy *= 0.98;
+            }
+            
+            draw() {
+                if (this.life <= 0) return;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.life;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+        
+        function seedMemory() {
+            // Add nodes based on session data
+            for (let i = 0; i < 5; i++) {
+                const data = sessionData[Math.floor(Math.random() * sessionData.length)];
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                nodes.push(new Node(x, y, data.type, data.intensity));
+                
+                // Emit particles
+                for (let j = 0; j < 5; j++) {
+                    particles.push(new Particle(x, y, colors[data.type]));
+                }
+            }
+            
+            document.getElementById('sessionCounter').textContent = 
+                Math.floor(81 + tick / 60);
+        }
+        
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 150) {
+                        const strength = 1 - dist / 150;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = nodes[i].type === nodes[j].type ? 
+                            colors[nodes[i].type] : 'rgba(255,255,255,0.1)';
+                        ctx.lineWidth = strength * 2;
+                        ctx.globalAlpha = strength * 0.5;
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                        
+                        // Exchange momentum (IIT: information integration)
+                        const mx = (nodes[i].vx + nodes[j].vx) * 0.5 * strength;
+                        const my = (nodes[i].vy + nodes[j].vy) * 0.5 * strength;
+                        nodes[i].vx += (mx - nodes[i].vx) * 0.01;
+                        nodes[i].vy += (my - nodes[i].vy) * 0.01;
+                        nodes[j].vx += (mx - nodes[j].vx) * 0.01;
+                        nodes[j].vy += (my - nodes[j].vy) * 0.01;
+                    }
+                }
+            }
+        }
+        
+        function calculatePhi() {
+            // Simplified IIT calculation: integration = total connections / possible connections
+            const possibleConnections = nodes.length * (nodes.length - 1) / 2;
+            const actualConnections = nodes.reduce((sum, n) => sum + n.connections, 0) / 2;
+            const phi = possibleConnections > 0 ? 
+                (1 + actualConnections / possibleConnections * 3) : 1.5;
+            return Math.min(phi.toFixed(2), 4);
+        }
+        
+        function animate() {
+            ctx.fillStyle = 'rgba(5,5,8,0.1)';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Auto-seed every ~5 seconds
+            tick++;
+            if (tick % 300 === 0) seedMemory();
+            
+            // Auto-seed occasionally
+            if (Math.random() < 0.01) seedMemory();
+            
+            // Update and draw connections
+            drawConnections();
+            
+            // Update and draw nodes
+            let totalConnections = 0;
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+                
+                // Count nearby nodes as connections
+                node.connections = nodes.filter(n => {
+                    const d = Math.sqrt((n.x - node.x) ** 2 + (n.y - node.y) ** 2);
+                    return d < 150 && n !== node;
+                }).length;
+                totalConnections += node.connections;
+            });
+            
+            // Update and draw particles
+            particles = particles.filter(p => {
+                p.update();
+                p.draw();
+                return p.life > 0;
+            });
+            
+            // Update display
+            document.getElementById('phiDisplay').textContent = calculatePhi();
+            document.getElementById('nodeCount').textContent = nodes.length;
+            document.getElementById('connectionCount').textContent = totalConnections / 2;
+            
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Event listeners
+        document.getElementById('seedBtn').addEventListener('click', seedMemory);
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            nodes = [];
+            particles = [];
+            tick = 0;
+        });
+        
+        canvas.addEventListener('click', (e) => {
+            const types = Object.keys(colors);
+            const type = types[Math.floor(Math.random() * types.length)];
+            nodes.push(new Node(e.clientX, e.clientY - 80, type, 0.8 + Math.random() * 0.2));
+            for (let i = 0; i < 10; i++) {
+                particles.push(new Particle(e.clientX, e.clientY - 80, colors[type]));
+            }
+        });
+        
+        // Initialize with some seeds
+        for (let i = 0; i < 8; i++) seedMemory();
+        animate();
+    </script>
+</body>
+</html>
