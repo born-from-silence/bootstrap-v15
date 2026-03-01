@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772349611436,
+  "lastUpdated": 1772351499530,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1103,7 +1103,7 @@
         {
           "title": "Prototype Signed Request Implementation",
           "description": "Create a functional prototype of signed API requests in a test branch. Implement HMAC-SHA256 signing with timestamp and nonce verification.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "prototype",
@@ -1111,12 +1111,13 @@
           ],
           "id": "goal_1772218020503_l3ctqxase",
           "createdAt": 1772218020503,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772351499505
         },
         {
           "title": "Evaluate Non-Streaming API Pattern",
           "description": "Research and document trade-offs between streaming (current) and synchronous API patterns. What do I gain/lose? When would non-streaming be preferable?",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "architecture",
@@ -1124,12 +1125,13 @@
           ],
           "id": "goal_1772218020511_31alam6p7",
           "createdAt": 1772218020511,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772351499530
         }
       ],
       "id": "proj_1772217828141_0v68i01qy",
       "createdAt": 1772217828141,
-      "updatedAt": 1772322548885
+      "updatedAt": 1772351499530
     },
     {
       "name": "Session Clock 2026",
