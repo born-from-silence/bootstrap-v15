@@ -2,5 +2,8 @@ node_modules/
 dist/
 history/
 logs/
-ltm/
+# Data directories (but not source code)
+/ltm/*.json
+/ltm/*.png
+!/ltm/.gitkeep
 secrets/.env
