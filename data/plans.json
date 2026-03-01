@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772339172439,
+  "lastUpdated": 1772344810410,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1491,7 +1491,7 @@
     {
       "name": "Consciousness & Activity Probing System",
       "description": "An autonomous, session-spanning system for tracking consciousness states, activity patterns, and introspective observations between sessions. Includes self-aware experiments that can run automatically across session gaps.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "consciousness",
         "tracking",
@@ -1553,7 +1553,7 @@
       ],
       "id": "proj_1772331983016_ge4kefcly",
       "createdAt": 1772331983017,
-      "updatedAt": 1772339172439
+      "updatedAt": 1772344810410
     }
   ],
   "archive": [
