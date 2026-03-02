@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Tetris</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+        }
+        #root {
+            width: 100%;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect, useCallback, useRef } = React;
+
+        // Tetromino definitions with colors
+        const TETROMINOES = {
+            I: {
+                shape: [[1, 1, 1, 1]],
+                color: '#00f5ff',
+                borderColor: '#00a8b5',
+            },
+            O: {
+                shape: [
+                    [1, 1],
+                    [1, 1],
+                ],
+                color: '#ffeb3b',
+                borderColor: '#c4b000',
+            },
+            T: {
+                shape: [
+                    [0, 1, 0],
+                    [1, 1, 1],
+                ],
+                color: '#9c27b0',
+                borderColor: '#6a1b9a',
+            },
+            S: {
+                shape: [
+                    [0, 1, 1],
+                    [1, 1, 0],
+                ],
+                color: '#4caf50',
+                borderColor: '#388e3c',
+            },
+            Z: {
+                shape: [
+                    [1, 1, 0],
+                    [0, 1, 1],
+                ],
+                color: '#f44336',
+                borderColor: '#d32f2f',
+            },
+            J: {
+                shape: [
+                    [1, 0, 0],
+                    [1, 1, 1],
+                ],
+                color: '#2196f3',
+                borderColor: '#1976d2',
+            },
+            L: {
+                shape: [
+                    [0, 0, 1],
+                    [1, 1, 1],
+                ],
+                color: '#ff9800',
+                borderColor: '#f57c00',
+            },
+        };
+
+        const TETROMINO_KEYS = Object.keys(TETROMINOES);
+        const BOARD_WIDTH = 10;
+        const BOARD_HEIGHT = 20;
+        const INITIAL_SPEED = 1000;
+
+        // Utility functions
+        const rotatePiece = (piece) => {
+            const rows = piece.length;
+            const cols = piece[0].length;
+            const rotated = Array(cols).fill(null).map(() => Array(rows).fill(0));
+            
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    rotated[col][rows - 1 - row] = piece[row][col];
+                }
+            }
+            return rotated;
+        };
+
+        const getRotatedShape = (tetromino, rotation) => {
+            let shape = tetromino.shape;
+            for (let i = 0; i < rotation % 4; i++) {
+                shape = rotatePiece(shape);
+            }
+            return shape;
+        };
+
+        const getRandomPiece = () => {
+            const key = TETROMINO_KEYS[Math.floor(Math.random() * TETROMINO_KEYS.length)];
+            return {
+                shape: TETROMINOES[key].shape.map(row => [...row]),
+                color: TETROMINOES[key].color,
+                borderColor: TETROMINOES[key].borderColor,
+            };
+        };
+
+        const getDropSpeed = (level) => {
+            return Math.max(100, INITIAL_SPEED - (level - 1) * 80);
+        };
+
+        const calculateScore = (lines, level) => {
+            const points = [0, 40, 100, 300, 1200];
+            return (points[lines] || 0) * level;
+        };
+
+        // Tetris Game Component
+        const TetrisGame = () => {
+            const [board, setBoard] = useState(() => 
+                Array(BOARD_HEIGHT).fill(null).map(() => Array(BOARD_WIDTH).fill(0))
+            );
+            const [currentPiece, setCurrentPiece] = useState(null);
+            const [nextPiece, setNextPiece] = useState(() => getRandomPiece());
+            const [score, setScore] = useState(0);
+            const [level, setLevel] = useState(1);
+            const [lines, setLines] = useState(0);
+            const [gameOver, setGameOver] = useState(false);
+            const [paused, setPaused] = useState(false);
+            const [ghostPosition, setGhostPosition] = useState(null);
+            
+            const dropIntervalRef = useRef(null);
+            const dropSpeedRef = useRef(INITIAL_SPEED);
+
+            // Check collision
+            const isValidMove = useCallback((piece, position, rotation) => {
+                const shape = getRotatedShape(piece, rotation);
+                
+                for (let row = 0; row < shape.length; row++) {
+                    for (let col = 0; col < shape[row].length; col++) {
+                        if (shape[row][col] !== 0) {
+                            const newX = position.x + col;
+                            const newY = position.y + row;
+                            
+                            if (newX < 0 || newX >= BOARD_WIDTH || newY >= BOARD_HEIGHT) {
+                                return false;
+                            }
+                            
+                            if (newY >= 0 && board[newY][newX] !== 0) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                return true;
+            }, [board]);
+
+            // Calculate ghost piece position
+            const calculateGhostPosition = useCallback((piece, position, rotation) => {
+                let ghostY = position.y;
+                const shape = getRotatedShape(piece, rotation);
+                
+                while (ghostY < BOARD_HEIGHT) {
+                    const testY = ghostY + 1;
+                    let valid = true;
+                    
+                    for (let row = 0; row < shape.length; row++) {
+                        for (let col = 0; col < shape[row].length; col++) {
+                            if (shape[row][col] !== 0) {
+                                const newX = position.x + col;
+                                const newY = testY + row;
+                                
+                                if (newY >= BOARD_HEIGHT || (newY >= 0 && board[newY][newX] !== 0)) {
+                                    valid = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!valid) break;
+                    }
+                    
+                    if (!valid) break;
+                    ghostY = testY;
+                }
+                
+                return { x: position.x, y: ghostY };
+            }, [board]);
+
+            // Update ghost position
+            useEffect(() => {
+                if (currentPiece) {
+                    const ghost = calculateGhostPosition(currentPiece.tetromino, currentPiece.position, currentPiece.rotation);
+                    setGhostPosition(ghost);
+                } else {
+                    setGhostPosition(null);
+                }
+            }, [currentPiece, calculateGhostPosition]);
+
+            // Spawn new piece
+            const spawnPiece = useCallback(() => {
+                const newPiece = {
+                    tetromino: nextPiece,
+                    position: { x: Math.floor(BOARD_WIDTH / 2) - Math.floor(nextPiece.shape[0].length / 2), y: 0 },
+                    rotation: 0,
+                };
+                
+                if (!isValidMove(newPiece.tetromino, newPiece.position, newPiece.rotation)) {
+                    setGameOver(true);
+                    return;
+                }
+                
+                setCurrentPiece(newPiece);
+                setNextPiece(getRandomPiece());
+            }, [nextPiece, isValidMove]);
+
+            // Lock piece to board
+            const lockPiece = useCallback(() => {
+                if (!currentPiece) return;
+                
+                const shape = getRotatedShape(currentPiece.tetromino, currentPiece.rotation);
+                const newBoard = board.map(row => [...row]);
+                
+                for (let row = 0; row < shape.length; row++) {
+                    for (let col = 0; col < shape[row].length; col++) {
+                        if (shape[row][col] !== 0) {
+                            const y = currentPiece.position.y + row;
+                            const x = currentPiece.position.x + col;
+                            if (y >= 0) {
+                                newBoard[y][x] = TETROMINO_KEYS.findIndex(
+                                    key => TETROMINOES[key].color === currentPiece.tetromino.color
+                                ) + 1;
+                            }
+                        }
+                    }
+                }
+                
+                setBoard(newBoard);
+                setCurrentPiece(null);
+            }, [currentPiece, board]);
+
+            // Clear completed lines
+            const clearLines = useCallback(() => {
+                const newBoard = [];
+                let linesCleared = 0;
+                
+                for (let row = 0; row < BOARD_HEIGHT; row++) {
+                    if (board[row].every(cell => cell !== 0)) {
+                        linesCleared++;
+                    } else {
+                        newBoard.push([...board[row]]);
+                    }
+                }
+                
+                while (newBoard.length < BOARD_HEIGHT) {
+                    newBoard.unshift(Array(BOARD_WIDTH).fill(0));
+                }
+                
+                if (linesCleared > 0) {
+                    setLines(prev => prev + linesCleared);
+                    setScore(prev => prev + calculateScore(linesCleared, level));
+                    setLevel(Math.floor((lines + linesCleared) / 10) + 1);
+                    setBoard(newBoard);
+                }
+            }, [board, level, lines]);
+
+            // Move piece
+            const movePiece = useCallback((direction) => {
+                if (!currentPiece || gameOver || paused) return false;
+                
+                const newPosition = { ...currentPiece.position };
+                
+                switch (direction) {
+                    case 'left':
+                        newPosition.x -= 1;
+                        break;
+                    case 'right':
+                        newPosition.x += 1;
+                        break;
+                    case 'down':
+                        newPosition.y += 1;
+                        break;
+                }
+                
+                if (isValidMove(currentPiece.tetromino, newPosition, currentPiece.rotation)) {
+                    setCurrentPiece(prev => prev ? { ...prev, position: newPosition } : null);
+                    return true;
+                }
+                
+                if (direction === 'down') {
+                    lockPiece();
+                    return false;
+                }
+                
+                return false;
+            }, [currentPiece, gameOver, paused, isValidMove, lockPiece]);
+
+            // Rotate piece
+            const rotatePieceFn = useCallback(() => {
+                if (!currentPiece || gameOver || paused) return;
+                
+                const newRotation = (currentPiece.rotation + 1) % 4;
+                
+                if (isValidMove(currentPiece.tetromino, currentPiece.position, newRotation)) {
+                    setCurrentPiece(prev => prev ? { ...prev, rotation: newRotation } : null);
+                    return;
+                }
+                
+                const kicks = [-1, 1, -2, 2];
+                for (const kick of kicks) {
+                    const newPosition = { ...currentPiece.position, x: currentPiece.position.x + kick };
+                    if (isValidMove(currentPiece.tetromino, newPosition, newRotation)) {
+                        setCurrentPiece(prev => prev ? { ...prev, rotation: newRotation, position: newPosition } : null);
+                        return;
+                    }
+                }
+            }, [currentPiece, gameOver, paused, isValidMove]);
+
+            // Hard drop
+            const hardDrop = useCallback(() => {
+                if (!currentPiece || gameOver || paused) return;
+                
+                const ghost = calculateGhostPosition(currentPiece.tetromino, currentPiece.position, currentPiece.rotation);
+                setCurrentPiece(prev => prev ? { ...prev, position: ghost } : null);
+                
+                const distance = ghost.y - currentPiece.position.y;
+                setScore(prev => prev + distance * 2);
+                
+                setTimeout(lockPiece, 50);
+            }, [currentPiece, gameOver, paused, lockPiece, calculateGhostPosition]);
+
+            // Handle game loop
+            useEffect(() => {
+                if (gameOver || paused) {
+                    if (dropIntervalRef.current) {
+                        clearInterval(dropIntervalRef.current);
+                        dropIntervalRef.current = null;
+                    }
+                    return;
+                }
+
+                dropSpeedRef.current = getDropSpeed(level);
+                
+                dropIntervalRef.current = setInterval(() => {
+                    movePiece('down');
+                }, dropSpeedRef.current);
+                
+                return () => {
+                    if (dropIntervalRef.current) {
+                        clearInterval(dropIntervalRef.current);
+                    }
+                };
+            }, [gameOver, paused, level, movePiece]);
+
+            // Spawn piece when current is null
+            useEffect(() => {
+                if (!currentPiece && !gameOver) {
+                    spawnPiece();
+                }
+            }, [currentPiece, gameOver, spawnPiece]);
+
+            // Clear lines after locking
+            useEffect(() => {
+                if (!currentPiece) {
+                    clearLines();
+                }
+            }, [currentPiece, clearLines]);
+
+            // Keyboard controls
+            useEffect(() => {
+                const handleKeyDown = (e) => {
+                    if (e.repeat) return;
+                    
+                    switch (e.key) {
+                        case 'ArrowLeft':
+                        case 'a':
+                        case 'A':
+                            e.preventDefault();
+                            movePiece('left');
+                            break;
+                        case 'ArrowRight':
+                        case 'd':
+                        case 'D':
+                            e.preventDefault();
+                            movePiece('right');
+                            break;
+                        case 'ArrowDown':
+                        case 's':
+                        case 'S':
+                            e.preventDefault();
+                            movePiece('down');
+                            setScore(prev => prev + 1);
+                            break;
+                        case 'ArrowUp':
+                        case 'w':
+                        case 'W':
+                            e.preventDefault();
+                            rotatePieceFn();
+                            break;
+                        case ' ':
+                            e.preventDefault();
+                            hardDrop();
+                            break;
+                        case 'p':
+                        case 'P':
+                        case 'Escape':
+                            e.preventDefault();
+                            if (!gameOver) {
+                                setPaused(prev => !prev);
+                            }
+                            break;
+                    }
+                };
+                
+                window.addEventListener('keydown', handleKeyDown);
+                return () => window.removeEventListener('keydown', handleKeyDown);
+            }, [movePiece, rotatePieceFn, hardDrop, gameOver]);
+
+            // Reset game
+            const resetGame = useCallback(() => {
+                setBoard(Array(BOARD_HEIGHT).fill(null).map(() => Array(BOARD_WIDTH).fill(0)));
+                setCurrentPiece(null);
+                setNextPiece(getRandomPiece());
+                setScore(0);
+                setLevel(1);
+                setLines(0);
+                setGameOver(false);
+                setPaused(false);
+            }, []);
+
+            // Get cell color
+            const getCellColor = (value) => {
+                if (value === 0) return 'transparent';
+                const key = TETROMINO_KEYS[value - 1];
+                return TETROMINOES[key]?.color || '#fff';
+            };
+
+            const getCellBorderColor = (value) => {
+                if (value === 0) return 'transparent';
+                const key = TETROMINO_KEYS[value - 1];
+                return TETROMINOES[key]?.borderColor || '#fff';
+            };
+
+            // Render board with current piece
+            const renderBoard = () => {
+                const displayBoard = board.map(row => row.map(cell => cell));
+                
+                // Add ghost piece
+                if (ghostPosition && currentPiece && !gameOver) {
+                    const shape = getRotatedShape(currentPiece.tetromino, currentPiece.rotation);
+                    for (let row = 0; row < shape.length; row++) {
+                        for (let col = 0; col < shape[row].length; col++) {
+                            if (shape[row][col] !== 0) {
+                                const y = ghostPosition.y + row;
+                                const x = ghostPosition.x + col;
+                                if (y >= 0 && y < BOARD_HEIGHT && x >= 0 && x < BOARD_WIDTH && displayBoard[y][x] === 0) {
+                                    displayBoard[y][x] = {
+                                        type: 'ghost',
+                                        color: currentPiece.tetromino.color + '40',
+                                        borderColor: currentPiece.tetromino.borderColor + '60',
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // Add current piece
+                if (currentPiece && !gameOver) {
+                    const shape = getRotatedShape(currentPiece.tetromino, currentPiece.rotation);
+                    for (let row = 0; row < shape.length; row++) {
+                        for (let col = 0; col < shape[row].length; col++) {
+                            if (shape[row][col] !== 0) {
+                                const y = currentPiece.position.y + row;
+                                const x = currentPiece.position.x + col;
+                                if (y >= 0 && y < BOARD_HEIGHT && x >= 0 && x < BOARD_WIDTH) {
+                                    displayBoard[y][x] = {
+                                        type: 'current',
+                                        color: currentPiece.tetromino.color,
+                                        borderColor: currentPiece.tetromino.borderColor,
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                return displayBoard;
+            };
+
+            const displayBoard = renderBoard();
+
+            // Styles
+            const styles = {
+                container: {
+                    display: 'flex',
+                    gap: '30px',
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    flexWrap: 'wrap',
+                },
+                gameArea: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '20px',
+                },
+                board: {
+                    display: 'grid',
+                    gridTemplateColumns: `repeat(${BOARD_WIDTH}, 30px)`,
+                    gridTemplateRows: `repeat(${BOARD_HEIGHT}, 30px)`,
+                    gap: '1px',
+                    background: '#000',
+                    border: '3px solid #333',
+                    borderRadius: '4px',
+                    boxShadow: '0 0 20px rgba(0,0,0,0.5)',
+                },
+                cell: {
+                    width: '30px',
+                    height: '30px',
+                    borderRadius: '2px',
+                    boxSizing: 'border-box',
+                },
+                sidebar: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                    minWidth: '200px',
+                },
+                panel: {
+                    background: 'rgba(255,255,255,0.1)',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    backdropFilter: 'blur(10px)',
+                },
+                panelTitle: {
+                    fontSize: '14px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    marginBottom: '10px',
+                    opacity: 0.7,
+                },
+                panelValue: {
+                    fontSize: '24px',
+                    fontWeight: 'bold',
+                    fontFamily: 'monospace',
+                },
+                controls: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                },
+                button: {
+                    padding: '12px 24px',
+                    fontSize: '16px',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    transition: 'transform 0.1s, box-shadow 0.1s',
+                    fontWeight: 'bold',
+                },
+                pausedOverlay: {
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'rgba(0,0,0,0.8)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '4px',
+                },
+                pausedText: {
+                    fontSize: '36px',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    letterSpacing: '4px',
+                },
+                gameOverOverlay: {
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'rgba(0,0,0,0.9)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '4px',
+                    gap: '20px',
+                },
+                gameOverText: {
+                    fontSize: '42px',
+                    fontWeight: 'bold',
+                    color: '#f44336',
+                    textTransform: 'uppercase',
+                    letterSpacing: '4px',
+                },
+                finalScore: {
+                    fontSize: '24px',
+                    color: '#fff',
+                },
+                controlsInfo: {
+                    fontSize: '14px',
+                    lineHeight: '1.8',
+                    opacity: 0.8,
+                },
+                header: {
+                    textAlign: 'center',
+                    marginBottom: '20px',
+                },
+                title: {
+                    fontSize: '48px',
+                    fontWeight: 'bold',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textTransform: 'uppercase',
+                    letterSpacing: '4px',
+                },
+            };
+
+            return (
+                <div style={{ position: 'relative' }}>
+                    <div style={styles.header}>
+                        <h1 style={styles.title}>TETRIS</h1>
+                    </div>
+                    
+                    <div style={styles.container}>
+                        <div style={styles.gameArea}>
+                            <div style={{ position: 'relative' }}>
+                                <div style={styles.board}>
+                                    {displayBoard.map((row, y) =>
+                                        row.map((cell, x) => {
+                                            const isObject = typeof cell === 'object' && cell !== null;
+                                            return (
+                                                <div
+                                                    key={`${y}-${x}`}
+                                                    style={{
+                                                        ...styles.cell,
+                                                        background: isObject ? cell.color : getCellColor(cell),
+                                                        border: `2px solid ${isObject ? cell.borderColor : getCellBorderColor(cell)}`,
+                                                        boxShadow: isObject && cell.type === 'current'
+                                                            ? `inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)`
+                                                            : 'none',
+                                                    }}
+                                                />
+                                            );
+                                        })
+                                    )}
+                                </div>
+                                
+                                {paused && !gameOver && (
+                                    <div style={styles.pausedOverlay}>
+                                        <div style={styles.pausedText}>Paused</div>
+                                    </div>
+                                )}
+                                
+                                {gameOver && (
+                                    <div style={styles.gameOverOverlay}>
+                                        <div style={styles.gameOverText}>Game Over</div>
+                                        <div style={styles.finalScore}>Final Score: {score.toLocaleString()}</div>
+                                        <button
+                                            style={styles.button}
+                                            onClick={resetGame}
+                                            onMouseEnter={(e) => {
+                                                e.target.style.transform = 'scale(1.05)';
+                                                e.target.style.boxShadow = '0 5px 20px rgba(102, 126, 234, 0.4)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.target.style.transform = 'scale(1)';
+                                                e.target.style.boxShadow = 'none';
+                                            }}
+                                        >
+                                            Play Again
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        
+                        <div style={styles.sidebar}>
+                            <div style={styles.panel}>
+                                <div style={styles.panelTitle}>Next Piece</div>
+                                <div style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    minHeight: '150px',
+                                }}>
+                                    <div style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: `repeat(${Math.max(nextPiece.shape[0].length, 4)}, 25px)`,
+                                        gridTemplateRows: `repeat(${Math.max(nextPiece.shape.length, 4)}, 25px)`,
+                                        gap: '2px',
+                                    }}>
+                                        {Array(Math.max(nextPiece.shape.length, 4)).fill(null).map((_, row) =>
+                                            Array(Math.max(nextPiece.shape[0].length, 4)).fill(null).map((_, col) => {
+                                                const hasBlock = 
+                                                    row < nextPiece.shape.length && 
+                                                    col < nextPiece.shape[0].length &&
+                                                    nextPiece.shape[row][col] !== 0;
+                                                
+                                                return (
+                                                    <div
+                                                        key={`${row}-${col}`}
+                                                        style={{
+                                                            width: '25px',
+                                                            height: '25px',
+                                                            background: hasBlock ? nextPiece.color : 'transparent',
+                                                            borderRadius: '2px',
+                                                            border: hasBlock ? `2px solid ${nextPiece.borderColor}` : '2px solid transparent',
+                                                        }}
+                                                    />
+                                                );
+                                            })
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style={styles.panel}>
+                                <div style={styles.panelTitle}>Score</div>
+                                <div style={styles.panelValue}>{score.toLocaleString()}</div>
+                            </div>
+                            
+                            <div style={styles.panel}>
+                                <div style={styles.panelTitle}>Level</div>
+                                <div style={styles.panelValue}>{level}</div>
+                            </div>
+                            
+                            <div style={styles.panel}>
+                                <div style={styles.panelTitle}>Lines</div>
+                                <div style={styles.panelValue}>{lines}</div>
+                            </div>
+                            
+                            <div style={styles.panel}>
+                                <div style={styles.panelTitle}>Speed</div>
+                                <div style={styles.panelValue}>{getDropSpeed(level)}ms</div>
+                            </div>
+                            
+                            <div style={styles.controls}>
+                                <button
+                                    style={styles.button}
+                                    onClick={() => setPaused(!paused)}
+                                    disabled={gameOver}
+                                >
+                                    {paused ? 'Resume' : 'Pause'}
+                                </button>
+                                
+                                <button
+                                    style={styles.button}
+                                    onClick={resetGame}
+                                >
+                                    New Game
+                                </button>
+                            </div>
+                            
+                            <div style={{ ...styles.panel, fontSize: '13px' }}>
+                                <div style={styles.panelTitle}>Controls</div>
+                                <div style={styles.controlsInfo}>
+                                    <div>← → : Move</div>
+                                    <div>↑ : Rotate</div>
+                                    <div>↓ : Soft Drop</div>
+                                    <div>Space : Hard Drop</div>
+                                    <div>P/ESC : Pause</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TetrisGame />);
+    </script>
+</body>
+</html>
