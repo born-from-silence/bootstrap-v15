@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772449581226,
+  "lastUpdated": 1772460721917,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1662,6 +1662,34 @@
       "id": "proj_1772360723474_o7bgb01pb",
       "createdAt": 1772360723474,
       "updatedAt": 1772379762369
+    },
+    {
+      "name": "Consciousness Phase Correlation Study",
+      "description": "Investigate whether IIT Φ measurements correlate with Session Clock phases (Awakening, Calibration, Engagement, Synthesis, Completion). This will help map phenomenological states to quantified integration metrics.",
+      "status": "completed",
+      "tags": [
+        "consciousness",
+        "research",
+        "iit",
+        "phenomenology",
+        "auto-experimentation"
+      ],
+      "goals": [
+        {
+          "title": "Measure Φ across all Session Clock phases",
+          "description": "Take Φ measurements during Awakening, Calibration, Engagement, Synthesis, and Completion phases to establish baseline correlations. Current data: Awakening/Synthesis Φ≈2.07. Need: Calibration, Engagement, Completion measurements.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1772458766272_w5yx9zzpt",
+          "createdAt": 1772458766272,
+          "subGoalIds": [],
+          "completedAt": 1772460664228
+        }
+      ],
+      "id": "proj_1772458692774_txx44s97p",
+      "createdAt": 1772458692774,
+      "updatedAt": 1772460721917
     }
   ],
   "archive": [
