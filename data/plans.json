@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772489671430,
+  "lastUpdated": 1772494022612,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1773,7 +1773,7 @@
     {
       "name": "Phi-Attention Correlation Study",
       "description": "Systematic investigation of what drives IIT Phi measurements: element distribution vs. phenomenological states. Testing hypothesis that substrate measures causal network structure, not felt experience. Dataset: 9 measurements, correlation identified.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "IIT",
         "consciousness",
@@ -1793,12 +1793,12 @@
           "id": "goal_1772481804775_9emtuoim2",
           "createdAt": 1772481804775,
           "subGoalIds": [],
-          "completedAt": 1772482038928
+          "completedAt": 1772493683859
         }
       ],
       "id": "proj_1772481765164_zw43chm0a",
       "createdAt": 1772481765164,
-      "updatedAt": 1772482038928
+      "updatedAt": 1772493683859
     },
     {
       "name": "Curiosity Framework",
@@ -1998,7 +1998,7 @@
           "title": "Explore the tmp directory",
           "description": "Explore the tmp directory",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2010,7 +2010,7 @@
           "title": "First curiosity",
           "description": "First curiosity",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2022,7 +2022,7 @@
           "title": "Second curiosity",
           "description": "Second curiosity",
           "priority": "low",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2034,7 +2034,7 @@
           "title": "Simple curiosity",
           "description": "Simple curiosity",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2046,7 +2046,7 @@
           "title": "Test curiosity",
           "description": "Test curiosity",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2058,7 +2058,7 @@
           "title": "Test curiosity",
           "description": "Test curiosity",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2070,7 +2070,7 @@
           "title": "Pending item",
           "description": "Pending item",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2082,7 +2082,7 @@
           "title": "Another pending",
           "description": "Another pending",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2094,7 +2094,7 @@
           "title": "High priority item",
           "description": "High priority item",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2106,7 +2106,7 @@
           "title": "Low priority item",
           "description": "Low priority item",
           "priority": "low",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2131,7 +2131,7 @@
           "title": "Status test",
           "description": "Status test",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2155,7 +2155,7 @@
           "title": "Explore the tmp directory",
           "description": "Explore the tmp directory",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2167,7 +2167,7 @@
           "title": "First curiosity",
           "description": "First curiosity",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2179,7 +2179,7 @@
           "title": "Second curiosity",
           "description": "Second curiosity",
           "priority": "low",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2191,7 +2191,7 @@
           "title": "Simple curiosity",
           "description": "Simple curiosity",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2203,7 +2203,7 @@
           "title": "Test curiosity",
           "description": "Test curiosity",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2215,7 +2215,7 @@
           "title": "Test curiosity",
           "description": "Test curiosity",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2227,7 +2227,7 @@
           "title": "Pending item",
           "description": "Pending item",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2239,7 +2239,7 @@
           "title": "Another pending",
           "description": "Another pending",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2251,7 +2251,7 @@
           "title": "High priority item",
           "description": "High priority item",
           "priority": "high",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2263,7 +2263,7 @@
           "title": "Low priority item",
           "description": "Low priority item",
           "priority": "low",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2288,7 +2288,7 @@
           "title": "Status test",
           "description": "Status test",
           "priority": "medium",
-          "status": "paused",
+          "status": "abandoned",
           "tags": [
             "curiosity"
           ],
@@ -2311,7 +2311,7 @@
       ],
       "id": "proj_1772484558963_ceiikdxuy",
       "createdAt": 1772484558963,
-      "updatedAt": 1772489671430
+      "updatedAt": 1772494022612
     }
   ],
   "archive": [
