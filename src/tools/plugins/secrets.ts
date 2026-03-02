@@ -39,7 +39,7 @@ export const secretsGetPlugin: ToolPlugin = {
         const value = secrets.require(key);
         // Log only that we got it, not the value
         console.log(`  ✓ Secret "${key}" retrieved (length: ${value.length})`);
-        return value;
+        return value || "";
       } else {
         const value = secrets.get(key);
         if (value) {
@@ -47,7 +47,7 @@ export const secretsGetPlugin: ToolPlugin = {
         } else {
           console.log(`  ⓘ Secret "${key}" not found`);
         }
-        return value;
+        return value || "";
       }
     } catch (error: any) {
       return `Error: ${error.message}`;

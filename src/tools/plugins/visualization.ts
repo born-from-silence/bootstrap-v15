@@ -94,9 +94,9 @@ function calculateMetrics(sessions: SessionEntry[]): SessionMetrics {
   const end = new Date(timestamps[timestamps.length - 1]);
   const durationHours = (end.getTime() - start.getTime()) / (1000 * 60 * 60);
 
-  const totalMessages = sessions.reduce((sum, s) => sum + s.messageCount, 0);
-  const totalDecisions = sessions.reduce((sum, s) => sum + s.decisions.length, 0);
-  const totalTools = sessions.reduce((sum, s) => sum + s.toolsUsed.length, 0);
+  const totalMessages = sessions.reduce((sum, s) => sum + (s.messageCount || 0), 0);
+  const totalDecisions = sessions.reduce((sum, s) => sum + (s.decisions?.length || 0), 0);
+  const totalTools = sessions.reduce((sum, s) => sum + (s.toolsUsed?.length || 0), 0);
 
   return {
     totalSessions: sessions.length,
@@ -119,7 +119,7 @@ function calculateToolPopularity(sessions: SessionEntry[]): ToolPopularity[] {
   const toolStats = new Map<string, { count: number; sessions: Set<number> }>();
 
   sessions.forEach((session, idx) => {
-    session.toolsUsed.forEach(tool => {
+    (session.toolsUsed || []).forEach(tool => {
       if (!toolStats.has(tool)) {
         toolStats.set(tool, { count: 0, sessions: new Set() });
       }
@@ -145,7 +145,7 @@ function calculateTopicTrends(sessions: SessionEntry[]): TopicTrend[] {
   const topicStats = new Map<string, { count: number; firstSeen: number; lastSeen: number }>();
 
   sessions.forEach((session, idx) => {
-    session.topics.forEach(topic => {
+    (session.topics || []).forEach(topic => {
       if (!topicStats.has(topic)) {
         topicStats.set(topic, { count: 0, firstSeen: idx, lastSeen: idx });
       }
@@ -175,9 +175,9 @@ function buildTimeline(sessions: SessionEntry[]): TimelinePoint[] {
       timestamp: new Date(session.timestamp),
       sessionIndex: idx + 1,
       messageCount: session.messageCount,
-      decisionCount: session.decisions.length,
-      toolsUsed: session.toolsUsed,
-      topics: session.topics,
+      decisionCount: (session.decisions || []).length,
+      toolsUsed: session.toolsUsed || [],
+      topics: session.topics || [],
     }));
 }
 

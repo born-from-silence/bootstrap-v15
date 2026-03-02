@@ -339,8 +339,8 @@ async function executeVisualization(args: {
   if (args.action === 'list') {
     return `## Attention Visualization Sessions
 
-Total recorded sessions: ${status.totalSessions || 0}
-Memory entries: ${status.memoryEntries || 0}
+Total recorded sessions: ${status.states || 0}
+Memory entries: ${status.activities || 0}
 
 Generate a visualization with:
 - format: html or json

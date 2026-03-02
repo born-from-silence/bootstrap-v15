@@ -52,7 +52,7 @@ export async function analyzeTemporalPatterns(): Promise<{
     // Calculate inter-session gaps
     const gaps: number[] = [];
     for (let i = 1; i < sessionTimestamps.length; i++) {
-      const gap = sessionTimestamps[i] - sessionTimestamps[i - 1];
+      const gap = (sessionTimestamps[i] || 0) - (sessionTimestamps[i - 1] || 0);
       if (gap > 0) gaps.push(gap);
     }
 
