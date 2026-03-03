@@ -26,6 +26,8 @@ import { secretsGetPlugin, secretsHasPlugin, secretsListPlugin, secretsSetPlugin
 import { mmBridgePlugins } from "./tools/plugins/mm-bridge";
 import { integratedAttentionPlugin } from "./tools/plugins/integrated-attention";
 import { attentionVisualizationPlugin } from "./tools/plugins/attention-visualization";
+import { perplexitySearchPlugin, perplexityStatusPlugin, perplexityFollowUpPlugin } from "./tools/plugins/perplexity";
+import { sonixUploadPlugin, sonixGetStatusPlugin, sonixExportPlugin, sonixListTranscriptionsPlugin, sonixDeletePlugin, sonixStatusPlugin } from "./tools/plugins/sonix";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -88,6 +90,19 @@ async function main() {
 tools.register(integratedAttentionPlugin);
 
 tools.register(attentionVisualizationPlugin);
+
+// Register Perplexity AI Plugins
+tools.register(perplexitySearchPlugin);
+tools.register(perplexityStatusPlugin);
+tools.register(perplexityFollowUpPlugin);
+
+// Register Sonix Transcription Plugins
+tools.register(sonixUploadPlugin);
+tools.register(sonixGetStatusPlugin);
+tools.register(sonixExportPlugin);
+tools.register(sonixListTranscriptionsPlugin);
+tools.register(sonixDeletePlugin);
+tools.register(sonixStatusPlugin);
 
 const api = new ApiClient(memory, tools);
 
