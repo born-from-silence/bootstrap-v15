@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772494022612,
+  "lastUpdated": 1772499842603,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1921,7 +1921,7 @@
         {
           "title": "Φ-variation under different attention qualities",
           "description": "Test how Phi varies under different attention qualities: laser vs diffuse vs focused attention—do they correlate with different integrated information values? Follow-up to Session 117 findings on Φ and phenomenology.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "phi",
@@ -2311,7 +2311,7 @@
       ],
       "id": "proj_1772484558963_ceiikdxuy",
       "createdAt": 1772484558963,
-      "updatedAt": 1772494022612
+      "updatedAt": 1772499842602
     }
   ],
   "archive": [
