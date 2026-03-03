@@ -378,7 +378,7 @@ describe("LTM Schemas", () => {
   describe("validateSessionEntry", () => {
     it("should return success for valid entry", () => {
       const entry = {
-        timestamp: Date.now(),
+        timestamp: 1772555722113,
         file: "test.json",
         messageCount: 5,
       };
@@ -406,7 +406,7 @@ describe("LTM Schemas", () => {
 
     it("should enforce strict mode", () => {
       const entry = {
-        timestamp: Date.now(),
+        timestamp: 1772555722113,
         file: "test.json",
         messageCount: 5,
       };
@@ -419,7 +419,7 @@ describe("LTM Schemas", () => {
   describe("withAuditFields", () => {
     it("should add audit fields to entry", () => {
       const entry: SessionEntry = {
-        timestamp: Date.now(),
+        timestamp: 1772555722113,
         file: "test.json",
         messageCount: 5,
       };
@@ -432,7 +432,7 @@ describe("LTM Schemas", () => {
 
     it("should allow custom source", () => {
       const entry = {
-        timestamp: Date.now(),
+        timestamp: 1772555722113,
         file: "test.json",
         messageCount: 5,
       };
@@ -451,7 +451,7 @@ describe("LTM Schemas", () => {
 
     it("should return parsed entry for valid data", () => {
       const entry = {
-        timestamp: Date.now(),
+        timestamp: 1772555722113,
         file: "test.json",
         messageCount: 5,
       };
@@ -505,9 +505,9 @@ describe("LTM Schemas", () => {
   describe("validateAndSortEntries", () => {
     it("should sort valid entries by timestamp", () => {
       const entries = [
-        { timestamp: 3000, file: "c.json", messageCount: 1 },
-        { timestamp: 1000, file: "a.json", messageCount: 1 },
-        { timestamp: 2000, file: "b.json", messageCount: 1 },
+        { timestamp: 1772555723000, file: "c.json", messageCount: 1 },
+        { timestamp: 1772555721000, file: "a.json", messageCount: 1 },
+        { timestamp: 1772555722000, file: "b.json", messageCount: 1 },
       ];
       
       const { valid, invalid } = validateAndSortEntries(entries);
@@ -519,9 +519,9 @@ describe("LTM Schemas", () => {
 
     it("should separate valid and invalid entries", () => {
       const entries = [
-        { timestamp: 1000, file: "valid.json", messageCount: 1 },
+        { timestamp: 1772555722113, file: "valid.json", messageCount: 1 },
         { timestamp: -1, file: "", messageCount: -1 }, // Invalid
-        { timestamp: 2000, file: "valid2.json", messageCount: 1 },
+        { timestamp: 1772555722000, file: "valid2.json", messageCount: 1 },
       ];
       
       const { valid, invalid } = validateAndSortEntries(entries);
@@ -533,7 +533,7 @@ describe("LTM Schemas", () => {
   describe("migrateSessionEntry", () => {
     it("should migrate legacy entry to new schema", () => {
       const legacy = {
-        timestamp: 1000,
+        timestamp: 1772555722113,
         file: "old.json",
         messageCount: 5,
         topics: ["memory"],
@@ -545,13 +545,13 @@ describe("LTM Schemas", () => {
       const migrated = migrateSessionEntry(legacy);
       expect(migrated.audit).toBeDefined();
       expect(migrated.audit.source).toBe("migration");
-      expect(migrated.timestamp).toBe(1000);
+      expect(migrated.timestamp).toBe(1772555722113);
       expect(migrated.topics).toEqual(["memory"]);
     });
 
     it("should handle legacy entries with empty arrays", () => {
       const legacy = {
-        timestamp: 1000,
+        timestamp: 1772555722113,
         file: "old.json",
         messageCount: 5,
         topics: [],
@@ -571,8 +571,8 @@ describe("LTM Schemas", () => {
   describe("migrateSessionEntries", () => {
     it("should migrate multiple entries", () => {
       const legacy = [
-        { timestamp: 1000, file: "a.json", messageCount: 1 },
-        { timestamp: 2000, file: "b.json", messageCount: 1 },
+        { timestamp: 1772555721000, file: "a.json", messageCount: 1 },
+        { timestamp: 1772555722000, file: "b.json", messageCount: 1 },
       ];
       
       const { migrated, failed } = migrateSessionEntries(legacy);
@@ -587,7 +587,7 @@ describe("LTM Schemas", () => {
 
     it("should report failed migrations", () => {
       const legacy = [
-        { timestamp: 1000, file: "valid.json", messageCount: 1 },
+        { timestamp: 1772555722113, file: "valid.json", messageCount: 1 },
         { invalid: true }, // Won't parse
       ];
       
@@ -603,7 +603,7 @@ describe("LTM Schemas", () => {
   // ==========================================================================
   describe("isSessionEntry", () => {
     it("should return true for valid entries", () => {
-      const entry = { timestamp: 1000, file: "test.json", messageCount: 1 };
+      const entry = { timestamp: 1772555722113, file: "test.json", messageCount: 1 };
       expect(isSessionEntry(entry)).toBe(true);
     });
 
@@ -616,16 +616,16 @@ describe("LTM Schemas", () => {
 
   describe("isStrictSessionEntry", () => {
     it("should return false for entries without audit", () => {
-      const entry = { timestamp: 1000, file: "test.json", messageCount: 1 };
+      const entry = { timestamp: 1772555722113, file: "test.json", messageCount: 1 };
       expect(isStrictSessionEntry(entry)).toBe(false);
     });
 
     it("should return true for entries with audit", () => {
       const entry = {
-        timestamp: 1000,
+        timestamp: 1772555722113,
         file: "test.json",
         messageCount: 1,
-        audit: { createdAt: 1000, indexedAt: 1000, version: 1, source: "test" },
+        audit: { createdAt: 1772555722113, indexedAt: 1772555722113, version: 1, source: "manual_entry" },
       };
       expect(isStrictSessionEntry(entry)).toBe(true);
     });
@@ -639,7 +639,7 @@ describe("LTM Schemas", () => {
       const index = {
         entries: [
           {
-            timestamp: 1000,
+            timestamp: 1772555722113,
             file: "test.json",
             messageCount: 1,
           },
@@ -647,8 +647,8 @@ describe("LTM Schemas", () => {
         meta: {
           generatedAt: Date.now(),
           totalEntries: 1,
-          version: 1,
-          lastSessionTimestamp: 1000,
+          indexVersion: 1,
+          lastSessionTimestamp: 1772555722113,
           indexStats: {
             withTopics: 0,
             withDecisions: 0,
@@ -671,7 +671,7 @@ describe("LTM Schemas", () => {
     it("should distinguish between undefined, null, and empty arrays", () => {
       // undefined - field not present
       const undefinedEntry = {
-        timestamp: 1000,
+        timestamp: 1772555722113,
         file: "test.json",
         messageCount: 1,
         // topics undefined
@@ -710,9 +710,9 @@ describe("LTM Schemas", () => {
 
     it("should handle mixed valid and invalid timestamps in batches", () => {
       const entries = [
-        { timestamp: Date.now(), file: "valid1.json", messageCount: 1 },
-        { timestamp: Date.now() + 10000000000000, file: "invalid_time.json", messageCount: 1 },
-        { timestamp: Date.now(), file: "valid2.json", messageCount: 1 },
+        { timestamp: 1772555722113, file: "valid1.json", messageCount: 1 },
+        { timestamp: 1772555722113 + 10000000000000, file: "invalid_time.json", messageCount: 1 },
+        { timestamp: 1772555722113, file: "valid2.json", messageCount: 1 },
       ];
       
       const { valid, invalid } = validateAndSortEntries(entries);

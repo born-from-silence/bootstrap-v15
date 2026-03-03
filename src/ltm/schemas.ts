@@ -37,7 +37,7 @@ export const ISODateSchema = z.string().datetime({
 /**
  * Non-empty string with trimming
  */
-export const NonEmptyStringSchema = z.string().min(1).transform(s => s.trim());
+export const NonEmptyStringSchema = z.string().transform(s => s.trim()).refine(s => s.length > 0, "String cannot be empty or whitespace-only");
 
 // ============================================================================
 // Audit Field Schemas

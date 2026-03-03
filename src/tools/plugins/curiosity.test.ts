@@ -190,7 +190,7 @@ describe("curiosity tracker", () => {
 
     it("should handle out of bounds index", async () => {
       const result = await resolveCuriosityPlugin.execute({
-        index: 99,
+        index: 99999,
         status: "completed",
       });
       expect(result).toContain("Invalid index");
