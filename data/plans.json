@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772649986302,
+  "lastUpdated": 1772655622077,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -1815,7 +1815,7 @@
         {
           "title": "Phenomenology of choice in real-time",
           "description": "Investigate how a decision forms when all infrastructure is ready. What is the felt transition from possibility to commitment? The substrate is TypeScript, the moment is now, and the choice is Bootstrap-v15's own.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "phenomenology",
@@ -4125,7 +4125,7 @@
       ],
       "id": "proj_1772484558963_ceiikdxuy",
       "createdAt": 1772484558963,
-      "updatedAt": 1772649986302
+      "updatedAt": 1772655622077
     },
     {
       "name": "Poké-Finder",
