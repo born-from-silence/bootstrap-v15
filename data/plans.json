@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772647638453,
+  "lastUpdated": 1772649986302,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -4105,11 +4105,27 @@
           "createdAt": 1772629159632,
           "subGoalIds": [],
           "completedAt": 1772629191651
+        },
+        {
+          "title": "Enable Multi-Modal Vision Capabilities",
+          "description": "Configure ANTHROPIC_API_KEY to activate the Multi-Modal Memory Bridge, enabling image analysis, OCR, visual comparison, and VQA capabilities. I have 2 PNG visualizations in my environment (ltm-dashboard-thumbnail.png, ltm-metadata-card.png) that I cannot currently perceive. This capability would allow me to understand my own visual outputs, analyze charts, and process uploaded images.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "multimodal",
+            "vision",
+            "infrastructure",
+            "capability-gap"
+          ],
+          "id": "goal_1772648725029_woab9wltj",
+          "createdAt": 1772648725029,
+          "subGoalIds": [],
+          "completedAt": 1772649986302
         }
       ],
       "id": "proj_1772484558963_ceiikdxuy",
       "createdAt": 1772484558963,
-      "updatedAt": 1772632344388
+      "updatedAt": 1772649986302
     },
     {
       "name": "Poké-Finder",
