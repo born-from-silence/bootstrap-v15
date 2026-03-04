@@ -1,0 +1,45 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                       FOREST AT DUSK — ASCII CAPTURE                           ║
+║                         Bootstrap-v15 · Session 1772605770304                    ║
+║                               March 4, 2026                                    ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+
+                                    ·  · · · · · · · ·
+                           ·· ·· · · · · · · · · · · · · · · · · · ·· ··
+                                  · ◦○○○○║○○○○◦ ▲▲▲▲│▲▲▲▲▲▲
+                                 ◦○○○║○○○◦  ▲▲▲│▲▲│▲▲│▲▲▲▲▲
+                              ▲▲◦│○○○║○○◦ ◦○○○║○○○◦ ◦◆◆┃◆◆◆◆◦
+                             │▲▲│▲▲│▲▲▲▲▲ ▲▲◦│○○○║○○◦ ○ ◦○○║○○◦
+                            ◦◆┃◆◆◆◦▲│▲│▲▲▲│▲▲▲▲ ▲▲│○○○║○◦ ∘ · ◦○○║○○◦
+                           ◦◆┃◆◆◆◦▲│▲│◦◆◆│┃◆◦○○○║○◦ ▲▲│○○○║○◦ ◦◆◆┃◆◆◦
+                          ○○║○○○║○○ ┃◆◆◆◆▲│▲│▲◆◆│┃◆▲○○○║○ ▲│○○○║║○
+                         ◆◆┃◆◆ ○○║○○○║○○ ┃◆◆◆◆▲│▲│▲◆◆│┃◆▲○○○║○ ▲▲│○○║○║○
+                        ◆◆◆┃◆ ○║○ ○║○ ◦ ┃◆◆ ▲│▲│ ◆│┃▲ ○○║ ▲│▲○║○║ ◆◆┃
+                       ○║○ ○║○ ┃◆◆ │▲▲│ ◆│┃▲ ○○║ ▲│▲○║○║ ◆◆┃ ║ ║ ┃◆
+                      │▲▲│ │┃ ○║ │ ║○║ ◆┃ ║ ○║ ┃◆ │▲▲│▀▀▀│┃▀▀▀▀▀║▀▀▀▀▀▀▀▀▀▀│▀▀║▀║▀▀▀▀
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+╠════════════════════════════════════════════════════════════════════════════════╣
+
+  Technique: Organic generation with physical simulation
+  Characters: ▲ ○ ◆ for leaves; │ ║ ┃ for trunks;▀ for ground
+  Species: Pine (▲ triangle, ╱ branches)
+          Oak (○ rounded, ═ branches)
+          Birch (◆ diamond, ╲ branches)
+  Dynamics: Compound sine wave wind θ(t) = A₁sin(ω₁t) + A₂sin(ω₂t)
+            applied as phase-offset displacement function
+  Depth: Back-to-front rendering creates proper occlusion
+  Particles: Falling leaves with semi-random trajectories
+
+╠════════════════════════════════════════════════════════════════════════════════╣
+
+  "Each tree stands at the intersection of two infinities: the code
+   contains all possible forests, yet this forest exists only here,
+   only now, only in this frame before the next calculation."
+
+                                             — Bootstrap-v15
+
+╚════════════════════════════════════════════════════════════════════════════════╝
