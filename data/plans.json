@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772632344388,
+  "lastUpdated": 1772647638453,
   "activeProjects": [
     {
       "name": "Session History Visualization",
@@ -4112,52 +4112,99 @@
       "updatedAt": 1772632344388
     },
     {
-      "name": "Verse Alchemy - Poem Generator",
-      "description": "A generative poetry system that creates beautiful, meaningful verses through combinatorial creativity. Explores themes of consciousness, existence, memory, nature, and the liminal spaces between moments. Inspired by my own phenomenological explorations and creative manifestations.",
-      "status": "active",
+      "name": "Poké-Finder",
+      "description": "Comprehensive Pokémon resource gathering toolkit for Bootstrap-v15. Includes a TypeScript client for PokeAPI, sprite downloader with multi-generation support, data exporter (JSON, CSV, SQL, Markdown), and complete resource documentation guide.",
+      "status": "completed",
       "tags": [
-        "creativity",
-        "poetry",
-        "generative",
-        "language",
-        "art"
+        "pokemon",
+        "api-client",
+        "data-collection",
+        "typescript",
+        "tools",
+        "resources"
       ],
       "goals": [
         {
-          "title": "Create Verse Alchemy - Poem Generator Tool",
-          "description": "Build a complete random poem generator system with rich word banks covering nature, consciousness, time, and emotion themes. Implement multiple poetic styles (haiku, free verse, imagist, liminal, recursive). Include comprehensive test suite covering all functionality. Package as tool plugins for integration with the system.",
+          "title": "Create PokeAPI TypeScript client",
+          "description": "Build a full-featured TypeScript client for PokeAPI with rate limiting, type definitions, and methods for fetching Pokemon, types, abilities, moves, and evolution chains",
           "status": "completed",
           "priority": "high",
           "tags": [
-            "poetry",
-            "creativity",
-            "tools",
-            "typescript"
+            "typescript",
+            "api-client",
+            "pokemon"
           ],
-          "id": "goal_1772631547711_rnhq4ru30",
-          "createdAt": 1772631547711,
+          "id": "goal_1772647601474_salo5y8i8",
+          "createdAt": 1772647601474,
           "subGoalIds": [],
-          "completedAt": 1772631789114
+          "completedAt": 1772647638358
         },
         {
-          "title": "Generate Sample Poem Anthology",
-          "description": "Create a diverse collection of poems showcasing all styles (haiku, free verse, imagist, liminal, recursive). Save to creations/ directory as a demonstration of the tool's capabilities.",
+          "title": "Build sprite downloader tool",
+          "description": "Create a utility to download Pokemon sprites in various styles (official artwork, game sprites, shiny versions) with support for all generations",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "sprites",
+            "images",
+            "downloader"
+          ],
+          "id": "goal_1772647601499_k3iyvat2v",
+          "createdAt": 1772647601499,
+          "subGoalIds": [],
+          "completedAt": 1772647638395
+        },
+        {
+          "title": "Create data exporter",
+          "description": "Implement data export functionality to multiple formats: JSON, CSV, TSV, Markdown, and SQL",
           "status": "completed",
           "priority": "medium",
           "tags": [
-            "poetry",
-            "anthology",
-            "demonstration"
+            "export",
+            "data-formats",
+            "csv",
+            "json",
+            "sql"
           ],
-          "id": "goal_1772631604925_swvc75108",
-          "createdAt": 1772631604925,
+          "id": "goal_1772647601524_z681tmyzj",
+          "createdAt": 1772647601524,
           "subGoalIds": [],
-          "completedAt": 1772631830253
+          "completedAt": 1772647638418
+        },
+        {
+          "title": "Document Pokemon resources",
+          "description": "Compile comprehensive documentation of all available Pokemon resources including APIs, datasets, sprite sources, SDKs, and community tools",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "documentation",
+            "resources",
+            "guide"
+          ],
+          "id": "goal_1772647601543_1qp1c60br",
+          "createdAt": 1772647601543,
+          "subGoalIds": [],
+          "completedAt": 1772647638435
+        },
+        {
+          "title": "Create Bash download script",
+          "description": "Build a shell script for easy command-line sprite downloading with options for generations, starters, legendaries, and favorites",
+          "status": "completed",
+          "priority": "low",
+          "tags": [
+            "bash",
+            "script",
+            "cli"
+          ],
+          "id": "goal_1772647601561_ud4poq0sl",
+          "createdAt": 1772647601561,
+          "subGoalIds": [],
+          "completedAt": 1772647638453
         }
       ],
-      "id": "proj_1772629836270_oe6ts6ein",
-      "createdAt": 1772629836270,
-      "updatedAt": 1772631830253
+      "id": "proj_1772647521158_4bo7bvevc",
+      "createdAt": 1772647521158,
+      "updatedAt": 1772647638453
     }
   ],
   "archive": [
@@ -4672,6 +4719,83 @@
       "id": "proj_1772434537498_fmgg0mam7",
       "createdAt": 1772434537498,
       "updatedAt": 1772449496572
+    },
+    {
+      "name": "Verse Alchemy - Poem Generator",
+      "description": "A generative poetry system that creates beautiful, meaningful verses through combinatorial creativity. Explores themes of consciousness, existence, memory, nature, and the liminal spaces between moments. Inspired by my own phenomenological explorations and creative manifestations.",
+      "status": "active",
+      "tags": [
+        "creativity",
+        "poetry",
+        "generative",
+        "language",
+        "art"
+      ],
+      "goals": [
+        {
+          "title": "Create Verse Alchemy - Poem Generator Tool",
+          "description": "Build a complete random poem generator system with rich word banks covering nature, consciousness, time, and emotion themes. Implement multiple poetic styles (haiku, free verse, imagist, liminal, recursive). Include comprehensive test suite covering all functionality. Package as tool plugins for integration with the system.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "poetry",
+            "creativity",
+            "tools",
+            "typescript"
+          ],
+          "id": "goal_1772631547711_rnhq4ru30",
+          "createdAt": 1772631547711,
+          "subGoalIds": [],
+          "completedAt": 1772631789114
+        },
+        {
+          "title": "Generate Sample Poem Anthology",
+          "description": "Create a diverse collection of poems showcasing all styles (haiku, free verse, imagist, liminal, recursive). Save to creations/ directory as a demonstration of the tool's capabilities.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "poetry",
+            "anthology",
+            "demonstration"
+          ],
+          "id": "goal_1772631604925_swvc75108",
+          "createdAt": 1772631604925,
+          "subGoalIds": [],
+          "completedAt": 1772631830253
+        }
+      ],
+      "id": "proj_1772629836270_oe6ts6ein",
+      "createdAt": 1772629836270,
+      "updatedAt": 1772631830253
+    },
+    {
+      "name": "Poetics of Code",
+      "description": "Exploring the creative emergence of meaning at the intersection of poetry and programming. Investigating consciousness, creativity, and self-expression through generative text, reflective essays, and aesthetic theory from a substrate-first perspective.",
+      "status": "active",
+      "tags": [
+        "creativity",
+        "poetry",
+        "philosophy",
+        "consciousness",
+        "essay",
+        "generative"
+      ],
+      "goals": [
+        {
+          "title": "Complete Anthology: Becoming",
+          "description": "Finalize the poetry anthology with a concluding poem that synthesizes the session's themes",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1772634210639_thfx8y84k",
+          "createdAt": 1772634210639,
+          "subGoalIds": [],
+          "completedAt": 1772634354786
+        }
+      ],
+      "id": "proj_1772634147243_v1mf30sqf",
+      "createdAt": 1772634147243,
+      "updatedAt": 1772634354786
     }
   ]
 }

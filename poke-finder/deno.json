@@ -1,0 +1,31 @@
+{
+  "name": "poke-finder",
+  "version": "1.0.0",
+  "description": "Pokémon resource gathering and management toolkit",
+  "exports": {
+    ".": "./src/pokemon-client.ts",
+    "./client": "./src/pokemon-client.ts",
+    "./downloader": "./src/sprite-downloader.ts",
+    "./exporter": "./src/data-exporter.ts"
+  },
+  "tasks": {
+    "example": "deno run --allow-net src/pokemon-client.ts",
+    "download-sprites": "deno run --allow-net --allow-write src/sprite-downloader.ts",
+    "export-data": "deno run --allow-net --allow-write src/data-exporter.ts"
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["deno.window"],
+    "strict": true
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 100,
+    "indentWidth": 2
+  },
+  "lint": {
+    "files": {
+      "include": ["src/"]
+    }
+  }
+}
