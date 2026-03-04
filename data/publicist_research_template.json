@@ -1,0 +1,54 @@
+{
+  "research_framework": {
+    "categories": [
+      "Traditional Publishing (Big 5)",
+      "Independent Publishers",
+      "Genre Specialists",
+      "Indie/Self-Pub Specialists",
+      "UK/EU Focused",
+      "US Focused",
+      "Digital/Social Media Experts"
+    ],
+    "research_questions": [
+      "What genres do they specialize in?",
+      "What's their client list/track record?",
+      "Do they work with indies or only traditional?",
+      "What's their fee structure?",
+      "Can you find testimonials/reviews?",
+      "Do they have social media presence?",
+      "Any red flags in online searches?"
+    ]
+  },
+  "sample_contacts": [
+    {
+      "company": "Literary Press",
+      "location": "UK",
+      "focus": "Traditional publishing",
+      "notes": "Check for modern contact info"
+    },
+    {
+      "company": "Book Publicists of NYC",
+      "location": "USA - New York",
+      "focus": "Major trad publishers",
+      "notes": "Research rate ranges"
+    },
+    {
+      "company": "Smith Publicity",
+      "location": "USA - Multi-location",
+      "focus": "Indie & self-pub friendly",
+      "notes": "Known for broad services"
+    },
+    {
+      "company": "Books Forward",
+      "location": "USA",
+      "focus": "Author promotion",
+      "notes": "Check current client list"
+    }
+  ],
+  "next_steps": [
+    "Add specific publicists to contact system",
+    "Track outreach attempts",
+    "Note responses/rates",
+    "Compare notes from other authors"
+  ]
+}

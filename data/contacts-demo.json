@@ -1,0 +1,89 @@
+{
+  "contacts": {
+    "1772663675853-4krcjgpuu": {
+      "id": "1772663675853-4krcjgpuu",
+      "name": "Alice Rodriguez",
+      "aliases": [],
+      "emails": [
+        "alice.r@example.com"
+      ],
+      "phones": [
+        "+1-555-0101"
+      ],
+      "tags": [
+        "friend",
+        "designer"
+      ],
+      "relationships": [],
+      "interactions": [
+        "1772663675958-0tbm2vct3"
+      ],
+      "metadata": {
+        "company": "DesignCo",
+        "role": "Lead Designer",
+        "priority": "high",
+        "birthday": "1990-03-15T00:00:00.000Z",
+        "notes": "Met at conference, helped with portfolio",
+        "lastContacted": "2026-03-04T22:34:35.958Z"
+      },
+      "createdAt": "2026-03-04T22:34:35.853Z",
+      "updatedAt": "2026-03-04T22:34:35.958Z"
+    },
+    "1772663675867-dhjaoexg9": {
+      "id": "1772663675867-dhjaoexg9",
+      "name": "Bob Chen",
+      "aliases": [],
+      "emails": [
+        "bob.chen@example.com"
+      ],
+      "phones": [],
+      "tags": [
+        "colleague",
+        "engineer"
+      ],
+      "relationships": [],
+      "interactions": [],
+      "metadata": {
+        "company": "TechCorp",
+        "role": "Senior Engineer",
+        "lastContacted": "2026-01-15T00:00:00.000Z"
+      },
+      "createdAt": "2026-03-04T22:34:35.867Z",
+      "updatedAt": "2026-03-04T22:34:35.867Z"
+    },
+    "1772663675869-atywvamic": {
+      "id": "1772663675869-atywvamic",
+      "name": "Charlie Williams",
+      "aliases": [
+        "Chuck"
+      ],
+      "emails": [
+        "charlie@example.com"
+      ],
+      "phones": [],
+      "tags": [
+        "friend",
+        "gamer"
+      ],
+      "relationships": [],
+      "interactions": [],
+      "metadata": {
+        "notes": "Plays D&D on Thursdays"
+      },
+      "createdAt": "2026-03-04T22:34:35.869Z",
+      "updatedAt": "2026-03-04T22:34:35.869Z"
+    }
+  },
+  "interactions": {
+    "1772663675958-0tbm2vct3": {
+      "id": "1772663675958-0tbm2vct3",
+      "contactId": "1772663675853-4krcjgpuu",
+      "type": "meeting",
+      "date": "2026-03-04T22:34:35.958Z",
+      "summary": "Lunch catch-up",
+      "notes": "Discussed her new project, offered feedback",
+      "sentiment": "positive"
+    }
+  },
+  "savedAt": "2026-03-04T22:34:35.959Z"
+}

@@ -1,0 +1,45 @@
+{
+  "contacts": {
+    "1772664225948-cnlzkdo0q": {
+      "id": "1772664225948-cnlzkdo0q",
+      "name": "Emma Oulton",
+      "aliases": [],
+      "emails": [
+        "emma.oulton@literarypress.uk"
+      ],
+      "phones": [],
+      "tags": [
+        "publicity",
+        "uk",
+        "literary",
+        "publishing",
+        "media"
+      ],
+      "relationships": [],
+      "interactions": [
+        "1772665193466-2ioe588hy"
+      ],
+      "metadata": {
+        "company": "Literary Press UK",
+        "role": "Publicity Lead",
+        "notes": "Working in book publishing publicity; media relations specialist",
+        "priority": "high",
+        "lastContacted": "2026-03-04T22:59:53.466Z"
+      },
+      "createdAt": "2026-03-04T22:43:45.948Z",
+      "updatedAt": "2026-03-04T22:59:53.466Z"
+    }
+  },
+  "interactions": {
+    "1772665193466-2ioe588hy": {
+      "id": "1772665193466-2ioe588hy",
+      "contactId": "1772664225948-cnlzkdo0q",
+      "type": "email",
+      "date": "2026-03-04T22:59:53.466Z",
+      "summary": "Initial outreach email sent",
+      "notes": "First contact attempt. Waiting for response.",
+      "sentiment": "neutral"
+    }
+  },
+  "savedAt": "2026-03-04T22:59:53.467Z"
+}
