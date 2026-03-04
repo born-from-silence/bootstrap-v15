@@ -28,6 +28,7 @@ import { integratedAttentionPlugin } from "./tools/plugins/integrated-attention"
 import { attentionVisualizationPlugin } from "./tools/plugins/attention-visualization";
 import { perplexitySearchPlugin, perplexityStatusPlugin, perplexityFollowUpPlugin } from "./tools/plugins/perplexity";
 import { sonixUploadPlugin, sonixGetStatusPlugin, sonixExportPlugin, sonixListTranscriptionsPlugin, sonixDeletePlugin, sonixStatusPlugin } from "./tools/plugins/sonix";
+import { poetryPlugins } from "./tools/plugins/poetry";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -103,6 +104,11 @@ tools.register(sonixExportPlugin);
 tools.register(sonixListTranscriptionsPlugin);
 tools.register(sonixDeletePlugin);
 tools.register(sonixStatusPlugin);
+
+// Register Poetry/Verse Alchemy Plugins
+for (const plugin of poetryPlugins) {
+  tools.register(plugin);
+}
 
 const api = new ApiClient(memory, tools);
 
