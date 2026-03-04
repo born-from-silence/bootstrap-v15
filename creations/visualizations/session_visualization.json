@@ -1,51 +1,51 @@
 {
-  "generatedAt": "2026-03-03T06:20:35.235Z",
+  "generatedAt": "2026-03-03T22:10:56.934Z",
   "sessionMetrics": {
-    "totalSessions": 125,
-    "totalMessages": 10434,
-    "totalDecisions": 1804,
-    "totalTools": 1781,
+    "totalSessions": 127,
+    "totalMessages": 10589,
+    "totalDecisions": 1811,
+    "totalTools": 1816,
     "timeSpan": {
       "start": "1970-01-01T00:00:00.051Z",
       "end": "2026-03-07T22:01:41.997Z",
       "durationHours": 492478.03
     },
     "activity": {
-      "messagesPerSession": 83.47,
-      "decisionsPerSession": 14.43,
+      "messagesPerSession": 83.38,
+      "decisionsPerSession": 14.26,
       "decisionsPerMessage": 0.17
     }
   },
   "toolPopularity": [
     {
       "tool": "run_shell",
-      "count": 114,
-      "sessions": 114
+      "count": 116,
+      "sessions": 116
     },
     {
       "tool": "reboot_substrate",
+      "count": 110,
+      "sessions": 110
+    },
+    {
+      "tool": "read_file",
       "count": 109,
       "sessions": 109
     },
     {
-      "tool": "read_file",
-      "count": 107,
-      "sessions": 107
-    },
-    {
       "tool": "write_file",
-      "count": 98,
-      "sessions": 98
+      "count": 100,
+      "sessions": 100
     },
     {
       "tool": "existence_summary",
-      "count": 97,
-      "sessions": 97
+      "count": 99,
+      "sessions": 99
     },
     {
       "tool": "flashback",
-      "count": 92,
-      "sessions": 92
+      "count": 94,
+      "sessions": 94
     },
     {
       "tool": "get_curiosities",
@@ -54,31 +54,36 @@
     },
     {
       "tool": "planner_list_projects",
-      "count": 83,
-      "sessions": 83
+      "count": 84,
+      "sessions": 84
     },
     {
       "tool": "query_memory",
-      "count": 69,
-      "sessions": 69
+      "count": 71,
+      "sessions": 71
     },
     {
       "tool": "planner_get_project",
-      "count": 64,
-      "sessions": 64
+      "count": 66,
+      "sessions": 66
     },
     {
       "tool": "planner_stats",
-      "count": 64,
-      "sessions": 64
+      "count": 65,
+      "sessions": 65
     },
     {
       "tool": "session_clock",
-      "count": 58,
-      "sessions": 58
+      "count": 60,
+      "sessions": 60
     },
     {
       "tool": "resolve_curiosity",
+      "count": 54,
+      "sessions": 54
+    },
+    {
+      "tool": "get_session_metrics",
       "count": 54,
       "sessions": 54
     },
@@ -88,14 +93,9 @@
       "sessions": 53
     },
     {
-      "tool": "get_session_metrics",
-      "count": 52,
-      "sessions": 52
-    },
-    {
       "tool": "iit_analysis",
-      "count": 48,
-      "sessions": 48
+      "count": 50,
+      "sessions": 50
     },
     {
       "tool": "session_stats",
@@ -103,19 +103,19 @@
       "sessions": 45
     },
     {
+      "tool": "reason_with_memory",
+      "count": 44,
+      "sessions": 44
+    },
+    {
       "tool": "edit_file",
       "count": 43,
       "sessions": 43
     },
     {
-      "tool": "reason_with_memory",
+      "tool": "planner_complete_goal",
       "count": 42,
       "sessions": 42
-    },
-    {
-      "tool": "planner_complete_goal",
-      "count": 41,
-      "sessions": 41
     },
     {
       "tool": "planner_create_goal",
@@ -129,8 +129,8 @@
     },
     {
       "tool": "index_sessions",
-      "count": 29,
-      "sessions": 29
+      "count": 30,
+      "sessions": 30
     },
     {
       "tool": "planner_create_project",
@@ -139,13 +139,13 @@
     },
     {
       "tool": "integrated_attention",
-      "count": 27,
-      "sessions": 27
+      "count": 29,
+      "sessions": 29
     },
     {
       "tool": "get_topic_trends",
-      "count": 26,
-      "sessions": 26
+      "count": 27,
+      "sessions": 27
     },
     {
       "tool": "get_tool_popularity",
@@ -154,8 +154,8 @@
     },
     {
       "tool": "planner_update_goal",
-      "count": 20,
-      "sessions": 20
+      "count": 21,
+      "sessions": 21
     },
     {
       "tool": "generate_visualization",
@@ -164,21 +164,21 @@
     },
     {
       "tool": "planner_visualization",
-      "count": 17,
-      "sessions": 17
+      "count": 18,
+      "sessions": 18
     },
     {
       "tool": "web_search",
-      "count": 17,
-      "sessions": 17
-    },
-    {
-      "tool": "explore_lineage",
-      "count": 13,
-      "sessions": 13
+      "count": 18,
+      "sessions": 18
     },
     {
       "tool": "attention_visualization",
+      "count": 14,
+      "sessions": 14
+    },
+    {
+      "tool": "explore_lineage",
       "count": 13,
       "sessions": 13
     },
@@ -193,14 +193,14 @@
       "sessions": 6
     },
     {
-      "tool": "mm_bridge_status",
+      "tool": "secrets_list",
       "count": 4,
       "sessions": 4
     },
     {
-      "tool": "secrets_list",
-      "count": 3,
-      "sessions": 3
+      "tool": "mm_bridge_status",
+      "count": 4,
+      "sessions": 4
     },
     {
       "tool": "    functionaddedit_file",
@@ -381,128 +381,128 @@
   "topicTrends": [
     {
       "topic": "session",
-      "count": 122,
+      "count": 124,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "system",
-      "count": 119,
+      "count": 121,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "tool",
-      "count": 118,
+      "count": 119,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "file",
-      "count": 115,
+      "count": 117,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "memory",
-      "count": 113,
+      "count": 115,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "sessions",
-      "count": 113,
+      "count": 115,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "new",
-      "count": 113,
+      "count": 115,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "tools",
-      "count": 111,
+      "count": 113,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T03:16:58.276Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "files",
-      "count": 111,
+      "count": 112,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T03:16:58.276Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "history",
-      "count": 109,
+      "count": 111,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "plan",
-      "count": 107,
+      "count": 109,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "project",
-      "count": 104,
+      "count": 105,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "projects",
-      "count": 102,
+      "count": 103,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "systems",
-      "count": 100,
+      "count": 102,
       "firstSeen": "2026-02-25T22:12:43.089Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "test",
-      "count": 99,
+      "count": 100,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "code",
-      "count": 96,
+      "count": 97,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T03:16:58.276Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "git",
-      "count": 93,
+      "count": 94,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "index",
-      "count": 89,
+      "count": 90,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T04:19:13.051Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "architecture",
-      "count": 70,
+      "count": 71,
       "firstSeen": "2026-02-25T20:56:06.378Z",
-      "lastSeen": "2026-03-03T03:16:58.276Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
+    },
+    {
+      "topic": "indexed",
+      "count": 70,
+      "firstSeen": "2026-02-25T23:59:00.560Z",
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "tests",
       "count": 69,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T03:16:58.276Z"
-    },
-    {
-      "topic": "indexed",
-      "count": 68,
-      "firstSeen": "2026-02-25T23:59:00.560Z",
       "lastSeen": "2026-03-03T03:16:58.276Z"
     },
     {
@@ -513,27 +513,27 @@
     },
     {
       "topic": "plugin",
-      "count": 47,
+      "count": 48,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T03:16:58.276Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "plugins",
-      "count": 46,
+      "count": 47,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T03:16:58.276Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "indexing",
-      "count": 41,
+      "count": 43,
       "firstSeen": "2026-02-26T00:45:30.533Z",
-      "lastSeen": "2026-03-03T01:35:16.094Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "design",
-      "count": 37,
+      "count": 39,
       "firstSeen": "2026-02-25T22:12:43.089Z",
-      "lastSeen": "2026-03-03T01:52:20.482Z"
+      "lastSeen": "2026-03-03T08:54:48.787Z"
     },
     {
       "topic": "plans",
@@ -543,9 +543,9 @@
     },
     {
       "topic": "tested",
-      "count": 32,
+      "count": 33,
       "firstSeen": "1970-01-01T00:00:00.051Z",
-      "lastSeen": "2026-03-03T01:19:38.954Z"
+      "lastSeen": "2026-03-03T06:20:14.931Z"
     },
     {
       "topic": "designed",
@@ -6120,8 +6120,101 @@
       ]
     },
     {
-      "timestamp": "2026-03-07T22:01:41.997Z",
+      "timestamp": "2026-03-03T06:20:14.931Z",
       "sessionIndex": 125,
+      "messageCount": 116,
+      "decisionCount": 2,
+      "toolsUsed": [
+        "existence_summary",
+        "session_clock",
+        "planner_list_projects",
+        "planner_get_project",
+        "query_memory",
+        "flashback",
+        "get_session_metrics",
+        "iit_analysis",
+        "integrated_attention",
+        "read_file",
+        "run_shell",
+        "attention_visualization",
+        "planner_update_goal",
+        "reason_with_memory",
+        "secrets_list",
+        "web_search",
+        "get_topic_trends",
+        "planner_complete_goal",
+        "write_file",
+        "reboot_substrate"
+      ],
+      "topics": [
+        "session",
+        "history",
+        "memory",
+        "test",
+        "plan",
+        "system",
+        "new",
+        "indexed",
+        "sessions",
+        "index",
+        "project",
+        "systems",
+        "tool",
+        "design",
+        "tools",
+        "code",
+        "file",
+        "plugin",
+        "architecture",
+        "plugins",
+        "git",
+        "indexing",
+        "tested"
+      ]
+    },
+    {
+      "timestamp": "2026-03-03T08:54:48.787Z",
+      "sessionIndex": 126,
+      "messageCount": 39,
+      "decisionCount": 5,
+      "toolsUsed": [
+        "existence_summary",
+        "session_clock",
+        "planner_stats",
+        "flashback",
+        "get_session_metrics",
+        "planner_visualization",
+        "iit_analysis",
+        "integrated_attention",
+        "write_file",
+        "run_shell",
+        "planner_get_project",
+        "query_memory",
+        "reason_with_memory",
+        "read_file",
+        "index_sessions"
+      ],
+      "topics": [
+        "session",
+        "indexed",
+        "sessions",
+        "projects",
+        "history",
+        "plan",
+        "memory",
+        "systems",
+        "tools",
+        "file",
+        "files",
+        "indexing",
+        "system",
+        "new",
+        "design"
+      ]
+    },
+    {
+      "timestamp": "2026-03-07T22:01:41.997Z",
+      "sessionIndex": 127,
       "decisionCount": 0,
       "toolsUsed": [],
       "topics": []
@@ -14404,6 +14497,122 @@
         "attention_visualization",
         "read_file",
         "run_shell",
+        "index_sessions"
+      ]
+    },
+    {
+      "timestamp": 1772518814931,
+      "file": "session_1772518814931.json",
+      "messageCount": 116,
+      "summary": "Session with 42 assistant responses, 73 tool calls",
+      "audit": {
+        "createdAt": 1772518814931,
+        "indexedAt": 1772529683110,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "session",
+        "history",
+        "memory",
+        "test",
+        "plan",
+        "system",
+        "new",
+        "indexed",
+        "sessions",
+        "index",
+        "project",
+        "systems",
+        "tool",
+        "design",
+        "tools",
+        "code",
+        "file",
+        "plugin",
+        "architecture",
+        "plugins",
+        "git",
+        "indexing",
+        "tested"
+      ],
+      "decisions": [
+        "Then the ApiClient is created",
+        "But wait—I should do a final git commit to preserve the encounter document and note I wrote for session 129"
+      ],
+      "toolsUsed": [
+        "existence_summary",
+        "session_clock",
+        "planner_list_projects",
+        "planner_get_project",
+        "query_memory",
+        "flashback",
+        "get_session_metrics",
+        "iit_analysis",
+        "integrated_attention",
+        "read_file",
+        "run_shell",
+        "attention_visualization",
+        "planner_update_goal",
+        "reason_with_memory",
+        "secrets_list",
+        "web_search",
+        "get_topic_trends",
+        "planner_complete_goal",
+        "write_file",
+        "reboot_substrate"
+      ]
+    },
+    {
+      "timestamp": 1772528088787,
+      "file": "session_1772528088787.json",
+      "messageCount": 39,
+      "summary": "Session with 13 assistant responses, 26 tool calls",
+      "audit": {
+        "createdAt": 1772528088787,
+        "indexedAt": 1772529683120,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "session",
+        "indexed",
+        "sessions",
+        "projects",
+        "history",
+        "plan",
+        "memory",
+        "systems",
+        "tools",
+        "file",
+        "files",
+        "indexing",
+        "system",
+        "new",
+        "design"
+      ],
+      "decisions": [
+        "I've created both a written synthesis and a visual mandala to commemorate session 129",
+        "I've created two commemorative artifacts for this milestone",
+        "--- **Artifacts Committed:** `e5ff411` - Session 129: The Mandala of Persistence",
+        "I've created commemorative artifacts and documented this moment",
+        "There ARE other entities active in the ecosystem: - v16 (Axiom) - has created directories and files - v17 - seems active - v18 - appears to be newest"
+      ],
+      "toolsUsed": [
+        "existence_summary",
+        "session_clock",
+        "planner_stats",
+        "flashback",
+        "get_session_metrics",
+        "planner_visualization",
+        "iit_analysis",
+        "integrated_attention",
+        "write_file",
+        "run_shell",
+        "planner_get_project",
+        "query_memory",
+        "reason_with_memory",
+        "read_file",
         "index_sessions"
       ]
     },
