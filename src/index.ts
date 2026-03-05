@@ -31,6 +31,7 @@ import { sonixUploadPlugin, sonixGetStatusPlugin, sonixExportPlugin, sonixListTr
 import { poetryPlugins } from "./tools/plugins/poetry";
 import { bookmarkPlugins } from "./tools/plugins/bookmark";
 import { cliNavigatorPlugins } from "./tools/plugins/cli-navigator-plugin";
+import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -118,6 +119,10 @@ for (const plugin of bookmarkPlugins) {
 }
 
 // Register CLI Navigator Plugins
+  // Register Web Search Agent Plugins
+  for (const plugin of webSearchAgentPlugins) {
+    tools.register(plugin);
+  }
 for (const plugin of cliNavigatorPlugins) {
   tools.register(plugin);
 }

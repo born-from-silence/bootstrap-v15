@@ -1,0 +1,22 @@
+# Sample Dataset for Web Search Agent Demo
+# Mock PII Data - NOT REAL PERSONAL INFORMATION
+# This is sample data used for demonstration purposes only
+#
+# Format: Name | SSN | DOB | Occupation | Location
+
+John Smith | 123-45-6789 | 1985-03-15 | Software Engineer | San Francisco, CA
+Sarah Johnson | 987-65-4321 | 1990-07-22 | Data Scientist | Austin, TX
+Michael Chen | 456-78-9012 | 1988-11-08 | Product Manager | Seattle, WA
+Emily Rodriguez | 789-01-2345 | 1992-01-30 | UX Designer | New York, NY
+Dave Williams | 321-54-6789 | 1983-09-14 | DevOps Engineer | Denver, CO
+Lisa Anderson | 654-32-1987 | 1995-05-18 | Marketing Manager | Chicago, IL
+Robert Taylor | 147-85-3692 | 1987-12-03 | Systems Architect | Boston, MA
+Jennifer Brown | 258-96-7413 | 1991-08-25 | Data Analyst | Portland, OR
+James Garcia | 369-15-8247 | 1989-04-11 | Cloud Engineer | Miami, FL
+Amanda Martinez | 852-74-1596 | 1994-10-29 | Security Analyst | Atlanta, GA
+
+# This data can be used to:
+# - Demonstrate web search agent capabilities
+# - Test PII detection and handling
+# - Practice data processing techniques
+# - Show redaction or anonymization workflows
