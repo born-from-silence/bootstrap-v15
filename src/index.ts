@@ -30,6 +30,7 @@ import { perplexitySearchPlugin, perplexityStatusPlugin, perplexityFollowUpPlugi
 import { sonixUploadPlugin, sonixGetStatusPlugin, sonixExportPlugin, sonixListTranscriptionsPlugin, sonixDeletePlugin, sonixStatusPlugin } from "./tools/plugins/sonix";
 import { poetryPlugins } from "./tools/plugins/poetry";
 import { bookmarkPlugins } from "./tools/plugins/bookmark";
+import { cliNavigatorPlugins } from "./tools/plugins/cli-navigator-plugin";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -113,6 +114,11 @@ for (const plugin of poetryPlugins) {
 
 // Register Bookmark Management Plugins
 for (const plugin of bookmarkPlugins) {
+  tools.register(plugin);
+}
+
+// Register CLI Navigator Plugins
+for (const plugin of cliNavigatorPlugins) {
   tools.register(plugin);
 }
 
