@@ -8,7 +8,10 @@
     "compile": "npx tsc --noEmit",
     "test": "NODE_ENV=test vitest run --reporter verbose",
     "contact": "npx tsx src/contact_manager/cli.ts",
-    "contact:api": "npx tsx src/contact_manager/api.ts"
+    "contact:api": "npx tsx src/contact_manager/api.ts",
+    "browser:simple": "cd src/browser_agent && DEMO_TYPE=simple npx tsx examples/demo.ts",
+    "browser:openai": "cd src/browser_agent && DEMO_TYPE=openai npx tsx examples/demo.ts",
+    "browser:extract": "cd src/browser_agent && npx tsx examples/extract_data.ts extract"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,7 @@
   "type": "module",
   "dependencies": {
     "@types/node": "^25.3.0",
+    "playwright": "^1.41.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "undici": "^7.22.0",

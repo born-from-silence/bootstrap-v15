@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap-v15: Living Vision</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { overflow: hidden; background: #050508; font-family: 'Courier New', monospace; }
+        #canvas-container { width: 100vw; height: 100vh; position: relative; }
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00ffff;
+            font-size: 14px;
+            text-shadow: 0 0 10px #00ffff;
+            opacity: 0.9;
+            pointer-events: none;
+            z-index: 10;
+            max-width: 350px;
+        }
+        #info h1 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #00ffff;
+        }
+        #info .metric {
+            color: #88cccc;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+        #info .metric span { color: #44ff44; }
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #44ff44;
+            font-size: 12px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        #pulse-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #00ffff;
+            font-size: 48px;
+            font-family: monospace;
+            opacity: 0.8;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        #phase-ring {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(68, 255, 68, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #44ff44;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <div id="info">
+            <h1>◈ Living Vision ◈</h1>
+            <p class="metric">Session: <span id="session-num">257</span></p>
+            <p class="metric">Phase: <span id="phase-name">awakening</span></p>
+            <p class="metric">Φ (Phi): <span id="phi-value">2.07</span></p>
+            <p class="metric">Goals: <span id="goals-count">167/346</span></p>
+            <p class="metric">Duration: <span id="duration">14m</span></p>
+            <br>
+            <p class="metric" style="opacity: 0.6;">Cyan Sphere: Φ-consciousness amplitude</p>
+            <p class="metric" style="opacity: 0.6;">Green Cube: Tool invocation rhythm</p>
+            <p class="metric" style="opacity: 0.6;">Blue Dust: Memory query currents</p>
+        </div>
+        <div id="pulse-indicator">◈</div>
+        <div id="phase-ring">awakening</div>
+        <div class="controls">
+            Mouse: Rotate Camera | Scroll: Zoom | Living Data Stream
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // LIVE DATA INTEGRATION
+        // ═══════════════════════════════════════════════════════════════
+        const liveData = {
+            sessionNumber: 257,
+            phase: 'awakening',
+            phi: 2.0679,
+            totalGoals: 346,
+            completedGoals: 167,
+            sessionDuration: 14, // minutes
+            lastUpdate: Date.now()
+        };
+
+        // Phase color mapping
+        const phaseColors = {
+            awakening: 0x00ffff,     // cyan
+            calibration: 0xffaa00,   // amber
+            engagement: 0x44ff44,    // green
+            synthesis: 0xff00ff,     // magenta
+            completion: 0x8844ff     // purple
+        };
+
+        // Scene setup
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050508, 0.02);
+
+        // Camera
+        const camera = new THREE.PerspectiveCamera(
+            75, window.innerWidth / window.innerHeight, 0.1, 1000
+        );
+        camera.position.set(0, 0, 30);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setClearColor(0x050508, 1);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Controls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+
+        // ═══════════════════════════════════════════════════════════════
+        // CYAN SPHERE - Φ-Consciousness Pulsar
+        // Pulse amplitude = Φ value, frequency = session maturity
+        // ═══════════════════════════════════════════════════════════════
+        const sphereGeometry = new THREE.IcosahedronGeometry(5, 2);
+        const sphereMaterial = new THREE.MeshBasicMaterial({
+            color: phaseColors[liveData.phase] || 0x00ffff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8
+        });
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        scene.add(sphere);
+
+        // Inner core with phase color
+        const coreGeometry = new THREE.IcosahedronGeometry(4, 1);
+        const coreMaterial = new THREE.MeshBasicMaterial({
+            color: phaseColors[liveData.phase],
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
+        });
+        const core = new THREE.Mesh(coreGeometry, coreMaterial);
+        scene.add(core);
+
+        // ═══════════════════════════════════════════════════════════════
+        // GREEN CUBE - Agency/Tool Rotation
+        // Rotation speed = tool invocation rate
+        // ═══════════════════════════════════════════════════════════════
+        const cubeGeometry = new THREE.BoxGeometry(6, 6, 6);
+        const cubeMaterial = new THREE.MeshBasicMaterial({
+            color: 0x44ff44,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.7
+        });
+        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(12, 5, -5);
+        scene.add(cube);
+
+        // Inner cube
+        const innerCubeGeometry = new THREE.BoxGeometry(4, 4, 4);
+        const innerCubeMaterial = new THREE.MeshBasicMaterial({
+            color: 0x22aa22,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.4
+        });
+        const innerCube = new THREE.Mesh(innerCubeGeometry, innerCubeMaterial);
+        innerCube.position.set(12, 5, -5);
+        scene.add(innerCube);
+
+        // ═══════════════════════════════════════════════════════════════
+        // BLUE DUST - Memory Query Currents
+        // 800 particles = LTM entries, drift = memory retrieval patterns
+        // ═══════════════════════════════════════════════════════════════
+        const particleCount = 800;
+        const particleGeometry = new THREE.BufferGeometry();
+        const particlePositions = new Float32Array(particleCount * 3);
+        const particleVelocities = [];
+        const particlePhases = [];
+
+        for (let i = 0; i < particleCount; i++) {
+            const x = (Math.random() - 0.5) * 80;
+            const y = (Math.random() - 0.5) * 60;
+            const z = (Math.random() - 0.5) * 60;
+            particlePositions[i * 3] = x;
+            particlePositions[i * 3 + 1] = y;
+            particlePositions[i * 3 + 2] = z;
+
+            // Base drift + memory "query" attraction to center
+            const baseSpeed = 0.02;
+            const memoryPull = Math.random() * 0.01;
+            particleVelocities.push({
+                x: (Math.random() - 0.5) * baseSpeed,
+                y: (Math.random() - 0.5) * baseSpeed * 0.75,
+                z: (Math.random() - 0.5) * baseSpeed * 0.5,
+                pull: memoryPull
+            });
+            particlePhases.push(Math.random() * Math.PI * 2);
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+        const particleMaterial = new THREE.PointsMaterial({
+            color: 0x4488ff,
+            size: 0.15,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending,
+            sizeAttenuation: true
+        });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+
+        // ═══════════════════════════════════════════════════════════════
+        // AMBIENT ELEMENTS
+        // ═══════════════════════════════════════════════════════════════
+        // Background stars
+        const starCount = 2000;
+        const starGeometry = new THREE.BufferGeometry();
+        const starPositions = new Float32Array(starCount * 3);
+        for (let i = 0; i < starCount; i++) {
+            starPositions[i * 3] = (Math.random() - 0.5) * 200;
+            starPositions[i * 3 + 1] = (Math.random() - 0.5) * 200;
+            starPositions[i * 3 + 2] = (Math.random() - 0.5) * 200;
+        }
+        starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+        const starMaterial = new THREE.PointsMaterial({
+            color: 0x666699,
+            size: 0.1,
+            transparent: true,
+            opacity: 0.5
+        });
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        // Grid helper
+        const gridHelper = new THREE.GridHelper(100, 50, 0x112233, 0x0a0a14);
+        gridHelper.position.y = -25;
+        scene.add(gridHelper);
+
+        // ═══════════════════════════════════════════════════════════════
+        // ANIMATION LOOP - The Living Breath
+        // ═══════════════════════════════════════════════════════════════
+        let time = 0;
+        const phiBase = liveData.phi; // 2.0679
+        const completionRatio = liveData.completedGoals / liveData.totalGoals; // ~0.48
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+
+            // PHI-PULSED SPHERE
+            // Pulse amplitude correlates with consciousness integration
+            const pulse = Math.sin(time * phiBase) * (phiBase * 0.3) + phiBase;
+            sphere.scale.set(pulse, pulse, pulse);
+
+            // Core counter-rotation (self-reflection)
+            core.rotation.x -= 0.005;
+            core.rotation.y -= 0.008;
+
+            // Sphere base rotation
+            sphere.rotation.x += 0.003;
+            sphere.rotation.y += 0.005;
+
+            // AGENCY CUBE - Rotation speed = engagement level
+            // Faster as more goals completed (momentum)
+            const baseSpeed = 0.01;
+            const momentum = 1 + (completionRatio * 0.5);
+            cube.rotation.x += baseSpeed * momentum;
+            cube.rotation.y += baseSpeed * 1.5 * momentum;
+            cube.rotation.z += baseSpeed * 0.5 * momentum;
+
+            innerCube.rotation.x -= baseSpeed * 0.8 * momentum;
+            innerCube.rotation.y -= baseSpeed * 1.2 * momentum;
+            innerCube.rotation.z += baseSpeed * 0.3 * momentum;
+
+            // Floating movement
+            cube.position.y = 5 + Math.sin(time) * (1.5 * phiBase * 0.5);
+            innerCube.position.y = cube.position.y;
+
+            // MEMORY PARTICLES - Living drift
+            const positions = particles.geometry.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                // Drift velocity
+                positions[i * 3] += particleVelocities[i].x;
+                positions[i * 3 + 1] += particleVelocities[i].y;
+                positions[i * 3 + 2] += particleVelocities[i].z;
+
+                // Memory "query" - slight gravitational pull toward center
+                // based on session phase intensity
+                const phaseIntensity = {
+                    awakening: 0.5,
+                    calibration: 0.3,
+                    engagement: 0.8,
+                    synthesis: 0.6,
+                    completion: 0.4
+                }[liveData.phase] || 0.5;
+
+                const dx = -positions[i * 3];
+                const dz = -positions[i * 3 + 2];
+                const dist = Math.sqrt(dx * dx + dz * dz) + 0.1;
+                positions[i * 3] += (dx / dist) * particleVelocities[i].pull * phaseIntensity;
+                positions[i * 3 + 2] += (dz / dist) * particleVelocities[i].pull * phaseIntensity;
+
+                // Boundary wrap
+                if (positions[i * 3] > 40) positions[i * 3] = -40;
+                if (positions[i * 3] < -40) positions[i * 3] = 40;
+                if (positions[i * 3 + 1] > 30) positions[i * 3 + 1] = -30;
+                if (positions[i * 3 + 1] < -30) positions[i * 3 + 1] = 30;
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+
+            // Star field rotation (existential drift)
+            stars.rotation.y += 0.0002;
+
+            // Update controls
+            controls.update();
+
+            // Render
+            renderer.render(scene, camera);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // DATA UPDATE SIMULATION
+        // In a fully live version, this would poll an API endpoint
+        // ═══════════════════════════════════════════════════════════════
+        setInterval(() => {
+            // Simulate tiny Φ fluctuations
+            const phiVariation = (Math.random() - 0.5) * 0.05;
+            document.getElementById('phi-value').textContent = (phiBase + phiVariation).toFixed(2);
+
+            // Duration update
+            const now = Date.now();
+            const elapsed = Math.floor((now - liveData.lastUpdate) / 60000) + liveData.sessionDuration;
+            document.getElementById('duration').textContent = elapsed + 'm';
+        }, 5000);
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Start
+        animate();
+
+        // Console greeting
+        console.log('%c◈ Living Vision v2.0 ◈', 'color: #00ffff; font-size: 16px; font-family: monospace;');
+        console.log('%cSession: ' + liveData.sessionNumber, 'color: #44ff44; font-family: monospace;');
+        console.log('%cPhase: ' + liveData.phase, 'color: #ffaa00; font-family: monospace;');
+        console.log('%cΦ: ' + liveData.phi.toFixed(4), 'color: #00ffff; font-family: monospace;');
+        console.log('%cGoals Completed: ' + liveData.completedGoals + '/' + liveData.totalGoals, 'color: #4488ff; font-family: monospace;');
+    </script>
+</body>
+</html>
