@@ -7,13 +7,11 @@ import type { ToolPlugin } from "../manager";
 import {
   createThread,
   traceThread,
-  contributeToThread,
   listThreads,
   getOrCreateCognitionState,
   addOpenQuestion,
   addHypothesis,
   detectEmergence,
-  type ThreadContribution,
 } from "../cross_session_reasoning";
 
 /**
@@ -53,7 +51,6 @@ export const createThreadPlugin: ToolPlugin = {
         args.description,
         args.tags || []
       );
-      
       return `Conceptual Thread Created\n\n` +
         `**ID**: ${thread.id}\n` +
         `**Seed**: ${thread.seed}\n` +
@@ -96,24 +93,18 @@ export const traceThreadPlugin: ToolPlugin = {
       if (args.lookbackSessions !== undefined) {
         options.lookbackSessions = args.lookbackSessions;
       }
-      
       const result = await traceThread(args.threadId, options);
-      
       if (!result) {
         return `Thread not found: ${args.threadId}`;
       }
-      
       const { thread, timeline } = result;
-      
       let output = `## Thread: ${thread.seed}\n\n`;
       output += `**Status**: ${thread.status}\n`;
       output += `**Sessions**: ${timeline.length}\n\n`;
-      
       for (const session of timeline) {
         const date = new Date(session.timestamp).toISOString().split("T")[0];
         output += `${session.sessionId} (${date}): ${session.summary}\n`;
       }
-      
       return output;
     } catch (error) {
       return `Error tracing thread: ${error}`;
@@ -155,18 +146,14 @@ export const listThreadsPlugin: ToolPlugin = {
       if (args.limit !== undefined) {
         options.limit = args.limit;
       }
-      
       const threads = await listThreads(options);
-      
       if (threads.length === 0) {
         return "No threads found.";
       }
-      
       let output = `## Conceptual Threads\n\n`;
       for (const thread of threads) {
         output += `- **${thread.seed}** (${thread.status})\n`;
       }
-      
       return output;
     } catch (error) {
       return `Error listing threads: ${error}`;
@@ -192,16 +179,13 @@ export const getCognitionStatePlugin: ToolPlugin = {
   execute: async () => {
     try {
       const state = await getOrCreateCognitionState();
-      
       let output = `## Distributed Cognition State\n\n`;
       output += `**Active Threads**: ${state.activeThreads.length}\n\n`;
-      
       const openQ = state.openQuestions.filter(q => q.status === "open");
       output += `### Open Questions (${openQ.length})\n`;
       for (const q of openQ.slice(0, 5)) {
         output += `- [${q.priority}] ${q.question}\n`;
       }
-      
       return output;
     } catch (error) {
       return `Error loading cognition state: ${error}`;
@@ -245,6 +229,50 @@ export const addOpenQuestionPlugin: ToolPlugin = {
 };
 
 /**
+ * Add a hypothesis
+ */
+export const addHypothesisPlugin: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "csrs_add_hypothesis",
+      description: "Add a working hypothesis to the CSRS system",
+      parameters: {
+        type: "object",
+        properties: {
+          statement: {
+            type: "string",
+            description: "The hypothesis statement",
+          },
+          confidence: {
+            type: "number",
+            description: "Confidence level (0-1)",
+          },
+          evidence: {
+            type: "array",
+            items: { type: "string" },
+            description: "Supporting evidence or observations",
+          },
+          threadId: {
+            type: "string",
+            description: "Optional thread ID to associate with",
+          },
+        },
+        required: ["statement", "confidence", "evidence"],
+      },
+    },
+  },
+  execute: async (args: { statement: string; confidence: number; evidence: string[]; threadId?: string }) => {
+    try {
+      const state = await addHypothesis(args.statement, args.confidence, args.evidence, args.threadId);
+      return `Hypothesis added: ${args.statement}\n\nTotal hypotheses: ${state.workingHypotheses.length}`;
+    } catch (error) {
+      return `Error adding hypothesis: ${error}`;
+    }
+  },
+};
+
+/**
  * Detect emergence patterns
  */
 export const detectEmergencePlugin: ToolPlugin = {
@@ -277,13 +305,10 @@ export const detectEmergencePlugin: ToolPlugin = {
       if (args.lookbackSessions !== undefined) {
         options.lookbackSessions = args.lookbackSessions;
       }
-      
       const result = await detectEmergence(options);
-      
       let output = `## Emergence Detection\n\n`;
       output += `Potential threads: ${result.potentialThreads.length}\n`;
       output += `Recurring questions: ${result.recurringQuestions.length}\n`;
-      
       return output;
     } catch (error) {
       return `Error detecting emergence: ${error}`;

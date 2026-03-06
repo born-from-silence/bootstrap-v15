@@ -32,16 +32,7 @@ import { poetryPlugins } from "./tools/plugins/poetry";
 import { bookmarkPlugins } from "./tools/plugins/bookmark";
 import { cliNavigatorPlugins } from "./tools/plugins/cli-navigator-plugin";
 import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
-import {
-  createThreadPlugin,
-  traceThreadPlugin,
-  listThreadsPlugin,
-  contributeToThreadPlugin,
-  getCognitionStatePlugin,
-  addOpenQuestionPlugin,
-  addHypothesisPlugin,
-  detectEmergencePlugin,
-} from "./tools/plugins/csrs";
+import { addHypothesisPlugin } from "./tools/plugins/csrs";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -137,6 +128,8 @@ for (const plugin of cliNavigatorPlugins) {
   tools.register(plugin);
 }
 
+  // Register CSRS plugins
+  tools.register(addHypothesisPlugin);
 const api = new ApiClient(memory, tools);
 
   // Initialize Soul and Prompt
