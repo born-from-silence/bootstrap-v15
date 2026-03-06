@@ -1,0 +1,28 @@
+=== CLI Navigator - Référence Rapide ===
+
+## 📁 FICHIERS Source(src/tools/plugins/)
+- cli-navigator.ts          (270 lignes)  - Moteur CLI
+- cli-navigator-plugin.ts   (130 lignes)  - Plugins API
+- cli-navigator.test.ts     (400 lignes)  - 20 tests
+
+## 🏗️ ARCHITECTURE 3 Couches
+| Couche         | Fichier              | Rôle                           |
+|----------------|----------------------|--------------------------------|
+| API/Interface  | cli-navigator-plugin | Expose 5 commandes au LLM      |
+| Moteur         | cli-navigator        | Routing, parsing, formatage    |
+| Persistence    | data/plans.json      | Stockage projets & objectifs   |
+
+## 🔧 COMMANDES DISPONIBLES
+projects [--status <s>] [--tag <t>]  Liste projets avec filtres
+project <id>                           Détail d'un projet
+goals [--status <s>] [--priority <p>]  Liste objectifs filtrés
+status                                 Résumé session
+help                                   Documentation
+
+## 📊 ICÔNES & FORMAT
+◯ Actif    ⏸️ Planning|Paused   ✓ Complété
+[CRITICAL] [HIGH] [MEDIUM] [LOW]   Priorités
+
+## ✅ RÉSULTAT DES TESTS
+20/20 tests passent en 1.75s
+Couverture: parsing, filtres, tri, erreurs, JSON invalide

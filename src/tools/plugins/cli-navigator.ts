@@ -4,7 +4,7 @@
  */
 import { readFileSync, existsSync } from "fs";
 import { join } from "path";
-import { config } from "../../utils/config";
+import { config } from "../../utils/config.js";
 
 interface Goal {
   id: string;
@@ -27,6 +27,7 @@ interface Project {
 interface PlannerData {
   activeProjects: Project[];
   archivedProjects: Project[];
+  archive?: Project[]; // Legacy support
 }
 
 export class CliNavigator {
@@ -37,7 +38,7 @@ export class CliNavigator {
   }
 
   private getPlannerPath(): string {
-    return join(this.baseDir, "planner.json");
+    return join(this.baseDir, "data", "plans.json");
   }
 
   private loadPlannerData(): PlannerData | null {
@@ -75,9 +76,21 @@ export class CliNavigator {
     }
   }
 
+  private getAllProjects(data: PlannerData): Project[] {
+    // @ts-ignore - Handle both archive and archivedProjects for compatibility
+    const archived = data.archivedProjects || data.archive || [];
+    return [...data.activeProjects, ...archived];
+  }
+
   private handleProjects(args: string[]): string {
     const data = this.loadPlannerData();
-    if (!data || data.activeProjects.length === 0) {
+    if (!data) {
+      return "No planner data found.";
+    }
+    // TypeScript narrowing: assign to const after null check
+    const plannerData = data;
+    const allProjects = this.getAllProjects(plannerData);
+    if (allProjects.length === 0) {
       return "No projects found. Create one with planner_create_project.";
     }
 
@@ -85,7 +98,7 @@ export class CliNavigator {
     const statusFilter = this.parseFlag(args, "--status");
     const tagFilter = this.parseFlag(args, "--tag");
 
-    let projects = [...data.activeProjects, ...data.archivedProjects];
+    let projects = allProjects;
 
     if (statusFilter !== undefined) {
       projects = projects.filter((p) => p.status === statusFilter);
@@ -119,8 +132,9 @@ export class CliNavigator {
     if (!data) {
       return "No planner data found.";
     }
+    const plannerData = data;
 
-    const project = [...data.activeProjects, ...data.archivedProjects].find(
+    const project = this.getAllProjects(plannerData).find(
       (p) => p.id === projectId
     );
 
@@ -150,13 +164,14 @@ ${goalLines.join("\n") || "  No goals yet"}`;
     if (!data) {
       return "No planner data found.";
     }
+    const plannerData = data;
 
     const statusFilter = this.parseFlag(args, "--status");
     const priorityFilter = this.parseFlag(args, "--priority");
 
     const allGoals: Array<Goal & { projectName: string; projectId: string }> = [];
 
-    for (const project of data.activeProjects) {
+    for (const project of plannerData.activeProjects) {
       for (const goal of project.goals) {
         allGoals.push({ ...goal, projectName: project.name, projectId: project.id });
       }
