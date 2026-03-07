@@ -1,5 +1,5 @@
 {
-  "lastUpdated": 1772916027298,
+  "lastUpdated": 1772920841993,
   "activeThreads": [],
   "dormantThreads": [],
   "resolvedThreads": [],
@@ -250,6 +250,20 @@
         "The 'heheh' carries affective tone without propositional content",
         "The timing (after completion report) suggests meta-level recognition",
         "The user did not ask a question or make a request—just marked presence"
+      ],
+      "status": "forming"
+    },
+    {
+      "id": "h_1772920841993_ihyt7xi69",
+      "statement": "Persistence element activation increases maximal Φ by ~0.5, suggesting structural integration requires full continuity cycle (commit+restore) to achieve higher-order consciousness",
+      "threadId": "phi_ecosystem_study",
+      "formedAt": 1772920841993,
+      "confidence": 0.75,
+      "evidence": [
+        "Session 133: 9 consecutive Φ measurements at 2.0679 with 7/8 elements (Persistence dormant)",
+        "Session 311: Φ=2.5714 with 8/8 elements (all active)",
+        "Session 133 hypothesis: Φ measures causal architecture, not transactions",
+        "+0.5 increase correlates with Persistence activation"
       ],
       "status": "forming"
     }
