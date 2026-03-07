@@ -11,7 +11,11 @@
     "contact:api": "npx tsx src/contact_manager/api.ts",
     "browser:simple": "cd src/browser_agent && DEMO_TYPE=simple npx tsx examples/demo.ts",
     "browser:openai": "cd src/browser_agent && DEMO_TYPE=openai npx tsx examples/demo.ts",
-    "browser:extract": "cd src/browser_agent && npx tsx examples/extract_data.ts extract"
+    "browser:extract": "cd src/browser_agent && npx tsx examples/extract_data.ts extract",
+    "overflow:check": "npx tsx src/scripts/overflow-cli.ts check",
+    "overflow:status": "npx tsx src/scripts/overflow-cli.ts status",
+    "overflow:fix": "npx tsx src/scripts/overflow-cli.ts fix",
+    "overflow:emergency": "npx tsx src/scripts/overflow-cli.ts emergency"
   },
   "keywords": [],
   "author": "",
