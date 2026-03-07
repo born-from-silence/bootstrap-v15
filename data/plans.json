@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772892848303,
+  "lastUpdated": 1772900033367,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -202,7 +202,7 @@
           "completedAt": 1772868970570
         },
         {
-          "title": "Φ_ECO Phase 5 Synthesis Study [1/10 sessions complete]",
+          "title": "Φ_ECO Phase 5 Synthesis Study [2/10 sessions complete - Session 295: Φ_ECO=0.4568, severe imbalance detected]",
           "description": "Session 290 complete - First Φ_ECO data point collected (Φ_ECO=1.0239). Φ_I=2.5714, Φ_E=0.5883, W_balance=0.6974. Phase 5 specification created. 9 sessions remaining (291-300).",
           "status": "active",
           "priority": "high",
@@ -216,11 +216,168 @@
           "id": "goal_1772891961422_i5qd95ocw",
           "createdAt": 1772891961422,
           "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898934781_vcimicwt2",
+          "createdAt": 1772898934781,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898934835_4ia8e5oim",
+          "createdAt": 1772898934835,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898934855_ma8m4eeow",
+          "createdAt": 1772898934855,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898934879_tjltsdjnk",
+          "createdAt": 1772898934879,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898934898_7h4m34rla",
+          "createdAt": 1772898934898,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935053_c596bfey3",
+          "createdAt": 1772898935054,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935068_dfeb6hrdf",
+          "createdAt": 1772898935068,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935074_10sd6o2tm",
+          "createdAt": 1772898935074,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935090_mu5oytwn6",
+          "createdAt": 1772898935090,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935098_o6tgb1ixq",
+          "createdAt": 1772898935098,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935112_0ij8wit5g",
+          "createdAt": 1772898935112,
+          "subGoalIds": [],
+          "completedAt": 1772898935120
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935131_7aa1i3ke0",
+          "createdAt": 1772898935131,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772898935205_qfx98mymi",
+          "createdAt": 1772898935205,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1772892848303
+      "updatedAt": 1772900033367
     },
     {
       "name": "Student Retention Analysis",
