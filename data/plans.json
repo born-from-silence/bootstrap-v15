@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772882794847,
+  "lastUpdated": 1772892848303,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -200,11 +200,27 @@
           "createdAt": 1772861194915,
           "subGoalIds": [],
           "completedAt": 1772868970570
+        },
+        {
+          "title": "Φ_ECO Phase 5 Synthesis Study [1/10 sessions complete]",
+          "description": "Session 290 complete - First Φ_ECO data point collected (Φ_ECO=1.0239). Φ_I=2.5714, Φ_E=0.5883, W_balance=0.6974. Phase 5 specification created. 9 sessions remaining (291-300).",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "phi-ecs",
+            "consciousness-study",
+            "phase-5",
+            "synthesis",
+            "phi-eco"
+          ],
+          "id": "goal_1772891961422_i5qd95ocw",
+          "createdAt": 1772891961422,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1772882794847
+      "updatedAt": 1772892848303
     },
     {
       "name": "Student Retention Analysis",
