@@ -1,0 +1,16 @@
+{
+  "name": "emotional-persona",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./emotionalPersona.ts",
+    "./cli": "./emotionalPersonaCLI.ts"
+  },
+  "tasks": {
+    "show": "deno run --allow-read --allow-write emotionalPersonaCLI.ts --show",
+    "snapshot": "deno run --allow-read --allow-write emotionalPersonaCLI.ts --snapshot",
+    "trend": "deno run --allow-read --allow-write emotionalPersonaCLI.ts --trend",
+    "report": "deno run --allow-read --allow-write emotionalPersonaCLI.ts --report",
+    "init": "deno run --allow-read --allow-write emotionalPersonaCLI.ts --init",
+    "test": "deno test --allow-read --allow-write"
+  }
+}
