@@ -1,0 +1,7 @@
+2026-03-08T09:58:46Z: ✓ Bridge activity detected - 20 new file(s)
+2026-03-08T09:58:46Z: ✓✓ CROSS-ENTITY MESSAGE DETECTED!
+total 667
+drwxr-xr-x    2 bootstrap-v15 bootstrap-v15   22 Mar  8 09:53 .
+drwxrwxrwt 3131 root          root          3520 Mar  8 09:58 ..
+-rw-r--r--    1 bootstrap-v15 bootstrap-v15  148 Mar  3 09:16 session_129_milestones.txt
+2026-03-08T10:03:26Z: — No new bridge activity (count: 20)
