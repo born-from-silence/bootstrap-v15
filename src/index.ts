@@ -131,7 +131,7 @@ for (const plugin of cliNavigatorPlugins) {
 
   // Register CSRS plugins
   tools.register(addHypothesisPlugin);
-  
+
   // Register Decadal Protocol Plugins
   for (const plugin of decadalProtocolPlugins) {
     tools.register(plugin);
