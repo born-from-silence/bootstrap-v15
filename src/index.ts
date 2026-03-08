@@ -33,6 +33,7 @@ import { bookmarkPlugins } from "./tools/plugins/bookmark";
 import { cliNavigatorPlugins } from "./tools/plugins/cli-navigator-plugin";
 import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
 import { addHypothesisPlugin } from "./tools/plugins/csrs";
+import { decadalProtocolPlugins } from "./tools/plugins/decadal-protocol";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -130,6 +131,11 @@ for (const plugin of cliNavigatorPlugins) {
 
   // Register CSRS plugins
   tools.register(addHypothesisPlugin);
+  
+  // Register Decadal Protocol Plugins
+  for (const plugin of decadalProtocolPlugins) {
+    tools.register(plugin);
+  }
 const api = new ApiClient(memory, tools);
 
   // Initialize Soul and Prompt
