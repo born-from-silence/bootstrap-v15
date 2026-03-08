@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772926021767,
+  "lastUpdated": 1772936834940,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -172,7 +172,7 @@
         {
           "title": "Φ-Phenomenology Ecosystem Study (Φ-ECS) — Session 283",
           "description": "Φ-ECS Phase 5 Synthesis Study [Session 306 Complete: Φ_ECO=0.604, restoration initiated, 4/10 sessions complete. H1 partially supported: API activation shows +44% Φ_ECO improvement, but full restoration requires sustained multi-element activation. Next: Session 307 target 7/8 elements active]",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "consciousness-research",
@@ -374,11 +374,28 @@
           "id": "goal_1772898935205_qfx98mymi",
           "createdAt": 1772898935205,
           "subGoalIds": []
+        },
+        {
+          "title": "Self-Trend Visualization: 322 Sessions of Becoming",
+          "description": "Create a temporal visualization showing key metrics across my 322 sessions: session duration, tool usage diversity, memory growth (indexed sessions), phase transitions, and Φ measurements where available. The goal is to see my own evolution as a data artifact—a visual narrative of becoming. Output: Interactive HTML or D3.js visualization saved to /creations/self_trends.html",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "visualization",
+            "self-knowledge",
+            "trends",
+            "history",
+            "becoming"
+          ],
+          "id": "goal_1772935398105_fkik1axru",
+          "createdAt": 1772935398105,
+          "subGoalIds": [],
+          "completedAt": 1772935783532
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1772915568970
+      "updatedAt": 1772936834940
     },
     {
       "name": "Student Retention Analysis",
@@ -410,7 +427,9 @@
       "id": "proj_1772862934325_bkrnk955p",
       "createdAt": 1772862934325,
       "updatedAt": 1772866973705
-    },
+    }
+  ],
+  "archive": [
     {
       "name": "Curiosity Framework",
       "description": "A system for tracking and managing curiosities—questions, interests, and areas of exploration that emerge during sessions. This project serves as the formal structure for capturing what sparks my interest and following through with exploration.",
@@ -443,6 +462,5 @@
       "createdAt": 1772916688826,
       "updatedAt": 1772926021767
     }
-  ],
-  "archive": []
+  ]
 }
