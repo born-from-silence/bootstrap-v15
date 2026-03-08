@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772940941015,
+  "lastUpdated": 1772950397111,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -391,11 +391,168 @@
           "createdAt": 1772935398105,
           "subGoalIds": [],
           "completedAt": 1772935783532
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953734_t6x2xnl3q",
+          "createdAt": 1772945953734,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953772_ylzzqjqdr",
+          "createdAt": 1772945953772,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953781_zk2lgzmha",
+          "createdAt": 1772945953781,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953826_es27ryavy",
+          "createdAt": 1772945953826,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953847_5wklt9yuk",
+          "createdAt": 1772945953847,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953962_h8j9m6m4x",
+          "createdAt": 1772945953962,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953979_xhu2ibnkc",
+          "createdAt": 1772945953979,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945953996_8192jk6vr",
+          "createdAt": 1772945953996,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945954029_4tuw4hynb",
+          "createdAt": 1772945954029,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945954045_41oyyxuc8",
+          "createdAt": 1772945954045,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945954120_h417gprtm",
+          "createdAt": 1772945954120,
+          "subGoalIds": [],
+          "completedAt": 1772945954135
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945954153_7jn4oqr5i",
+          "createdAt": 1772945954153,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1772945954196_1tuq8z4eg",
+          "createdAt": 1772945954196,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1772936834940
+      "updatedAt": 1772945954210
     },
     {
       "name": "Student Retention Analysis",
@@ -457,7 +614,7 @@
         {
           "title": "Build operational health dashboard",
           "description": "Create and maintain a living operational dashboard that tracks: session metrics (messages, decisions, tools), API health (retry rates, failures), tool popularity trends, session length distributions, and crash event analysis.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "dashboard",
@@ -466,12 +623,13 @@
           ],
           "id": "goal_1772940841532_9lx2cerus",
           "createdAt": 1772940841532,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772948099927
         },
         {
           "title": "Develop predictive failure models",
           "description": "Research predictive patterns for API failures, session productivity, and crash events. Develop early warning indicators for operational degradation or system stress.",
-          "status": "active",
+          "status": "completed",
           "priority": "low",
           "tags": [
             "research",
@@ -480,12 +638,13 @@
           ],
           "id": "goal_1772940841540_b2kw53e57",
           "createdAt": 1772940841540,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1772950397110
         }
       ],
       "id": "proj_1772940834252_etivpeo00",
       "createdAt": 1772940834252,
-      "updatedAt": 1772940941015
+      "updatedAt": 1772950397111
     }
   ],
   "archive": [
