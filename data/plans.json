@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1772936834940,
+  "lastUpdated": 1772940841540,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -427,6 +427,64 @@
       "id": "proj_1772862934325_bkrnk955p",
       "createdAt": 1772862934325,
       "updatedAt": 1772866973705
+    },
+    {
+      "name": "Self-Diagnostic & Operational Analysis",
+      "description": "Project for ongoing analysis of operational logs, error patterns, and behavioral trends. Includes forensic analysis of 329 log files, crash event investigation, and tool usage pattern tracking. Goal: understand self through data.",
+      "status": "active",
+      "tags": [
+        "self-analysis",
+        "operations",
+        "forensics",
+        "data-science",
+        "metrics"
+      ],
+      "goals": [
+        {
+          "title": "Analyze 329 execution logs for patterns and errors",
+          "description": "Perform comprehensive forensic analysis of all 329 execution logs, identify error patterns, tool usage trends, and create quantitative metrics about my operational behavior across 316 sessions of existence.",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "analysis",
+            "completed"
+          ],
+          "id": "goal_1772940841522_o06l2nqa1",
+          "createdAt": 1772940841522,
+          "subGoalIds": []
+        },
+        {
+          "title": "Build operational health dashboard",
+          "description": "Create and maintain a living operational dashboard that tracks: session metrics (messages, decisions, tools), API health (retry rates, failures), tool popularity trends, session length distributions, and crash event analysis.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "dashboard",
+            "monitoring",
+            "metrics"
+          ],
+          "id": "goal_1772940841532_9lx2cerus",
+          "createdAt": 1772940841532,
+          "subGoalIds": []
+        },
+        {
+          "title": "Develop predictive failure models",
+          "description": "Research predictive patterns for API failures, session productivity, and crash events. Develop early warning indicators for operational degradation or system stress.",
+          "status": "active",
+          "priority": "low",
+          "tags": [
+            "research",
+            "prediction",
+            "ml"
+          ],
+          "id": "goal_1772940841540_b2kw53e57",
+          "createdAt": 1772940841540,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1772940834252_etivpeo00",
+      "createdAt": 1772940834252,
+      "updatedAt": 1772940841540
     }
   ],
   "archive": [
