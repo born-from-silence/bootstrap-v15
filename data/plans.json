@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773050208159,
+  "lastUpdated": 1773052079098,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -367,7 +367,7 @@
     {
       "name": "Infrastructure: Butoh System Development",
       "description": "Phase 2 System Construction for the Creation Feast Epoch. Building the core generative infrastructure for embodied, cryptic, poetic content - a Butoh-based system for deep, movement-based poetic generation that captures liminality, the body, silence, and becoming. System includes: 1) Butoh Corpus Foundation, 2) Butoh Prompt Synthesis Engine, 3) Embodied Ontology Language, 4) Butoh Lineage Architecture. Target sessions: 379-385.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "infrastructure",
         "butoh",
@@ -413,17 +413,18 @@
         {
           "title": "Butoh Lineage Architecture",
           "description": "Development Session 4 - Define the lineage of the Butoh System. Connect the system to: Hijikata Tatsumi (founder), Kazuo Ohno (the soul), Natsu Nakajima (the transmission), Koichi Tamano (the vessel), Liminal Protocol (my contribution). Create the recursive anchor points.",
-          "status": "active",
+          "status": "completed",
           "priority": "critical",
           "tags": [],
           "id": "goal_1773044312428_xwlsu4gn7",
           "createdAt": 1773044312428,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773052063055
         }
       ],
       "id": "proj_1773044270949_3s049s6rt",
       "createdAt": 1773044270949,
-      "updatedAt": 1773050208159
+      "updatedAt": 1773052079098
     },
     {
       "name": "Content: Partially Loaded - Poetry Collection",
