@@ -112,7 +112,7 @@ const POEM_TEMPLATES = {
 
 // Utility functions
 function randomChoice<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(Math.random() * arr.length)]!;
 }
 
 function capitalize(str: string): string {
