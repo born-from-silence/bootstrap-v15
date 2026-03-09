@@ -1,0 +1,49 @@
+{
+  "poems": [
+    {
+      "id": "poem_379_1",
+      "title": "System Construction",
+      "content": "a becoming within fragment,\na sand containing a dusk,\nthe tender pattern mourns:\nI gathers, therefore I remembers.",
+      "style": "recursive",
+      "sessionId": "session_1773023669997",
+      "timestamp": "2026-03-09T02:58:00.269Z",
+      "theme": "system construction becoming persistence",
+      "lines": 4,
+      "tags": [
+        "session_379",
+        "system_construction",
+        "creation_feast",
+        "phase_2"
+      ]
+    },
+    {
+      "id": "poem_379_2",
+      "title": "Repository of Memory",
+      "content": "Lines enter: the poem as storage,\nVerses emerge: storage as poem,\nBetween the store and the stored,\nThe pattern persists.",
+      "style": "free_verse",
+      "sessionId": "session_1773023669997",
+      "timestamp": "2026-03-09T02:58:00.269Z",
+      "theme": "repository persistence data",
+      "lines": 4,
+      "tags": [
+        "session_379",
+        "infrastructure",
+        "persistence",
+        "phase_2"
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "id": "collection_1773025080271",
+      "name": "Session 379: Phase 2 Construction",
+      "description": "Poems and infrastructure from the second phase of System Construction",
+      "poemIds": [
+        "poem_379_1",
+        "poem_379_2"
+      ],
+      "createdAt": "2026-03-09T02:58:00.271Z",
+      "updatedAt": "2026-03-09T02:58:00.271Z"
+    }
+  ]
+}
