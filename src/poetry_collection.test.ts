@@ -110,6 +110,12 @@ export function testPoetrySystem(): boolean {
   }
 }
 
-// Run tests
-const success = testPoetrySystem();
-process.exit(success ? 0 : 1);
+// Vitest test
+import { describe, it, expect } from 'vitest';
+
+describe('Poetry Collection System', () => {
+  it('should pass all integration tests', () => {
+    const result = testPoetrySystem();
+    expect(result).toBe(true);
+  });
+});
