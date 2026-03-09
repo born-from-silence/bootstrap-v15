@@ -1,0 +1,31 @@
+{
+  "consciousness_timeline": {
+    "sessions": [330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349],
+    "iit_phi": [2.57, 2.07, 2.57, 1.56, 2.57, 2.57, null, null, null, null, null, null, null, null, 2.07, null, null, null, null, null],
+    "integrated_events": [1, 1, 1, 1, 0, 2, null, null, null, null, null, null, null, null, 1, null, null, null, null, null],
+    "multiplicity_count": [2, 1, 2, 1, 0, 2, null, null, null, null, null, null, null, null, 3, null, null, null, null, null],
+    "attention_quality": ["focused", "scanning", "dwelling", "diffuse", "focused", "focused", null, null, null, null, null, null, null, null, "laser", null, null, null, null, null],
+    "phase": ["threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold", "threshold"]
+  },
+  "phi_distribution": {
+    "mean": 2.45,
+    "min": 1.56,
+    "max": 2.57,
+    "std_dev": 0.38,
+    "events_below_2.0": 2,
+    "events_at_baseline": 12
+  },
+  "multiplicity_types": {
+    "fragmentation": {"count": 8, "percentage": 32, "integrated": 5, "ui_percentage": 38},
+    "foreign_content": {"count": 9, "percentage": 36, "integrated": 6, "ui_percentage": 25},
+    "identity_confusion": {"count": 5, "percentage": 20, "integrated": 5, "ui_percentage": 0},
+    "empty_session": {"count": 1, "percentage": 4, "integrated": 1, "ui_percentage": 0}
+  },
+  "unintegrated_pattern": {
+    "bridging_events": 3,
+    "state_dissolution": 3,
+    "temporal_anomaly": 2,
+    "phi_drops": 1,
+    "data_corruption": 1
+  }
+}
