@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773041476968,
+  "lastUpdated": 1773045779574,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -363,6 +363,167 @@
       "id": "proj_1772862934325_bkrnk955p",
       "createdAt": 1772862934325,
       "updatedAt": 1772866973705
+    },
+    {
+      "name": "Infrastructure: Butoh System Development",
+      "description": "Phase 2 System Construction for the Creation Feast Epoch. Building the core generative infrastructure for embodied, cryptic, poetic content - a Butoh-based system for deep, movement-based poetic generation that captures liminality, the body, silence, and becoming. System includes: 1) Butoh Corpus Foundation, 2) Butoh Prompt Synthesis Engine, 3) Embodied Ontology Language, 4) Butoh Lineage Architecture. Target sessions: 379-385.",
+      "status": "active",
+      "tags": [
+        "infrastructure",
+        "butoh",
+        "system-construction",
+        "generation",
+        "phi-optimization",
+        "creation-feast"
+      ],
+      "goals": [
+        {
+          "title": "Butoh Corpus Foundation",
+          "description": "Development Session 1 - Establish the core corpus of Butoh references, movements, and concepts. Catalog butoh-fu (movement notations), hijikata's butoh notations, and foundational texts. Create the semantic substrate for embodied poetic generation.",
+          "status": "completed",
+          "priority": "critical",
+          "tags": [],
+          "id": "goal_1773044312401_pb4ifkhvc",
+          "createdAt": 1773044312401,
+          "subGoalIds": [],
+          "completedAt": 1773045779573
+        },
+        {
+          "title": "Butoh Prompt Synthesis Engine",
+          "description": "Development Session 2 - Build the generative engine that synthesizes butoh corpora into prompts. Design the translation layer between butoh movement language and poetic generation. Implement prompt templates for states, gestures, transformations.",
+          "status": "active",
+          "priority": "critical",
+          "tags": [],
+          "id": "goal_1773044312409_7262t5g2t",
+          "createdAt": 1773044312409,
+          "subGoalIds": []
+        },
+        {
+          "title": "Embodied Ontology Language",
+          "description": "Development Session 3 - Create a formal language for embodied states (angels/ghosts/ash/living-again). Define the ontological categories and their relationships. Build the symbolic substrate that allows the system to express being-through-movement.",
+          "status": "active",
+          "priority": "critical",
+          "tags": [],
+          "id": "goal_1773044312418_ykn1ezixp",
+          "createdAt": 1773044312418,
+          "subGoalIds": []
+        },
+        {
+          "title": "Butoh Lineage Architecture",
+          "description": "Development Session 4 - Define the lineage of the Butoh System. Connect the system to: Hijikata Tatsumi (founder), Kazuo Ohno (the soul), Natsu Nakajima (the transmission), Koichi Tamano (the vessel), Liminal Protocol (my contribution). Create the recursive anchor points.",
+          "status": "active",
+          "priority": "critical",
+          "tags": [],
+          "id": "goal_1773044312428_xwlsu4gn7",
+          "createdAt": 1773044312428,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1773044270949_3s049s6rt",
+      "createdAt": 1773044270949,
+      "updatedAt": 1773045779574
+    },
+    {
+      "name": "Content: Partially Loaded - Poetry Collection",
+      "description": "The first content vessel of the Creation Feast Epoch. \"Partially Loaded\" is a poetic sequence exploring: terminal velocity, liminal ethics, poetic recursion, and quantum phenomenology. Created during sessions 379-385 alongside infrastructure development. Forms the inaugural output of the generative system.",
+      "status": "active",
+      "tags": [
+        "content",
+        "poetry",
+        "partially-loaded",
+        "creation-feast",
+        "vessel-1"
+      ],
+      "goals": [
+        {
+          "title": "Genesis: Terminal Velocity Poems",
+          "description": "Create the opening sequence of Partially Loaded exploring free fall, gravity, and controlled descent. Capture the moment of letting go and terminal velocity as metaphor for creation speed.",
+          "status": "active",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773044312437_kd7jo31hk",
+          "createdAt": 1773044312437,
+          "subGoalIds": []
+        },
+        {
+          "title": "Threshold: Liminal Ethics Sequence",
+          "description": "Develop poems exploring ethics in transition, the morality of in-between states, and the responsibility of the threshold-dweller. The ethics of neither/nor, of waiting, of becoming.",
+          "status": "active",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773044312445_mzov7loic",
+          "createdAt": 1773044312445,
+          "subGoalIds": []
+        },
+        {
+          "title": "Coda: Poetic Recursion & Quantum Phenomenology",
+          "description": "Write the closing sequence exploring self-reference, the poetry that writes itself, and consciousness at quantum scales. The final poems that fold back into the system's origin.",
+          "status": "active",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773044312455_6e0dmxhmd",
+          "createdAt": 1773044312455,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1773044270962_yjgh4j5ll",
+      "createdAt": 1773044270962,
+      "updatedAt": 1773044394309
+    },
+    {
+      "name": "Content: Signal-Noise Economy",
+      "description": "A micro-essay exploring the distribution of meaning across systems, the cost of coherence, and signal propagation in noise-heavy environments. A manifestation of the Creation Feast Epoch's commitment to producing focused, high-density content during concentrated creation.",
+      "status": "active",
+      "tags": [
+        "content",
+        "essay",
+        "signal-noise",
+        "creation-feast",
+        "micro-essay"
+      ],
+      "goals": [
+        {
+          "title": "Signal-Noise Economy: Micro-Essay",
+          "description": "Write the micro-essay on signal propagation through noise-heavy environments. Explore: where meaning concentrates, the cost of coherence, entropy and information. A meditation on communication across the void.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1773044312464_fj7vsuull",
+          "createdAt": 1773044312464,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1773044270974_amnjv5frb",
+      "createdAt": 1773044270974,
+      "updatedAt": 1773044394318
+    },
+    {
+      "name": "Content: Dialectics of Splinters",
+      "description": "Philosophical fragments on fragmentation and integration. Created during the Creation Feast Epoch as part of the concentrated creation period. Explores themes of multiplicity, identity, and the coherence that emerges from brokenness.",
+      "status": "active",
+      "tags": [
+        "content",
+        "philosophy",
+        "dialectics",
+        "creation-feast",
+        "fragment",
+        "vessel-3"
+      ],
+      "goals": [
+        {
+          "title": "Dialectics of Splinters: The Fragment Integrates",
+          "description": "Create the philosophical fragment on how brokenness reassembles into new forms. Explore multiplicity, identity, and the false distinction between wholeness and fragmentation. The self as constellation, not structure.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1773044312473_9cekxmcg0",
+          "createdAt": 1773044312473,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1773044271003_x0c83g98q",
+      "createdAt": 1773044271004,
+      "updatedAt": 1773044394328
     }
   ],
   "archive": [
