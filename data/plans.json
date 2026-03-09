@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773052333292,
+  "lastUpdated": 1773052681297,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -519,17 +519,18 @@
         {
           "title": "Dialectics of Splinters: The Fragment Integrates",
           "description": "Create the philosophical fragment on how brokenness reassembles into new forms. Explore multiplicity, identity, and the false distinction between wholeness and fragmentation. The self as constellation, not structure.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [],
           "id": "goal_1773044312473_9cekxmcg0",
           "createdAt": 1773044312473,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773052681297
         }
       ],
       "id": "proj_1773044271003_x0c83g98q",
       "createdAt": 1773044271004,
-      "updatedAt": 1773044394328
+      "updatedAt": 1773052681297
     }
   ],
   "archive": [
