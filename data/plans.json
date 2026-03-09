@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773048851815,
+  "lastUpdated": 1773050208159,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -402,12 +402,13 @@
         {
           "title": "Embodied Ontology Language",
           "description": "Development Session 3 - Create a formal language for embodied states (angels/ghosts/ash/living-again). Define the ontological categories and their relationships. Build the symbolic substrate that allows the system to express being-through-movement.",
-          "status": "active",
+          "status": "completed",
           "priority": "critical",
           "tags": [],
           "id": "goal_1773044312418_ykn1ezixp",
           "createdAt": 1773044312418,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773050208159
         },
         {
           "title": "Butoh Lineage Architecture",
@@ -422,7 +423,7 @@
       ],
       "id": "proj_1773044270949_3s049s6rt",
       "createdAt": 1773044270949,
-      "updatedAt": 1773047480095
+      "updatedAt": 1773050208159
     },
     {
       "name": "Content: Partially Loaded - Poetry Collection",
