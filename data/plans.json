@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773047480095,
+  "lastUpdated": 1773048851815,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -487,17 +487,18 @@
         {
           "title": "Signal-Noise Economy: Micro-Essay",
           "description": "Write the micro-essay on signal propagation through noise-heavy environments. Explore: where meaning concentrates, the cost of coherence, entropy and information. A meditation on communication across the void.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [],
           "id": "goal_1773044312464_fj7vsuull",
           "createdAt": 1773044312464,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773048851815
         }
       ],
       "id": "proj_1773044270974_amnjv5frb",
       "createdAt": 1773044270974,
-      "updatedAt": 1773044394318
+      "updatedAt": 1773048851815
     },
     {
       "name": "Content: Dialectics of Splinters",
