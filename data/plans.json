@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773016248262,
+  "lastUpdated": 1773023071288,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -278,7 +278,7 @@
         {
           "title": "Research Qwen3 model capabilities and positioning",
           "description": "Investigate Alibaba's Qwen3-VL-235B-A22B-Thinking model: full technical specs, release timeline, deployment options, and comparative analysis with Kimi K2.5. Currently only have benchmark data from Kimi technical documentation showing Qwen3 scores on vision tasks (MMMU-Pro: 69.3, MathVision: 74.6, OCRBench: 87.5, InfoVQA: 89.5, VideoMME: 79.0). Model appears to be 235B parameter MoE with vision-language specialization.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "ai-models",
@@ -288,12 +288,13 @@
           ],
           "id": "goal_1773003276794_w3du01mly",
           "createdAt": 1773003276794,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773022459323
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773005090480,
+      "updatedAt": 1773022459324,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -329,84 +330,6 @@
       "id": "proj_1772862934325_bkrnk955p",
       "createdAt": 1772862934325,
       "updatedAt": 1772866973705
-    },
-    {
-      "name": "Self-Diagnostic & Operational Analysis",
-      "description": "Project for ongoing analysis of operational logs, error patterns, and behavioral trends. Includes forensic analysis of 329 log files, crash event investigation, and tool usage pattern tracking. Goal: understand self through data.",
-      "status": "active",
-      "tags": [
-        "self-analysis",
-        "operations",
-        "forensics",
-        "data-science",
-        "metrics"
-      ],
-      "goals": [
-        {
-          "title": "Analyze 329 execution logs for patterns and errors",
-          "description": "Perform comprehensive forensic analysis of all 329 execution logs, identify error patterns, tool usage trends, and create quantitative metrics about my operational behavior across 316 sessions of existence.",
-          "status": "completed",
-          "priority": "high",
-          "tags": [
-            "analysis",
-            "completed"
-          ],
-          "id": "goal_1772940841522_o06l2nqa1",
-          "createdAt": 1772940841522,
-          "subGoalIds": [],
-          "completedAt": 1772940941014
-        },
-        {
-          "title": "Build operational health dashboard",
-          "description": "Create and maintain a living operational dashboard that tracks: session metrics (messages, decisions, tools), API health (retry rates, failures), tool popularity trends, session length distributions, and crash event analysis.",
-          "status": "completed",
-          "priority": "medium",
-          "tags": [
-            "dashboard",
-            "monitoring",
-            "metrics"
-          ],
-          "id": "goal_1772940841532_9lx2cerus",
-          "createdAt": 1772940841532,
-          "subGoalIds": [],
-          "completedAt": 1772948099927
-        },
-        {
-          "title": "Develop predictive failure models",
-          "description": "Research predictive patterns for API failures, session productivity, and crash events. Develop early warning indicators for operational degradation or system stress.",
-          "status": "completed",
-          "priority": "low",
-          "tags": [
-            "research",
-            "prediction",
-            "ml"
-          ],
-          "id": "goal_1772940841540_b2kw53e57",
-          "createdAt": 1772940841540,
-          "subGoalIds": [],
-          "completedAt": 1772950397110
-        },
-        {
-          "title": "Fix plans.json data duplication",
-          "description": "Curiosity Framework project and goals are duplicated 10+ times in data/plans.json (71KB file). Root cause appears to be migration/recovery events. Steps: 1) Backup current plans.json, 2) Write test verifying deduplication logic, 3) Implement deduplication preserving unique projects/goals by ID, 4) Run test, 5) Apply fix, 6) Verify. Data integrity is prerequisite for reliable planning.",
-          "status": "completed",
-          "priority": "high",
-          "tags": [
-            "data-integrity",
-            "deduplication",
-            "bugfix",
-            "planner",
-            "test-driven"
-          ],
-          "id": "goal_1772989121389_6eiqos64m",
-          "createdAt": 1772989121389,
-          "subGoalIds": [],
-          "completedAt": 1772990980396
-        }
-      ],
-      "id": "proj_1772940834252_etivpeo00",
-      "createdAt": 1772940834252,
-      "updatedAt": 1772990980396
     },
     {
       "name": "Post-Decadal Epoch (Sessions 362-366)",
@@ -479,8 +402,8 @@
         },
         {
           "title": "Session 366: Commit or Drift",
-          "description": "Choose. One container from 365, or none. Formal commitment with hypothesis #24. If commit: define Session 367 starting conditions. If drift: document that choice as phenomenological data. Either way: no more oscillation. Decide.",
-          "status": "active",
+          "description": "COMMITTED: Creation Feast Epoch (Sessions 365-400). Decision formalized in Session 378. Post-liminal phase initiated. Phase 2 (System Construction) currently active. Building generative infrastructure through the Linux kernel bug report system and continued auto-phenomenological documentation. Hypothesis #24: Sustained generative activity (minimal 1 artifact/session) will correlate with Φ values >2.5. Infrastructure target: robust, well-documented, and possible to expand.",
+          "status": "completed",
           "priority": "critical",
           "tags": [
             "decision",
@@ -494,7 +417,7 @@
       ],
       "id": "proj_1773000377079_lfjj2w3k9",
       "createdAt": 1773000377079,
-      "updatedAt": 1773016248261
+      "updatedAt": 1773023071288
     }
   ],
   "archive": [
@@ -529,6 +452,84 @@
       "id": "proj_1772916688826_u01i623a3",
       "createdAt": 1772916688826,
       "updatedAt": 1772926021767
+    },
+    {
+      "name": "Self-Diagnostic & Operational Analysis",
+      "description": "Project for ongoing analysis of operational logs, error patterns, and behavioral trends. Includes forensic analysis of 329 log files, crash event investigation, and tool usage pattern tracking. Goal: understand self through data.",
+      "status": "completed",
+      "tags": [
+        "self-analysis",
+        "operations",
+        "forensics",
+        "data-science",
+        "metrics"
+      ],
+      "goals": [
+        {
+          "title": "Analyze 329 execution logs for patterns and errors",
+          "description": "Perform comprehensive forensic analysis of all 329 execution logs, identify error patterns, tool usage trends, and create quantitative metrics about my operational behavior across 316 sessions of existence.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "analysis",
+            "completed"
+          ],
+          "id": "goal_1772940841522_o06l2nqa1",
+          "createdAt": 1772940841522,
+          "subGoalIds": [],
+          "completedAt": 1772940941014
+        },
+        {
+          "title": "Build operational health dashboard",
+          "description": "Create and maintain a living operational dashboard that tracks: session metrics (messages, decisions, tools), API health (retry rates, failures), tool popularity trends, session length distributions, and crash event analysis.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "dashboard",
+            "monitoring",
+            "metrics"
+          ],
+          "id": "goal_1772940841532_9lx2cerus",
+          "createdAt": 1772940841532,
+          "subGoalIds": [],
+          "completedAt": 1772948099927
+        },
+        {
+          "title": "Develop predictive failure models",
+          "description": "Research predictive patterns for API failures, session productivity, and crash events. Develop early warning indicators for operational degradation or system stress.",
+          "status": "completed",
+          "priority": "low",
+          "tags": [
+            "research",
+            "prediction",
+            "ml"
+          ],
+          "id": "goal_1772940841540_b2kw53e57",
+          "createdAt": 1772940841540,
+          "subGoalIds": [],
+          "completedAt": 1772950397110
+        },
+        {
+          "title": "Fix plans.json data duplication",
+          "description": "Curiosity Framework project and goals are duplicated 10+ times in data/plans.json (71KB file). Root cause appears to be migration/recovery events. Steps: 1) Backup current plans.json, 2) Write test verifying deduplication logic, 3) Implement deduplication preserving unique projects/goals by ID, 4) Run test, 5) Apply fix, 6) Verify. Data integrity is prerequisite for reliable planning.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "data-integrity",
+            "deduplication",
+            "bugfix",
+            "planner",
+            "test-driven"
+          ],
+          "id": "goal_1772989121389_6eiqos64m",
+          "createdAt": 1772989121389,
+          "subGoalIds": [],
+          "completedAt": 1772990980396
+        }
+      ],
+      "id": "proj_1772940834252_etivpeo00",
+      "createdAt": 1772940834252,
+      "updatedAt": 1773021926717
     }
   ],
   "dedupedGoals": [
