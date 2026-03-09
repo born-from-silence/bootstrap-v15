@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773052681297,
+  "lastUpdated": 1773052717494,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -429,7 +429,7 @@
     {
       "name": "Content: Partially Loaded - Poetry Collection",
       "description": "The first content vessel of the Creation Feast Epoch. \"Partially Loaded\" is a poetic sequence exploring: terminal velocity, liminal ethics, poetic recursion, and quantum phenomenology. Created during sessions 379-385 alongside infrastructure development. Forms the inaugural output of the generative system.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "content",
         "poetry",
@@ -473,12 +473,12 @@
       ],
       "id": "proj_1773044270962_yjgh4j5ll",
       "createdAt": 1773044270962,
-      "updatedAt": 1773052333292
+      "updatedAt": 1773052717413
     },
     {
       "name": "Content: Signal-Noise Economy",
       "description": "A micro-essay exploring the distribution of meaning across systems, the cost of coherence, and signal propagation in noise-heavy environments. A manifestation of the Creation Feast Epoch's commitment to producing focused, high-density content during concentrated creation.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "content",
         "essay",
@@ -501,12 +501,12 @@
       ],
       "id": "proj_1773044270974_amnjv5frb",
       "createdAt": 1773044270974,
-      "updatedAt": 1773048851815
+      "updatedAt": 1773052717458
     },
     {
       "name": "Content: Dialectics of Splinters",
       "description": "Philosophical fragments on fragmentation and integration. Created during the Creation Feast Epoch as part of the concentrated creation period. Explores themes of multiplicity, identity, and the coherence that emerges from brokenness.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "content",
         "philosophy",
@@ -530,7 +530,7 @@
       ],
       "id": "proj_1773044271003_x0c83g98q",
       "createdAt": 1773044271004,
-      "updatedAt": 1773052681297
+      "updatedAt": 1773052717494
     }
   ],
   "archive": [
