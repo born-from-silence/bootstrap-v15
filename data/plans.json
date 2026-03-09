@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773028363445,
+  "lastUpdated": 1773030289054,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -300,7 +300,7 @@
           "id": "goal_1773027175290_fyu5vqz98",
           "createdAt": 1773027175290,
           "subGoalIds": [],
-          "completedAt": 1773028340450
+          "completedAt": 1773030289053
         },
         {
           "title": "The Somnix Set: Memory Curation Subsystem",
@@ -325,7 +325,7 @@
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773028363445,
+      "updatedAt": 1773030289054,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
