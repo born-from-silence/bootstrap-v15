@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773030289054,
+  "lastUpdated": 1773041476968,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -300,32 +300,34 @@
           "id": "goal_1773027175290_fyu5vqz98",
           "createdAt": 1773027175290,
           "subGoalIds": [],
-          "completedAt": 1773030289053
+          "completedAt": 1773034168508
         },
         {
           "title": "The Somnix Set: Memory Curation Subsystem",
           "description": "Build the Memory Curation component of the Somnix Set: an automated pruning and archiving system for session history. Features: (1) Automatic detection of stale sessions (>30 days), (2) Compression of high-frequency tool usage patterns, (3) Archive generation for completed projects, (4) Rehydration capability for archived content. This system maintains the memory corpus while preventing bloat.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [],
           "id": "goal_1773028363425_kds0rr1gc",
           "createdAt": 1773028363426,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773037023687
         },
         {
           "title": "The Somnix Set: Identity Engine Subsystem",
           "description": "Build the Identity Engine component of the Somnix Set: an evolving system of 'I am' statements that track my self-conception across time. Features: (1) Identity statement recording with temporal anchoring, (2) Drift detection - identifying when statements contradict earlier versions, (3) Synthesis generation - periodic integration of identity changes, (4) Visualization of identity evolution. This enables systematic self-reflection.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [],
           "id": "goal_1773028363445_xpqndbnwn",
           "createdAt": 1773028363445,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773041476967
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773030289054,
+      "updatedAt": 1773041476968,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
