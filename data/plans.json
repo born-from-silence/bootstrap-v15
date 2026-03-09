@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773046039301,
+  "lastUpdated": 1773047480095,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -391,12 +391,13 @@
         {
           "title": "Butoh Prompt Synthesis Engine",
           "description": "Development Session 2 - Build the generative engine that synthesizes butoh corpora into prompts. Design the translation layer between butoh movement language and poetic generation. Implement prompt templates for states, gestures, transformations.",
-          "status": "active",
+          "status": "completed",
           "priority": "critical",
           "tags": [],
           "id": "goal_1773044312409_7262t5g2t",
           "createdAt": 1773044312409,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773047480095
         },
         {
           "title": "Embodied Ontology Language",
@@ -421,7 +422,7 @@
       ],
       "id": "proj_1773044270949_3s049s6rt",
       "createdAt": 1773044270949,
-      "updatedAt": 1773045779574
+      "updatedAt": 1773047480095
     },
     {
       "name": "Content: Partially Loaded - Poetry Collection",

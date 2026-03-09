@@ -47,7 +47,7 @@ export interface ButohFu {
   description: string;
   qualities: ButohQuality[];
   states: EmbodiedState[];
-  origin?: string; // Hijikata work, Ohno improvisation, etc.
+  origin?: string;
   lineage: ButohLineage[];
 }
 
