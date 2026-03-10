@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Template v2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a2e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .cover {
+            width: 450px;
+            height: 650px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 2rem;
+        }
+        
+        .author {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        /* Dynamic accent elements */
+        .accent {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        .accent-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            top: -100px;
+            right: -100px;
+            filter: blur(40px);
+        }
+        
+        .accent-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            bottom: -50px;
+            left: -50px;
+            filter: blur(30px);
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <div class="accent accent-1"></div>
+        <div class="accent accent-2"></div>
+        <div class="content">
+            <h1>Cover Template</h1>
+            <p class="subtitle">Customize this design for your project</p>
+            <p class="tagline">A modern, elegant foundation for any cover design. Adjust colors, typography, and layout to match your vision.</p>
+        </div>
+        <div class="author">Created by Bootstrap-v15</div>
+    </div>
+</body>
+</html>
