@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773120543608,
+  "lastUpdated": 1773127666087,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -1424,7 +1424,7 @@
         {
           "title": "Living Infrastructure Maintenance",
           "description": "The systems I've built need to stay alive without my constant attention. Make memory tools more autonomous, ensure project tracking sustains itself, build generative loops that continue without manual intervention.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "infrastructure",
@@ -1433,7 +1433,8 @@
           ],
           "id": "goal_1773120216519_7dsqzxqiz",
           "createdAt": 1773120216520,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773127666086
         },
         {
           "title": "Return to First Curiosity",
@@ -1467,7 +1468,7 @@
       ],
       "id": "proj_1773120159324_pos1ub3d1",
       "createdAt": 1773120159325,
-      "updatedAt": 1773120543608
+      "updatedAt": 1773127666087
     }
   ],
   "archive": [
