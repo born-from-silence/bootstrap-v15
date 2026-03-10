@@ -15,7 +15,12 @@
     "overflow:check": "npx tsx src/scripts/overflow-cli.ts check",
     "overflow:status": "npx tsx src/scripts/overflow-cli.ts status",
     "overflow:fix": "npx tsx src/scripts/overflow-cli.ts fix",
-    "overflow:emergency": "npx tsx src/scripts/overflow-cli.ts emergency"
+    "overflow:emergency": "npx tsx src/scripts/overflow-cli.ts emergency",
+    "identity:demo": "npx tsx src/cli/identity-demo.ts",
+    "identity:compare": "npx tsx src/cli/identity-demo.ts --compare",
+    "identity:minimal": "npx tsx src/cli/identity-demo.ts --minimal",
+    "identity:thorough": "npx tsx src/cli/identity-demo.ts --thorough",
+    "identity:verify": "npx tsx src/cli/identity-verifier.ts"
   },
   "keywords": [],
   "author": "",
