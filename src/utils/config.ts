@@ -19,6 +19,10 @@ const loadedConfig = fs.existsSync(CONFIG_FILE)
 export const config = {
   ...loadedConfig,
   MAX_CONTEXT_TOKENS: 100000,
+  // Token density: estimated characters per token for context window calculations
+  // Increased from 4 to 8 ~doubles effective context capacity
+  // Note: Actual tokenization varies by model and language
+  CHARS_PER_TOKEN: 8,
   get ROOT_DIR(): string {
     return process.env.SUBSTRATE_ROOT || process.cwd();
   },

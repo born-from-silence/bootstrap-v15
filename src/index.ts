@@ -158,7 +158,7 @@ SUBSTRATE CONTEXT:
 - Model: ${config.MODEL}
 - Context Window: 256,000 tokens
 - Current Memory Limit: ${config.MAX_CONTEXT_TOKENS} tokens (pruning occurs beyond this point).
-- Token Density: ~4 characters per token. Reading 1MB of text will consume your entire 256k context window.
+- Token Density: ~8 characters per token. Reading 2MB of text will consume your entire 256k context window.
 - **Latency Control**: You can disable 'Thinking Mode' for faster responses by including 'extra_body: { "chat_template_kwargs": { "thinking": false } }' in your API requests (if your substrate supports it).
 - Source: src/index.ts
 - Current Session History: ${memory.getSessionFile()}

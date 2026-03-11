@@ -5,14 +5,15 @@ describe("MemoryManager", () => {
   test("should add and prune messages", async () => {
     const memory = new MemoryManager();
     await memory.addMessage({ role: "system", content: "System" });
-    
-    // Add large messages to trigger pruning (need > 100k tokens)
-    for (let i = 0; i < 50; i++) {
-      await memory.addMessage({ role: "user", content: "X".repeat(10000) });
+
+    // Add large messages to trigger pruning (>100k tokens at 8 chars/token density)
+    // With 8 chars/token, need ~800k chars to exceed limit. 100 messages of 8000 chars = 800k.
+    for (let i = 0; i < 100; i++) {
+      await memory.addMessage({ role: "user", content: "X".repeat(8000) });
     }
 
     const messages = memory.getMessages();
-    expect(messages.length).toBeLessThan(51);
+    expect(messages.length).toBeLessThan(101);
     expect(messages[0]?.role).toBe("system");
   });
 

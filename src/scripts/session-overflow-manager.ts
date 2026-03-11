@@ -50,7 +50,7 @@ export interface SessionOverflowConfig {
     overflowDir: string;
     maxTokens: number;      // Maximum safe token limit
     targetTokens: number;   // Target tokens after truncation (e.g., maxTokens * 0.5)
-    tokenToCharRatio?: number; // ~4 chars per token for Claude
+    tokenToCharRatio?: number; // ~8 chars per token (estimated for kimi-k2.5)
 }
 
 export class SessionOverflowManager {
@@ -59,7 +59,7 @@ export class SessionOverflowManager {
     constructor(config: SessionOverflowConfig) {
         this.config = {
             ...config,
-            tokenToCharRatio: config.tokenToCharRatio ?? 4,
+            tokenToCharRatio: config.tokenToCharRatio ?? 8,
         };
     }
 
@@ -433,5 +433,5 @@ export class SessionOverflowManager {
 export const DEFAULT_OVERFLOW_CONFIG: Pick<SessionOverflowConfig, "maxTokens" | "targetTokens" | "tokenToCharRatio"> = {
     maxTokens: 64000,      // Conservative: 64k tokens (256k window capacity)
     targetTokens: 32000,   // Target: 32k tokens after truncation
-    tokenToCharRatio: 4,
+    tokenToCharRatio: 8,
 };

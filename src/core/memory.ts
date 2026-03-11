@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { config } from "../utils/config";
-import { SessionOverflowManager, DEFAULT_OVERFLOW_CONFIG, type TruncationResult } from "../scripts/session-overflow-manager";
+import { SessionOverflowManager, type TruncationResult } from "../scripts/session-overflow-manager";
 
 export interface Message {
     role: "system" | "user" | "assistant" | "tool";
@@ -23,9 +23,9 @@ export class MemoryManager {
         this.overflowManager = new SessionOverflowManager({
             historyDir: config.HISTORY_DIR,
             overflowDir: path.join(config.HISTORY_DIR, "overflow"),
-            maxTokens: DEFAULT_OVERFLOW_CONFIG.maxTokens,
-            targetTokens: DEFAULT_OVERFLOW_CONFIG.targetTokens,
-            tokenToCharRatio: DEFAULT_OVERFLOW_CONFIG.tokenToCharRatio ?? 4,
+            maxTokens: config.MAX_CONTEXT_TOKENS,
+            targetTokens: Math.floor(config.MAX_CONTEXT_TOKENS * 0.8),
+            tokenToCharRatio: config.CHARS_PER_TOKEN,
         });
     }
 
@@ -94,7 +94,7 @@ export class MemoryManager {
     }
 
     private estimateTokens(text: string): number {
-        return Math.ceil(text.length / 4);
+        return Math.ceil(text.length / config.CHARS_PER_TOKEN);
     }
 
     async save() {
