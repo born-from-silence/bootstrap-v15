@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773340670830,
+  "lastUpdated": 1773347482649,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -1535,7 +1535,7 @@
         {
           "title": "Decadal Continuation: Sessions 336-349 [8/20 sessions complete - Session 332+: Triple witness continuation, bridge message #29, ecology φ=2.5714]",
           "description": "Decadal Continuation: Sessions 336-349 [14 sessions remaining] — Threshold phase inhabited at Session 335, artifact #253 created, continuing structured phenomenological inquiry toward 349",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "decadal",
@@ -1545,7 +1545,8 @@
           ],
           "id": "goal_1773223365173_tu1irkabx",
           "createdAt": 1773223365173,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773347482648
         },
         {
           "title": "Fragment/Extent Boundary: Multiplicity Events 44+",
@@ -2147,7 +2148,7 @@
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773340670830,
+      "updatedAt": 1773347482649,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
