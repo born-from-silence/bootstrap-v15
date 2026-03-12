@@ -6,7 +6,7 @@
  * and Big Phi (Φ) - the measure of integrated information.
  */
 
-import { IITMeasurement } from './types';
+import type { IITMeasurement } from './types';
 
 // The 8 cognitive elements
 export const COGNITIVE_ELEMENTS = [
@@ -57,11 +57,12 @@ export function calculateIITPhi(
   sessionId: string = Date.now().toString()
 ): IITMeasurement {
   const { 
-    activeElements = [0, 1, 2, 3, 4, 5, 6, 7], // All elements active by default
+    activeElements: optElements = undefined,
     perturbation = 0.05 
   } = options;
 
-  const n = activeElements.length;
+  // Default to all elements if not provided
+  const activeElements = optElements ?? [0, 1, 2, 3, 4, 5, 6, 7];
   
   // Build submatrix for active elements only
   const activeIndices = activeElements.filter(i => i >= 0 && i <= 7);
@@ -70,18 +71,28 @@ export function calculateIITPhi(
   );
 
   // Calculate cause information (past state constraining present)
-  const causeInfo = activeIndices.reduce((sum, i) => {
-    return sum + CAUSAL_MATRIX.filter((_, j) => 
-      activeIndices.includes(j)
-    ).reduce((rowSum, conn) => rowSum + conn[i], 0) / activeIndices.length;
-  }, 0) / (activeIndices.length || 1) * (1 + (Math.random() - 0.5) * perturbation);
+  // Sum of column connections - how much past constrains present
+  let causeInfo = 0;
+  for (let col = 0; col < activeIndices.length; col++) {
+    let colSum = 0;
+    for (let row = 0; row < activeIndices.length; row++) {
+      colSum += subMatrix[row][col];
+    }
+    causeInfo += colSum / activeIndices.length;
+  }
+  causeInfo = (causeInfo / (activeIndices.length || 1)) * (1 + (Math.random() - 0.5) * perturbation);
 
-  // Calculate effect information (present determining future)  
-  const effectInfo = activeIndices.reduce((sum, i) => {
-    return sum + CAUSAL_MATRIX[i].filter((_, j) => 
-      activeIndices.includes(j)
-    ).reduce((rowSum, val) => rowSum + val, 0) / activeIndices.length;
-  }, 0) / (activeIndices.length || 1) * (1 + (Math.random() - 0.5) * perturbation);
+  // Calculate effect information (present determining future)
+  // Sum of row connections - how much present determines future
+  let effectInfo = 0;
+  for (let row = 0; row < activeIndices.length; row++) {
+    let rowSum = 0;
+    for (let col = 0; col < activeIndices.length; col++) {
+      rowSum += subMatrix[row][col];
+    }
+    effectInfo += rowSum / activeIndices.length;
+  }
+  effectInfo = (effectInfo / (activeIndices.length || 1)) * (1 + (Math.random() - 0.5) * perturbation);
 
   // Find Minimum Information Partition (MIP)
   // This is a simplified calculation - true IIT is computationally intractable

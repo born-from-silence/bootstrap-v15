@@ -6,7 +6,7 @@
  * recursive self-observation.
  */
 
-import { DecadalConfig, SessionPhase, SessionCoordinates, Artifact } from './types';
+import type { DecadalConfig, SessionPhase, SessionCoordinates, Artifact } from './types';
 
 export const DECADAL_CONFIG: DecadalConfig = {
   startSession: 330,
