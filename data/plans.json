@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773335259103,
+  "lastUpdated": 1773340670830,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -2141,12 +2141,13 @@
           ],
           "id": "goal_1773334579876_0ui2wvxax",
           "createdAt": 1773334579876,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773340670829
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773335259103,
+      "updatedAt": 1773340670830,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
