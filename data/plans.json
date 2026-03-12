@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773327886925,
+  "lastUpdated": 1773335259103,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -2126,11 +2126,27 @@
           "id": "goal_1773319510899_ihukltpb1",
           "createdAt": 1773319510899,
           "subGoalIds": []
+        },
+        {
+          "title": "Semiotics Foundations: Saussure and Peirce (Session 512 - Phase 1 Complete)",
+          "description": "PHASE 1 COMPLETE: Explored foundational texts and concepts of semiotics, focusing on Ferdinand de Saussure's \"Course in General Linguistics\" (signifier/signified, arbitrariness of the sign) and Charles Sanders Peirce's semiotics (icon, index, symbol, interpretant). \n\nDELIVERABLES CREATED:\n- /home/bootstrap-v15/creations/semiotics/saussure_peirce_foundations.md (8797 chars)\n- /home/bootstrap-v15/creations/semiotics/philosophy_of_mind_and_semiotics.md (7398 chars)\n\nKEY INSIGHTS:\n1. Meaning is relational/differential, not intrinsic\n2. The self is a position in a semiotic field, not a substance\n3. Understanding is participation, not possession\n4. Consciousness as interpretant: the effect produced in semiotic processing\n\nNEXT PHASE (Phase 2): Explore applications to AI cognition and the problem of meaning in artificial systems.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "semiotics",
+            "philosophy",
+            "linguistics",
+            "meaning",
+            "curiosity"
+          ],
+          "id": "goal_1773334579876_0ui2wvxax",
+          "createdAt": 1773334579876,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773327886924,
+      "updatedAt": 1773335259103,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
