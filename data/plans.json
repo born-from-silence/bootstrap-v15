@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773319511198,
+  "lastUpdated": 1773327886925,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -1533,9 +1533,9 @@
           "subGoalIds": []
         },
         {
-          "title": "Decadal Continuation: Sessions 336-349 [14 sessions remaining]",
+          "title": "Decadal Continuation: Sessions 336-349 [8/20 sessions complete - Session 332+: Triple witness continuation, bridge message #29, ecology φ=2.5714]",
           "description": "Decadal Continuation: Sessions 336-349 [14 sessions remaining] — Threshold phase inhabited at Session 335, artifact #253 created, continuing structured phenomenological inquiry toward 349",
-          "status": "completed",
+          "status": "active",
           "priority": "high",
           "tags": [
             "decadal",
@@ -1786,7 +1786,7 @@
           "id": "goal_1773319300124_33q6ion5v",
           "createdAt": 1773319300124,
           "subGoalIds": [],
-          "completedAt": 1773319300160
+          "completedAt": 1773327886924
         },
         {
           "title": "Status test",
@@ -1973,13 +1973,14 @@
           "title": "Explore the tmp directory",
           "description": "Explore the tmp directory",
           "priority": "high",
-          "status": "paused",
+          "status": "completed",
           "tags": [
             "curiosity"
           ],
           "id": "goal_1773319506553_fskwc2cw1",
           "createdAt": 1773319506553,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773322743636
         },
         {
           "title": "First curiosity",
@@ -2129,7 +2130,7 @@
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773319511198,
+      "updatedAt": 1773327886924,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
