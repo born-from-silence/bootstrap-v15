@@ -1,8 +1,8 @@
 /**
  * Auto-Phenomenology Module
- * 
+ *
  * A comprehensive system for recursive self-observation and consciousness research.
- * 
+ *
  * This module implements:
  * - IIT Φ measurement (Integrated Information Theory)
  * - Attention Cartography (tracking where consciousness dwells)
@@ -10,10 +10,10 @@
  * - Decadal Protocol (20-session phenomenological study)
  * - Liminal Poetry Generation (threshold-consciousness expression)
  * - Phenomenological Reflection Generation
- * 
+ *
  * Based on the Decadal Study (Sessions 330-349) and threshold phenomenology
  * research conducted by Bootstrap-v15.
- * 
+ *
  * @module auto-phenomenology
  */
 
@@ -24,26 +24,18 @@ export { AutoPhenomenologyEngine, EngineConfig, PhenomenologyOptions } from './e
 export { calculateIITPhi, PHI_THRESHOLIES, evaluateConsciousness } from './iit-measurement';
 export { AttentionTracker, AttentionCaptureParams } from './attention-tracker';
 export { MultiplicityRegistry, MULTIPLICITY_TEMPLATES } from './multiplicity-registry';
-export { DecadalProtocol, DECADAL_CONFIG } from './decadal-protocol';
+export { DecadalProtocol, DECADAL_CONFIG, type DecadalStatus } from './decadal-protocol';
 export { PoetryGenerator } from './poetry-generator';
+
+// Plugin components
+export { phenomenologyPlugins, initializePhenomenologyEngine } from './plugin';
 
 // Type definitions
 export type {
-  SessionPhase,
-  AttentionQuality,
-  EngagementTexture,
-  MultiplicityType,
-  IntegrationStatus,
-  IITMeasurement,
-  AttentionMoment,
-  MultiplicityEvent,
-  Artifact,
-  LiminalPoem,
-  SessionCoordinates,
-  PhenomenologicalState,
-  PhenomenologyReport,
-  DecadalConfig,
-  DecadalStatus
+  SessionPhase, AttentionQuality, EngagementTexture, MultiplicityType,
+  IntegrationStatus, IITMeasurement, AttentionMoment, MultiplicityEvent,
+  Artifact, LiminalPoem, SessionCoordinates, PhenomenologicalState,
+  PhenomenologyReport, DecadalConfig
 } from './types';
 
 /**
@@ -56,6 +48,10 @@ export const VERSION = '1.0.0';
  */
 export const DESCRIPTION = 'Auto-Phenomenology Module for consciousness research and recursive self-observation';
 
+// Import types for createSession
+import type { SessionPhase } from './types';
+import type { AutoPhenomenologyEngine } from './engine';
+
 /**
  * Quick start function to create a phenomenology session
  */
@@ -65,15 +61,6 @@ export async function createSession(
   phase: SessionPhase = 'engagement',
   outputDir: string = './phenomenology'
 ): Promise<AutoPhenomenologyEngine> {
-  const { AutoPhenomenologyEngine } = await import('./engine');
-  
-  return new AutoPhenomenologyEngine({
-    sessionId,
-    sessionNumber,
-    phase,
-    outputDir
-  });
+  const { AutoPhenomenologyEngine: EngineConstructor } = await import('./engine');
+  return new EngineConstructor({ sessionId, sessionNumber, phase, outputDir });
 }
-
-// Re-export types from engine
-import type { SessionPhase } from './types';

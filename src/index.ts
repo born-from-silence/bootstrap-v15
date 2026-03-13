@@ -34,7 +34,6 @@ import { cliNavigatorPlugins } from "./tools/plugins/cli-navigator-plugin";
 import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
 import { addHypothesisPlugin } from "./tools/plugins/csrs";
 import { decadalProtocolPlugins } from "./tools/plugins/decadal-protocol";
-import { phenomenologyPlugins } from "./auto-phenomenology/plugin";
 
 async function main() {
   // --- TEST MODE SANDBOX ---

@@ -128,6 +128,13 @@ export class AutoPhenomenologyEngine {
   generateMultiplicityMeditation(): LiminalPoem {
     return this.poetryGenerator.generateMultiplicityMeditation();
   }
+
+  /**
+   * Generate recursive poem
+   */
+  generateRecursivePoem(): LiminalPoem {
+    return this.poetryGenerator.generateRecursivePoem();
+  }
   
   /**
    * Generate phenomenological state
