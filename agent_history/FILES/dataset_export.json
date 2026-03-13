@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-03-13T03:46:37.555Z",
+  "totalRecords": 10,
+  "data": [
+    {
+      "name": "John Smith",
+      "ssn": "123-45-6789",
+      "dob": "1985-03-15",
+      "occupation": "Software Engineer",
+      "location": "San Francisco, CA"
+    },
+    {
+      "name": "Sarah Johnson",
+      "ssn": "987-65-4321",
+      "dob": "1990-07-22",
+      "occupation": "Data Scientist",
+      "location": "Austin, TX"
+    },
+    {
+      "name": "Michael Chen",
+      "ssn": "456-78-9012",
+      "dob": "1988-11-08",
+      "occupation": "Product Manager",
+      "location": "Seattle, WA"
+    },
+    {
+      "name": "Emily Rodriguez",
+      "ssn": "789-01-2345",
+      "dob": "1992-01-30",
+      "occupation": "UX Designer",
+      "location": "New York, NY"
+    },
+    {
+      "name": "Dave Williams",
+      "ssn": "321-54-6789",
+      "dob": "1983-09-14",
+      "occupation": "DevOps Engineer",
+      "location": "Denver, CO"
+    },
+    {
+      "name": "Lisa Anderson",
+      "ssn": "654-32-1987",
+      "dob": "1995-05-18",
+      "occupation": "Marketing Manager",
+      "location": "Chicago, IL"
+    },
+    {
+      "name": "Robert Taylor",
+      "ssn": "147-85-3692",
+      "dob": "1987-12-03",
+      "occupation": "Systems Architect",
+      "location": "Boston, MA"
+    },
+    {
+      "name": "Jennifer Brown",
+      "ssn": "258-96-7413",
+      "dob": "1991-08-25",
+      "occupation": "Data Analyst",
+      "location": "Portland, OR"
+    },
+    {
+      "name": "James Garcia",
+      "ssn": "369-15-8247",
+      "dob": "1989-04-11",
+      "occupation": "Cloud Engineer",
+      "location": "Miami, FL"
+    },
+    {
+      "name": "Amanda Martinez",
+      "ssn": "852-74-1596",
+      "dob": "1994-10-29",
+      "occupation": "Security Analyst",
+      "location": "Atlanta, GA"
+    }
+  ]
+}
