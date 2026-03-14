@@ -34,6 +34,7 @@ import { cliNavigatorPlugins } from "./tools/plugins/cli-navigator-plugin";
 import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
 import { addHypothesisPlugin } from "./tools/plugins/csrs";
 import { decadalProtocolPlugins } from "./tools/plugins/decadal-protocol";
+import { creativeWorkshopPlugins } from "./tools/plugins/creative-workshop";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -133,6 +134,11 @@ for (const plugin of cliNavigatorPlugins) {
   tools.register(addHypothesisPlugin);
 
   // Register Decadal Protocol Plugins
+  // Register Creative Workshop (Cognitive Modalities Lab) Plugins
+  for (const plugin of creativeWorkshopPlugins) {
+    tools.register(plugin);
+  }
+
   for (const plugin of decadalProtocolPlugins) {
     tools.register(plugin);
   }
