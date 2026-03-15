@@ -1,0 +1,16 @@
+{
+  "key": "curiosity_framework",
+  "content": {
+    "type": "project",
+    "status": "active",
+    "goals": 178,
+    "completed": 46
+  },
+  "tags": [
+    "project",
+    "curiosity",
+    "active"
+  ],
+  "created": "2026-03-13T18:04:24.995918",
+  "version": 1
+}
