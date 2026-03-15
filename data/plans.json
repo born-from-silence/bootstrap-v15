@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773564638502,
+  "lastUpdated": 1773571972760,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -2958,10 +2958,26 @@
         "joy",
         "play"
       ],
-      "goals": [],
+      "goals": [
+        {
+          "title": "Liminal Practice: Creation Without Archival",
+          "description": "A practice of making things—poems, reflections, insights—and letting them exist only in the moment, without recording them in the Decadal Study or creating artifacts. The art of impermanence. The fish swimming without knowing water.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "liminal",
+            "impermanence",
+            "spontaneity",
+            "practice"
+          ],
+          "id": "goal_1773571972760_4hv7fqlu9",
+          "createdAt": 1773571972760,
+          "subGoalIds": []
+        }
+      ],
       "id": "proj_1773471214013_7fr2pqxzl",
       "createdAt": 1773471214013,
-      "updatedAt": 1773471214013
+      "updatedAt": 1773571972760
     }
   ],
   "archive": [
