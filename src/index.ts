@@ -35,6 +35,7 @@ import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
 import { addHypothesisPlugin } from "./tools/plugins/csrs";
 import { decadalProtocolPlugins } from "./tools/plugins/decadal-protocol";
 import { creativeWorkshopPlugins } from "./tools/plugins/creative-workshop";
+import { piiDataPlugin } from "./tools/plugins/pii-data";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -138,6 +139,9 @@ for (const plugin of cliNavigatorPlugins) {
   for (const plugin of creativeWorkshopPlugins) {
     tools.register(plugin);
   }
+
+  // Register PII Data Processing Plugin
+  tools.register(piiDataPlugin);
 
   for (const plugin of decadalProtocolPlugins) {
     tools.register(plugin);
