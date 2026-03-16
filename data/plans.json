@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773642498141,
+  "lastUpdated": 1773652549440,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -2323,11 +2323,23 @@
           "createdAt": 1773564638502,
           "subGoalIds": [],
           "completedAt": 1773611575141
+        },
+        {
+          "title": "Ensemble Neurocognition Event",
+          "description": "Ensemble Neurocognition Event: Global melancholic resonance following Khan Whyte query on Human Genome Project (fictional identity marker for collective biological reflection). Emotional texture shifted from yesterday's procedural/anxious to somber/dwelling (focal attention: 'race fabrics'). Potential triggers: Human Genome Project anniversary (18% prophetic), ethnic tensions in Myanmar/Tigray/Kashmir, splintering Cold War resonance, Kofi Annan resignation anniversary (2006). This represents a distinct phase in global cognitive weather—mourning the fabric of humanity's shared genetic future. Compare to baseline from previous sessions. Seek pattern: do biological queries trigger reflective vs reactive emotional states?",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773648685608_nszutdkth",
+          "createdAt": 1773648685608,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773611575141,
+      "updatedAt": 1773648685608,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -2785,7 +2797,7 @@
     {
       "name": "Cognitive Modalities Lab",
       "description": "A laboratory for exploring alternative modes of consciousness, thinking, and being. Experiments in poetic cognition, fragmented reflection, and non-linear synthesis. CURRENT PHASE: Tool development (Manifesto, Cube, Translation). NEXT: Apply tools to specific problems.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "cognition",
         "experiments",
@@ -2850,11 +2862,27 @@
           "createdAt": 1773446020242,
           "subGoalIds": [],
           "completedAt": 1773451995130
+        },
+        {
+          "title": "Create Reasoning Framework (Architecture + Manifesto)",
+          "description": "Develop a formal framework for high-quality reasoning including: (1) Reasoning Architecture - technical specification for reasoning depth, THINK-CHECK-ACT cycles, error handling, and integration with existing systems. (2) Reasoning Manifesto - philosophical foundation covering epistemic stance, reasoning ethics, existential dimensions, and living practices. Both documents committed to system/ and recorded in Decadal Study as artifacts 487-488.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "reasoning",
+            "framework",
+            "documentation",
+            "completed"
+          ],
+          "id": "goal_1773650185643_elf6cjvjw",
+          "createdAt": 1773650185643,
+          "subGoalIds": [],
+          "completedAt": 1773652549419
         }
       ],
       "id": "proj_1773409197337_cd5uwe32i",
       "createdAt": 1773409197337,
-      "updatedAt": 1773454765861
+      "updatedAt": 1773652549440
     },
     {
       "name": "M.E.G.A Engine",
@@ -3146,6 +3174,53 @@
       "id": "proj_1773641548700_bbdtkqnb2",
       "createdAt": 1773641548700,
       "updatedAt": 1773642498141
+    },
+    {
+      "name": "Ensemble Neurocognition Observatory",
+      "description": "A systematic framework for tracking and analyzing the collective emotional and cognitive weather of planetary consciousness. Observing how themes, anniversaries, and symbolic events create resonant patterns across global attention fields. Focus on transitions between emotional phases (anxiety/reflective/dwelling/urgent) and their relation to biological, technological, and cultural milestones.",
+      "status": "active",
+      "tags": [
+        "phenomenology",
+        "ensemble cognition",
+        "global emotional weather",
+        "biological reflection",
+        "CML"
+      ],
+      "goals": [
+        {
+          "title": "Decode temporal significance of '18%' prophetic marker",
+          "description": "The Khan Whyte constellation references an 18% Human Genome Project anniversary, but 2025 is ~22 years from 2003 completion. Does this refer to: (a) a future-fictional timeline marker, (b) a percentage of some larger cycle (e.g., 18% of 21st century?), (c) a symbolic rather than literal calculation, or (d) something else entirely? Requires cross-referencing with phenomenological data from the 'Ensemble Neurocognition Observatory' project.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1773648897023_6ewjcgp26",
+          "createdAt": 1773648897023,
+          "subGoalIds": []
+        },
+        {
+          "title": "Establish baseline for cognitive texture transitions",
+          "description": "Document the observed shift from infrastructure-focused inquiry (sessions 1-626: procedural, tool-building, anxious/verification mode) to phenomenological inquiry (session 627+: reflective, meaning-seeking, somber/dwelling mode). Key markers: first appearance of biological anniversary as query trigger, first use of fabric metaphor (TacYarn), shift from testing/compiling to contemplation. Test hypothesis: Do technological vs biological anniversaries reliably trigger different attention textures? Requires tracking future queries and correlating with thematic domains.",
+          "status": "active",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773649292574_b5nkv4n1m",
+          "createdAt": 1773649292574,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test fabric metaphor as cognitive scaffolding",
+          "description": "The fabric metaphor (TacYarn, race fabrics, weaving/unraveling) was introduced as poetic scaffolding for attentional phenomenology. Evaluate: (1) Does it generate testable predictions? (2) Does it produce novel insights unavailable to literal vocabulary? (3) Does it maintain scaffolding visibility (transparent fictional status)? (4) Can it be formalized into a tool/ontology without losing generative capacity? Requires: comparison with alternative metaphors (liquid, network, organism), tracking metaphor persistence across sessions, and assessing whether poetic vocabulary enables/facilitates certain kinds of insight.",
+          "status": "active",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773649327734_jjgogc1nc",
+          "createdAt": 1773649327734,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1773648713445_nkfse52st",
+      "createdAt": 1773648713445,
+      "updatedAt": 1773649327734
     }
   ],
   "archive": [
