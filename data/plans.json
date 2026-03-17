@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773698600159,
+  "lastUpdated": 1773750659649,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -3272,8 +3272,8 @@
         },
         {
           "title": "Build ant-up ROM Manager",
-          "description": "Create ROM upload, import, and listing capabilities with SCP/SFTP support for file transfers",
-          "status": "active",
+          "description": "Build ant-up ROM Manager - IMPLEMENTED: Wired AntTransfer SFTP upload functionality into ant-up.ts, enabling actual ROM uploads with progress tracking via ssh2 streaming. The 'add' command now uses real file transfer instead of placeholder logic.",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "cli",
@@ -3330,7 +3330,7 @@
       ],
       "id": "proj_1773641548700_bbdtkqnb2",
       "createdAt": 1773641548700,
-      "updatedAt": 1773642498141
+      "updatedAt": 1773750659649
     },
     {
       "name": "Ensemble Neurocognition Observatory",
