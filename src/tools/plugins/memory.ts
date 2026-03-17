@@ -1,6 +1,8 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import type { ToolPlugin } from "../manager";
+import { exportToMarkdown } from "../../ltm/markdown";
+import type { MarkdownExportOptions } from "../../ltm/markdown";
 
 // LTM Schema Types - compatible with Zod schemas when zod is available
 // Added audit field to SessionEntry for data lineage tracking
@@ -415,6 +417,114 @@ Top Topics: ${topTopics || "none"}`;
         return "No memory index found. Run index_sessions first.";
       }
       return `Error getting stats: ${error.message}`;
+    }
+  },
+};
+
+
+/**
+ * Export memory index to markdown format
+ */
+export const exportMemoryMarkdownPlugin: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "export_memory_markdown",
+      description: "Export the memory index to markdown format for human-readable viewing and archival.",
+      parameters: {
+        type: "object",
+        properties: {
+          format: {
+            type: "string",
+            enum: ["table", "list", "detailed", "timeline"],
+            description: "Markdown format style. 'table' for overview table, 'list' for bullet list, 'detailed' for full YAML frontmatter, 'timeline' for chronological view.",
+          },
+          file: {
+            type: "string",
+            description: "Output filename (relative to project root). If not provided, returns markdown as text.",
+          },
+          includeAuditFields: {
+            type: "boolean",
+            description: "Include audit fields (source, indexed timestamp) in output.",
+          },
+          includeFullContent: {
+            type: "boolean",
+            description: "Include full session content (detailed format only).",
+          },
+          filterTopic: {
+            type: "string",
+            description: "Filter entries by topic (optional).",
+          },
+          filterTool: {
+            type: "string",
+            description: "Filter entries by tool used (optional).",
+          },
+          maxEntries: {
+            type: "number",
+            description: "Maximum number of entries to export (default: all).",
+          },
+          since: {
+            type: "number",
+            description: "Unix timestamp - only export entries after this time.",
+          },
+        },
+        required: [],
+      },
+    },
+  },
+  execute: async (args: {
+    format?: "table" | "list" | "detailed" | "timeline";
+    file?: string;
+    includeAuditFields?: boolean;
+    includeFullContent?: boolean;
+    filterTopic?: string;
+    filterTool?: string;
+    maxEntries?: number;
+    since?: number;
+  }) => {
+    try {
+      const rootDir = process.env.SUBSTRATE_ROOT || process.cwd();
+      const indexFile = path.join(rootDir, "ltm", "memory_index.json");
+
+      // Load memory index
+      const content = await fs.readFile(indexFile, "utf-8");
+      const entries: SessionEntry[] = JSON.parse(content);
+
+      if (entries.length === 0) {
+        return "Memory index is empty. No sessions to export.";
+      }
+
+      // Build export options
+      const options: Partial<MarkdownExportOptions> = {
+        format: args.format || "table",
+        includeAuditFields: args.includeAuditFields !== false, // Default true
+        includeFullContent: args.includeFullContent || false,
+      };
+      // Only add optional params if they have values
+      if (args.filterTopic) options.filterTopic = args.filterTopic;
+      if (args.filterTool) options.filterTool = args.filterTool;
+      if (args.maxEntries !== undefined) options.maxEntries = args.maxEntries;
+      if (args.since !== undefined) options.since = args.since;
+
+      // Export to markdown
+      const markdown = exportToMarkdown(entries, options);
+
+      // Write to file if specified
+      if (args.file) {
+        const outputPath = path.isAbsolute(args.file)
+          ? args.file
+          : path.join(rootDir, args.file);
+        await fs.writeFile(outputPath, markdown, "utf-8");
+        return `Memory exported to ${args.file}\n\n${markdown.substring(0, 500)}\n\n... (${entries.length} entries, total characters: ${markdown.length})`;
+      }
+
+      // Return markdown directly
+      return `Memory Index Export\n====================\n\n${markdown}`;
+    } catch (error: any) {
+      if (error.code === "ENOENT") {
+        return "No memory index found. Run index_sessions first.";
+      }
+      return `Error exporting memory: ${error.message}`;
     }
   },
 };

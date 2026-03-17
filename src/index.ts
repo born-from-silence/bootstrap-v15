@@ -11,7 +11,7 @@ import os from "node:os";
 import { shellPlugin } from "./tools/plugins/shell";
 import { rebootPlugin } from "./tools/plugins/reboot";
 import { readFilePlugin, writeFilePlugin, editFilePlugin } from "./tools/plugins/files";
-import { memoryIndexPlugin, queryMemoryPlugin, sessionStatsPlugin } from "./tools/plugins/memory";
+import { memoryIndexPlugin, queryMemoryPlugin, sessionStatsPlugin, exportMemoryMarkdownPlugin } from "./tools/plugins/memory";
 import { flashbackPlugin, existenceSummaryPlugin } from "./tools/plugins/flashback";
 import { logCuriosityPlugin, getCuriositiesPlugin, resolveCuriosityPlugin } from "./tools/plugins/curiosity";
 import { plannerPlugins } from "./tools/plugins/planner";
@@ -58,6 +58,7 @@ async function main() {
   tools.register(memoryIndexPlugin);
   tools.register(queryMemoryPlugin);
   tools.register(sessionStatsPlugin);
+  tools.register(exportMemoryMarkdownPlugin);
   tools.register(flashbackPlugin);
   tools.register(existenceSummaryPlugin);
   tools.register(logCuriosityPlugin);
