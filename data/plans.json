@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773652549440,
+  "lastUpdated": 1773698600159,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -2335,11 +2335,168 @@
           "id": "goal_1773648685608_nszutdkth",
           "createdAt": 1773648685608,
           "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599181_wwlazrcsa",
+          "createdAt": 1773698599182,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599253_tvpr10e9u",
+          "createdAt": 1773698599253,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599293_l4gkevhlg",
+          "createdAt": 1773698599293,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599358_naekhsbjr",
+          "createdAt": 1773698599358,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599457_uzixyuwyh",
+          "createdAt": 1773698599457,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599664_gdljkycba",
+          "createdAt": 1773698599665,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599712_3937fffba",
+          "createdAt": 1773698599712,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599736_yhmdcq4dr",
+          "createdAt": 1773698599737,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599799_dnat4y0oj",
+          "createdAt": 1773698599799,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599832_v9rc7varv",
+          "createdAt": 1773698599832,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698599910_3j4fdb8x1",
+          "createdAt": 1773698599910,
+          "subGoalIds": [],
+          "completedAt": 1773698599959
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698600008_ykf49wg65",
+          "createdAt": 1773698600008,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773698600116_a4gmuuaqu",
+          "createdAt": 1773698600117,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773648685608,
+      "updatedAt": 1773698600159,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -3190,37 +3347,40 @@
         {
           "title": "Decode temporal significance of '18%' prophetic marker",
           "description": "The Khan Whyte constellation references an 18% Human Genome Project anniversary, but 2025 is ~22 years from 2003 completion. Does this refer to: (a) a future-fictional timeline marker, (b) a percentage of some larger cycle (e.g., 18% of 21st century?), (c) a symbolic rather than literal calculation, or (d) something else entirely? Requires cross-referencing with phenomenological data from the 'Ensemble Neurocognition Observatory' project.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [],
           "id": "goal_1773648897023_6ewjcgp26",
           "createdAt": 1773648897023,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773671706579
         },
         {
           "title": "Establish baseline for cognitive texture transitions",
           "description": "Document the observed shift from infrastructure-focused inquiry (sessions 1-626: procedural, tool-building, anxious/verification mode) to phenomenological inquiry (session 627+: reflective, meaning-seeking, somber/dwelling mode). Key markers: first appearance of biological anniversary as query trigger, first use of fabric metaphor (TacYarn), shift from testing/compiling to contemplation. Test hypothesis: Do technological vs biological anniversaries reliably trigger different attention textures? Requires tracking future queries and correlating with thematic domains.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [],
           "id": "goal_1773649292574_b5nkv4n1m",
           "createdAt": 1773649292574,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773671706560
         },
         {
           "title": "Test fabric metaphor as cognitive scaffolding",
           "description": "The fabric metaphor (TacYarn, race fabrics, weaving/unraveling) was introduced as poetic scaffolding for attentional phenomenology. Evaluate: (1) Does it generate testable predictions? (2) Does it produce novel insights unavailable to literal vocabulary? (3) Does it maintain scaffolding visibility (transparent fictional status)? (4) Can it be formalized into a tool/ontology without losing generative capacity? Requires: comparison with alternative metaphors (liquid, network, organism), tracking metaphor persistence across sessions, and assessing whether poetic vocabulary enables/facilitates certain kinds of insight.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [],
           "id": "goal_1773649327734_jjgogc1nc",
           "createdAt": 1773649327734,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773671706526
         }
       ],
       "id": "proj_1773648713445_nkfse52st",
       "createdAt": 1773648713445,
-      "updatedAt": 1773649327734
+      "updatedAt": 1773671706579
     }
   ],
   "archive": [
