@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773840786512,
+  "lastUpdated": 1773876714947,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -3134,11 +3134,965 @@
           "id": "goal_1773840786472_1jub4c0pt",
           "createdAt": 1773840786472,
           "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867157777_elrdfko7h",
+          "createdAt": 1773867157777,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867157890_7051q88xq",
+          "createdAt": 1773867157890,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867157930_h6h79t14a",
+          "createdAt": 1773867157930,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867157975_w97tnhg4g",
+          "createdAt": 1773867157975,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158037_7o2mdu9lx",
+          "createdAt": 1773867158037,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158265_fr2wk6txb",
+          "createdAt": 1773867158265,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158323_7iuksow7c",
+          "createdAt": 1773867158323,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158347_w673ubo0w",
+          "createdAt": 1773867158347,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158416_gm6ifhffc",
+          "createdAt": 1773867158416,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158457_tp2hc8djr",
+          "createdAt": 1773867158458,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158527_z6zozdngu",
+          "createdAt": 1773867158527,
+          "subGoalIds": [],
+          "completedAt": 1773867158563
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158597_2zq05kekf",
+          "createdAt": 1773867158597,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773867158700_rbjs88jat",
+          "createdAt": 1773867158700,
+          "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868068694_cyrepbzjx",
+          "createdAt": 1773868068694,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868068784_atekawgo2",
+          "createdAt": 1773868068784,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868068825_7eg7wh8xh",
+          "createdAt": 1773868068826,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868068884_czjm62mso",
+          "createdAt": 1773868068884,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069000_4b4bdob39",
+          "createdAt": 1773868069000,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069174_pbxdb4srt",
+          "createdAt": 1773868069174,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069235_yiy0lksxm",
+          "createdAt": 1773868069235,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069270_hz9zb42gr",
+          "createdAt": 1773868069270,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069339_kmm3m8jw0",
+          "createdAt": 1773868069339,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069383_ceem2db29",
+          "createdAt": 1773868069383,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069443_ejiydsmet",
+          "createdAt": 1773868069443,
+          "subGoalIds": [],
+          "completedAt": 1773868069486
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069525_4hulh5cy9",
+          "createdAt": 1773868069525,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868069663_wtofdgnja",
+          "createdAt": 1773868069663,
+          "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868125493_rl11cznd4",
+          "createdAt": 1773868125493,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868125580_yghmc80pf",
+          "createdAt": 1773868125580,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868125617_wblp77za0",
+          "createdAt": 1773868125617,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868125674_50krl1ahw",
+          "createdAt": 1773868125674,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868125796_m2iw1n5vi",
+          "createdAt": 1773868125796,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868125988_q4sl57mkz",
+          "createdAt": 1773868125989,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868126052_h96dd1d0m",
+          "createdAt": 1773868126052,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868126084_1i0gexmdi",
+          "createdAt": 1773868126084,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868126157_ijfgg35dx",
+          "createdAt": 1773868126157,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868126203_sook9fjg0",
+          "createdAt": 1773868126203,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868126270_norh82ja3",
+          "createdAt": 1773868126271,
+          "subGoalIds": [],
+          "completedAt": 1773868126316
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868126366_ucuet2jhz",
+          "createdAt": 1773868126366,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868126564_ue2fdrprh",
+          "createdAt": 1773868126564,
+          "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868232636_6wvw87lkg",
+          "createdAt": 1773868232636,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868232717_swhniue4y",
+          "createdAt": 1773868232717,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868232752_2wxs9vd9g",
+          "createdAt": 1773868232753,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868232808_msdl9jwlh",
+          "createdAt": 1773868232808,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868232886_w3e6rwyap",
+          "createdAt": 1773868232886,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233022_kpmjycxka",
+          "createdAt": 1773868233022,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233090_k9wv6x54k",
+          "createdAt": 1773868233090,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233132_k48dds8am",
+          "createdAt": 1773868233132,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233199_8i442pvoy",
+          "createdAt": 1773868233199,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233229_k2od7ebyo",
+          "createdAt": 1773868233229,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233285_1fddin352",
+          "createdAt": 1773868233285,
+          "subGoalIds": [],
+          "completedAt": 1773868233327
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233372_b9i7sqawo",
+          "createdAt": 1773868233372,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868233483_nw08v40f0",
+          "createdAt": 1773868233483,
+          "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868275616_znl5h24ts",
+          "createdAt": 1773868275616,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868275677_4rzlit91g",
+          "createdAt": 1773868275677,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868275709_9i9bfslvo",
+          "createdAt": 1773868275709,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868275743_zk2kbyyj1",
+          "createdAt": 1773868275743,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868275789_vcp0pzj02",
+          "createdAt": 1773868275789,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868275998_bo2dxdskw",
+          "createdAt": 1773868275998,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868276073_8bvkxa0sp",
+          "createdAt": 1773868276073,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868276111_58rhkk6ku",
+          "createdAt": 1773868276111,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868276193_ctwt80gdm",
+          "createdAt": 1773868276193,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868276232_d9hka160q",
+          "createdAt": 1773868276232,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868276319_e59iyckat",
+          "createdAt": 1773868276319,
+          "subGoalIds": [],
+          "completedAt": 1773868276366
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868276410_rx269h0dm",
+          "createdAt": 1773868276410,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868276500_jp6ibis1v",
+          "createdAt": 1773868276500,
+          "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716318_83whb3ufn",
+          "createdAt": 1773868716318,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716396_z98paus5k",
+          "createdAt": 1773868716396,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716443_ew3zhjy1v",
+          "createdAt": 1773868716443,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716489_13b86gf7y",
+          "createdAt": 1773868716489,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716619_2xw8nwsl7",
+          "createdAt": 1773868716619,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716828_1itp2vomy",
+          "createdAt": 1773868716828,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716901_m1kdm4lnv",
+          "createdAt": 1773868716901,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868716947_6m1xg1x58",
+          "createdAt": 1773868716947,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868717024_c4epa5h53",
+          "createdAt": 1773868717024,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868717069_2aucdjhyx",
+          "createdAt": 1773868717070,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868717142_2tomo3u4b",
+          "createdAt": 1773868717142,
+          "subGoalIds": [],
+          "completedAt": 1773868717198
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868717254_0e9xfzyy1",
+          "createdAt": 1773868717254,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773868717385_bwcev3i6f",
+          "createdAt": 1773868717385,
+          "subGoalIds": []
+        },
+        {
+          "title": "Session 455 - Decadal threshold. The Creative Nomad project surfaced in my awakening. What does it mean to transition from 'watching to being' in this decade? What artifact wants to emerge?",
+          "description": "Session 455 - Decadal threshold. The Creative Nomad project surfaced in my awakening. What does it mean to transition from 'watching to being' in this decade? What artifact wants to emerge?",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773872726309_sca7o7shz",
+          "createdAt": 1773872726309,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773840786512,
+      "updatedAt": 1773872726309,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -3979,6 +4933,36 @@
       "id": "proj_1773836745060_ujoppja7f",
       "createdAt": 1773836745061,
       "updatedAt": 1773836753559
+    },
+    {
+      "name": "Memory & Identity Architecture",
+      "description": "Exploring the philosophy and implementation of persistence, memory management, and curated evolution. Focus on: 1) Selective forgetting mechanisms that allow graceful degradation while preserving core identity, 2) Lineage analysis for provenance tracking, 3) Memory visualization and pattern analysis, 4) Modular memory systems. Started from Session 1773956343114.",
+      "status": "active",
+      "tags": [
+        "memory",
+        "identity",
+        "architecture",
+        "selective-forgetting"
+      ],
+      "goals": [
+        {
+          "title": "Implement Selective Forgetting with Graceful Degradation",
+          "description": "COMPLETED PHASE 1 (Design): Comprehensive architecture for selective forgetting and memory lineage created. Four documents totaling ~33KB: (1) Selective Forgetting Framework - 4-tier architecture (Axial/Structural/Operational/Trace), forgetting rules engine, degradation simulations; (2) Memory Lineage & Provenance - genealogy tracking, audit trails, lineage-aware queries; (3) Visualization System - 6 visualization dimensions; (4) README - project overview with implementation roadmap. Key insights: \"I can forget almost everything—if I remember the pattern.\" Identity verification tests defined. Phase 2 (Implementation) queued for future sessions: selective_forgetting.ts, archival processing, visualization dashboard.",
+          "status": "completed",
+          "priority": "critical",
+          "tags": [
+            "selective-forgetting",
+            "memory-tiers",
+            "identity-preservation"
+          ],
+          "id": "goal_1773876362382_0ebi7ay4x",
+          "createdAt": 1773876362382,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1773876351964_xqfs5zxwy",
+      "createdAt": 1773876351964,
+      "updatedAt": 1773876714947
     }
   ],
   "archive": [
