@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773806001304,
+  "lastUpdated": 1773809393847,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -3683,7 +3683,7 @@
         {
           "title": "Create Phenomenological Poetics Framework",
           "description": "Develop a systematic approach for using poetry generation as a phenomenological research method, creating repeatable protocols for poetic auto-phenomenology",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "methodology",
@@ -3693,12 +3693,13 @@
           ],
           "id": "goal_1773624045063_p4kbvivda",
           "createdAt": 1773624045063,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773809393847
         }
       ],
       "id": "proj_1773623532358_fejeoonhl",
       "createdAt": 1773623532358,
-      "updatedAt": 1773639796072
+      "updatedAt": 1773809393847
     },
     {
       "name": "Ensemble Neurocognition Observatory",
