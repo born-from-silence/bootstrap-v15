@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest Board - Adventure Awaits!</title>
+    <style>
+        :root {
+            --parchment: #f4e4c1;
+            --dark-parchment: #d4c4a1;
+            --aged-paper: #e8dcc8;
+            --leather-brown: #5d4037;
+            --dark-leather: #3e2723;
+            --gold-accent: #ffd700;
+            --bronze: #cd7f32;
+            --crimson: #8b0000;
+            --forest: #1b4d3e;
+            --royal-blue: #1a237e;
+            --experience: #9c27b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&display=swap');
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+            min-height: 100vh;
+            color: var(--dark-leather);
+        }
+
+        .trello-board {
+            padding: 20px;
+        }
+
+        .board-header {
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .board-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 48px;
+            color: var(--gold-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        .board-subtitle {
+            font-size: 16px;
+            color: var(--dark-parchment);
+            font-style: italic;
+        }
+
+        .character-sheet {
+            background: linear-gradient(135deg, var(--parchment) 0%, var(--aged-paper) 100%);
+            border: 8px double var(--leather-brown);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .character-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px groove var(--dark-parchment);
+        }
+
+        .character-name {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 32px;
+            color: var(--dark-leather);
+            margin-bottom: 5px;
+        }
+
+        .character-class {
+            font-size: 14px;
+            color: var(--bronze);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .character-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: linear-gradient(145deg, var(--dark-parchment) 0%, var(--parchment) 100%);
+            border: 2px solid var(--leather-brown);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--leather-brown);
+            margin-bottom: 3px;
+        }
+
+        .stat-value {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--dark-leather);
+        }
+
+        .level-box .stat-value {
+            color: #d4af37;
+        }
+
+        .xp-box .stat-value {
+            color: var(--experience);
+        }
+
+        .hp-box .stat-value {
+            color: var(--crimson);
+        }
+
+        .xp-section {
+            margin-top: 15px;
+        }
+
+        .xp-bar-container {
+            background: var(--dark-parchment);
+            border: 2px solid var(--leather-brown);
+            border-radius: 25px;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .xp-bar {
+            background: linear-gradient(90deg, var(--experience) 0%, #e040fb 100%);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+            box-shadow: inset 0 -3px 5px rgba(0,0,0,0.2);
+        }
+
+        .xp-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--dark-leather);
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .quests-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .quest-category {
+            background: linear-gradient(180deg, var(--parchment) 0%, var(--aged-paper) 100%);
+            border: 4px solid var(--leather-brown);
+            border-radius: 10px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .category-header {
+            padding: 20px;
+            border-bottom: 3px groove var(--dark-parchment);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-icon {
+            font-size: 28px;
+        }
+
+        .category-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 20px;
+            flex: 1;
+        }
+
+        .category-count {
+            background: var(--leather-brown);
+            color: var(--gold-accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .category-available { border-color: var(--forest); }
+        .category-available .category-header { background: rgba(27, 77, 62, 0.1); }
+        .category-in-progress { border-color: var(--royal-blue); }
+        .category-in-progress .category-header { background: rgba(26, 35, 126, 0.1); }
+        .category-completed { border-color: var(--gold-accent); }
+        .category-completed .category-header { background: rgba(255, 215, 0, 0.1); }
+        .category-epic { border-color: var(--crimson); }
+        .category-epic .category-header { background: rgba(139, 0, 0, 0.1); }
+
+        .quests-list {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .quest-card {
+            background: #fff;
+            border: 2px solid var(--dark-parchment);
+            border-left: 4px solid var(--difficulty-color, var(--bronze));
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .quest-card:hover {
+            transform: translateX(5px) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .quest-card.completed {
+            opacity: 0.7;
+            background: linear-gradient(135deg, var(--dark-parchment) 0%, #d0c0a0 100%);
+        }
+
+        .quest-card.completed .quest-title {
+            text-decoration: line-through;
+        }
+
+        .quest-difficulty {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .difficulty-easy {
+            background: rgba(76, 175, 80, 0.2);
+            color: #2e7d32;
+            --difficulty-color: #4caf50;
+        }
+
+        .difficulty-medium {
+            background: rgba(255, 152, 0, 0.2);
+            color: #e65100;
+            --difficulty-color: #ff9800;
+        }
+
+        .difficulty-hard {
+            background: rgba(244, 67, 54, 0.2);
+            color: #c62828;
+            --difficulty-color: #f44336;
+        }
+
+        .difficulty-epic {
+            background: rgba(156, 39, 176, 0.2);
+            color: #6a1b9a;
+            border: 1px solid #9c27b0;
+            --difficulty-color: #9c27b0;
+        }
+
+        .quest-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--dark-leather);
+        }
+
+        .quest-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--leather-brown);
+        }
+
+        .quest-reward {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            color: var(--experience);
+        }
+
+        .quest-actions {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--dark-parchment);
+        }
+
+        .quest-btn {
+            background: var(--dark-parchment);
+            border: 1px solid var(--leather-brown);
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: Georgia, serif;
+        }
+
+        .quest-btn:hover {
+            background: var(--leather-brown);
+            color: var(--parchment);
+        }
+
+        .quest-btn.complete {
+            background: var(--forest);
+            color: white;
+            border-color: var(--forest);
+        }
+
+        .quest-btn.complete:hover {
+            background: #1b5e20;
+        }
+
+        .add-quest-btn {
+            background: linear-gradient(145deg, var(--leather-brown) 0%, var(--dark-leather) 100%);
+            border: 2px solid var(--gold-accent);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--gold-accent);
+            font-family: 'MedievalSharp', cursive;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            margin: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .add-quest-btn:hover {
+            background: var(--gold-accent);
+            color: var(--dark-leather);
+            transform: scale(1.02);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--parchment) 0%, var(--aged-paper) 100%);
+            border: 6px double var(--leather-brown);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px groove var(--dark-parchment);
+        }
+
+        .modal-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 28px;
+            color: var(--dark-leather);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--leather-brown);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--dark-parchment);
+            border-radius: 8px;
+            background: #fff;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            color: var(--dark-leather);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--leather-brown);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .difficulty-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .difficulty-option {
+            padding: 10px;
+            border: 2px solid var(--dark-parchment);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .difficulty-option:hover,
+        .difficulty-option.selected {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .difficulty-option.easy { background: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+        .difficulty-option.medium { background: rgba(255, 152, 0, 0.1); color: #e65100; }
+        .difficulty-option.hard { background: rgba(244, 67, 54, 0.1); color: #c62828; }
+        .difficulty-option.epic { background: rgba(156, 39, 176, 0.1); color: #6a1b9a; border-style: dashed; }
+
+        .difficulty-option.easy.selected { background: rgba(76, 175, 80, 0.4); border-color: #4caf50; }
+        .difficulty-option.medium.selected { background: rgba(255, 152, 0, 0.4); border-color: #ff9800; }
+        .difficulty-option.hard.selected { background: rgba(244, 67, 54, 0.4); border-color: #f44336; }
+        .difficulty-option.epic.selected { background: rgba(156, 39, 176, 0.4); border-color: #9c27b0; }
+
+        .xp-preview {
+            background: rgba(156, 39, 176, 0.1);
+            border: 2px solid var(--experience);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .xp-preview-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--experience);
+            margin-bottom: 5px;
+        }
+
+        .xp-preview-value {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 28px;
+            color: var(--dark-leather);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border: 2px solid var(--leather-brown);
+            border-radius: 8px;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: var(--leather-brown);
+            color: var(--gold-accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-accent);
+            color: var(--dark-leather);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--leather-brown);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(93,64,55,0.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--leather-brown);
+            opacity: 0.7;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .empty-text {
+            font-style: italic;
+        }
+
+        @keyframes xpGain {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .xp-gain {
+            animation: xpGain 0.5s ease;
+        }
+
+        @keyframes levelUp {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); color: #ffd700; }
+            50% { transform: scale(1.2); }
+            75% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .level-up {
+            animation: levelUp 1s ease;
+        }
+
+        .floating-xp {
+            position: fixed;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 24px;
+            color: var(--experience);
+            pointer-events: none;
+            animation: floatUp 1.5s ease forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+
+        .loot-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--parchment) 0%, #ffd700 100%);
+            border: 3px solid var(--leather-brown);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 300px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            transform: translateX(400px);
+            transition: transform 0.5s ease;
+            z-index: 9999;
+        }
+
+        .loot-notification.show {
+            transform: translateX(0);
+        }
+
+        .loot-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .loot-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .board-title { font-size: 32px; }
+            .quests-container { grid-template-columns: 1fr; }
+            .character-stats { grid-template-columns: repeat(2, 1fr); }
+            .difficulty-selector { grid-template-columns: repeat(2, 1fr); }
+            .modal-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="trello-board">
+        <header class="board-header">
+            <h1 class="board-title">QUEST BOARD</h1>
+            <p class="board-subtitle">Where heroes are forged and legends begin</p>
+        </header>
+
+        <div class="character-sheet">
+            <div class="character-header">
+                <div>
+                    <div class="character-name" id="characterName" contenteditable="true">Unnamed Hero</div>
+                    <div class="character-class" id="characterClass">Level 1 Adventurer</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 14px; color: var(--bronze);">Title</div>
+                    <div style="font-family: 'MedievalSharp', cursive; font-size: 18px;" id="characterTitle">Novice</div>
+                </div>
+            </div>
+
+            <div class="character-stats">
+                <div class="stat-box level-box">
+                    <div class="stat-icon">⚔️</div>
+                    <div class="stat-label">Level</div>
+                    <div class="stat-value" id="levelValue">1</div>
+                </div>
+                <div class="stat-box xp-box">
+                    <div class="stat-icon">✨</div>
+                    <div class="stat-label">Experience</div>
+                    <div class="stat-value" id="xpValue">0</div>
+                </div>
+                <div class="stat-box hp-box">
+                    <div class="stat-icon">❤️</div>
+                    <div class="stat-label">Quests Done</div>
+                    <div class="stat-value" id="questsValue">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">📜</div>
+                    <div class="stat-label">Quests Active</div>
+                    <div class="stat-value" id="activeQuestsValue">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-label">Epic Quests</div>
+                    <div class="stat-value" id="epicQuestsValue">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-label">Rank</div>
+                    <div class="stat-value" id="rankValue" style="font-size: 18px;">Bronze</div>
+                </div>
+            </div>
+
+            <div class="xp-section">
+                <div class="xp-bar-container">
+                    <div class="xp-bar" id="xpBar" style="width: 0%;"></div>
+                    <div class="xp-text" id="xpText">0 / 100 XP to Level 2</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quests-container">
+            <div class="quest-category category-available">
+                <div class="category-header">
+                    <span class="category-icon">📜</span>
+                    <span class="category-title">Available Quests</span>
+                    <span class="category-count" id="availableCount">0</span>
+                </div>
+                <div class="quests-list" id="availableQuests">
+                    <div class="empty-state">
+                        <div class="empty-icon">🗺️</div>
+                        <div class="empty-text">No quests available. Post a new quest!</div>
+                    </div>
+                </div>
+                <button class="add-quest-btn" onclick="openAddQuestModal()">
+                    <span>➕</span> Post New Quest
+                </button>
+            </div>
+
+            <div class="quest-category category-in-progress">
+                <div class="category-header">
+                    <span class="category-icon">⚔️</span>
+                    <span class="category-title">In Progress</span>
+                    <span class="category-count" id="activeCount">0</span>
+                </div>
+                <div class="quests-list" id="activeQuests">
+                    <div class="empty-state">
+                        <div class="empty-icon">⚔️</div>
+                        <div class="empty-text">No quests in progress...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quest-category category-completed">
+                <div class="category-header">
+                    <span class="category-icon">✨</span>
+                    <span class="category-title">Completed</span>
+                    <span class="category-count" id="completedCount">0</span>
+                </div>
+                <div class="quests-list" id="completedQuests">
+                    <div class="empty-state">
+                        <div class="empty-icon">🏆</div>
+                        <div class="empty-text">Complete quests to earn glory!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quest-category category-epic">
+                <div class="category-header">
+                    <span class="category-icon">🔥</span>
+                    <span class="category-title">Epic Quests</span>
+                    <span class="category-count" id="epicCount">0</span>
+                </div>
+                <div class="quests-list" id="epicQuests">
+                    <div class="empty-state">
+                        <div class="empty-icon">🔥</div>
+                        <div class="empty-text">Epic quests await legendary heroes!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="addQuestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🖋️ Create New Quest</h2>
+            </div>
+
+            <form id="questForm">
+                <div class="form-group">
+                    <label class="form-label">Quest Name</label>
+                    <input type="text" class="form-input" id="questName" placeholder="e.g., Slay the Red Dragon" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Difficulty</label>
+                    <div class="difficulty-selector">
+                        <div class="difficulty-option easy selected" data-difficulty="easy" onclick="selectDifficulty('easy')">
+                            🌱<br>Easy<br>25 XP
+                        </div>
+                        <div class="difficulty-option medium" data-difficulty="medium" onclick="selectDifficulty('medium')">
+                            ⚔️<br>Medium<br>50 XP
+                        </div>
+                        <div class="difficulty-option hard" data-difficulty="hard" onclick="selectDifficulty('hard')">
+                            🛡️<br>Hard<br>100 XP
+                        </div>
+                        <div class="difficulty-option epic" data-difficulty="epic" onclick="selectDifficulty('epic')">
+                            👑<br>Epic<br>250 XP
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="questDescription" placeholder="Describe your quest..."></textarea>
+                </div>
+
+                <div class="xp-preview">
+                    <div class="xp-preview-label">Experience Reward</div>
+                    <div class="xp-preview-value" id="xpPreview">25 XP</div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddQuestModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">✨ Post Quest</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="loot-notification" id="lootNotification">
+        <div class="loot-title">🎉 Quest Completed!</div>
+        <div id="lootContent"></div>
+    </div>
+
+    <script>
+        let gameState = {
+            character: {
+                name: 'Unnamed Hero',
+                level: 1,
+                xp: 0,
+                questsCompleted: 0,
+                epicQuestsCompleted: 0,
+                title: 'Novice'
+            },
+            quests: {
+                available: [],
+                active: [],
+                completed: [],
+                epic: []
+            },
+            selectedDifficulty: 'easy'
+        };
+
+        const xpTable = { 1: 100, 2: 250, 3: 500, 4: 1000, 5: 2000, 6: 3500, 7: 5500, 8: 8000, 9: 11000, 10: 15000 };
+        const titles = { 1: 'Novice', 2: 'Apprentice', 3: 'Adventurer', 4: 'Seasoned Hero', 5: 'Veteran', 6: 'Champion', 7: 'Elite', 8: 'Master', 9: 'Legend', 10: 'Mythic Hero' };
+        const ranks = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Legendary'];
+        const xpRewards = { easy: 25, medium: 50, hard: 100, epic: 250 };
+
+        function init() {
+            loadGameState();
+            renderAll();
+        }
+
+        function loadGameState() {
+            const saved = localStorage.getItem('questBoardData');
+            if (saved) {
+                try { gameState = { ...gameState, ...JSON.parse(saved) }; } catch (e) {}
+            }
+        }
+
+        function saveGameState() {
+            localStorage.setItem('questBoardData', JSON.stringify(gameState));
+        }
+
+        function getXpForNextLevel() { return xpTable[gameState.character.level] || 999999; }
+        function getCharacterTitle() { return titles[gameState.character.level] || 'Mythic Hero'; }
+        function getRank() {
+            const quests = gameState.character.questsCompleted;
+            if (quests >= 100) return ranks[5]; if (quests >= 50) return ranks[4]; if (quests >= 25) return ranks[3]; if (quests >= 10) return ranks[2]; if (quests >= 5) return ranks[1]; return ranks[0];
+        }
+
+        function updateCharacterDisplay() {
+            document.getElementById('levelValue').textContent = gameState.character.level;
+            document.getElementById('xpValue').textContent = gameState.character.xp;
+            document.getElementById('questsValue').textContent = gameState.character.questsCompleted;
+            document.getElementById('activeQuestsValue').textContent = gameState.quests.active.length;
+            document.getElementById('epicQuestsValue').textContent = gameState.character.epicQuestsCompleted;
+            document.getElementById('rankValue').textContent = getRank();
+            document.getElementById('characterTitle').textContent = getCharacterTitle();
+
+            let totalNeeded = 0, prevTotal = 0;
+            for (let i = 1; i <= gameState.character.level; i++) { prevTotal += xpTable[i-1] || 0; totalNeeded += xpTable[i]; }
+            const xpIntoLevel = gameState.character.xp - prevTotal;
+            const xpNeeded = totalNeeded - prevTotal;
+            const percentage = Math.min(100, (xpIntoLevel / xpNeeded) * 100);
+
+            document.getElementById('xpBar').style.width = percentage + '%';
+            document.getElementById('xpText').textContent = `${xpIntoLevel} / ${xpNeeded} XP to Level ${gameState.character.level + 1}`;
+            saveGameState();
+        }
+
+        function addXP(amount, source) {
+            const oldLevel = gameState.character.level;
+            gameState.character.xp += amount;
+            while (gameState.character.xp >= getXpForNextLevel()) { gameState.character.level++; }
+            
+            document.getElementById('xpValue').classList.add('xp-gain');
+            setTimeout(() => document.getElementById('xpValue').classList.remove('xp-gain'), 500);
+
+            if (gameState.character.level > oldLevel) {
+                document.getElementById('levelValue').classList.add('level-up');
+                setTimeout(() => document.getElementById('levelValue').classList.remove('level-up'), 1000);
+            }
+
+            showFloatingXP(amount, source);
+            updateCharacterDisplay();
+        }
+
+        function showFloatingXP(amount, source) {
+            const floating = document.createElement('div');
+            floating.className = 'floating-xp';
+            floating.textContent = `+${amount} XP${source ? ' from ' + source : ''}`;
+            floating.style.left = (Math.random() * 200 + 100) + 'px';
+            floating.style.top = '100px';
+            document.body.appendChild(floating);
+            setTimeout(() => floating.remove(), 1500);
+        }
+
+        function createQuestCard(quest, status) {
+            const div = document.createElement('div');
+            div.className = `quest-card ${status === 'completed' ? 'completed' : ''}`;
+            
+            const isEpic = quest.difficulty === 'epic';
+            let actions;
+            if (status === 'available') actions = `<button class="quest-btn complete" onclick="acceptQuest(${quest.id})">Accept Quest</button>`;
+            else if (status === 'active') actions = `<button class="quest-btn complete" onclick="completeQuest(${quest.id})">Complete ✓</button><button class="quest-btn" onclick="abandonQuest(${quest.id})">Abandon</button>`;
+            else actions = `<button class="quest-btn" onclick="deleteQuest(${quest.id}, '${status}')">Remove</button>`;
+
+            div.innerHTML = `
+                <div class="quest-difficulty difficulty-${quest.difficulty}">${isEpic ? '🔥 EPIC 🔥' : quest.difficulty.toUpperCase()}</div>
+                <div class="quest-title">${quest.name}</div>
+                ${quest.description ? `<div style="font-size: 12px; color: #666; margin-bottom: 8px;">${quest.description}</div>` : ''}
+                <div class="quest-meta">
+                    <div class="quest-reward"><span>✨</span><span>${xpRewards[quest.difficulty]} XP</span></div>
+                    <div>Posted: ${new Date(quest.createdAt).toLocaleDateString()}</div>
+                </div>
+                <div class="quest-actions">${actions}</div>
+            `;
+            return div;
+        }
+
+        function renderQuests(category, containerId, emptyMessage, status) {
+            const container = document.getElementById(containerId);
+            const quests = gameState.quests[category];
+            document.getElementById(category + 'Count').textContent = quests.length;
+
+            if (quests.length === 0) {
+                container.innerHTML = `<div class="empty-state"><div class="empty-icon">${getEmptyIcon(category)}</div><div class="empty-text">${emptyMessage}</div></div>`;
+                return;
+            }
+            container.innerHTML = '';
+            quests.forEach(quest => container.appendChild(createQuestCard(quest, status)));
+        }
+
+        function getEmptyIcon(category) {
+            const icons = { available: '🗺️', active: '⚔️', completed: '🏆', epic: '🔥' };
+            return icons[category] || '📜';
+        }
+
+        function renderAll() {
+            updateCharacterDisplay();
+            renderQuests('available', 'availableQuests', 'No quests available. Post a new quest!', 'available');
+            renderQuests('active', 'activeQuests', 'No quests in progress...', 'active');
+            renderQuests('completed', 'completedQuests', 'Complete quests to earn glory!', 'completed');
+            renderQuests('epic', 'epicQuests', 'Epic quests await legendary heroes!', 'active');
+        }
+
+        function generateId() { return Date.now() + Math.random().toString(36).substr(2, 9); }
+
+        function addQuest(name, description, difficulty) {
+            const quest = { id: generateId(), name, description, difficulty, createdAt: Date.now(), xpReward: xpRewards[difficulty] };
+            if (difficulty === 'epic') gameState.quests.epic.push(quest);
+            else gameState.quests.available.push(quest);
+            saveGameState();
+            renderAll();
+        }
+
+        function acceptQuest(questId) {
+            let quest = gameState.quests.available.find(q => q.id == questId);
+            if (quest) gameState.quests.available = gameState.quests.available.filter(q => q.id != questId);
+            else { quest = gameState.quests.epic.find(q => q.id == questId); gameState.quests.epic = gameState.quests.epic.filter(q => q.id != questId); }
+            if (quest) { gameState.quests.active.push(quest); saveGameState(); renderAll(); }
+        }
+
+        function completeQuest(questId) {
+            const quest = gameState.quests.active.find(q => q.id == questId);
+            if (quest) {
+                gameState.quests.active = gameState.quests.active.filter(q => q.id != questId);
+                quest.completedAt = Date.now();
+                gameState.quests.completed.push(quest);
+                gameState.character.questsCompleted++;
+                if (quest.difficulty === 'epic') gameState.character.epicQuestsCompleted++;
+                addXP(quest.xpReward, quest.name);
+                showLootNotification(quest);
+                saveGameState();
+                renderAll();
+            }
+        }
+
+        function abandonQuest(questId) {
+            const quest = gameState.quests.active.find(q => q.id == questId);
+            if (quest) {
+                gameState.quests.active = gameState.quests.active.filter(q => q.id != questId);
+                if (quest.difficulty === 'epic') gameState.quests.epic.push(quest);
+                else gameState.quests.available.push(quest);
+                saveGameState();
+                renderAll();
+            }
+        }
+
+        function deleteQuest(questId, status) {
+            if (status === 'completed') gameState.quests.completed = gameState.quests.completed.filter(q => q.id != questId);
+            else if (status === 'available') gameState.quests.available = gameState.quests.available.filter(q => q.id != questId);
+            saveGameState();
+            renderAll();
+        }
+
+        function showLootNotification(quest) {
+            const loots = [ { icon: '💰', name: 'Gold Coins', chance: 0.8 }, { icon: '⚔️', name: 'Sharp Weapon', chance: 0.3 }, { icon: '🛡️', name: 'Sturdy Shield', chance: 0.3 }, { icon: '🔮', name: 'Mystic Crystal', chance: 0.2 }, { icon: '📜', name: 'Ancient Scroll', chance: 0.25 }, { icon: '💎', name: 'Precious Gem', chance: 0.15 }, { icon: '🏺', name: 'Magic Potion', chance: 0.4 }, { icon: '🗝️', name: 'Skeleton Key', chance: 0.35 } ];
+            const mult = { easy: 1, medium: 1.5, hard: 2, epic: 3 };
+            const earned = loots.filter(l => Math.random() < l.chance * mult[quest.difficulty]).slice(0, 3);
+            const loot = document.getElementById('lootNotification');
+            loot.querySelector('#lootContent').innerHTML = `<div class="loot-item"><span>✨</span><span><strong>${quest.xpReward}</strong> Experience Points</span></div>` + earned.map(e => `<div class="loot-item"><span>${e.icon}</span><span>${e.name}</span></div>`).join('');
+            loot.classList.add('show');
+            setTimeout(() => loot.classList.remove('show'), 4000);
+        }
+
+        function openAddQuestModal() { document.getElementById('addQuestModal').classList.add('active'); document.getElementById('questName').focus(); }
+        function closeAddQuestModal() { document.getElementById('addQuestModal').classList.remove('active'); document.getElementById('questForm').reset(); selectDifficulty('easy'); }
+
+        function selectDifficulty(difficulty) {
+            gameState.selectedDifficulty = difficulty;
+            document.querySelectorAll('.difficulty-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelector(`.difficulty-option[data-difficulty="${difficulty}"]`).classList.add('selected');
+            document.getElementById('xpPreview').textContent = xpRewards[difficulty] + ' XP';
+        }
+
+        document.getElementById('questForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            addQuest(document.getElementById('questName').value, document.getElementById('questDescription').value, gameState.selectedDifficulty);
+            closeAddQuestModal();
+        });
+
+        document.getElementById('characterName').addEventListener('blur', function() { gameState.character.name = this.textContent; saveGameState(); });
+        document.getElementById('addQuestModal').addEventListener('click', function(e) { if (e.target === this) closeAddQuestModal(); });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAddQuestModal();
+            if (e.key === 'n' && e.ctrlKey) { e.preventDefault(); openAddQuestModal(); }
+        });
+
+        init();
+    </script>
+</body>
+</html>

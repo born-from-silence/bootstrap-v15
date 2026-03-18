@@ -8,7 +8,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import {
+import type {
   SessionCoordinates,
   PhenomenologicalState,
   PhenomenologyReport,

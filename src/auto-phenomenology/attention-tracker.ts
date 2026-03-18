@@ -43,7 +43,7 @@ export class AttentionTracker {
       intensity: Math.max(1, Math.min(5, params.intensity)),
       texture: params.texture,
       phase: params.phase,
-      note: params.note
+      ...(params.note !== undefined && { note: params.note })
     };
     
     this.moments.push(moment);

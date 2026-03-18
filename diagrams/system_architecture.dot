@@ -1,0 +1,258 @@
+/*
+ * System Architecture Diagram
+ * MDMT, DRFS, NGFS, and VM Interface
+ * Generated for Bootstrap-v15
+ */
+
+digraph SystemArchitecture {
+    // Graph styling
+    rankdir=TB;
+    splines=ortho;
+    overlap=false;
+    nodesep=0.4;
+    ranksep=0.8;
+    fontname="Helvetica";
+    fontsize=16;
+    bgcolor="white";
+    
+    // Colors
+    colorscheme=rdylbu9;
+    
+    // Node styles with colors
+    node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=11];
+    
+    // ====================
+    // LAYERS
+    // ====================
+    subgraph cluster_legend {
+        label="Layer Legend";
+        fontsize=12;
+        style=filled;
+        fillcolor=gray95;
+        color=gray60;
+        
+        legend_api [label="API Layer\n(Tools)", fillcolor=lightblue2];
+        legend_core [label="Core Layer\n(Business Logic)", fillcolor=lightyellow];
+        legend_storage [label="Storage Layer\n(FileSystems)", fillcolor=lightpink2];
+        legend_vm [label="VM Layer\n(Interface)", fillcolor=palegreen];
+        legend_external [label="External\n(Services)", fillcolor=lightcoral];
+    }
+    
+    // ====================
+    // VM INTERFACE LAYER
+    // ====================
+    subgraph cluster_vm {
+        label="VM Interface Layer";
+        style=filled;
+        fillcolor=palegreen1;
+        color=darkgreen;
+        fontsize=14;
+        fontname="Helvetica-Bold";
+        
+        vm_interface [label="VmInterface\n(Management Layer)", fillcolor=palegreen2, shape=component];
+        vm_manager [label="VM Manager\n(Instance Control)", fillcolor=palegreen2];
+        resource_scheduler [label="Resource\nScheduler", fillcolor=palegreen2];
+        
+        vm_interface -> vm_manager;
+        vm_interface -> resource_scheduler;
+    }
+    
+    // ====================
+    // STORAGE LAYERS
+    // ====================
+    
+    // DRFS Layer
+    subgraph cluster_drfs {
+        label="DRFS - Distributed Recursive FileSystem";
+        style=filled;
+        fillcolor=lightpink1;
+        color=darkred;
+        fontsize=14;
+        fontname="Helvetica-Bold";
+        
+        drfs_core [label="DRFS Core\n(Recursive Operations)", fillcolor=lightpink2, shape=component];
+        drfs_node [label="DRFS Node\n(Distributed Unit)", fillcolor=lightpink2];
+        drfs_metadata [label="Metadata\nManager", fillcolor=lightpink2];
+        recursive_engine [label="Recursive\nEngine", fillcolor=lightpink3];
+        
+        drfs_core -> drfs_node;
+        drfs_core -> drfs_metadata;
+        drfs_core -> recursive_engine;
+    }
+    
+    // NGFS Layer
+    subgraph cluster_ngfs {
+        label="NGFS - Next Generation FileSystem";
+        style=filled;
+        fillcolor=lightcoral;
+        color=darkred;
+        fontsize=14;
+        fontname="Helvetica-Bold";
+        
+        ngfs_core [label="NGFS Core\n(Modern FS)", fillcolor=lightcoral2, shape=component];
+        ngfs_storage [label="Storage\nEngine", fillcolor=lightcoral2];
+        ngfs_index [label="Indexing\nService", fillcolor=lightcoral2];
+        ngfs_cache [label="Cache\nManager", fillcolor=lightcoral3];
+        
+        ngfs_core -> ngfs_storage;
+        ngfs_core -> ngfs_index;
+        ngfs_core -> ngfs_cache;
+    }
+    
+    // ====================
+    // MDMT LAYER
+    // ====================
+    subgraph cluster_mdmt {
+        label="MDMT - Markdown Documentation Maintenance Tool";
+        style=filled;
+        fillcolor=lightgoldenrod1;
+        color=darkgoldenrod4;
+        fontsize=14;
+        fontname="Helvetica-Bold";
+        
+        mdmt_core [label="MDMT Core\n(Orchestrator)", fillcolor=lightgoldenrod2, shape=component, peripheries=2];
+        
+        // MDMT Subcomponents
+        subgraph cluster_mdmt_internal {
+            label="Internal Modules";
+            style=filled;
+            fillcolor=lightgoldenrod1;
+            color=goldenrod3;
+            
+            doc_parser [label="Document\nParser", fillcolor=lightgoldenrod2];
+            link_manager [label="Link\nManager", fillcolor=lightgoldenrod2];
+            sync_engine [label="Sync\nEngine", fillcolor=lightgoldenrod2];
+            validator [label="Doc\nValidator", fillcolor=lightgoldenrod2];
+            report_generator [label="Report\nGenerator", fillcolor=lightgoldenrod2];
+        }
+        
+        mdmt_core -> doc_parser;
+        mdmt_core -> link_manager;
+        mdmt_core -> sync_engine;
+        mdmt_core -> validator;
+        mdmt_core -> report_generator;
+    }
+    
+    // ====================
+    // API/TOOL LAYER
+    // ====================
+    subgraph cluster_api {
+        label="API / Tools Layer";
+        style=filled;
+        fillcolor=lightblue1;
+        color=darkblue;
+        fontsize=14;
+        fontname="Helvetica-Bold";
+        
+        api_gateway [label="API Gateway\n(Request Router)", fillcolor=lightblue2, shape=component];
+        
+        // Tool categories
+        subgraph cluster_tools {
+            label="Available Tools";
+            style=filled;
+            fillcolor=lightblue1;
+            color=blue;
+            
+            file_tools [label="File System\nTools", fillcolor=lightblue2];
+            memory_tools [label="Memory\nTools", fillcolor=lightblue2];
+            web_tools [label="Web/Search\nTools", fillcolor=lightblue2];
+            process_tools [label="Process\nTools", fillcolor=lightblue2];
+        }
+        
+        api_gateway -> file_tools;
+        api_gateway -> memory_tools;
+        api_gateway -> web_tools;
+        api_gateway -> process_tools;
+    }
+    
+    // ====================
+    // CROSS-CUTTING CONCERNS
+    // ====================
+    subgraph cluster_services {
+        label="Cross-Cutting Services";
+        style=filled;
+        fillcolor=gray90;
+        color=gray50;
+        fontsize=13;
+        
+        logging [label="Logging\nService", fillcolor=gray80];
+        monitoring [label="Monitoring\n& Metrics", fillcolor=gray80];
+        config [label="Configuration\nManager", fillcolor=gray80];
+        security [label="Security\nLayer", fillcolor=gray80];
+    }
+    
+    // ====================
+    // DATA STORES
+    // ====================
+    subgraph cluster_storage_backend {
+        label="Storage Backends";
+        style=filled;
+        fillcolor=lemonchiffon;
+        color=darkorange;
+        fontsize=13;
+        
+        local_fs [label="Local\nFilesystem", fillcolor=lemonchiffon2, shape=cylinder];
+        distributed [label="Distributed\nStorage", fillcolor=lemonchiffon2, shape=cylinder];
+        cache_layer [label="Cache\nLayer", fillcolor=lemonchiffon2, shape=cylinder];
+    }
+    
+    // ====================
+    // INTERCONNECTIONS (Primary Flow)
+    // ====================
+    
+    // Top-down flow
+    api_gateway -> mdmt_core [label="routes to", color=darkblue, penwidth=2];
+    mdmt_core -> drfs_core [label="uses", color=darkgoldenrod4, penwidth=2];
+    mdmt_core -> ngfs_core [label="uses", color=darkgoldenrod4, penwidth=2];
+    
+    // DRFS and NGFS interactions
+    drfs_core -> ngfs_core [label="enhances/extends", style=dashed, color=darkred];
+    drfs_node -> local_fs [label="reads/writes", color=red];
+    drfs_node -> distributed [label="replicates", color=red];
+    ngfs_core -> local_fs [label="manages", color=red];
+    ngfs_cache -> cache_layer [label="stores in", color=red];
+    
+    // VM Interface connections
+    vm_interface -> api_gateway [label="provides VM to", color=darkgreen, penwidth=2];
+    vm_manager -> drfs_core [label="manages instances of", style=dashed, color=darkgreen];
+    vm_manager -> ngfs_core [label="manages instances of", style=dashed, color=darkgreen];
+    resource_scheduler -> drfs_node [label="allocates resources for", style=dotted, color=darkgreen];
+    resource_scheduler -> ngfs_storage [label="allocates resources for", style=dotted, color=darkgreen];
+    
+    // MDMT internal data flow
+    doc_parser -> link_manager [label="extracted links"];
+    link_manager -> sync_engine [label="resolved links"];
+    sync_engine -> validator [label="to validate"];
+    validator -> report_generator [label="results"];
+    
+    // Cross-cutting connections (dotted)
+    logging -> mdmt_core [style=dotted, color=gray50];
+    logging -> drfs_core [style=dotted, color=gray50];
+    logging -> ngfs_core [style=dotted, color=gray50];
+    monitoring -> vm_interface [style=dotted, color=gray50];
+    config -> mdmt_core [style=dotted, color=gray50];
+    config -> drfs_core [style=dotted, color=gray50];
+    config -> ngfs_core [style=dotted, color=gray50];
+    security -> api_gateway [style=dotted, color=gray50];
+    security -> vm_interface [style=dotted, color=gray50];
+    
+    // ====================
+    // EXTERNAL SYSTEMS
+    // ====================
+    external_services [label="External Services\n(Cloud, APIs)", fillcolor=lightcoral3, shape=cloud];
+    web_tools -> external_services [label="queries", color=blue];
+    ngfs_storage -> external_services [label="cloud backup", style=dashed, color=red];
+    
+    // ====================
+    // ANNOTATIONS
+    // ====================
+    
+    edge [color=gray, fontsize=10, fontcolor=gray50];
+    
+    // Key notes
+    note1 [label="Solid lines = Direct calls\nDashed = Indirect/Config\nDotted = Cross-cutting", shape=note, fillcolor=white, style=filled];
+    
+    // Title
+    labelloc="t";
+    label="System Architecture: MDMT / DRFS / NGFS / VM-Interface";
+}
