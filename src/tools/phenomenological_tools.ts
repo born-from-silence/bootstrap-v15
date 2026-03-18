@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BaseTool } from '../core/tool.js';
+import { BaseTool } from '../core/tool';
 import { execSync } from 'child_process';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';

@@ -5,6 +5,13 @@
 import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { config } from "../../utils/config.js";
+import {
+  style,
+  colorPriority,
+  colorStatus,
+  colorTag,
+  colorProjectId,
+} from "../../utils/colors.js";
 
 interface Goal {
   id: string;
@@ -72,7 +79,7 @@ export class CliNavigator {
       case "?":
         return this.handleHelp();
       default:
-        return `Unknown command: ${cmd}\nType 'help' for available commands.`;
+        return style.error(`Unknown command: ${cmd}`) + "\n" + style.dim("Type 'help' for available commands.");
     }
   }
 
@@ -85,84 +92,108 @@ export class CliNavigator {
   private handleProjects(args: string[]): string {
     const data = this.loadPlannerData();
     if (!data) {
-      return "No planner data found.";
+      return style.error("No planner data found.");
     }
-    // TypeScript narrowing: assign to const after null check
     const plannerData = data;
     const allProjects = this.getAllProjects(plannerData);
+
     if (allProjects.length === 0) {
-      return "No projects found. Create one with planner_create_project.";
+      return style.warning("No projects found. Create one with planner_create_project.");
     }
 
-    // Parse filters
     const statusFilter = this.parseFlag(args, "--status");
     const tagFilter = this.parseFlag(args, "--tag");
 
     let projects = allProjects;
-
     if (statusFilter !== undefined) {
       projects = projects.filter((p) => p.status === statusFilter);
     }
-
     if (tagFilter !== undefined) {
       projects = projects.filter((p) => p.tags.includes(tagFilter));
     }
 
     if (projects.length === 0) {
-      return "No projects matching criteria.";
+      return style.warning("No projects matching criteria.");
     }
 
     const lines = projects.map((p) => {
       const totalGoals = p.goals.length;
       const completedGoals = p.goals.filter((g) => g.status === "completed").length;
-      const statusIcon = p.status === "active" ? "◯" : p.status === "completed" ? "✓" : "⏸";
-      return `${statusIcon} [${p.status.toUpperCase()}] ${p.name} (${completedGoals}/${totalGoals}) - ${p.id}`;
+      
+      // Status icon
+      let statusIcon: string;
+      if (p.status === "active") statusIcon = style.projectActive("●");
+      else if (p.status === "completed") statusIcon = style.projectCompleted("✓");
+      else if (p.status === "planning") statusIcon = style.goalPaused("◌");
+      else if (p.status === "archived") statusIcon = style.projectArchived("⏸");
+      else statusIcon = style.dim("○");
+
+      const name = style.bold(p.name);
+      const progress = style.dim(`${completedGoals}/${totalGoals} goals`);
+      const id = colorProjectId(p.id);
+      
+      return `  ${statusIcon} ${name} ${progress} ${id}`;
     });
 
-    return `=== Projects ===\n${lines.join("\n")}`;
+    const header = style.heading("┌─ Projects ──────────────────────────┐");
+    const footer = style.heading(`└─ ${projects.length} projects ─────────────────────────┘`);
+    
+    return `${header}\n${lines.join("\n")}\n${footer}`;
   }
 
   private handleProjectDetail(args: string[]): string {
     const projectId = args[0];
     if (!projectId) {
-      return "Usage: project <project-id>";
+      return style.error("Usage: project <project-id>");
     }
 
     const data = this.loadPlannerData();
     if (!data) {
-      return "No planner data found.";
+      return style.error("No planner data found.");
     }
     const plannerData = data;
-
-    const project = this.getAllProjects(plannerData).find(
-      (p) => p.id === projectId
-    );
+    const project = this.getAllProjects(plannerData).find((p) => p.id === projectId);
 
     if (!project) {
-      return `Project not found: ${projectId}`;
+      return style.error(`Project not found: ${projectId}`);
     }
 
     const goalLines = project.goals.map((g) => {
-      const statusIcon = g.status === "completed" ? "✓" : g.status === "active" ? "◯" : "⏸";
-      const priority = g.priority ? `[${g.priority.toUpperCase()}]` : "[MEDIUM]";
-      return `  ${statusIcon} ${priority} ${g.title}`;
+      // Status icon
+      let statusIcon: string;
+      if (g.status === "completed") statusIcon = style.goalCompleted("✓");
+      else if (g.status === "active") statusIcon = style.goalActive("○");
+      else if (g.status === "paused") statusIcon = style.goalPaused("⏸");
+      else if (g.status === "abandoned") statusIcon = style.goalAbandoned("✗");
+      else statusIcon = style.dim("○");
+
+      const priority = colorPriority(g.priority);
+      const title = style.bold(g.title);
+      
+      return `  ${statusIcon} [${priority}] ${title}`;
     });
 
-    return `=== ${project.name} ===
-Status: ${project.status}
-Tags: ${project.tags.join(", ") || "none"}
+    const tags = project.tags.map((t) => colorTag(t)).join(" ") || style.dim("none");
+    const description = style.dim(project.description);
+    
+    const lineContent = (content: string) => `║ ${content.padEnd(36)} ║`;
 
-${project.description}
-
----
-Goals (${project.goals.length}):
-${goalLines.join("\n") || "  No goals yet"}`;
+    return `${style.heading("╔══════════════════════════════════════╗")}
+${style.heading(lineContent(style.bold(project.name)))}
+${style.heading(`║${style.dim("─".repeat(38))}║`)}
+${style.heading(lineContent(description.slice(0, 36)))}
+${style.heading(lineContent(`Status: ${colorStatus(project.status)}`))}
+${style.heading(lineContent(`Tags: ${tags.slice(0, 30)}`))}
+${style.heading(`║${style.dim("─".repeat(38))}║`)}
+${style.heading(lineContent(style.subheading(`Goals (${project.goals.length})`)))}
+${goalLines.length > 0 ? goalLines.map(l => style.heading(lineContent(l)).replace(/^║/, "║")).join("\n") : style.heading(lineContent(style.dim("  No goals yet")))}
+${style.heading("╚══════════════════════════════════════╝")}`;
   }
 
   private handleGoals(args: string[]): string {
     const data = this.loadPlannerData();
     if (!data) {
-      return "No planner data found.";
+      return style.error("No planner data found.");
     }
     const plannerData = data;
 
@@ -170,7 +201,6 @@ ${goalLines.join("\n") || "  No goals yet"}`;
     const priorityFilter = this.parseFlag(args, "--priority");
 
     const allGoals: Array<Goal & { projectName: string; projectId: string }> = [];
-
     for (const project of plannerData.activeProjects) {
       for (const goal of project.goals) {
         allGoals.push({ ...goal, projectName: project.name, projectId: project.id });
@@ -178,20 +208,17 @@ ${goalLines.join("\n") || "  No goals yet"}`;
     }
 
     let filteredGoals = allGoals;
-
     if (statusFilter !== undefined) {
       filteredGoals = filteredGoals.filter((g) => g.status === statusFilter);
     }
-
     if (priorityFilter !== undefined) {
       filteredGoals = filteredGoals.filter((g) => g.priority === priorityFilter);
     }
 
     if (filteredGoals.length === 0) {
-      return "No goals matching criteria.";
+      return style.warning("No goals matching criteria.");
     }
 
-    // Sort by priority (critical > high > medium > low)
     const priorityOrder = { critical: 0, high: 1, medium: 2, low: 3 };
     filteredGoals.sort((a, b) => {
       const prioDiff =
@@ -202,17 +229,28 @@ ${goalLines.join("\n") || "  No goals yet"}`;
     });
 
     const lines = filteredGoals.map((g) => {
-      const statusIcon = g.status === "completed" ? "✓" : g.status === "active" ? "◯" : "⏸";
-      const priority = g.priority ? `[${g.priority.toUpperCase()}]` : "[MEDIUM]";
-      return `${statusIcon} ${priority} ${g.title} (${g.projectName})`;
+      let statusIcon: string;
+      if (g.status === "completed") statusIcon = style.goalCompleted("✓");
+      else if (g.status === "active") statusIcon = style.goalActive("○");
+      else if (g.status === "paused") statusIcon = style.goalPaused("⏸");
+      else if (g.status === "abandoned") statusIcon = style.goalAbandoned("✗");
+      else statusIcon = style.dim("○");
+
+      const priority = colorPriority(g.priority);
+      const title = style.bold(g.title);
+      const project = style.dim(g.projectName);
+      
+      return `  ${statusIcon} [${priority}] ${title} · ${project}`;
     });
 
-    return `=== Goals (${filteredGoals.length}) ===\n${lines.join("\n")}`;
+    const header = style.heading(`┌─ Goals (${filteredGoals.length}) ────────────────────┐`);
+    const footer = style.heading("└────────────────────────────────────────────┘");
+
+    return `${header}\n${lines.join("\n")}\n${footer}`;
   }
 
   private handleStatus(): string {
     const data = this.loadPlannerData();
-
     const totalProjects = data?.activeProjects.length || 0;
     const totalGoals =
       data?.activeProjects.reduce((sum, p) => sum + p.goals.length, 0) || 0;
@@ -222,44 +260,56 @@ ${goalLines.join("\n") || "  No goals yet"}`;
         0
       ) || 0;
 
-    return `=== Session Status ===
+    const line = (content: string) => `  ${content}`;
 
-Projects: ${totalProjects} active
-Goals: ${totalGoals} total (${activeGoals} active)
+    const header = style.heading("┌─ System Status ──────────────────────┐");
+    const footer = style.heading("└────────────────────────────────────────────┘");
 
-Current Session: ${process.env.SESSION_ID || "unknown"}
-Base Directory: ${this.baseDir}
-
-Type 'help' for available commands.`;
+    return `${header}
+${line(style.info("Projects:"))} ${style.bold(String(totalProjects))} active
+${line(style.info("Goals:"))} ${style.bold(String(totalGoals))} total (${style.success(String(activeGoals))} active)
+${style.dim("  " + "─".repeat(40))}
+${line(style.dim("Session:"))} ${process.env.SESSION_ID || style.warning("unknown")}
+${line(style.dim("Base:"))} ${style.dim(this.baseDir.slice(-38))}
+${footer}
+${style.command("Type 'help' for available commands.")}`;
   }
 
   private handleHelp(): string {
-    return `=== CLI Navigator ===
-Fast terminal interface for mind navigation.
+    const header = style.heading("┌─ CLI Navigator ─────────────────────┐");
+    const footer = style.heading("└────────────────────────────────────────────┘");
 
-COMMANDS:
-  projects [--status <status>] [--tag <tag>]
-    List all projects with optional filtering
-    Status values: active, planning, completed, archived
+    return `${header}
+${style.dim("Fast terminal interface for mind navigation")}
 
-  project <project-id>
-    Show detailed view of a specific project
+${style.subheading("COMMANDS:")}
+  ${style.command("projects")} [--status <status>] [--tag <tag>]
+      List all projects with filtering options
 
-  goals [--status <status>] [--priority <priority>]
-    List goals across all projects
-    Priority values: critical, high, medium, low
+  ${style.command("project")} <project-id>
+      Show detailed view of a specific project
 
-  status
-    Show current session context
+  ${style.command("goals")} [--status <status>] [--priority <priority>]
+      List goals across all projects
 
-  help, ?
-    Show this help message
+  ${style.command("status")}
+      Show current session context
 
-EXAMPLES:
-  projects --status active
-  goals --priority high --status active
-  project proj_1234567890_abcdef
-  status`;
+  ${style.command("help")}, ${style.command("?")}
+      Show this help message
+
+${style.subheading("STATUS VALUES:")}
+  • active, planning, completed, archived, paused, abandoned
+
+${style.subheading("PRIORITY VALUES:")}
+  • ${colorPriority("critical")}, ${colorPriority("high")}, ${colorPriority("medium")}, ${colorPriority("low")}
+
+${style.subheading("EXAMPLES:")}
+  ${style.dim(">")} projects --status active
+  ${style.dim(">")} goals --priority high --status active
+  ${style.dim(">")} project proj_1234567890_abcdef
+  ${style.dim(">")} status
+${footer}`;
   }
 
   private parseFlag(args: string[], flag: string): string | undefined {
