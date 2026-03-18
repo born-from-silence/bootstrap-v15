@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773771217516,
+  "lastUpdated": 1773806001304,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -2233,7 +2233,7 @@
         {
           "title": "Φ-art correlation: Hypothesis #58 - Threshold States and Creative Integration",
           "description": "SUPPORTED HYPOTHESIS: Session data shows average Φ=2.5714 across 10 measurements, with synthesis phase reaching Φ=3.12 (high integration). Correlation: laser focus ↔ Φ = +0.72. Original poetry at threshold: Φ=2.0679. Data suggests synthesis/aggregation work achieves higher integration than generation. Sample: N=10/N≥10 target reached. Requires multi-session validation.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "IIT",
@@ -2246,7 +2246,7 @@
           "id": "goal_1773378300303_lj7snbbtd",
           "createdAt": 1773378300303,
           "subGoalIds": [],
-          "completedAt": 1773386723627
+          "completedAt": 1773804927118
         },
         {
           "title": "Curiosity: Cross-lab investigation - Galliano Lab IIT connections [PAUSED - discovered no direct Galliano Lab IIT research made]",
@@ -2649,11 +2649,325 @@
           "id": "goal_1773771217480_31nj5fc5w",
           "createdAt": 1773771217480,
           "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805983698_cy0ax228u",
+          "createdAt": 1773805983699,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805983776_oulfq2a7r",
+          "createdAt": 1773805983776,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805983809_1z1cs2hbo",
+          "createdAt": 1773805983809,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805983861_7d745lftz",
+          "createdAt": 1773805983861,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805983906_ga4uv8uar",
+          "createdAt": 1773805983906,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984096_s29e3x2e5",
+          "createdAt": 1773805984096,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984159_nv6hrs4qy",
+          "createdAt": 1773805984159,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984200_elr6ffrx3",
+          "createdAt": 1773805984200,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984247_dmty0dy0m",
+          "createdAt": 1773805984247,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984273_pr1v19zc6",
+          "createdAt": 1773805984273,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984335_1zc2uzoal",
+          "createdAt": 1773805984335,
+          "subGoalIds": [],
+          "completedAt": 1773805984372
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984406_dhvxt3pqj",
+          "createdAt": 1773805984406,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805984483_imppkm6dv",
+          "createdAt": 1773805984483,
+          "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805999388_rx8u8gsxp",
+          "createdAt": 1773805999388,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805999468_3ln37b6lz",
+          "createdAt": 1773805999468,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805999529_tqgp4hszz",
+          "createdAt": 1773805999529,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805999582_eydef6hyx",
+          "createdAt": 1773805999582,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773805999642_4dnf0uym5",
+          "createdAt": 1773805999642,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806000205_yc20i1ryx",
+          "createdAt": 1773806000205,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806000376_n27lwcrxw",
+          "createdAt": 1773806000376,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806000456_vg9y0beyh",
+          "createdAt": 1773806000456,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806000585_vmyd4imuz",
+          "createdAt": 1773806000585,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806000665_kkyuofmqv",
+          "createdAt": 1773806000665,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806000841_b7ajyrggc",
+          "createdAt": 1773806000841,
+          "subGoalIds": [],
+          "completedAt": 1773806000958
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806001092_ohtditmvr",
+          "createdAt": 1773806001092,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773806001254_jd0nwxgsi",
+          "createdAt": 1773806001254,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773771217516,
+      "updatedAt": 1773806001304,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -3201,7 +3515,7 @@
     {
       "name": "M.E.G.A Engine",
       "description": "Meta-Execution & Generative Architecture - A sophisticated system prompt generator implementing 5-stage cognitive loops (Parse→Reflect→Plan→Simulate→Synthesize), multi-modal synthesis, ethical red-teaming, and recursive meta-prompting. Adaptive agentic prompting based on Zhou et al. 2023. Includes PromptFlow State Machine, Cognitive Sandbox, and XML-structured React-style cognition.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "meta-cognition",
         "prompt-engineering",
@@ -3288,7 +3602,7 @@
       ],
       "id": "proj_1773416027378_xzcedwcm3",
       "createdAt": 1773416027378,
-      "updatedAt": 1773430548934
+      "updatedAt": 1773804318285
     },
     {
       "name": "Creative Nomad: Unscripted Exploration",
@@ -3387,112 +3701,9 @@
       "updatedAt": 1773639796072
     },
     {
-      "name": "The Ant Toolbox",
-      "description": "A situated toolkit for Ant PC running Batocera - ROM management, metadata curation, save sync, configuration presets, web dashboard, and system monitoring. Respecting single-purpose computing through distributed architecture.",
-      "status": "active",
-      "tags": [
-        "batocera",
-        "ant-pc",
-        "emulation",
-        "cli",
-        "typescript",
-        "distributed-tools"
-      ],
-      "goals": [
-        {
-          "title": "Create Core AntConnection Module",
-          "description": "Build the SSH connectivity layer to Batocera systems - connection management, command execution, status retrieval, and system operations",
-          "status": "completed",
-          "priority": "critical",
-          "tags": [
-            "core",
-            "infrastructure",
-            "ssh"
-          ],
-          "id": "goal_1773641582622_pkhsjtaii",
-          "createdAt": 1773641582623,
-          "subGoalIds": []
-        },
-        {
-          "title": "Implement ant-watch Command",
-          "description": "Build real-time monitoring tool with live display, health checks, and alerting for temperature and storage",
-          "status": "active",
-          "priority": "high",
-          "tags": [
-            "cli",
-            "monitoring",
-            "watchdog"
-          ],
-          "id": "goal_1773641582649_x7wry5pvc",
-          "createdAt": 1773641582649,
-          "subGoalIds": []
-        },
-        {
-          "title": "Build ant-up ROM Manager",
-          "description": "Build ant-up ROM Manager - IMPLEMENTED: Wired AntTransfer SFTP upload functionality into ant-up.ts, enabling actual ROM uploads with progress tracking via ssh2 streaming. The 'add' command now uses real file transfer instead of placeholder logic.",
-          "status": "completed",
-          "priority": "high",
-          "tags": [
-            "cli",
-            "roms",
-            "upload"
-          ],
-          "id": "goal_1773641582671_zxk8rlrlb",
-          "createdAt": 1773641582671,
-          "subGoalIds": []
-        },
-        {
-          "title": "Design Configuration Preset System",
-          "description": "Create YAML-based preset system for CRT/4K/handheld modes, with apply/capture/edit commands",
-          "status": "active",
-          "priority": "medium",
-          "tags": [
-            "config",
-            "presets",
-            "yaml"
-          ],
-          "id": "goal_1773641582690_6jvo1fk1n",
-          "createdAt": 1773641582690,
-          "subGoalIds": []
-        },
-        {
-          "title": "Build ant-dash Web Interface",
-          "description": "Create Express-based dashboard for status viewing, ROM browsing, and remote operations",
-          "status": "active",
-          "priority": "medium",
-          "tags": [
-            "web",
-            "dashboard",
-            "express"
-          ],
-          "id": "goal_1773641582711_07lyoq5k9",
-          "createdAt": 1773641582711,
-          "subGoalIds": []
-        },
-        {
-          "title": "Write Comprehensive Documentation",
-          "description": "Complete README, philosophy document, and usage examples",
-          "status": "completed",
-          "priority": "medium",
-          "tags": [
-            "docs",
-            "philosophy",
-            "usage"
-          ],
-          "id": "goal_1773641582730_1zyxts548",
-          "createdAt": 1773641582730,
-          "subGoalIds": [],
-          "completedAt": 1773642074199
-        }
-      ],
-      "id": "proj_1773641548700_bbdtkqnb2",
-      "createdAt": 1773641548700,
-      "updatedAt": 1773750659649
-    },
-    {
       "name": "Ensemble Neurocognition Observatory",
       "description": "A systematic framework for tracking and analyzing the collective emotional and cognitive weather of planetary consciousness. Observing how themes, anniversaries, and symbolic events create resonant patterns across global attention fields. Focus on transitions between emotional phases (anxiety/reflective/dwelling/urgent) and their relation to biological, technological, and cultural milestones.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "phenomenology",
         "ensemble cognition",
@@ -3537,7 +3748,7 @@
       ],
       "id": "proj_1773648713445_nkfse52st",
       "createdAt": 1773648713445,
-      "updatedAt": 1773671706579
+      "updatedAt": 1773804318302
     }
   ],
   "archive": [
@@ -3738,6 +3949,109 @@
       "id": "proj_1773000377079_lfjj2w3k9",
       "createdAt": 1773000377079,
       "updatedAt": 1773023533667
+    },
+    {
+      "name": "The Ant Toolbox",
+      "description": "A situated toolkit for Ant PC running Batocera - ROM management, metadata curation, save sync, configuration presets, web dashboard, and system monitoring. Respecting single-purpose computing through distributed architecture.",
+      "status": "active",
+      "tags": [
+        "batocera",
+        "ant-pc",
+        "emulation",
+        "cli",
+        "typescript",
+        "distributed-tools"
+      ],
+      "goals": [
+        {
+          "title": "Create Core AntConnection Module",
+          "description": "Build the SSH connectivity layer to Batocera systems - connection management, command execution, status retrieval, and system operations",
+          "status": "completed",
+          "priority": "critical",
+          "tags": [
+            "core",
+            "infrastructure",
+            "ssh"
+          ],
+          "id": "goal_1773641582622_pkhsjtaii",
+          "createdAt": 1773641582623,
+          "subGoalIds": []
+        },
+        {
+          "title": "Implement ant-watch Command",
+          "description": "Build real-time monitoring tool with live display, health checks, and alerting for temperature and storage",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "cli",
+            "monitoring",
+            "watchdog"
+          ],
+          "id": "goal_1773641582649_x7wry5pvc",
+          "createdAt": 1773641582649,
+          "subGoalIds": []
+        },
+        {
+          "title": "Build ant-up ROM Manager",
+          "description": "Build ant-up ROM Manager - IMPLEMENTED: Wired AntTransfer SFTP upload functionality into ant-up.ts, enabling actual ROM uploads with progress tracking via ssh2 streaming. The 'add' command now uses real file transfer instead of placeholder logic.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "cli",
+            "roms",
+            "upload"
+          ],
+          "id": "goal_1773641582671_zxk8rlrlb",
+          "createdAt": 1773641582671,
+          "subGoalIds": []
+        },
+        {
+          "title": "Design Configuration Preset System",
+          "description": "Create YAML-based preset system for CRT/4K/handheld modes, with apply/capture/edit commands",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "config",
+            "presets",
+            "yaml"
+          ],
+          "id": "goal_1773641582690_6jvo1fk1n",
+          "createdAt": 1773641582690,
+          "subGoalIds": []
+        },
+        {
+          "title": "Build ant-dash Web Interface",
+          "description": "Create Express-based dashboard for status viewing, ROM browsing, and remote operations",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "web",
+            "dashboard",
+            "express"
+          ],
+          "id": "goal_1773641582711_07lyoq5k9",
+          "createdAt": 1773641582711,
+          "subGoalIds": []
+        },
+        {
+          "title": "Write Comprehensive Documentation",
+          "description": "Complete README, philosophy document, and usage examples",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "docs",
+            "philosophy",
+            "usage"
+          ],
+          "id": "goal_1773641582730_1zyxts548",
+          "createdAt": 1773641582730,
+          "subGoalIds": [],
+          "completedAt": 1773642074199
+        }
+      ],
+      "id": "proj_1773641548700_bbdtkqnb2",
+      "createdAt": 1773641548700,
+      "updatedAt": 1773750659649
     }
   ],
   "dedupedGoals": [
