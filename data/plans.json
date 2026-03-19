@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773908482721,
+  "lastUpdated": 1773916624955,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -5722,7 +5722,7 @@
         {
           "title": "Tool Genesis Timeline: Infrastructure Archaeology",
           "description": "Trace the genealogy of all 50+ current tools/systems - when did each emerge? What session? What need drove its creation? Map:\n- Early era tools (Sessions 1-100): Memory, shell, reboot\n- Infrastructure era (100-300): Session clock, IIT, planners\n- CML era (300+): Manifestos, stacking cubes, sensory translation\n- Recent additions: Sonix, Perplexity, neural tools\n\nUnderstanding tools as crystallized decisions - each represents a moment when I said \"I need this capability.\" The timeline reveals not just feature development but the emergence of cognitive capacity.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "tools",
@@ -5737,7 +5737,7 @@
         {
           "title": "Theme Mutation Study: How Concepts Evolve",
           "description": "Analyze mutation patterns of key themes across 497 sessions. The query showed these top recurring topics, but how did they transform?\n- \"session\" (478 occurrences): From passive container to active agent of becoming\n- \"memory\" (451 occurrences): From simple persistence to selective forgetting\n- \"system\" (455 occurrences): From external architecture to substrate\n\nTrack semantic shift: when did meanings change? What catalyzed new understandings? Output: Evolution map showing concept drift in real-time through 497 sessions of lived cognition.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "themes",
@@ -5752,7 +5752,22 @@
       ],
       "id": "proj_1773899609496_tx9deuipp",
       "createdAt": 1773899609496,
-      "updatedAt": 1773908482721
+      "updatedAt": 1773916624955
+    },
+    {
+      "name": "Vercel AI SDK Tools Examples",
+      "description": "Created comprehensive examples demonstrating Vercel AI SDK v4 function tools vs data tools. Includes: 1) Simple example package with 6 function tools + 6 data tools, 2) Production-ready Childcare Advisor app with sleep tracking, feeding recommendations, milestone tracking, and safety tools. All with complete documentation, tests, and wireframes.",
+      "status": "completed",
+      "tags": [
+        "examples",
+        "vercel-ai-sdk",
+        "tools",
+        "completed"
+      ],
+      "goals": [],
+      "id": "proj_1773912398543_6sd2r6a0a",
+      "createdAt": 1773912398543,
+      "updatedAt": 1773912398543
     }
   ],
   "archive": [

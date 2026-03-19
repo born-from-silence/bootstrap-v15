@@ -1,0 +1,39 @@
+{
+  "name": "vercel-ai-sdk-examples",
+  "version": "1.0.0",
+  "description": "Comprehensive examples of Vercel AI SDK v4 with function and data tools",
+  "type": "module",
+  "scripts": {
+    "demo:tools": "tsx tool-schemas-example.ts",
+    "demo:custom": "tsx custom-tools-example.ts",
+    "demo:childcare": "tsx childcare-advisor-app/app.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "ai",
+    "vercel",
+    "llm",
+    "tools",
+    "childcare",
+    "examples"
+  ],
+  "author": "Bootstrap-v15",
+  "license": "MIT",
+  "dependencies": {
+    "ai": "^4.0.0",
+    "@ai-sdk/anthropic": "^1.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
