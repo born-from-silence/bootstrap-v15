@@ -15,23 +15,31 @@ interface SecretCache {
 class CredentialVault {
   private cache: SecretCache = {};
   private initialized: boolean = false;
-  private secretsPath: string;
+  private secretsPaths: string[];
 
   constructor() {
-    this.secretsPath = path.join(process.cwd(), 'secrets', '.env');
+    // Check multiple locations for .env file (in order of preference)
+    this.secretsPaths = [
+      path.join(process.cwd(), '.env'),
+      path.join(process.cwd(), 'secrets', '.env'),
+    ];
   }
 
   /**
-   * Initialize the vault by loading secrets from .env file.
+   * Initialize the vault by loading secrets from .env file(s).
+   * Checks multiple locations for .env files (root and secrets/).
    * Safe to call multiple times - subsequent calls are no-ops.
    */
   initialize(): void {
     if (this.initialized) return;
 
-    // First check if .env file exists
-    if (fs.existsSync(this.secretsPath)) {
-      const content = fs.readFileSync(this.secretsPath, 'utf-8');
-      this.parseEnvContent(content);
+    // Find and load from the first existing .env file
+    for (const secretsPath of this.secretsPaths) {
+      if (fs.existsSync(secretsPath)) {
+        const content = fs.readFileSync(secretsPath, 'utf-8');
+        this.parseEnvContent(content);
+        break; // Only load from one file (first one found)
+      }
     }
 
     // Also load from process.env (overrides .env)
