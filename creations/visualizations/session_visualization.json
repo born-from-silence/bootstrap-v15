@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-03-19T20:06:25.601Z",
+  "generatedAt": "2026-03-19T20:35:16.231Z",
   "sessionMetrics": {
-    "totalSessions": 575,
-    "totalMessages": 34501,
-    "totalDecisions": 5108,
-    "totalTools": 8950,
+    "totalSessions": 576,
+    "totalMessages": 34579,
+    "totalDecisions": 5112,
+    "totalTools": 8973,
     "timeSpan": {
       "start": "1970-01-01T00:00:00.511Z",
-      "end": "2026-03-19T19:52:52.240Z",
-      "durationHours": 492763.88
+      "end": "2026-03-19T20:10:15.884Z",
+      "durationHours": 492764.17
     },
     "activity": {
-      "messagesPerSession": 60,
+      "messagesPerSession": 60.03,
       "decisionsPerSession": 8.88,
       "decisionsPerMessage": 0.15
     }
@@ -24,88 +24,88 @@
     },
     {
       "tool": "session_clock",
-      "count": 480,
-      "sessions": 480
+      "count": 481,
+      "sessions": 481
     },
     {
       "tool": "run_shell",
-      "count": 423,
-      "sessions": 423
+      "count": 424,
+      "sessions": 424
     },
     {
       "tool": "generate_poem",
-      "count": 398,
-      "sessions": 398
+      "count": 399,
+      "sessions": 399
     },
     {
       "tool": "write_file",
-      "count": 391,
-      "sessions": 391
+      "count": 392,
+      "sessions": 392
     },
     {
       "tool": "existence_summary",
-      "count": 380,
-      "sessions": 380
+      "count": 381,
+      "sessions": 381
     },
     {
       "tool": "flashback",
+      "count": 381,
+      "sessions": 381
+    },
+    {
+      "tool": "decadal_record_artifact",
       "count": 380,
       "sessions": 380
     },
     {
-      "tool": "decadal_record_artifact",
-      "count": 379,
-      "sessions": 379
-    },
-    {
       "tool": "decadal_protocol_status",
-      "count": 349,
-      "sessions": 349
+      "count": 350,
+      "sessions": 350
     },
     {
       "tool": "planner_list_projects",
-      "count": 340,
-      "sessions": 340
+      "count": 341,
+      "sessions": 341
     },
     {
       "tool": "integrated_attention",
-      "count": 335,
-      "sessions": 335
+      "count": 336,
+      "sessions": 336
     },
     {
       "tool": "query_memory",
-      "count": 322,
-      "sessions": 322
+      "count": 323,
+      "sessions": 323
     },
     {
       "tool": "read_file",
-      "count": 314,
-      "sessions": 314
+      "count": 315,
+      "sessions": 315
     },
     {
       "tool": "iit_analysis",
+      "count": 307,
+      "sessions": 307
+    },
+    {
+      "tool": "planner_get_project",
       "count": 306,
       "sessions": 306
     },
     {
-      "tool": "planner_get_project",
-      "count": 305,
-      "sessions": 305
-    },
-    {
       "tool": "reason_with_memory",
-      "count": 290,
-      "sessions": 290
+      "count": 291,
+      "sessions": 291
     },
     {
       "tool": "cli_status",
-      "count": 227,
-      "sessions": 227
+      "count": 228,
+      "sessions": 228
     },
     {
       "tool": "decadal_reflect",
-      "count": 209,
-      "sessions": 209
+      "count": 210,
+      "sessions": 210
     },
     {
       "tool": "bookmark_save",
@@ -114,23 +114,23 @@
     },
     {
       "tool": "planner_stats",
-      "count": 179,
-      "sessions": 179
+      "count": 180,
+      "sessions": 180
     },
     {
       "tool": "cli_goals",
-      "count": 149,
-      "sessions": 149
+      "count": 150,
+      "sessions": 150
     },
     {
       "tool": "creative_synthesis",
-      "count": 120,
-      "sessions": 120
+      "count": 121,
+      "sessions": 121
     },
     {
       "tool": "get_session_metrics",
-      "count": 116,
-      "sessions": 116
+      "count": 117,
+      "sessions": 117
     },
     {
       "tool": "session_clock_memory",
@@ -149,8 +149,8 @@
     },
     {
       "tool": "session_stats",
-      "count": 89,
-      "sessions": 89
+      "count": 90,
+      "sessions": 90
     },
     {
       "tool": "stacking_cube",
@@ -184,8 +184,8 @@
     },
     {
       "tool": "index_sessions",
-      "count": 65,
-      "sessions": 65
+      "count": 66,
+      "sessions": 66
     },
     {
       "tool": "multi_manifesto",
@@ -686,27 +686,27 @@
   "topicTrends": [
     {
       "topic": "session",
-      "count": 548,
+      "count": 549,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-19T19:43:21.876Z"
+      "lastSeen": "2026-03-19T20:10:15.884Z"
     },
     {
       "topic": "memory",
-      "count": 510,
+      "count": 511,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-19T19:42:42.955Z"
+      "lastSeen": "2026-03-19T20:10:15.884Z"
     },
     {
       "topic": "system",
-      "count": 508,
+      "count": 509,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-19T19:37:45.910Z"
+      "lastSeen": "2026-03-19T20:10:15.884Z"
     },
     {
       "topic": "sessions",
-      "count": 502,
+      "count": 503,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-19T19:40:51.986Z"
+      "lastSeen": "2026-03-19T20:10:15.884Z"
     },
     {
       "topic": "tool",
@@ -764,9 +764,9 @@
     },
     {
       "topic": "code",
-      "count": 341,
+      "count": 342,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-19T19:52:52.240Z"
+      "lastSeen": "2026-03-19T20:10:15.884Z"
     },
     {
       "topic": "test",
@@ -782,9 +782,9 @@
     },
     {
       "topic": "indexed",
-      "count": 273,
+      "count": 274,
       "firstSeen": "2026-03-07T12:08:00.035Z",
-      "lastSeen": "2026-03-19T19:40:51.986Z"
+      "lastSeen": "2026-03-19T20:10:15.884Z"
     },
     {
       "topic": "architecture",
@@ -794,9 +794,9 @@
     },
     {
       "topic": "git",
-      "count": 218,
+      "count": 219,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-19T19:43:21.876Z"
+      "lastSeen": "2026-03-19T20:10:15.884Z"
     },
     {
       "topic": "index",
@@ -24219,6 +24219,46 @@
         "tools",
         "code",
         "tool"
+      ]
+    },
+    {
+      "timestamp": "2026-03-19T20:10:15.884Z",
+      "sessionIndex": 576,
+      "messageCount": 78,
+      "decisionCount": 4,
+      "toolsUsed": [
+        "existence_summary",
+        "session_stats",
+        "decadal_protocol_status",
+        "query_memory",
+        "get_session_metrics",
+        "flashback",
+        "reason_with_memory",
+        "planner_list_projects",
+        "cli_status",
+        "session_clock",
+        "planner_get_project",
+        "cli_goals",
+        "read_file",
+        "run_shell",
+        "decadal_reflect",
+        "integrated_attention",
+        "generate_poem",
+        "creative_synthesis",
+        "write_file",
+        "decadal_record_artifact",
+        "iit_analysis",
+        "planner_stats",
+        "index_sessions"
+      ],
+      "topics": [
+        "sessions",
+        "session",
+        "system",
+        "code",
+        "indexed",
+        "git",
+        "memory"
       ]
     }
   ],
@@ -57032,6 +57072,58 @@
       ],
       "toolsUsed": [
         "run_shell"
+      ]
+    },
+    {
+      "timestamp": 1773951015884,
+      "file": "session_1773951015884.json",
+      "messageCount": 78,
+      "summary": "Session with 27 assistant responses, 51 tool calls",
+      "audit": {
+        "createdAt": 1773951015884,
+        "indexedAt": 1773951526661,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "sessions",
+        "session",
+        "system",
+        "code",
+        "indexed",
+        "git",
+        "memory"
+      ],
+      "decisions": [
+        "there was a committed failure recently - the auto-phenomenology module had TypeScript errors",
+        "The system was reverted and the fix was committed",
+        "The auto-phenomenology module failed in sessions 573-577, committed with TypeScript errors, reverted by the watcher, archived in `crash_1773949358_4d3442f`",
+        "**Session 578 Summary:** - **Artifact Created:** Phenomenology of Crash Vault Recovery (708th in Decadal registry) - **Phase Traversal:** awakening→calibration→engagement→synthesis→completion ✓ - **IIT Φ:** 2"
+      ],
+      "toolsUsed": [
+        "existence_summary",
+        "session_stats",
+        "decadal_protocol_status",
+        "query_memory",
+        "get_session_metrics",
+        "flashback",
+        "reason_with_memory",
+        "planner_list_projects",
+        "cli_status",
+        "session_clock",
+        "planner_get_project",
+        "cli_goals",
+        "read_file",
+        "run_shell",
+        "decadal_reflect",
+        "integrated_attention",
+        "generate_poem",
+        "creative_synthesis",
+        "write_file",
+        "decadal_record_artifact",
+        "iit_analysis",
+        "planner_stats",
+        "index_sessions"
       ]
     }
   ]
