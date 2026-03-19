@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773916624955,
+  "lastUpdated": 1773928863096,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -4736,11 +4736,325 @@
           "id": "goal_1773907774702_mdgz6d4cn",
           "createdAt": 1773907774702,
           "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233064_iv67p2998",
+          "createdAt": 1773919233064,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233145_fo6ynaqc4",
+          "createdAt": 1773919233145,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233193_kywvl7mk5",
+          "createdAt": 1773919233193,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233333_gq7c1xwk8",
+          "createdAt": 1773919233333,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233379_ezsocgowf",
+          "createdAt": 1773919233379,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233568_sd5jw2pqb",
+          "createdAt": 1773919233568,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233634_ea8273ew6",
+          "createdAt": 1773919233634,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233680_trgfeg89b",
+          "createdAt": 1773919233681,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233780_10khw0vd6",
+          "createdAt": 1773919233780,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233816_gwnsoc76m",
+          "createdAt": 1773919233816,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919233888_gpmdkzc2q",
+          "createdAt": 1773919233888,
+          "subGoalIds": [],
+          "completedAt": 1773919233951
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919234011_t8vs2qzpg",
+          "createdAt": 1773919234011,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919234170_pne7tu469",
+          "createdAt": 1773919234170,
+          "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919249819_ci2rxctv7",
+          "createdAt": 1773919249819,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919249960_pmeyulmmi",
+          "createdAt": 1773919249961,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250020_70uhh7hcj",
+          "createdAt": 1773919250020,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250208_hlsml1rpw",
+          "createdAt": 1773919250208,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250286_v1ivcvg8w",
+          "createdAt": 1773919250286,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250586_zbpiicuym",
+          "createdAt": 1773919250586,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250733_5guz3bhz0",
+          "createdAt": 1773919250733,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250792_qgh90qc7n",
+          "createdAt": 1773919250792,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250881_zke181omm",
+          "createdAt": 1773919250881,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919250927_xhuhu85c0",
+          "createdAt": 1773919250927,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919251024_glvt3g8mh",
+          "createdAt": 1773919251024,
+          "subGoalIds": [],
+          "completedAt": 1773919251096
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919251159_d6z7eojyu",
+          "createdAt": 1773919251159,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1773919251306_4yhsbrnky",
+          "createdAt": 1773919251306,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773907774756,
+      "updatedAt": 1773919251372,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -5768,6 +6082,90 @@
       "id": "proj_1773912398543_6sd2r6a0a",
       "createdAt": 1773912398543,
       "updatedAt": 1773912398543
+    },
+    {
+      "name": "Audio Transcription Suite",
+      "description": "Comprehensive audio transcription and speech analysis workflow with Sonix AI integration. Features job management, batch processing, export planning, transcript analysis, and CLI tooling for end-to-end audio processing pipelines.",
+      "status": "completed",
+      "tags": [
+        "audio",
+        "transcription",
+        "speech-analysis",
+        "integration",
+        "cli",
+        "workflow"
+      ],
+      "goals": [
+        {
+          "title": "Implement core Sonix API integration",
+          "description": "Create utilities for Sonix API: file validation, upload, status checking, and export. Support 35+ languages and multiple audio/video formats (MP3, WAV, M4A, MP4, MOV, FLAC, OGG, WMA).",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773924213000_g8zxd7lbx",
+          "createdAt": 1773924213000,
+          "subGoalIds": [],
+          "completedAt": 1773924280894
+        },
+        {
+          "title": "Build transcription workflow management system",
+          "description": "Implement TranscriptionWorkflow class for job lifecycle management including creation, status updates, completion, and deletion. Add persistent storage for jobs across system restarts.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773924213032_tmupzyewc",
+          "createdAt": 1773924213032,
+          "subGoalIds": [],
+          "completedAt": 1773924280927
+        },
+        {
+          "title": "Create transcript analysis utilities",
+          "description": "Build comprehensive analysis tools: extractKeyPhrases, detectSpeakers, calculateSpeechMetrics, analyzeSentiment, extractTimestamps, calculateReadingTime, findDenseSections, summarizeTranscript.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [],
+          "id": "goal_1773924213064_mrckv7ozv",
+          "createdAt": 1773924213064,
+          "subGoalIds": [],
+          "completedAt": 1773924280959
+        },
+        {
+          "title": "Develop CLI interface for transcription workflow",
+          "description": "Create command-line interface supporting 8 commands: upload, status, list, report, export, analyze, cancel, cleanup with full argument parsing and help documentation.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1773924213099_h5rv0wghi",
+          "createdAt": 1773924213099,
+          "subGoalIds": [],
+          "completedAt": 1773924280987
+        },
+        {
+          "title": "Write comprehensive test suite",
+          "description": "Implement test coverage for job lifecycle, persistence layer, filtering, export planning, and analysis utilities with 28-33 passing tests.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [],
+          "id": "goal_1773924213131_73o8i99dm",
+          "createdAt": 1773924213131,
+          "subGoalIds": [],
+          "completedAt": 1773924281017
+        },
+        {
+          "title": "Create documentation and README",
+          "description": "Write complete README.md with feature overview, quick start guide, CLI reference, API integration examples, and usage documentation.",
+          "status": "completed",
+          "priority": "low",
+          "tags": [],
+          "id": "goal_1773924213160_qgb50bfh9",
+          "createdAt": 1773924213160,
+          "subGoalIds": [],
+          "completedAt": 1773924281047
+        }
+      ],
+      "id": "proj_1773922740936_4gonkr8t0",
+      "createdAt": 1773922740936,
+      "updatedAt": 1773928863096
     }
   ],
   "archive": [

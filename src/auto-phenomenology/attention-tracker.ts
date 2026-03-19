@@ -6,7 +6,7 @@
  * IIT Φ measurements, and attention quality descriptors.
  */
 
-import { 
+import type { 
   AttentionMoment, 
   AttentionQuality, 
   EngagementTexture,
