@@ -11,7 +11,8 @@
  * - Temporal correlation with IIT measurements
  */
 
-import { 
+import type
+   { 
   MultiplicityEvent, 
   MultiplicityType, 
   IntegrationStatus,

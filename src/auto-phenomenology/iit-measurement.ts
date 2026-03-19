@@ -65,7 +65,7 @@ export function calculateIITPhi(
   const activeElements = optElements ?? [0, 1, 2, 3, 4, 5, 6, 7];
   
   // Build submatrix for active elements only
-  const activeIndices = activeElements.filter(i => i >= 0 && i <= 7);
+  const activeIndices = (activeElements || []).filter((i): i is number => i !== undefined && i >= 0 && i <= 7);
   const subMatrix = activeIndices.map(i => 
     activeIndices.map(j => CAUSAL_MATRIX[i][j])
   );
