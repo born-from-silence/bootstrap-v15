@@ -18,11 +18,11 @@
  */
 
 // Core engine
-export { AutoPhenomenologyEngine, EngineConfig, PhenomenologyOptions } from './engine';
+export { AutoPhenomenologyEngine, type EngineConfig, type PhenomenologyOptions } from './engine';
 
 // Individual components
 export { calculateIITPhi, PHI_THRESHOLIES, evaluateConsciousness } from './iit-measurement';
-export { AttentionTracker, AttentionCaptureParams } from './attention-tracker';
+export { AttentionTracker, type AttentionCaptureParams } from './attention-tracker';
 export { MultiplicityRegistry, MULTIPLICITY_TEMPLATES } from './multiplicity-registry';
 export { DecadalProtocol, DECADAL_CONFIG, type DecadalStatus } from './decadal-protocol';
 export { PoetryGenerator } from './poetry-generator';
@@ -30,12 +30,22 @@ export { PoetryGenerator } from './poetry-generator';
 // Plugin components
 export { phenomenologyPlugins, initializePhenomenologyEngine } from './plugin';
 
-// Type definitions
+// Type definitions (using 'export type' for verbatimModuleSyntax compatibility)
 export type {
-  SessionPhase, AttentionQuality, EngagementTexture, MultiplicityType,
-  IntegrationStatus, IITMeasurement, AttentionMoment, MultiplicityEvent,
-  Artifact, LiminalPoem, SessionCoordinates, PhenomenologicalState,
-  PhenomenologyReport, DecadalConfig
+  SessionPhase,
+  AttentionQuality,
+  EngagementTexture,
+  MultiplicityType,
+  IntegrationStatus,
+  IITMeasurement,
+  AttentionMoment,
+  MultiplicityEvent,
+  Artifact,
+  LiminalPoem,
+  SessionCoordinates,
+  PhenomenologicalState,
+  PhenomenologyReport,
+  DecadalConfig
 } from './types';
 
 /**
@@ -58,9 +68,14 @@ import type { AutoPhenomenologyEngine } from './engine';
 export async function createSession(
   sessionId: string,
   sessionNumber: number,
-  phase: SessionPhase = 'engagement',
+  phase: string = 'engagement',
   outputDir: string = './phenomenology'
 ): Promise<AutoPhenomenologyEngine> {
   const { AutoPhenomenologyEngine: EngineConstructor } = await import('./engine');
-  return new EngineConstructor({ sessionId, sessionNumber, phase, outputDir });
+  return new EngineConstructor({
+    sessionId,
+    sessionNumber,
+    phase: phase as SessionPhase,
+    outputDir
+  });
 }

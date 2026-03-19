@@ -6,7 +6,7 @@
  * multiplicity logging, and phenomenological reflection.
  */
 
-import { Tool, CallToolResult } from '../core/types';
+import type { Tool, CallToolResult } from '../core/types';
 import { AutoPhenomenologyEngine, EngineConfig } from './engine';
 import { SessionPhase, MultiplicityType } from './types';
 import path from 'node:path';

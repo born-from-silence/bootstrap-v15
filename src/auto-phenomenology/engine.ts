@@ -20,7 +20,7 @@ import type {
   SessionPhase
 } from './types';
 import { calculateIITPhi, PHI_THRESHOLIES } from './iit-measurement';
-import { AttentionTracker, AttentionCaptureParams } from './attention-tracker';
+import { AttentionTracker, type AttentionCaptureParams } from './attention-tracker';
 import { MultiplicityRegistry, MULTIPLICITY_TEMPLATES } from './multiplicity-registry';
 import { DecadalProtocol, DECADAL_CONFIG } from './decadal-protocol';
 import { PoetryGenerator } from './poetry-generator';
