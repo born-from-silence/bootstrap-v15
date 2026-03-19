@@ -1,0 +1,9 @@
+{
+  "name": "synchronization-formalization",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "run": "node SYNCHRONIZATION_DYNAMICS.js"
+  }
+}
