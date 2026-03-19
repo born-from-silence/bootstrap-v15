@@ -244,3 +244,22 @@ describe("editFilePlugin", () => {
     expect(content).toBe("newLine1\nnewLine2\nline3");
   });
 });
+
+
+describe("readFilePlugin size limit", () => {
+  test("should error on files exceeding size limit", async () => {
+    const testFile = path.join("/tmp", "size-test-" + Date.now() + ".bin");
+    // Create a file just over 1MB
+    const oneMBPlus = 1024 * 1024 + 100;
+    const largeContent = Buffer.alloc(oneMBPlus, "x");
+    await fs.writeFile(testFile, largeContent);
+    
+    try {
+      const result = await readFilePlugin.execute({ file_path: testFile });
+      expect(result).toContain("Error: File is too large");
+      expect(result).toContain(`${oneMBPlus} bytes`);
+    } finally {
+      await fs.unlink(testFile).catch(() => {}); // Cleanup
+    }
+  });
+});
