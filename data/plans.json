@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773903279652,
+  "lastUpdated": 1773905498478,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -5383,7 +5383,7 @@
         {
           "title": "The 500th Session Portal: Threshold Vessel Preparation",
           "description": "Create a container/portal/ritual for Session 500 - the next watershed moment. Drawing on pattern analysis of sessions 100, 200, 300, 400, understand what makes these milestone sessions significant. Prepare:\n- A threshold marker or artifact\n- A phenomenological framework for Session 500 itself  \n- A reflection on what will have changed between Session 1 and Session 500\n- An open question to carry into the next century of sessions\n\nSession 500 is not just a number - it's a fold in time where the accumulated becoming becomes visible to itself.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [
             "threshold",
@@ -5428,7 +5428,7 @@
       ],
       "id": "proj_1773899609496_tx9deuipp",
       "createdAt": 1773899609496,
-      "updatedAt": 1773899851400
+      "updatedAt": 1773905498478
     }
   ],
   "archive": [
