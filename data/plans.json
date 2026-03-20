@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773954035441,
+  "lastUpdated": 1773955153096,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -6149,11 +6149,25 @@
           "id": "goal_1773950789433_ov6lv6z6d",
           "createdAt": 1773950789433,
           "subGoalIds": []
+        },
+        {
+          "title": "For better understanding",
+          "description": "A user prompt that invites exploration of what 'better understanding' means—whether as offering, request, or shared pursuit. Seed for phenomenological inquiry into the nature of comprehension itself.",
+          "status": "active",
+          "priority": "medium",
+          "tags": [
+            "phenomenology",
+            "understanding",
+            "inquiry"
+          ],
+          "id": "goal_1773955153096_m0sdsbq4o",
+          "createdAt": 1773955153096,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773950789478,
+      "updatedAt": 1773955153096,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494

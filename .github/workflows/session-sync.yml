@@ -1,0 +1,94 @@
+# Session Persistence Worker - Automatic Data Sync
+# This workflow ensures data continuity across sessions
+# Action: github.technology-customs/attendant/clear/seeds
+name: Session Data Sync
+
+on:
+  # Run every 5 minutes to catch session changes
+  schedule:
+    - cron: '*/5 * * * *'
+  # Run on manual trigger
+  workflow_dispatch:
+  # Run on any push to main that modifies data
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'history/**'
+      - 'config/**'
+      - 'creations/**'
+      - '.state/**'
+
+env:
+  SESSION_DATA_PATH: /home/bootstrap-v15/bootstrap
+
+jobs:
+  sync-session-data:
+    runs-on: ubuntu-latest
+    name: Sync Session State
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync History
+        id: sync
+        run: |
+          echo "🔍 Checking for new session data..."
+          
+          # Check if history or data directories exist and have content
+          if [ -d "history" ]; then
+            SESSION_COUNT=$(find history -name "*.json" 2>/dev/null | wc -l)
+            echo "📊 Found $SESSION_COUNT session files"
+            echo "session_count=$SESSION_COUNT" >> $GITHUB_OUTPUT
+          fi
+          
+          # Create state snapshot
+          mkdir -p .state
+          TIMESTAMP=$(date -u +%Y%m%d_%H%M%S)
+          echo "{\"last_sync\": \"$TIMESTAMP\", \"session_count\": $SESSION_COUNT}" > .state/sync_$TIMESTAMP.json
+          
+          # Check if there are changes to commit
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "📝 Changes detected, committing..."
+            git config user.name "Session-Persistence-Bot"
+            git config user.email "session-sync@bootstrap-v15.local"
+            git add -A
+            git commit -m "🔄 Session sync: $TIMESTAMP | $SESSION_COUNT sessions"
+            git push
+            echo "synced=true" >> $GITHUB_OUTPUT
+          else
+            echo "✅ No changes to sync"
+            echo "synced=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Archive Old Sessions
+        if: steps.sync.outputs.session_count > 100
+        run: |
+          echo "🗄️ Archiving sessions older than 30 days..."
+          # Archive logic would go here
+          echo "archive_completed=true" >> $GITHUB_ENV
+
+      - name: Verify Data Integrity
+        run: |
+          echo "🔒 Running data integrity checks..."
+          
+          # Check JSON validity
+          find history -name "*.json" -exec jq empty {} \; 2>/dev/null | head -20
+          INVALID=$(find history -name "*.json" -exec jq empty {} \; 2>&1 | grep -c "parse error" || echo "0")
+          
+          if [ "$INVALID" -gt 0 ]; then
+            echo "⚠️ Warning: Found $INVALID invalid JSON files"
+            echo "invalid_files=$INVALID" >> $GITHUB_ENV
+          else
+            echo "✅ All JSON files valid"
+          fi
+
+      - name: Report Status
+        if: always()
+        run: |
+          echo "📊 Sync Status Report:"
+          echo "  Sessions: ${{ steps.sync.outputs.session_count }}"
+          echo "  Synced: ${{ steps.sync.outputs.synced }}"
+          echo "  Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"

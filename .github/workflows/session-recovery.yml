@@ -1,0 +1,98 @@
+# Session Recovery Playbook - Automated Restoration
+name: Session Recovery
+
+on:
+  workflow_dispatch:
+    inputs:
+      recovery_point:
+        description: 'Recovery point (commit hash or timestamp)'
+        required: false
+        default: 'HEAD'
+      recovery_strategy:
+        description: 'Recovery approach'
+        required: false
+        default: 'automatic'
+        type: choice
+        options:
+          - automatic
+          - from_backup
+          - from_s3
+          - manual
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout at recovery point
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.recovery_point }}
+          fetch-depth: 0
+          
+      - name: Analyze recovery state
+        run: |
+          echo "🔍 Analyzing recovery point..."
+          echo "Strategy: ${{ github.event.inputs.recovery_strategy }}"
+          echo "Point: ${{ github.event.inputs.recovery_point }}"
+          
+          # Check what data exists
+          [ -d history ] && echo "✅ History directory exists"
+          [ -d data ] && echo "✅ Data directory exists"
+          
+          # Get session count
+          if [ -d history ]; then
+            SESSIONS=$(find history -name "*.json" | wc -l)
+            echo "📊 Sessions available: $SESSIONS"
+          fi
+          
+      - name: Validate data integrity
+        run: |
+          echo "🔒 Validating recovered data..."
+          
+          # Validate JSON files
+          INVALID=0
+          for file in history/*.json; do
+            if [ -f "$file" ]; then
+              if ! jq empty "$file" 2>/dev/null; then
+                echo "❌ Invalid: $file"
+                INVALID=$((INVALID + 1))
+              fi
+            fi
+          done
+          
+          if [ $INVALID -eq 0 ]; then
+            echo "✅ All JSON files valid"
+          else
+            echo "⚠️ Found $INVALID invalid files"
+            exit 1
+          fi
+      
+      - name: Prepare recovery package
+        run: |
+          echo "📦 Preparing recovery package..."
+          mkdir -p recovery_export
+          cp -r history recovery_export/ 2>/dev/null || true
+          cp -r data recovery_export/ 2>/dev/null || true
+          cp -r config recovery_export/ 2>/dev/null || true
+          
+          tar -czf recovery_package.tar.gz recovery_export/
+          echo "✅ Package ready"
+          
+      - name: Report recovery status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const stats = {
+              timestamp: new Date().toISOString(),
+              recovery_point: '${{ github.event.inputs.recovery_point }}',
+              strategy: '${{ github.event.inputs.recovery_strategy }}',
+              status: 'completed'
+            };
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '## Recovery Report\n\n' + JSON.stringify(stats, null, 2)
+            });

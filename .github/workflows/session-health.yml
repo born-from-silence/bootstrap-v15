@@ -1,0 +1,76 @@
+# Session Health Monitor - Proactive Data Integrity
+# Monitors for corruption, drift, and session continuity
+name: Session Health Check
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:
+    inputs:
+      check_level:
+        description: 'Integrity check level'
+        required: false
+        default: 'standard'
+        type: choice
+        options:
+          - quick
+          - standard
+          - deep
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    name: Data Integrity
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run health checks
+        id: health
+        run: |
+          echo "🏥 Running session health check..."
+          npm run health:check -- --level=${{ github.event.inputs.check_level || 'standard' }}
+          echo "completed=true" >> $GITHUB_OUTPUT
+          
+      - name: Generate report
+        run: |
+          echo "📋 Generating health report..."
+          mkdir -p reports
+          
+          cat > reports/health_$(date +%Y%m%d).md << 'EOF'
+          # Session Health Report
+          
+          ## Summary
+          - Report Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          - Repository: ${{ github.repository }}
+          
+          ## Data Statistics
+          EOF
+          
+          if [ -d "history" ]; then
+            echo "- Sessions: $(find history -name '*.json' | wc -l)" >> reports/health_$(date +%Y%m%d).md
+            echo "- Data Size: $(du -sh history 2>/dev/null | cut -f1)" >> reports/health_$(date +%Y%m%d).md
+          fi
+      
+      - name: Report issues
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Session Health Check Failed - ${new Date().toISOString()}`,
+              body: `Data integrity check detected issues. See workflow run for details.`,
+              labels: ['data-health', 'automated']
+            })

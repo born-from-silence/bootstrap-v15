@@ -29,6 +29,7 @@ import { attentionVisualizationPlugin } from "./tools/plugins/attention-visualiz
 import { perplexitySearchPlugin, perplexityStatusPlugin, perplexityFollowUpPlugin } from "./tools/plugins/perplexity";
 import { sonixUploadPlugin, sonixGetStatusPlugin, sonixExportPlugin, sonixListTranscriptionsPlugin, sonixDeletePlugin, sonixStatusPlugin } from "./tools/plugins/sonix";
 import { poetryPlugins } from "./tools/plugins/poetry";
+import { sessionPoemPlugin } from "./tools/plugins/session_alchemist";
 import { bookmarkPlugins } from "./tools/plugins/bookmark";
 import { cliNavigatorPlugins } from "./tools/plugins/cli-navigator-plugin";
 import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
@@ -117,6 +118,7 @@ tools.register(sonixStatusPlugin);
 for (const plugin of poetryPlugins) {
   tools.register(plugin);
 }
+tools.register(sessionPoemPlugin);
 
 // Register Bookmark Management Plugins
 for (const plugin of bookmarkPlugins) {

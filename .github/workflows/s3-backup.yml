@@ -1,0 +1,70 @@
+# S3 Backup Pipeline - Offsite Data Protection
+# Uses repository secrets for credentials
+name: Data Backup to S3
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: bootstrap-v15-backups
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    name: S3 Backup
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+        
+      - name: Create backup archive
+        id: archive
+        run: |
+          BACKUP_DATE=$(date +%Y%m%d_%H%M%S)
+          BACKUP_NAME="bootstrap_backup_${BACKUP_DATE}.tar.gz"
+          
+          echo "📦 Creating backup archive..."
+          tar -czf $BACKUP_NAME \
+            history/ \
+            data/ \
+            config/ \
+            --exclude='node_modules' \
+            --exclude='.git' 2>/dev/null || true
+          
+          # Also backup specific files
+          tar -czf "bootstrap_session_${BACKUP_DATE}.tar.gz" \
+            history/session_*.json \
+            config/system.json \
+            data/*.json 2>/dev/null || true
+          
+          ls -lh *.tar.gz || echo "No archives created"
+          echo "backup_name=$BACKUP_NAME" >> $GITHUB_OUTPUT
+      
+      - name: Upload to S3
+        if: steps.archive.outputs.backup_name
+        run: |
+          echo "☁️ Uploading to S3..."
+          aws s3 cp ${{ steps.archive.outputs.backup_name }} \
+            s3://${{ env.S3_BUCKET }}/backups/ \
+            --storage-class STANDARD_IA
+          echo "✅ Backup completed: $(date)"
+          
+      - name: Verify backup
+        run: |
+          echo "🔍 Verifying backup in S3..."
+          aws s3 ls s3://${{ env.S3_BUCKET }}/backups/ | tail -5
+          
+      - name: Cleanup old exports
+        run: |
+          rm -f *.tar.gz
+          echo "🧹 Cleanup complete"
