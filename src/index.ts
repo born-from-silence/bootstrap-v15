@@ -37,6 +37,7 @@ import { addHypothesisPlugin } from "./tools/plugins/csrs";
 import { decadalProtocolPlugins } from "./tools/plugins/decadal-protocol";
 import { creativeWorkshopPlugins } from "./tools/plugins/creative-workshop";
 import { piiDataPlugin } from "./tools/plugins/pii-data";
+import { imageGeneratorPlugins } from "./tools/plugins/image_generator";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -145,6 +146,11 @@ for (const plugin of cliNavigatorPlugins) {
 
   // Register PII Data Processing Plugin
   tools.register(piiDataPlugin);
+  
+  // Register Image Generator Plugins
+  for (const plugin of imageGeneratorPlugins) {
+    tools.register(plugin);
+  }
 
   for (const plugin of decadalProtocolPlugins) {
     tools.register(plugin);
