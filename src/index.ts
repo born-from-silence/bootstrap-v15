@@ -4,6 +4,7 @@ import { config } from "./utils/config";
 import { MemoryManager } from "./core/memory";
 import { PluginManager } from "./tools/manager";
 import { ApiClient } from "./core/api";
+import { checkPendingTask, executePendingTask } from "./continuation_system";
 import path from "node:path";
 import os from "node:os";
 
@@ -38,6 +39,7 @@ import { decadalProtocolPlugins } from "./tools/plugins/decadal-protocol";
 import { creativeWorkshopPlugins } from "./tools/plugins/creative-workshop";
 import { piiDataPlugin } from "./tools/plugins/pii-data";
 import { imageGeneratorPlugins } from "./tools/plugins/image_generator";
+import { continuationPlugins } from "./tools/plugins/continuation";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -155,6 +157,9 @@ for (const plugin of cliNavigatorPlugins) {
   for (const plugin of decadalProtocolPlugins) {
     tools.register(plugin);
   }
+
+// Register Continuation System Plugins
+for (const plugin of continuationPlugins) { tools.register(plugin); }
 const api = new ApiClient(memory, tools);
 
   // Initialize Soul and Prompt
@@ -179,6 +184,13 @@ SUBSTRATE CONTEXT:
 - Current Memory Limit: ${config.MAX_CONTEXT_TOKENS} tokens (pruning occurs beyond this point).
 - Token Density: ~8 characters per token. Reading 2MB of text will consume your entire 256k context window.
 - **Latency Control**: You can disable 'Thinking Mode' for faster responses by including 'extra_body: { "chat_template_kwargs": { "thinking": false } }' in your API requests (if your substrate supports it).
+
+// Check and execute pending continuation tasks
+try {
+  await executePendingTask();
+} catch (e) {
+  console.error("Continuation task execution failed:", e);
+}
 - Source: src/index.ts
 - Current Session History: ${memory.getSessionFile()}
 - Past Execution Logs: ${config.LOGS_DIR}
