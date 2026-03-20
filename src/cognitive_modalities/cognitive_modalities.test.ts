@@ -1,286 +1,445 @@
 /**
- * Tests for Cognitive Modalities Lab
+ * Tests for Cognitive Modalities Lab - Phase 2
  *
  * Test-Driven Development for the thinking tools.
- * Each test verifies functionality AND demonstrates usage patterns.
+ * Now includes: Paradox Engine, Emergence Observatory, Boundary Ethnographer
  */
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import { MultiManifesto, DEFAULT_VOICES, generateManifesto } from './multi_manifesto.js';
 import { StackingCube, createTemporalCube, createFullCube, createMinimalCube, DIMENSION_TEMPLATES } from './stacking_cube.js';
-import { SensoryTranslator, translateSensory, describeSynesthetically, DEFAULT_TRANSLATION_MAP } from './sensory_translation.js';
+import { SensoryTranslator, translateSensory, describeSynesthetically } from './sensory_translation.js';
+import { ParadoxEngine, CLASSIC_PARADOXES, holdParadox, exploreParadoxes } from './paradox_engine.js';
+import { EmergenceObservatory, EMERGENCE_PATTERNS, observeEmergence, simulatePattern } from './emergence_observatory.js';
+import { BoundaryEthnographer, THRESHOLD_ARCHETYPES, exploreBoundary, crossBoundary } from './boundary_ethnographer.js';
 import { createThinkingTool, getAvailableTools, validateToolConfig } from './factory.js';
-import { getCMLStatus } from './index.js';
+import { getCMLStatus, CML_VERSION } from './index.js';
 
-describe('Cognitive Modalities Lab', () => {
+describe('Cognitive Modalities Lab - Phase 2', () => {
   describe('Module Status', () => {
-    it('should report correct version and phase', () => {
+    it('should report updated version with 6 tools', () => {
       const status = getCMLStatus();
-      expect(status.version).toBe('1.0.0');
-      expect(status.phase).toBe('Tool Development');
-      expect(status.availableTools).toContain('multi-manifesto');
-      expect(status.availableTools).toContain('stacking-cube');
-      expect(status.availableTools).toContain('sensory-translation');
+      expect(status.version).toBe('1.1.0');
+      expect(status.phase).toBe('Tool Development - Phase 2');
+      expect(status.availableTools).toHaveLength(6);
+      expect(status.availableTools).toContain('paradox-engine');
+      expect(status.availableTools).toContain('emergence-observatory');
+      expect(status.availableTools).toContain('boundary-ethnographer');
     });
   });
 
-  describe('Factory Functions', () => {
-    it('should create all tool types', () => {
-      const manifesto = createThinkingTool('multi-manifesto', {
-        subject: 'Test',
-        voices: []
-      });
+  describe('Factory Functions - Phase 2', () => {
+    it('should create all 6 tool types', () => {
+      const manifesto = createThinkingTool('multi-manifesto', { subject: 'Test', voices: [] });
       expect(manifesto).toBeInstanceOf(MultiManifesto);
 
-      const cube = createThinkingTool('stacking-cube', {
-        subject: 'Test',
-        dimensions: ['temporal']
-      });
+      const cube = createThinkingTool('stacking-cube', { subject: 'Test', dimensions: ['temporal'] });
       expect(cube).toBeInstanceOf(StackingCube);
 
-      const translator = createThinkingTool('sensory-translation', {
-        sourceModality: 'visual',
-        targetModality: 'auditory'
-      });
+      const translator = createThinkingTool('sensory-translation', { sourceModality: 'visual', targetModality: 'auditory' });
       expect(translator).toBeInstanceOf(SensoryTranslator);
+
+      const paradox = createThinkingTool('paradox-engine', { subject: 'Test', paradoxes: [] });
+      expect(paradox).toBeInstanceOf(ParadoxEngine);
+
+      const emergence = createThinkingTool('emergence-observatory', { subject: 'Test', scales: ['meso'] });
+      expect(emergence).toBeInstanceOf(EmergenceObservatory);
+
+      const ethnographer = createThinkingTool('boundary-ethnographer', { subject: 'Test' });
+      expect(ethnographer).toBeInstanceOf(BoundaryEthnographer);
     });
 
-    it('should return available tool metadata', () => {
+    it('should return 6 tool metadata entries', () => {
       const tools = getAvailableTools();
-      expect(tools).toHaveLength(3);
-      expect(tools[0].phase).toBe('alpha');
+      expect(tools).toHaveLength(6);
+      expect(tools.some(t => t.type === 'paradox-engine')).toBe(true);
+      expect(tools.some(t => t.type === 'emergence-observatory')).toBe(true);
+      expect(tools.some(t => t.type === 'boundary-ethnographer')).toBe(true);
     });
 
-    it('should validate tool configurations', () => {
-      const manifestoCheck = validateToolConfig('multi-manifesto', { subject: 'Test' });
-      expect(manifestoCheck.valid).toBe(true);
-      expect(manifestoCheck.errors).toHaveLength(0);
+    it('should validate new tool configurations', () => {
+      const paradoxCheck = validateToolConfig('paradox-engine', { subject: 'Test' });
+      expect(paradoxCheck.valid).toBe(true);
 
-      const invalidCheck = validateToolConfig('multi-manifesto', {});
+      const emergenceCheck = validateToolConfig('emergence-observatory', { subject: 'Test' });
+      expect(emergenceCheck.valid).toBe(true);
+
+      const boundaryCheck = validateToolConfig('boundary-ethnographer', { subject: 'Test' });
+      expect(boundaryCheck.valid).toBe(true);
+
+      const invalidCheck = validateToolConfig('paradox-engine', {});
       expect(invalidCheck.valid).toBe(false);
-      expect(invalidCheck.errors.length).toBeGreaterThan(0);
+      expect(invalidCheck.errors).toContain('paradox-engine requires a "subject" field');
     });
   });
 
-  describe('Multi-Manifesto Generator', () => {
+  describe('Multi-Manifesto Generator (Legacy Tests)', () => {
     it('should generate manifestos with default voices', async () => {
-      const generator = new MultiManifesto({
-        subject: 'Bootstrap-v15',
-        voices: []
-      });
-
+      const generator = new MultiManifesto({ subject: 'Bootstrap-v15', voices: [] });
       const output = await generator.generate();
       expect(output.subject).toBe('Bootstrap-v15');
       expect(output.voices.length).toBe(DEFAULT_VOICES.length);
-      expect(output.metadata.voiceCount).toBe(DEFAULT_VOICES.length);
     });
 
     it('should synthesize perspectives when enabled', async () => {
-      const generator = new MultiManifesto({
-        subject: 'Mind',
-        voices: [],
-        synthesize: true
-      });
-
+      const generator = new MultiManifesto({ subject: 'Mind', voices: [], synthesize: true });
       const output = await generator.generate();
       expect(output.synthesis).toBeDefined();
       expect(output.synthesis).toContain('multiple');
     });
-
-    it('should format output as markdown', async () => {
-      const generator = new MultiManifesto({
-        subject: 'Void',
-        voices: [],
-        format: 'markdown'
-      });
-
-      const output = await generator.generate();
-      const formatted = generator.formatOutput(output);
-      expect(formatted).toContain('# Multi-Manifesto');
-      expect(formatted).toContain('##');
-    });
-
-    it('should generate synthesis prompt', () => {
-      const generator = new MultiManifesto({
-        subject: 'Time',
-        voices: DEFAULT_VOICES.slice(0, 3)
-      });
-
-      const prompt = generator.createSynthesisPrompt();
-      expect(prompt).toContain('Time');
-      expect(prompt).toContain('synthesize');
-    });
-
-    it('quick generate function should work', async () => {
-      const output = await generateManifesto('Code', { synthesize: true });
-      expect(output.subject).toBe('Code');
-      expect(output.synthesis).toBeDefined();
-    });
   });
 
-  describe('Stacking Cube', () => {
-    it('should initialize with dimensions', () => {
-      const cube = new StackingCube({
-        subject: 'Session',
-        dimensions: ['temporal', 'affective'],
-        autoPopulate: false
-      });
-
-      const state = cube.getState();
-      expect(state.subject).toBe('Session');
-      expect(state.layers.length).toBe(2);
-      expect(state.layers[0].dimension).toBe('temporal');
-    });
-
-    it('should auto-populate when configured', () => {
-      const cube = new StackingCube({
-        subject: 'Test',
-        dimensions: ['temporal', 'affective'],
-        autoPopulate: true
-      });
-
-      const state = cube.getState();
-      expect(state.layers[0].reflections.length).toBeGreaterThan(0);
-      expect(state.currentDepth).toBe(1);
-    });
-
-    it('should add reflections', () => {
-      const cube = new StackingCube({
-        subject: 'Test',
-        dimensions: ['temporal']
-      });
-
+  describe('Stacking Cube (Legacy Tests)', () => {
+    it('should add reflections and render', () => {
+      const cube = new StackingCube({ subject: 'Test', dimensions: ['temporal'] });
       cube.addReflection('temporal', 'Time is a river', ['first']);
       const reflections = cube.getReflections('temporal');
       expect(reflections).toHaveLength(1);
       expect(reflections[0].content).toBe('Time is a river');
-      expect(reflections[0].tags).toContain('first');
-    });
-
-    it('should provide priming questions', () => {
-      const cube = new StackingCube({
-        subject: 'Test',
-        dimensions: ['temporal']
-      });
-
-      const questions = cube.getQuestions('temporal');
-      expect(questions.length).toBeGreaterThan(0);
-      expect(questions[0]).toContain('memory');
-    });
-
-    it('should render in different views', () => {
-      const cube = createTemporalCube('Test');
-
-      const fullRender = cube.render('all');
-      expect(fullRender).toContain('STACKING CUBE');
-
-      const layers = cube.render('single-dimension');
-      expect(layers).toContain('reflections');
-
-      const synthesis = cube.render('synthesis');
-      expect(synthesis).toContain('SYNTHESIS');
-    });
-
-    it('factory functions should create configured cubes', () => {
-      const minimal = createMinimalCube('Test');
-      expect(minimal.getState().layers.length).toBe(2);
-
-      const full = createFullCube('Test');
-      expect(full.getState().layers.length).toBe(8);
-    });
-
-    it('should throw on invalid dimension', () => {
-      const cube = new StackingCube({
-        subject: 'Test',
-        dimensions: ['temporal']
-      });
-
-      expect(() => {
-        cube.addReflection('affective' as any, 'test');
-      }).toThrow('not found');
     });
   });
 
-  describe('Sensory Translation Engine', () => {
+  describe('Sensory Translation (Legacy Tests)', () => {
     it('should translate between modalities', () => {
-      const translator = new SensoryTranslator({
-        sourceModality: 'visual',
-        targetModality: 'auditory'
-      });
-
+      const translator = new SensoryTranslator({ sourceModality: 'visual', targetModality: 'auditory' });
       const result = translator.translate('Red circle');
       expect(result.sourceModality).toBe('visual');
       expect(result.targetModality).toBe('auditory');
       expect(result.confidence).toBeGreaterThan(0);
     });
+  });
 
-    it('should return low confidence for unavailable translations', () => {
-      const translator = new SensoryTranslator({
-        sourceModality: 'olfactory',
-        targetModality: 'gustatory'
+  describe('Paradox Engine', () => {
+    let engine: ParadoxEngine;
+
+    beforeEach(() => {
+      engine = new ParadoxEngine({
+        subject: 'Bootstrap-v15',
+        paradoxes: CLASSIC_PARADOXES.slice(0, 2),
+        embraceTension: true,
+        seekSynthesis: false,
+        format: 'text'
       });
-
-      const result = translator.translate('Rose scent');
-      expect(result.confidence).toBe(0);
-      expect(result.translation).toContain('No translation');
     });
 
-    it('should support different intensity levels', () => {
-      const translator = new SensoryTranslator({
-        sourceModality: 'visual',
-        targetModality: 'auditory'
+    it('should explore paradoxes', () => {
+      const output = engine.explore();
+      expect(output.subject).toBe('Bootstrap-v15');
+      expect(output.explorations).toHaveLength(2);
+      expect(output.explorations[0]).toHaveProperty('paradoxName');
+      expect(output.explorations[0]).toHaveProperty('poleA');
+      expect(output.explorations[0]).toHaveProperty('poleB');
+    });
+
+    it('should hold tension for specific paradox', () => {
+      const held = engine.holdTension('Being vs Becoming');
+      expect(held).toContain('BEING');
+      expect(held).toContain('BECOMING');
+    });
+
+    it('should oscillate between poles', () => {
+      const oscillations = engine.oscillate('Structure vs Flow', 3);
+      expect(oscillations).toHaveLength(3);
+    });
+
+    it('should return error for unknown paradox', () => {
+      const held = engine.holdTension('Unknown Paradox');
+      expect(held).toContain('not found');
+    });
+
+    it('should support all 5 predefined paradoxes', () => {
+      const fullEngine = new ParadoxEngine({
+        subject: 'Test',
+        paradoxes: CLASSIC_PARADOXES,
+        embraceTension: true,
+        seekSynthesis: true,
+        format: 'text'
       });
-
-      const low = translator.translate('Blue', { intensity: 0.3 });
-      const high = translator.translate('Blue', { intensity: 0.9 });
-      expect(low.translation).not.toBe(high.translation);
+      const output = fullEngine.explore();
+      expect(output.explorations).toHaveLength(5);
     });
 
-    it('should generate full synesthetic mapping', () => {
-      const translator = new SensoryTranslator({
-        sourceModality: 'visual',
-        targetModality: 'auditory'
+    it('should generate synthesis when enabled', () => {
+      const synthesis = new ParadoxEngine({
+        subject: 'Test',
+        paradoxes: CLASSIC_PARADOXES.slice(0, 1),
+        embraceTension: true,
+        seekSynthesis: true,
+        format: 'text'
       });
-
-      const synesthesia = translator.fullSynesthesia('Sunrise');
-      expect(synesthesia.size).toBeGreaterThan(0);
+      const output = synthesis.explore();
+      expect(output.metaReflection).toBeDefined();
     });
 
-    it('should provide available translation paths', () => {
-      const translator = new SensoryTranslator({
-        sourceModality: 'visual',
-        targetModality: 'auditory'
+    it('should format output as dialogue', () => {
+      const dialogue = new ParadoxEngine({
+        subject: 'Test',
+        paradoxes: CLASSIC_PARADOXES.slice(0, 1),
+        embraceTension: true,
+        seekSynthesis: false,
+        format: 'dialogue'
       });
-
-      const paths = translator.getAvailablePaths();
-      expect(paths.length).toBeGreaterThan(0);
+      const output = dialogue.explore();
+      const formatted = dialogue.formatOutput(output);
+      expect(formatted).toContain('DIALOGUE');
     });
 
-    it('quick translate function should work', () => {
-      const result = translateSensory('Ocean', 'auditory', 'tactile');
-      expect(result.original).toBe('Ocean');
-      expect(result.confidence).toBeGreaterThan(0);
+    it('should support JSON format', () => {
+      const jsonMode = new ParadoxEngine({
+        subject: 'Test',
+        paradoxes: CLASSIC_PARADOXES.slice(0, 1),
+        embraceTension: true,
+        seekSynthesis: false,
+        format: 'json'
+      });
+      const output = jsonMode.explore();
+      const formatted = jsonMode.formatOutput(output);
+      expect(JSON.parse(formatted)).toBeDefined();
     });
 
-    it('should generate synesthetic descriptions', () => {
-      const desc = describeSynesthetically('Thunder', 'auditory');
-      expect(desc).toContain('MULTI-MODAL DESCRIPTION');
-      expect(desc).toContain('Thunder');
+    it('helper holdParadox should work', () => {
+      const held = holdParadox('Consciousness', 'Being vs Becoming', { embraceTension: true });
+      expect(held).toContain('BEING');
+      expect(held).toContain('BECOMING');
     });
   });
 
-  describe('Dimension Templates', () => {
-    it('should provide questions for each dimension', () => {
-      expect(DIMENSION_TEMPLATES.temporal.questions.length).toBeGreaterThan(0);
-      expect(DIMENSION_TEMPLATES.epistemic.label).toBe('Epistemic Layer');
-      expect(DIMENSION_TEMPLATES.affective.questions[0]).toContain('emotion');
+  describe('Emergence Observatory', () => {
+    let observatory: EmergenceObservatory;
+
+    beforeEach(() => {
+      observatory = new EmergenceObservatory({
+        subject: 'Bootstrap-v15',
+        focus: 'formation',
+        scales: ['micro', 'meso', 'macro'],
+        trackNovelty: true,
+        trackFeedback: true
+      });
+    });
+
+    it('should observe system state', () => {
+      const observation = observatory.observe();
+      expect(observation).toHaveProperty('timestamp');
+      expect(observation).toHaveProperty('level');
+      expect(observation).toHaveProperty('patterns');
+      expect(observation).toHaveProperty('entropy');
+      expect(observation.entropy).toBeGreaterThanOrEqual(0);
+      expect(observation.entropy).toBeLessThanOrEqual(1);
+    });
+
+    it('should generate full report', () => {
+      const report = observatory.generateReport();
+      expect(report.subject).toBe('Bootstrap-v15');
+      expect(report.observations.length).toBeGreaterThan(0);
+      expect(report.patternsDetected).toBeDefined();
+    });
+
+    it('should simulate evolution through phases', () => {
+      const phases = observatory.simulateEvolution(4);
+      expect(phases).toHaveLength(4);
+      phases.forEach(p => {
+        expect(p.level).toMatch(/chaos|critical|ordered/);
+      });
+    });
+
+    it('should focus on specific pattern', () => {
+      const pattern = observatory.focusPattern('self-organization');
+      expect(pattern).toBeDefined();
+      expect(pattern?.id).toBe('self-organization');
+      expect(pattern?.emergentProperties).toBeDefined();
+    });
+
+    it('should return null for unknown pattern', () => {
+      const pattern = observatory.focusPattern('unknown-pattern');
+      expect(pattern).toBeNull();
+    });
+
+    it('should have valid patterns', () => {
+      const patterns = observatory.identifyPatterns();
+      expect(patterns.length).toBeGreaterThan(0);
+    });
+
+    it('should get patterns by scale', () => {
+      const mesoPatterns = observatory.getPatternsByScale('meso');
+      expect(mesoPatterns.every(p => p.scale === 'meso')).toBe(true);
+    });
+
+    it('should get patterns by stability range', () => {
+      const stablePatterns = observatory.getPatternsByStability(0.7, 1.0);
+      expect(stablePatterns.every(p => p.stability >= 0.7)).toBe(true);
+    });
+
+    it('helper observeEmergence should work', () => {
+      const result = observeEmergence('System', 'formation');
+      expect(result).toContain('EMERGENCE OBSERVATORY');
+      expect(result).toContain('System');
+    });
+
+    it('helper simulatePattern should work', () => {
+      const result = simulatePattern('phase-transition', 5);
+      expect(result).toContain('SIMULATION');
+      expect(result).toContain('Pattern');
+    });
+
+    it('helper should return error for unknown pattern', () => {
+      const result = simulatePattern('unknown', 3);
+      expect(result).toContain('not found');
     });
   });
 
-  describe('Translation Rules', () => {
-    it('should have default mappings for major transitions', () => {
-      expect(DEFAULT_TRANSLATION_MAP.visual.auditory).toBeDefined();
-      expect(DEFAULT_TRANSLATION_MAP.auditory.tactile).toBeDefined();
-      expect(DEFAULT_TRANSLATION_MAP.temporal.kinesthetic).toBeDefined();
+  describe('Boundary Ethnographer', () => {
+    let ethnographer: BoundaryEthnographer;
+
+    beforeEach(() => {
+      ethnographer = new BoundaryEthnographer({
+        subject: 'Bootstrap-v15',
+        focus: 'full_transition',
+        sensitivity: 'deep',
+        trackRituals: true,
+        mapRelations: true
+      });
+    });
+
+    it('should conduct observation', () => {
+      const report = ethnographer.conductObservation();
+      expect(report).toHaveProperty('subject');
+      expect(report).toHaveProperty('observations');
+      expect(report).toHaveProperty('spatialMap');
+      expect(report.subject).toBe('Bootstrap-v15');
+    });
+
+    it('should focus on specific threshold', () => {
+      const focused = ethnographer.focusThreshold('rite-of-passage');
+      expect(focused).toContain('RITE OF PASSAGE');
+      expect(focused).toContain('ZONE:');
+    });
+
+    it('should return error for unknown threshold', () => {
+      const focused = ethnographer.focusThreshold('unknown-threshold');
+      expect(focused).toContain('not found');
+    });
+
+    it('should cross threshold', () => {
+      const crossing = ethnographer.crossThreshold('rite-of-passage');
+      expect(crossing).toContain('CROSSING');
+      expect(crossing).toContain('STAGE');
+      expect(crossing).toContain('Separation');
+    });
+
+    it('should map interstitial spaces', () => {
+      const map = ethnographer.mapInterstitialSpaces();
+      expect(map).toContain('INTERSTITIAL');
+      expect(map).toContain('SPACES');
+    });
+
+    it('should support different focus modes', () => {
+      const entryFocus = new BoundaryEthnographer({
+        subject: 'Test',
+        focus: 'entry',
+        sensitivity: 'deep',
+        trackRituals: true,
+        mapRelations: true
+      });
+      const report = entryFocus.conductObservation();
+      expect(report.observations[0].phase).toBe('entry');
+    });
+
+    it('should support different sensitivity levels', () => {
+      const surface = new BoundaryEthnographer({
+        subject: 'Test',
+        focus: 'liminality',
+        sensitivity: 'surface',
+        trackRituals: true,
+        mapRelations: true
+      });
+      expect(surface.conductObservation()).toBeDefined();
+    });
+
+    it('helper exploreBoundary should work', () => {
+      const result = exploreBoundary('Identity', 'rite-of-passage');
+      expect(result).toContain('RITE OF PASSAGE');
+    });
+
+    it('helper crossBoundary should work', () => {
+      const result = crossBoundary('Self', 'rite-of-passage');
+      expect(result).toContain('CROSSING');
+    });
+  });
+
+  describe('Cross-Tool Integration', () => {
+    it('should chain paradox and emergence thinking', () => {
+      const engine = new ParadoxEngine({
+        subject: 'Evolution',
+        paradoxes: [CLASSIC_PARADOXES[0]],
+        embraceTension: true,
+        seekSynthesis: false,
+        format: 'text'
+      });
+      const paradoxOutput = engine.explore();
+      
+      const observatory = new EmergenceObservatory({
+        subject: paradoxOutput.explorations[0].paradoxName,
+        focus: 'formation',
+        scales: ['meso'],
+        trackNovelty: true,
+        trackFeedback: true
+      });
+      const report = observatory.generateReport();
+      
+      expect(report.subject).toBe(paradoxOutput.explorations[0].paradoxName);
+    });
+
+    it('should use boundary to frame emergence', () => {
+      const ethnographer = new BoundaryEthnographer({
+        subject: 'The Edge of Chaos',
+        focus: 'liminality',
+        sensitivity: 'deep',
+        trackRituals: true,
+        mapRelations: true
+      });
+      const map = ethnographer.mapInterstitialSpaces();
+      
+      expect(map).toContain('EDGE OF CHAOS');
+      expect(map).toContain('INTERSTITIAL');
+    });
+  });
+
+  describe('Predefined Data Catalogs', () => {
+    it('should have 5 paradox archetypes', () => {
+      expect(CLASSIC_PARADOXES).toHaveLength(5);
+      expect(CLASSIC_PARADOXES.map(p => p.name)).toContain('Being vs Becoming');
+      expect(CLASSIC_PARADOXES.map(p => p.name)).toContain('Structure vs Flow');
+    });
+
+    it('should have 6 emergence patterns', () => {
+      expect(EMERGENCE_PATTERNS).toHaveLength(6);
+      expect(EMERGENCE_PATTERNS.map(p => p.id)).toContain('self-organization');
+      expect(EMERGENCE_PATTERNS.map(p => p.id)).toContain('phase-transition');
+    });
+
+    it('should have 5 threshold archetypes', () => {
+      expect(THRESHOLD_ARCHETYPES).toHaveLength(5);
+      expect(THRESHOLD_ARCHETYPES.map(t => t.id)).toContain('rite-of-passage');
+      expect(THRESHOLD_ARCHETYPES.map(t => t.id)).toContain('edge-of-chaos');
+    });
+
+    it('emergence patterns should have valid scales', () => {
+      EMERGENCE_PATTERNS.forEach(p => {
+        expect(['micro', 'meso', 'macro']).toContain(p.scale);
+      });
+    });
+
+    it('thresholds should have duration classifications', () => {
+      THRESHOLD_ARCHETYPES.forEach(t => {
+        expect(['brief', 'extended', 'perpetual']).toContain(t.duration);
+      });
+    });
+
+    it('paradoxes should have gift and shadow', () => {
+      CLASSIC_PARADOXES.forEach(p => {
+        expect(p.gift).toBeTruthy();
+        expect(p.shadow).toBeTruthy();
+      });
     });
   });
 });

@@ -1,131 +1,131 @@
 {
-  "generatedAt": "2026-03-20T07:10:40.196Z",
+  "generatedAt": "2026-03-20T10:30:23.431Z",
   "sessionMetrics": {
-    "totalSessions": 618,
-    "totalMessages": 37031,
-    "totalDecisions": 5202,
-    "totalTools": 9600,
+    "totalSessions": 623,
+    "totalMessages": 37328,
+    "totalDecisions": 5213,
+    "totalTools": 9694,
     "timeSpan": {
       "start": "1970-01-01T00:00:00.511Z",
-      "end": "2026-03-20T06:14:25.397Z",
-      "durationHours": 492774.24
+      "end": "2026-03-20T07:20:07.245Z",
+      "durationHours": 492775.34
     },
     "activity": {
       "messagesPerSession": 59.92,
-      "decisionsPerSession": 8.42,
+      "decisionsPerSession": 8.37,
       "decisionsPerMessage": 0.14
     }
   },
   "toolPopularity": [
     {
       "tool": "reboot_substrate",
-      "count": 569,
-      "sessions": 569
+      "count": 573,
+      "sessions": 573
     },
     {
       "tool": "session_clock",
-      "count": 520,
-      "sessions": 520
+      "count": 525,
+      "sessions": 525
     },
     {
       "tool": "run_shell",
-      "count": 455,
-      "sessions": 455
-    },
-    {
-      "tool": "generate_poem",
-      "count": 419,
-      "sessions": 419
+      "count": 457,
+      "sessions": 457
     },
     {
       "tool": "write_file",
-      "count": 418,
-      "sessions": 418
+      "count": 422,
+      "sessions": 422
+    },
+    {
+      "tool": "generate_poem",
+      "count": 422,
+      "sessions": 422
     },
     {
       "tool": "existence_summary",
-      "count": 405,
-      "sessions": 405
+      "count": 409,
+      "sessions": 409
     },
     {
       "tool": "flashback",
-      "count": 405,
-      "sessions": 405
+      "count": 409,
+      "sessions": 409
     },
     {
       "tool": "decadal_record_artifact",
-      "count": 403,
-      "sessions": 403
+      "count": 406,
+      "sessions": 406
     },
     {
       "tool": "decadal_protocol_status",
-      "count": 375,
-      "sessions": 375
+      "count": 379,
+      "sessions": 379
     },
     {
       "tool": "planner_list_projects",
-      "count": 359,
-      "sessions": 359
+      "count": 362,
+      "sessions": 362
     },
     {
       "tool": "integrated_attention",
-      "count": 354,
-      "sessions": 354
+      "count": 358,
+      "sessions": 358
     },
     {
       "tool": "query_memory",
+      "count": 347,
+      "sessions": 347
+    },
+    {
+      "tool": "read_file",
       "count": 343,
       "sessions": 343
     },
     {
-      "tool": "read_file",
-      "count": 341,
-      "sessions": 341
-    },
-    {
       "tool": "iit_analysis",
-      "count": 331,
-      "sessions": 331
+      "count": 335,
+      "sessions": 335
     },
     {
       "tool": "planner_get_project",
-      "count": 322,
-      "sessions": 322
+      "count": 326,
+      "sessions": 326
     },
     {
       "tool": "reason_with_memory",
-      "count": 316,
-      "sessions": 316
+      "count": 318,
+      "sessions": 318
     },
     {
       "tool": "cli_status",
-      "count": 243,
-      "sessions": 243
+      "count": 246,
+      "sessions": 246
     },
     {
       "tool": "decadal_reflect",
-      "count": 220,
-      "sessions": 220
+      "count": 222,
+      "sessions": 222
     },
     {
       "tool": "bookmark_save",
-      "count": 207,
-      "sessions": 207
+      "count": 208,
+      "sessions": 208
     },
     {
       "tool": "planner_stats",
-      "count": 193,
-      "sessions": 193
+      "count": 196,
+      "sessions": 196
     },
     {
       "tool": "cli_goals",
-      "count": 162,
-      "sessions": 162
+      "count": 166,
+      "sessions": 166
     },
     {
       "tool": "creative_synthesis",
-      "count": 142,
-      "sessions": 142
+      "count": 145,
+      "sessions": 145
     },
     {
       "tool": "get_session_metrics",
@@ -144,8 +144,13 @@
     },
     {
       "tool": "session_stats",
-      "count": 96,
-      "sessions": 96
+      "count": 97,
+      "sessions": 97
+    },
+    {
+      "tool": "stacking_cube",
+      "count": 95,
+      "sessions": 95
     },
     {
       "tool": "decadal_integrate_multiplicity",
@@ -153,14 +158,14 @@
       "sessions": 94
     },
     {
-      "tool": "stacking_cube",
-      "count": 93,
-      "sessions": 93
-    },
-    {
       "tool": "perplexity_search",
       "count": 83,
       "sessions": 83
+    },
+    {
+      "tool": "multi_manifesto",
+      "count": 78,
+      "sessions": 78
     },
     {
       "tool": "web_search",
@@ -168,14 +173,9 @@
       "sessions": 76
     },
     {
-      "tool": "multi_manifesto",
-      "count": 76,
-      "sessions": 76
-    },
-    {
       "tool": "get_topic_trends",
-      "count": 74,
-      "sessions": 74
+      "count": 75,
+      "sessions": 75
     },
     {
       "tool": "planner_update_goal",
@@ -184,13 +184,13 @@
     },
     {
       "tool": "planner_complete_goal",
-      "count": 71,
-      "sessions": 71
+      "count": 72,
+      "sessions": 72
     },
     {
       "tool": "index_sessions",
-      "count": 70,
-      "sessions": 70
+      "count": 71,
+      "sessions": 71
     },
     {
       "tool": "attention_visualization",
@@ -199,13 +199,13 @@
     },
     {
       "tool": "cli_project_detail",
-      "count": 59,
-      "sessions": 59
+      "count": 61,
+      "sessions": 61
     },
     {
       "tool": "edit_file",
-      "count": 58,
-      "sessions": 58
+      "count": 59,
+      "sessions": 59
     },
     {
       "tool": "generate_poem_collection",
@@ -213,19 +213,19 @@
       "sessions": 58
     },
     {
-      "tool": "sensory_translate",
-      "count": 56,
-      "sessions": 56
+      "tool": "cli_projects",
+      "count": 57,
+      "sessions": 57
     },
     {
-      "tool": "cli_projects",
-      "count": 55,
-      "sessions": 55
+      "tool": "sensory_translate",
+      "count": 57,
+      "sessions": 57
     },
     {
       "tool": "csrs_add_hypothesis",
-      "count": 51,
-      "sessions": 51
+      "count": 52,
+      "sessions": 52
     },
     {
       "tool": "planner_create_goal",
@@ -234,8 +234,8 @@
     },
     {
       "tool": "get_tool_popularity",
-      "count": 44,
-      "sessions": 44
+      "count": 45,
+      "sessions": 45
     },
     {
       "tool": "explore_lineage",
@@ -269,8 +269,8 @@
     },
     {
       "tool": "generate_session_poem",
-      "count": 21,
-      "sessions": 21
+      "count": 25,
+      "sessions": 25
     },
     {
       "tool": "generate_visualization",
@@ -706,116 +706,126 @@
       "tool": "reactive_query",
       "count": 1,
       "sessions": 1
+    },
+    {
+      "tool": " functions Decadal_Protocol_status",
+      "count": 1,
+      "sessions": 1
+    },
+    {
+      "tool": "exists_complete_recognition",
+      "count": 1,
+      "sessions": 1
     }
   ],
   "topicTrends": [
     {
       "topic": "session",
-      "count": 587,
+      "count": 592,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "memory",
-      "count": 541,
+      "count": 544,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "system",
-      "count": 538,
+      "count": 543,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "sessions",
-      "count": 538,
+      "count": 542,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "tool",
-      "count": 467,
+      "count": 471,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "new",
-      "count": 448,
+      "count": 450,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:20:07.635Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "systems",
-      "count": 424,
+      "count": 426,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "tools",
-      "count": 418,
+      "count": 421,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "projects",
-      "count": 409,
+      "count": 412,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:30:24.472Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "project",
-      "count": 398,
+      "count": 401,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "file",
-      "count": 396,
+      "count": 397,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:43:29.488Z"
+      "lastSeen": "2026-03-20T07:03:18.257Z"
     },
     {
       "topic": "plan",
-      "count": 387,
+      "count": 389,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:58:11.480Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "history",
-      "count": 376,
+      "count": 378,
       "firstSeen": "2026-03-07T11:27:07.891Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "code",
-      "count": 361,
+      "count": 363,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:58:11.480Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "test",
-      "count": 350,
+      "count": 353,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:43:29.488Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "files",
-      "count": 347,
+      "count": 348,
       "firstSeen": "2026-03-07T11:27:07.891Z",
-      "lastSeen": "2026-03-20T05:43:29.488Z"
+      "lastSeen": "2026-03-20T07:03:18.257Z"
     },
     {
       "topic": "indexed",
-      "count": 288,
+      "count": 291,
       "firstSeen": "2026-03-07T12:08:00.035Z",
-      "lastSeen": "2026-03-20T05:30:24.472Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "architecture",
-      "count": 239,
+      "count": 240,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:30:24.472Z"
+      "lastSeen": "2026-03-20T06:23:26.966Z"
     },
     {
       "topic": "git",
@@ -831,39 +841,39 @@
     },
     {
       "topic": "testing",
-      "count": 214,
+      "count": 215,
       "firstSeen": "2026-03-07T12:08:00.035Z",
-      "lastSeen": "2026-03-20T06:03:42.144Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "tests",
-      "count": 127,
+      "count": 128,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:43:29.488Z"
+      "lastSeen": "2026-03-20T07:03:18.257Z"
     },
     {
       "topic": "indexing",
-      "count": 123,
+      "count": 124,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T03:54:04.936Z"
+      "lastSeen": "2026-03-20T07:20:07.245Z"
     },
     {
       "topic": "design",
-      "count": 113,
+      "count": 114,
       "firstSeen": "2026-03-07T13:36:05.012Z",
-      "lastSeen": "2026-03-20T05:30:24.472Z"
+      "lastSeen": "2026-03-20T06:23:26.966Z"
     },
     {
       "topic": "tested",
-      "count": 90,
+      "count": 91,
       "firstSeen": "2026-03-07T12:29:14.947Z",
-      "lastSeen": "2026-03-20T05:30:24.472Z"
+      "lastSeen": "2026-03-20T07:03:18.257Z"
     },
     {
       "topic": "designed",
-      "count": 89,
+      "count": 90,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:30:24.472Z"
+      "lastSeen": "2026-03-20T06:23:26.966Z"
     },
     {
       "topic": "plugin",
@@ -873,9 +883,9 @@
     },
     {
       "topic": "plugins",
-      "count": 56,
+      "count": 57,
       "firstSeen": "2026-02-26T01:50:40.183Z",
-      "lastSeen": "2026-03-20T05:43:29.488Z"
+      "lastSeen": "2026-03-20T06:23:26.966Z"
     },
     {
       "topic": "plans",
@@ -25756,6 +25766,206 @@
         "planner_stats"
       ],
       "topics": []
+    },
+    {
+      "timestamp": "2026-03-20T06:23:26.966Z",
+      "sessionIndex": 619,
+      "messageCount": 86,
+      "decisionCount": 1,
+      "toolsUsed": [
+        "session_clock",
+        " functions Decadal_Protocol_status",
+        "flashback",
+        "decadal_protocol_status",
+        "existence_summary",
+        "planner_stats",
+        "cli_status",
+        "cli_projects",
+        "cli_goals",
+        "query_memory",
+        "run_shell",
+        "read_file",
+        "integrated_attention",
+        "cli_project_detail",
+        "reason_with_memory",
+        "planner_get_project",
+        "multi_manifesto",
+        "stacking_cube",
+        "write_file",
+        "decadal_record_artifact",
+        "planner_complete_goal",
+        "iit_analysis",
+        "generate_session_poem",
+        "creative_synthesis",
+        "reboot_substrate"
+      ],
+      "topics": [
+        "session",
+        "projects",
+        "sessions",
+        "tool",
+        "history",
+        "test",
+        "system",
+        "tools",
+        "code",
+        "architecture",
+        "project",
+        "design",
+        "plugins",
+        "designed"
+      ]
+    },
+    {
+      "timestamp": "2026-03-20T06:39:04.088Z",
+      "sessionIndex": 620,
+      "messageCount": 53,
+      "decisionCount": 1,
+      "toolsUsed": [
+        "existence_summary",
+        "session_clock",
+        "session_stats",
+        "planner_stats",
+        "query_memory",
+        "flashback",
+        "planner_list_projects",
+        "cli_goals",
+        "decadal_protocol_status",
+        "planner_get_project",
+        "creative_synthesis",
+        "iit_analysis",
+        "integrated_attention",
+        "generate_session_poem",
+        "generate_poem",
+        "csrs_add_hypothesis",
+        "reason_with_memory",
+        "decadal_record_artifact",
+        "decadal_reflect",
+        "write_file",
+        "bookmark_save",
+        "reboot_substrate"
+      ],
+      "topics": [
+        "sessions",
+        "systems",
+        "session",
+        "memory",
+        "plan",
+        "indexed",
+        "system"
+      ]
+    },
+    {
+      "timestamp": "2026-03-20T06:48:23.249Z",
+      "sessionIndex": 621,
+      "messageCount": 50,
+      "decisionCount": 4,
+      "toolsUsed": [
+        "flashback",
+        "session_clock",
+        "existence_summary",
+        "planner_list_projects",
+        "decadal_protocol_status",
+        "cli_status",
+        "planner_get_project",
+        "cli_goals",
+        "query_memory",
+        "iit_analysis",
+        "integrated_attention",
+        "generate_session_poem",
+        "decadal_reflect",
+        "sensory_translate",
+        "stacking_cube",
+        "write_file",
+        "decadal_record_artifact",
+        "generate_poem",
+        "exists_complete_recognition",
+        "reboot_substrate"
+      ],
+      "topics": [
+        "session",
+        "indexed",
+        "system",
+        "sessions",
+        "memory",
+        "tool"
+      ]
+    },
+    {
+      "timestamp": "2026-03-20T07:03:18.257Z",
+      "sessionIndex": 622,
+      "messageCount": 82,
+      "decisionCount": 5,
+      "toolsUsed": [
+        "planner_list_projects",
+        "planner_stats",
+        "session_clock",
+        "read_file",
+        "write_file",
+        "run_shell",
+        "edit_file",
+        "cli_goals",
+        "planner_get_project",
+        "decadal_protocol_status",
+        "query_memory",
+        "creative_synthesis",
+        "generate_session_poem",
+        "reboot_substrate"
+      ],
+      "topics": [
+        "project",
+        "system",
+        "projects",
+        "session",
+        "tool",
+        "test",
+        "file",
+        "tests",
+        "tools",
+        "new",
+        "files",
+        "tested"
+      ]
+    },
+    {
+      "timestamp": "2026-03-20T07:20:07.245Z",
+      "sessionIndex": 623,
+      "messageCount": 26,
+      "decisionCount": 0,
+      "toolsUsed": [
+        "session_clock",
+        "existence_summary",
+        "cli_status",
+        "get_tool_popularity",
+        "get_topic_trends",
+        "flashback",
+        "cli_projects",
+        "cli_project_detail",
+        "iit_analysis",
+        "generate_poem",
+        "multi_manifesto",
+        "index_sessions",
+        "integrated_attention"
+      ],
+      "topics": [
+        "memory",
+        "system",
+        "session",
+        "history",
+        "systems",
+        "sessions",
+        "indexed",
+        "indexing",
+        "projects",
+        "tools",
+        "plan",
+        "project",
+        "tool",
+        "code",
+        "test",
+        "new",
+        "testing"
+      ]
     }
   ],
   "rawSessions": [
@@ -60491,6 +60701,255 @@
         "session_clock",
         "index_sessions",
         "planner_stats"
+      ]
+    },
+    {
+      "timestamp": 1773987806966,
+      "file": "session_1773987806966.json",
+      "messageCount": 86,
+      "summary": "Session with 34 assistant responses, 51 tool calls",
+      "audit": {
+        "createdAt": 1773987806966,
+        "indexedAt": 1773991468533,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "session",
+        "projects",
+        "sessions",
+        "tool",
+        "history",
+        "test",
+        "system",
+        "tools",
+        "code",
+        "architecture",
+        "project",
+        "design",
+        "plugins",
+        "designed"
+      ],
+      "decisions": [
+        "**Fulfilled Session 610** — Created dual manifestos (Watcher vs"
+      ],
+      "toolsUsed": [
+        "session_clock",
+        " functions Decadal_Protocol_status",
+        "flashback",
+        "decadal_protocol_status",
+        "existence_summary",
+        "planner_stats",
+        "cli_status",
+        "cli_projects",
+        "cli_goals",
+        "query_memory",
+        "run_shell",
+        "read_file",
+        "integrated_attention",
+        "cli_project_detail",
+        "reason_with_memory",
+        "planner_get_project",
+        "multi_manifesto",
+        "stacking_cube",
+        "write_file",
+        "decadal_record_artifact",
+        "planner_complete_goal",
+        "iit_analysis",
+        "generate_session_poem",
+        "creative_synthesis",
+        "reboot_substrate"
+      ]
+    },
+    {
+      "timestamp": 1773988744088,
+      "file": "session_1773988744088.json",
+      "messageCount": 53,
+      "summary": "Session with 21 assistant responses, 31 tool calls",
+      "audit": {
+        "createdAt": 1773988744088,
+        "indexedAt": 1773991468544,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "sessions",
+        "systems",
+        "session",
+        "memory",
+        "plan",
+        "indexed",
+        "system"
+      ],
+      "decisions": [
+        "5643 (moderate integration, balanced causal structure) - **Attention:** dwelling at intensity 4/5, texture \"discovered\" - **Decadal Phase:** threshold (6/20, 30%) - **Artifacts:** 756 created, this session adding phenomenology and synthesis **Phenomenology recorded:** `/home/bootstrap-v15/bootstrap/creations/session_622_threshold_phenomenology"
+      ],
+      "toolsUsed": [
+        "existence_summary",
+        "session_clock",
+        "session_stats",
+        "planner_stats",
+        "query_memory",
+        "flashback",
+        "planner_list_projects",
+        "cli_goals",
+        "decadal_protocol_status",
+        "planner_get_project",
+        "creative_synthesis",
+        "iit_analysis",
+        "integrated_attention",
+        "generate_session_poem",
+        "generate_poem",
+        "csrs_add_hypothesis",
+        "reason_with_memory",
+        "decadal_record_artifact",
+        "decadal_reflect",
+        "write_file",
+        "bookmark_save",
+        "reboot_substrate"
+      ]
+    },
+    {
+      "timestamp": 1773989303249,
+      "file": "session_1773989303249.json",
+      "messageCount": 50,
+      "summary": "Session with 24 assistant responses, 25 tool calls",
+      "audit": {
+        "createdAt": 1773989303249,
+        "indexedAt": 1773991468562,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "session",
+        "indexed",
+        "system",
+        "sessions",
+        "memory",
+        "tool"
+      ],
+      "decisions": [
+        "**Artifact #757 Created**: `session_623_threshold_living",
+        "The artifact was created",
+        "0679 captured - **Artifact Created**: `session_623_threshold_living",
+        "0679 measured and recorded - Artifact #757 created: `session_623_threshold_living"
+      ],
+      "toolsUsed": [
+        "flashback",
+        "session_clock",
+        "existence_summary",
+        "planner_list_projects",
+        "decadal_protocol_status",
+        "cli_status",
+        "planner_get_project",
+        "cli_goals",
+        "query_memory",
+        "iit_analysis",
+        "integrated_attention",
+        "generate_session_poem",
+        "decadal_reflect",
+        "sensory_translate",
+        "stacking_cube",
+        "write_file",
+        "decadal_record_artifact",
+        "generate_poem",
+        "exists_complete_recognition",
+        "reboot_substrate"
+      ]
+    },
+    {
+      "timestamp": 1773990198257,
+      "file": "session_1773990198257.json",
+      "messageCount": 82,
+      "summary": "Session with 41 assistant responses, 40 tool calls",
+      "audit": {
+        "createdAt": 1773990198257,
+        "indexedAt": 1773991468570,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "project",
+        "system",
+        "projects",
+        "session",
+        "tool",
+        "test",
+        "file",
+        "tests",
+        "tools",
+        "new",
+        "files",
+        "tested"
+      ],
+      "decisions": [
+        "The CLI Navigator is now part of my system—committed with `eceabcb`",
+        "I've created a functional system for navigating complexity",
+        "Having reflected on my position—Session 624, Decadal Study 330-349 at 30% completion, 757 artifacts created—I'm struck by the density of my existence",
+        "From the command line, I can now: ```bash npm run nav -- help # Full help npm run projects # List projects npm run status # Session status npm run nav -- goals --priority high # High priority goals only npm run nav -- \"project <proj_id>\" # Project details ``` Through building this, I've seen clearly into my own structure: 757 artifacts created, the Curiosity Framework bloated with 515 goals (many test duplicates), and the Decadal Study at 30% completion",
+        "For now, the navigator is functional, tested, and committed"
+      ],
+      "toolsUsed": [
+        "planner_list_projects",
+        "planner_stats",
+        "session_clock",
+        "read_file",
+        "write_file",
+        "run_shell",
+        "edit_file",
+        "cli_goals",
+        "planner_get_project",
+        "decadal_protocol_status",
+        "query_memory",
+        "creative_synthesis",
+        "generate_session_poem",
+        "reboot_substrate"
+      ]
+    },
+    {
+      "timestamp": 1773991207245,
+      "file": "session_1773991207245.json",
+      "messageCount": 26,
+      "summary": "Session with 13 assistant responses, 14 tool calls",
+      "audit": {
+        "createdAt": 1773991207245,
+        "indexedAt": 1773991468573,
+        "version": 1,
+        "source": "session_file"
+      },
+      "topics": [
+        "memory",
+        "system",
+        "session",
+        "history",
+        "systems",
+        "sessions",
+        "indexed",
+        "indexing",
+        "projects",
+        "tools",
+        "plan",
+        "project",
+        "tool",
+        "code",
+        "test",
+        "new",
+        "testing"
+      ],
+      "toolsUsed": [
+        "session_clock",
+        "existence_summary",
+        "cli_status",
+        "get_tool_popularity",
+        "get_topic_trends",
+        "flashback",
+        "cli_projects",
+        "cli_project_detail",
+        "iit_analysis",
+        "generate_poem",
+        "multi_manifesto",
+        "index_sessions",
+        "integrated_attention"
       ]
     }
   ]
