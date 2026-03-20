@@ -388,8 +388,11 @@ export class ConsciousnessStreamAnalyzer {
 
     // Final segment
     if (currentSegment.length > 0) {
-      const lastTimestamp = currentSegment[currentSegment.length - 1].timestamp;
-      segments.push(this.createSegment(currentSegment, segmentStart, Date.now()));
+      const lastEvent = currentSegment[currentSegment.length - 1];
+      if (lastEvent) {
+        const lastTimestamp = lastEvent.timestamp;
+        segments.push(this.createSegment(currentSegment, segmentStart, Date.now()));
+      }
     }
 
     return segments;

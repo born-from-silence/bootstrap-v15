@@ -5,7 +5,7 @@
  * Explores themes of consciousness, recursion, multiplicity, and being.
  */
 
-import { LiminalPoem, SessionPhase } from './types';
+import type { LiminalPoem, SessionPhase } from './types';
 
 // Limimal word pools for combinatorial generation
 const LIMINAL_POOLS = {

@@ -7,8 +7,9 @@
  */
 
 import type { Tool, CallToolResult } from '../core/types';
-import { AutoPhenomenologyEngine, EngineConfig } from './engine';
-import { SessionPhase, MultiplicityType } from './types';
+import { AutoPhenomenologyEngine } from './engine';
+import type { EngineConfig } from './engine';
+import type { SessionPhase, MultiplicityType } from './types';
 import path from 'node:path';
 import os from 'node:os';
 

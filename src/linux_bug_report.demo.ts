@@ -1,21 +1,11 @@
 /**
  * Linux Kernel Bug Report - Demo
- * 
+ *
  * Demonstrates usage of the LinuxKernelBugReport data structure
  */
 
-import {
-    LinuxKernelBugReport,
-    BugReportBuilder,
-    BugReportValidator,
-    BugReportFormatter,
-    BugReportRepository,
-    BugSeverity,
-    BugStatus,
-    Component,
-    Architecture,
-    createSampleBugReport,
-} from './linux_bug_report';
+import { BugReportBuilder, BugReportValidator, BugReportFormatter, BugReportRepository, BugSeverity, BugStatus, Component, Architecture, createSampleBugReport } from './linux_bug_report';
+import type { LinuxKernelBugReport } from './linux_bug_report';
 import * as path from 'path';
 
 console.log('='.repeat(70));
@@ -23,171 +13,127 @@ console.log('LINUX KERNEL BUG REPORT - DEMO');
 console.log('='.repeat(70));
 console.log();
 
-// ========================================================================
-// EXAMPLE 1: Create a Bug Report using the Builder
-// ========================================================================
-console.log('Example 1: Creating a Bug Report using Builder');
-console.log('-'.repeat(70));
+// Example 1: Creating a bug report using the builder
+console.log('--- Example 1: Creating a Bug Report ---');
+const bugReport = new BugReportBuilder()
+  .setId('BUG-2026-0042')
+  .setTitle('Memory leak in network driver during high load')
+  .setDescription('Under sustained SYN flood conditions, the network driver\'s')
+  .setSummary('Memory leak detected in network driver code path')
+  .setSeverity(BugSeverity.HIGH)
+  .setStatus(BugStatus.NEW)
+  .setComponent(Component.NETWORK_DRIVERS)
+  .setArchitecture(Architecture.X86_64)
+  .addReporter('kernel-maintainer@example.com')
+  .addCc('netdev@kernel.org')
+  .addCc('stable@vger.kernel.org')
+  .setFirstBadCommit('v6.8.0-rc1')
+  .setRegression(true)
+  .addAffectedVersion('6.7.0')
+  .addAffectedVersion('6.7.1')
+  .addAffectedVersion('6.8.0-rc1')
+  .build();
 
-const report = new BugReportBuilder()
-    .setId('LKBG-202503-5678')
-    .setTitle('ext4 filesystem corruption under heavy I/O load')
-    .setDescription(
-        'When running heavy I/O workloads on ext4 filesystems, ' +
-        'occasional metadata corruption occurs, leading to ' +
-        'filesystem errors on next mount.'
-    )
-    .setSeverity(BugSeverity.CRITICAL)
-    .setStatus(BugStatus.NEW)
-    .setComponent(Component.FILESYSTEM, 'ext4')
-    .setReporter('Alice Developer', 'alice@kernel.org', 'expert')
-    .setAssignee('Ext4 Maintainer')
-    .addCCEmail('linux-ext4@vger.kernel.org')
-    .addCCEmail('linux-fsdevel@vger.kernel.org')
-    .setKernelVersion(6, 8, 0, '-rc3', 'abcdef123456')
-    .setSystemInfo(
-        Architecture.X86_64,
-        'Debian Testing',
-        'AMD Ryzen 9 7950X',
-        '64GB'
-    )
-    .setCompilerVersion('gcc version 13.2.0')
-    .addLoadedModule('ext4')
-    .addLoadedModule('jbd2')
-    .addLoadedModule('mbcache')
-    .setDmesgExcerpt(
-        '[  456.789012] EXT4-fs error (device nvme0n1p2): ext4_validate_block_bitmap: ' +
-        'Checksum mismatch in block group 1234\n' +
-        '[  456.789013] EXT4-fs (nvme0n1p2): Remounting filesystem read-only'
-    )
-    .setRegression(true, { major: 6, minor: 7, patch: 10 }, { major: 6, minor: 8, patch: 0 })
-    .addStepToReproduce('Mount ext4 filesystem on NVMe SSD')
-    .addStepToReproduce('Run fio benchmark with random write pattern')
-    .addStepToReproduce('Monitor dmesg for corruption errors')
-    .setExpectedResult('Filesystem remains stable under load')
-    .setActualResult('Metadata corruption with checksum mismatches')
-    .addKeyword('ext4')
-    .addKeyword('corruption')
-    .addKeyword('journal')
-    .addKeyword('regression')
-    .addTag('regression')
-    .addTag('data-loss')
-    .build();
-
-console.log('✓ Bug report created successfully');
-console.log(`  ID: ${report.id}`);
-console.log(`  Title: ${report.title}`);
-console.log(`  Severity: ${report.severity}`);
-console.log(`  Component: ${report.component}/${report.subComponent}`);
-console.log(`  Reporter: ${report.reporter.name} <${report.reporter.email}>`);
+console.log('Created bug report:', bugReport.id);
+console.log('Title:', bugReport.title);
+console.log('Severity:', bugReport.severity);
 console.log();
 
-// ========================================================================
-// EXAMPLE 2: Validate the Report
-// ========================================================================
-console.log('Example 2: Validating Bug Report');
-console.log('-'.repeat(70));
+// Example 2: Validating a bug report
+console.log('--- Example 2: Validating a Bug Report ---');
+const validator = new BugReportValidator();
+const validation = validator.validate(bugReport);
 
-const errors = BugReportValidator.validate(report);
-if (errors.length === 0) {
-    console.log('✓ Bug report is valid');
-} else {
-    console.log('✗ Validation errors:');
-    errors.forEach(e => console.log(`  - ${e}`));
+console.log('Is valid:', validation.isValid);
+if (!validation.isValid) {
+  console.log('Errors:', validation.errors);
 }
+console.log('Warnings:', validation.warnings);
+console.log('Suggestions:', validation.suggestions);
 console.log();
 
-// ========================================================================
-// EXAMPLE 3: Format the Report
-// ========================================================================
-console.log('Example 3: Format Output');
-console.log('-'.repeat(70));
+// Example 3: Formatting a bug report
+console.log('--- Example 3: Formatting Options ---');
+const formatter = new BugReportFormatter(bugReport);
 
-// Standard format
-console.log('\n--- Standard Format (excerpt) ---');
-const standard = BugReportFormatter.toStandardFormat(report);
-console.log(standard.split('\n').slice(0, 15).join('\n'));
-console.log('... [truncated] ...\n');
-
-// Email format
-console.log('--- Email Format (kernel-devel style) ---');
-const email = BugReportFormatter.toEmailFormat(report);
-console.log(email.split('\n').slice(0, 12).join('\n'));
-console.log('... [truncated] ...\n');
-
-// JSON format
-console.log('--- JSON Format (excerpt) ---');
-const json = BugReportFormatter.toJSON(report, true);
-console.log(json.split('\n').slice(0, 10).join('\n'));
-console.log('... [truncated] ...\n');
-
-// ========================================================================
-// EXAMPLE 4: Using the Sample Report
-// ========================================================================
-console.log('Example 4: Sample Bug Report');
-console.log('-'.repeat(70));
-
-const sampleReport = createSampleBugReport();
-console.log('✓ Sample report generated');
-console.log(`  ID: ${sampleReport.id}`);
-console.log(`  Title: ${sampleReport.title}`);
-console.log(`  Severity: ${sampleReport.severity}`);
-console.log(`  Steps to reproduce: ${sampleReport.stepsToReproduce.length} steps`);
-console.log(`  Comments: ${sampleReport.comments.length}`);
-console.log(`  Keywords: ${sampleReport.keywords.join(', ')}`);
+console.log('Plain text format:');
+console.log(formatter.toPlainText());
 console.log();
 
-// ========================================================================
-// EXAMPLE 5: Repository Operations (Demo - no actual persistence)
-// ========================================================================
-console.log('Example 5: Repository Demo (showing API)');
-console.log('-'.repeat(70));
-
-const repoPath = path.join(process.cwd(), 'demo-bugs');
-console.log(`Repository would store bugs in: ${repoPath}`);
-console.log('API Methods:');
-console.log('  - repo.save(bugReport)');
-console.log('  - repo.load(bugId)');
-console.log('  - repo.delete(bugId)');
-console.log('  - repo.list()');
+console.log('JSON format:');
+console.log(formatter.toJSON());
 console.log();
 
-// ========================================================================
-// EXAMPLE 6: Accessing Report Data
-// ========================================================================
-console.log('Example 6: Accessing Report Data');
-console.log('-'.repeat(70));
+// Example 4: Using repository (in-memory)
+console.log('--- Example 4: Repository Operations ---');
+const repo = new BugReportRepository();
 
-console.log('\nEnvironment Information:');
-console.log(`  Kernel: ${report.environment.kernelVersion.major}.${report.environment.kernelVersion.minor}.${report.environment.kernelVersion.patch}${report.environment.kernelVersion.extra || ''}`);
-console.log(`  Architecture: ${report.environment.systemInfo.architecture}`);
-console.log(`  Distribution: ${report.environment.systemInfo.distribution}`);
-console.log(`  CPU: ${report.environment.systemInfo.cpuModel}`);
-console.log(`  Memory: ${report.environment.systemInfo.memorySize}`);
+repo.add(bugReport);
+console.log('Added bug report to repository');
+console.log('Total reports:', repo.count());
 
-console.log('\nLoaded Modules:');
-report.environment.loadedModules.forEach(mod => console.log(`  - ${mod}`));
+const retrieved = repo.findById('BUG-2026-0042');
+console.log('Retrieved by ID:', retrieved?.id);
 
-console.log('\nRegression Info:');
-if (report.regression.isRegression) {
-    console.log('  ✓ This is a regression');
-    if (report.regression.workingVersion) {
-        console.log(`    Last known good: ${report.regression.workingVersion.major}.${report.regression.workingVersion.minor}.${report.regression.workingVersion.patch}`);
-    }
-    if (report.regression.firstBadVersion) {
-        console.log(`    First bad version: ${report.regression.firstBadVersion.major}.${report.regression.firstBadVersion.minor}.${report.regression.firstBadVersion.patch}`);
-    }
-}
+const highSeverity = repo.findBySeverity(BugSeverity.HIGH);
+console.log('High severity bugs:', highSeverity.length);
 
-console.log('\nSteps to Reproduce:');
-report.stepsToReproduce.forEach((step, i) => {
-    console.log(`  ${i + 1}. ${step}`);
+const networkBugs = repo.findByComponent(Component.NETWORK_DRIVERS);
+console.log('Network driver bugs:', networkBugs.length);
+
+// Complex query
+const criticalNetworkBugs = repo.findWithQuery({
+  severity: BugSeverity.HIGH,
+  status: BugStatus.NEW,
+  component: Component.NETWORK_DRIVERS,
+  isRegression: true
 });
+console.log('Critical network regressions:', criticalNetworkBugs.length);
+
+// Example 5: Using sample data
+console.log('--- Example 5: Sample Bug Reports ---');
+const sampleReports: LinuxKernelBugReport[] = [
+  createSampleBugReport(),
+  createSampleBugReport('memory-corruption'),
+  createSampleBugReport('scheduling-deadlock'),
+  createSampleBugReport('filesystem-corruption')
+];
+
+for (const report of sampleReports) {
+  repo.add(report);
+}
+
+console.log('Total reports after adding samples:', repo.count());
+
+// List all unique components
+const components = repo.getUniqueComponents();
+console.log('Bug components:', components.join(', '));
+
+// Archive old bugs
+const archivedCount = repo.archiveOld();
+console.log('Archived old bugs:', archivedCount);
 
 console.log();
 console.log('='.repeat(70));
-console.log('DEMO COMPLETE');
+console.log('Demo complete!');
 console.log('='.repeat(70));
 
-// Export for potential further use
-export { report, sampleReport };
+// Example 6: Edge cases and error handling
+console.log('\n--- Example 6: Edge Cases ---');
+
+try {
+  // Attempt to create invalid bug report
+  const invalidReport = new BugReportBuilder()
+    .setId('')  // Empty ID - will fail validation
+    .setTitle('Test')
+    .build();
+  console.log('Invalid report created (should have failed):', invalidReport.id);
+} catch (error) {
+  console.log('Expected error for invalid report:', (error as Error).message);
+}
+
+// Try to find non-existent bug
+const notFound = repo.findById('NON-EXISTENT');
+console.log('Non-existent bug lookup:', notFound === undefined ? 'Not found (expected)' : 'Found (unexpected)');
+
+console.log('\n--- Demo Complete ---');

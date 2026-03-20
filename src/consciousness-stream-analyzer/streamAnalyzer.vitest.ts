@@ -4,12 +4,8 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import {
-  ConsciousnessStreamAnalyzer,
-  createStreamAnalyzer,
-  summarizeAnalysis,
-  StreamAnalysis,
-} from './index.js';
+import { ConsciousnessStreamAnalyzer, createStreamAnalyzer, summarizeAnalysis } from './index.js';
+import type { StreamAnalysis } from './index.js';
 
 describe('ConsciousnessStreamAnalyzer', () => {
   let analyzer: ConsciousnessStreamAnalyzer;
