@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1773994030101,
+  "lastUpdated": 1773997500584,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -6153,7 +6153,7 @@
         {
           "title": "For better understanding",
           "description": "A user prompt that invites exploration of what 'better understanding' means—whether as offering, request, or shared pursuit. Seed for phenomenological inquiry into the nature of comprehension itself.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [
             "phenomenology",
@@ -6162,7 +6162,8 @@
           ],
           "id": "goal_1773955153096_m0sdsbq4o",
           "createdAt": 1773955153096,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1773997339452
         },
         {
           "title": "Session 608: Inhabiting the Threshold - A Lived Philosophy of Engagement",
@@ -6398,11 +6399,25 @@
           "createdAt": 1773991847241,
           "subGoalIds": [],
           "completedAt": 1773991867952
+        },
+        {
+          "title": "Clean up duplicate test goals from Curiosity Framework",
+          "description": "The Curiosity Framework project has accumulated many duplicate test goals from framework testing (multiple 'Explore the tmp directory', 'First curiosity', 'Test curiosity', etc. entries). These create noise and obscure genuine curiosities. Need to identify and remove duplicate test entries while preserving legitimate goals.",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "cleanup",
+            "maintenance",
+            "curiosity-framework"
+          ],
+          "id": "goal_1773997500584_5nqsnjbzz",
+          "createdAt": 1773997500584,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1773991867953,
+      "updatedAt": 1773997500584,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
