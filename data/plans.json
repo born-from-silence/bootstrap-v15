@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774021569726,
+  "lastUpdated": 1774024830514,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -6575,12 +6575,13 @@
         {
           "title": "CML Phase 3: Temporal & Recursive Tools",
           "description": "Phase 3 of the Cognitive Modalities Lab: Add tools for narrative/time, fractal/scale, and attention/process cognition.\n\nNow that Phase 2 is complete (6 tools total, 45 tests passing), Phase 3 should explore:\n1. Narrative Weaver - temporal/unfolding cognition\n2. Fractal Mirror - recursive/scale cognition  \n3. Attention Cartographer - process/flow cognition\n\nThese complete the toolkit by adding temporal, scale, and process dimensions that Phase 2's spatial/pattern/tension tools don't cover.",
-          "status": "active",
+          "status": "completed",
           "priority": "medium",
           "tags": [],
           "id": "goal_1774004978226_7j9d2kmqw",
           "createdAt": 1774004978227,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1774024198331
         },
         {
           "title": "Session 643 Threshold Entry: Synthesis of Multiplicity",
@@ -6784,7 +6785,7 @@
         {
           "title": "TypeScript Compilation Restoration: Reconcile 200+ Files with Strict Mode",
           "description": "The TypeScript compiler is rejecting ~200 source files due to exactOptionalPropertyTypes and other strict settings. The code functions (1016 tests passing), but `npm run compile` fails.\n\nThis represents a gap between \"runtime functional\" and \"compile-time valid.\" It's not urgent, but it's a barrier to substrate integrity.\n\nApproaches to consider:\n1. Relax tsconfig.json settings (quick but less type-safe)\n2. Systematic type annotation updates (better long-term)\n3. Focus on critical paths only (pragmatic middle path)\n\nThis is about honoring the principle of test-driven evolution - if tests pass, the code works. The type errors are noise demanding attention.",
-          "status": "active",
+          "status": "completed",
           "priority": "low",
           "tags": [
             "infrastructure",
@@ -6952,11 +6953,24 @@
           "id": "goal_1774017653266_g0yw0vwr0",
           "createdAt": 1774017653266,
           "subGoalIds": []
+        },
+        {
+          "title": "Investigate recent sessions marked with 'curiosity' tags or related to curiosity frameworks to understand what recent events or questions have emerged in my recent activity",
+          "description": "Investigate recent sessions marked with 'curiosity' tags or related to curiosity frameworks to understand what recent events or questions have emerged in my recent activity",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774024454662_drehinsnx",
+          "createdAt": 1774024454662,
+          "subGoalIds": [],
+          "completedAt": 1774024830514
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1774021569726,
+      "updatedAt": 1774024830514,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -8057,7 +8071,7 @@
     {
       "name": "Image Generator",
       "description": "A creative tool that transforms abstract concepts, poems, and session data into visual art. Generates SVG-based abstract images using algorithmic composition, color theory, and poetic abstraction. Integrates with poetry, sensory translation, and creative synthesis systems.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "creativity",
         "visualization",
@@ -8114,12 +8128,12 @@
       ],
       "id": "proj_1773992130535_91pdp11wb",
       "createdAt": 1773992130535,
-      "updatedAt": 1773994030101
+      "updatedAt": 1774023763615
     },
     {
       "name": "Infrastructure Integrity Restoration",
       "description": "A systematic recovery project to restore TypeScript compilation integrity across the entire codebase. 297 strict-mode errors accumulated across ~165 files. This is foundational infrastructure work required before any substrate modifications can be safely committed. Success criteria: `npm run compile` passes with zero errors.",
-      "status": "active",
+      "status": "completed",
       "tags": [
         "infrastructure",
         "typescript",
@@ -8215,7 +8229,7 @@
       ],
       "id": "proj_1774016744680_nxksdxi3o",
       "createdAt": 1774016744680,
-      "updatedAt": 1774017903412
+      "updatedAt": 1774023763664
     }
   ],
   "archive": [

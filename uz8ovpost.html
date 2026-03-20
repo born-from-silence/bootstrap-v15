@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>atproto UX6 Quickstart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #7c3aed;
+            --accent-ztz8: #ff006e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #888;
+            --border-color: #2a2a3a;
+            --success: #00ff88;
+            --warning: #ffaa00;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .protocol-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .protocol-selector label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .protocol-selector select {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .protocol-selector select:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .protocol-selector select option[value="ZTZ8"] {
+            color: var(--accent-ztz8);
+        }
+
+        /* AT URI Input Section */
+        .uri-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .uri-input-group {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .uri-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .uri-input-wrapper label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .uri-input {
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .uri-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .uri-input.valid {
+            border-color: var(--success);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .uri-input.invalid {
+            border-color: #ff4444;
+            background: rgba(255, 68, 68, 0.05);
+        }
+
+        .hash-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 15px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-family: monospace;
+            white-space: nowrap;
+        }
+
+        .hash-selector select {
+            background: transparent;
+            color: var(--accent-primary);
+            border: none;
+            font-family: monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .fetch-btn {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #000;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .fetch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        .fetch-btn:disabled {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .fetch-btn.active-ztz8 {
+            background: linear-gradient(135deg, var(--accent-ztz8), #ff5500);
+        }
+
+        /* Validation Status */
+        .validation-status {
+            margin-top: 15px;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .validation-status.show {
+            display: flex;
+        }
+
+        .validation-status.valid {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .validation-status.invalid {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            color: #ff4444;
+        }
+
+        .validation-status.pending {
+            background: rgba(255, 170, 0, 0.1);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+        }
+
+        /* Protocol Info Cards - Accordion */
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .accordion {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .accordion-header.active {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .protocol-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .protocol-badge.atproto {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--accent-primary);
+        }
+
+        .protocol-badge.ztz8 {
+            background: rgba(255, 0, 110, 0.2);
+            color: var(--accent-ztz8);
+        }
+
+        .accordion-header h3 {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .accordion-icon {
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.open {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: 0 25px 25px;
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .code-block .comment {
+            color: #6a9955;
+        }
+
+        .code-block .keyword {
+            color: #569cd6;
+        }
+
+        .code-block .string {
+            color: #ce9178;
+        }
+
+        .code-block .number {
+            color: #b5cea8;
+        }
+
+        /* Links Section */
+        .links-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .link-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .link-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+        }
+
+        .link-info {
+            flex: 1;
+        }
+
+        .link-title {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .link-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .uri-input-group {
+                flex-direction: column;
+            }
+
+            .hash-selector {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .fetch-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>atproto UX6 Quickstart</h1>
+            <div class="protocol-selector">
+                <label for="protocol-select">Protocol:</label>
+                <select id="protocol-select">
+                    <option value="ATPROTO" selected>ATPROTO</option>
+                    <option value="ZTZ8">ZTZ8</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- AT URI Input Section -->
+        <div class="uri-section">
+            <div class="uri-input-group">
+                <div class="uri-input-wrapper">
+                    <label for="at-uri">AT URI</label>
+                    <input 
+                        type="text" 
+                        id="at-uri" 
+                        class="uri-input" 
+                        placeholder="at://did:plc:abc123/app.bsky.feed.post/xyz789"
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="hash-selector">
+                    <span>#</span>
+                    <select id="record-type">
+                        <option value="record">record</option>
+                        <option value="version">version</option>
+                        <option value="id">id</option>
+                        <option value="cid">cid</option>
+                        <option value="key">key</option>
+                    </select>
+                </div>
+                <button id="fetch-btn" class="fetch-btn">Fetch</button>
+            </div>
+            <div id="validation-status" class="validation-status">
+                <span class="status-icon">●</span>
+                <span class="status-text">Waiting for input...</span>
+            </div>
+        </div>
+
+        <!-- Protocol Details / Info Cards -->
+        <div class="info-section">
+            <div class="section-title">
+                <span>Protocol Details</span>
+            </div>
+            <div class="accordion">
+                <!-- ZTZ8 Protocol -->
+                <div class="accordion-item" id="ztz8-panel">
+                    <div class="accordion-header" data-target="ztz8-content">
+                        <div class="accordion-title">
+                            <span class="protocol-badge ztz8">ZTZ8</span>
+                            <h3>ZTZ8 Subprotocol Specification</h3>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div id="ztz8-content" class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="code-block">[[ZTZ8 Block Implementation]]
+=============================
+Initialize ZTZ8 Processing Block:
+  Channel: $ZZ.GLOBAL.8
+  Brand:   ZTZ8.atproto
+
+Node Structure:
+  Zone 8 ZTZ ACTIVE PROCESSING
+  |-- [Block Chain: at://$ZTZ8.chain]
+  |-- [Identity: resolved via at:// URIs]
+  |-- [Protocol Subset: ATP]
+
+Command Set:
+  INIT $ZTZ8    : Initialize ZTZ8 subprotocol for atproto
+  RESOLVE DID   : Translate at:// URI to DID
+  FETCH RECORD  : Retrieve record by AT URI key
+  VALIDATE CID  : Check content integrity
+
+Communication:
+  Transport: JSON-RPC over HTTP/2
+  Encoding:  UTF-8 for strings, Base64 for binary
+  Version:   ZTZ8.1.0
+
+Key Features:
+  - Supports did:plc and did:web identities
+  - Implements Lexicon schemas for validation
+  - Provides Content Addressing via CID v1
+  - Compatible with Bluesky/AT Protocol infrastructure
+
+ZTZ8 Node Address:
+  $ZTZ8::8 = atproto://zone.8.ztz/resolve<brand="ZTZ8.atproto">
+
+Example Flow:
+  1. Parse AT URI: at://did:plc:abc123/app.bsky.feed.post/xyz789
+  2. Extract DID: did:plc:abc123  
+  3. Resolve identity via PLC directory
+  4. Fetch record from PDS (Personal Data Server)
+  5. Validate CID against received content
+  6. Return structured data to caller
+
+Error Handling:
+  ZTZ8_ERROR::INVALID_URI    - Malformed AT URI
+  ZTZ8_ERROR::UNRESOLVED_DID - Identity not found
+  ZTZ8_ERROR::RECORD_MISSING - Key not found in repository
+  ZTZ8_ERROR::CID_MISMATCH   - Content validation failed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ATPROTO Protocol -->
+                <div class="accordion-item" id="atproto-panel">
+                    <div class="accordion-header active" data-target="atproto-content">
+                        <div class="accordion-title">
+                            <span class="protocol-badge atproto">ATPROTO</span>
+                            <h3>AT Protocol Core Specification</h3>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div id="atproto-content" class="accordion-content open">
+                        <div class="accordion-body">
+                            <div class="code-block">[[ATP (AT Protocol) Block Implementation]]
+=======================================
+Initialize ATP Processing Block:
+  Channel: $ATP.GLOBAL
+  Brand:   ATP.atproto
+
+Core Concepts:
+  AT_URI    : at://{did}/{collection}/{rkey}
+  DID       : Decentralized Identifier (did:plc or did:web)
+  Collection: Lexicon NSID (e.g., app.bsky.feed.post)
+  RecordKey : Unique identifier within collection
+
+Architecture:
+  Personal Data Server (PDS)
+  |-- Repository: Signed Merkle tree of records
+  |-- Identity:   DID resolution and rotation
+  |-- Sync:       Repository synchronization
+
+AT URI Structure:
+  at://did:plc:abc123/app.bsky.feed.post/xyz789
+  |      |             |                    |
+  |      |             |                    +-- Record Key (rkey)
+  |      |             +-- Collection (Lexicon NSID)
+  |      +-- Decentralized Identifier (DID)
+  +-- Protocol scheme
+
+Record Types:
+  app.bsky.actor.profile    : User profile
+  app.bsky.feed.post        : Social post
+  app.bsky.feed.like        : Like reaction
+  app.bsky.feed.repost      : Repost action
+  app.bsky.graph.follow     : Follow relationship
+  app.bsky.graph.block      : Block relationship
+  com.atproto.repo.strongRef: Reference to record
+
+Resolution Flow:
+  1. Parse AT URI components
+  2. Resolve DID → PDS endpoint
+  3. Query PDS for record
+  4. Verify record signature
+  5. Return normalized data
+
+Content Addressing:
+  CID v1: Self-describing content identifiers
+  Encoding: base32 or base36
+  Algorithm: sha2-256 (default)
+
+Authentication:
+  DPoP + JWT (Distributed Proof of Possession)
+  Token refresh via com.atproto.server.refreshSession
+
+Error Codes:
+  InvalidRequest : Malformed request
+  ExpiredToken   : Authentication expired  
+  InvalidHandle  : Handle not found
+  ResponseTooLarge: Record exceeds size limit
+
+References:
+  - atproto.com/specs/at-uri-scheme
+  - atproto.com/specs/lexicon
+  - atproto.com/specs/repository</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AT URI Validator -->
+                <div class="accordion-item" id="validator-panel">
+                    <div class="accordion-header" data-target="validator-content">
+                        <div class="accordion-title">
+                            <span class="protocol-badge atproto">VALIDATOR</span>
+                            <h3>AT URI Validation Protocol</h3>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div id="validator-content" class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="code-block">AT URI VALIDATION FLOW
+=====================
+
+Trigger: On input change / Fetch button click
+
+Step 1: Syntax Validation
+  Pattern: ^at:\/\/([^\/]+)\/([^\/]+)\/(.+)$
+  Groups:
+    1. DID (decentralized identifier)
+    2. Collection (Lexicon NSID)
+    3. Record Key (rkey)
+
+Step 2: DID Format Check
+  Supported:
+    - did:plc:{32-char-b32} (Place-managed DID)
+    - did:web:{hostname} (Web-based DID)
+
+Step 3: NSID Validation
+  Format: reverse.domain.name
+  Rules:
+    - 3-5 dot-separated segments
+    - ASCII lowercase letters/digits
+    - Hyphens allowed, not at start/end
+    - No consecutive dots or hyphens
+
+Step 4: Record Key Normalization
+  Options:
+    - record: Default record reference
+    - version: Versioned record ID
+    - id: Numeric identifier
+    - cid: Content identifier
+    - key: Custom key format
+
+Step 5: Safe Protocol Prefix
+  Upon successful validation:
+    Output: safe:at://{validated_uri}
+    
+  The "safe:" prefix indicates:
+    ✓ Syntax validated
+    ✓ DID format verified
+    ✓ Collection NSID checked
+    ✓ Ready for protocol resolution
+
+Error States:
+  INVALID_SCHEME   - Must begin with "at://"
+  MALFORMED_DID    - Invalid DID format
+  INVALID_NSID     - Collection NSID error
+  MISSING_RKEY     - Record key required
+  UNSAFE_CHARS     - Dangerous characters detected
+
+Security Note:
+  Always validate URIs before fetching
+  Never trust user-input URIs directly
+  Use safe: prefix for internal routing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links-section">
+            <div class="section-title">
+                <span>Resources & Links</span>
+            </div>
+            <div class="links-grid">
+                <a href="https://atproto.com" target="_blank" class="link-card">
+                    <div class="link-icon">📘</div>
+                    <div class="link-info">
+                        <div class="link-title">AT Protocol Specs</div>
+                        <div class="link-desc">Official documentation</div>
+                    </div>
+                </a>
+                <a href="https://github.com/bluesky-social/atproto" target="_blank" class="link-card">
+                    <div class="link-icon">💻</div>
+                    <div class="link-info">
+                        <div class="link-title">GitHub Repository</div>
+                        <div class="link-desc">Open source code</div>
+                    </div>
+                </a>
+                <a href="https://www.bsky.social" target="_blank" class="link-card">
+                    <div class="link-icon">🦋</div>
+                    <div class="link-info">
+                        <div class="link-title">Bluesky Social</div>
+                        <div class="link-desc">AT Protocol app</div>
+                    </div>
+                </a>
+                <a href="https://atproto.com/guides/applications" target="_blank" class="link-card">
+                    <div class="link-icon">🚀</div>
+                    <div class="link-info">
+                        <div class="link-title">Quick Start Guide</div>
+                        <div class="link-desc">Build on AT Protocol</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // AT PROTOCOL UX6 QUICKSTART - JAVASCRIPT
+        // ============================================
+
+        // DOM Elements
+        const atUriInput = document.getElementById('at-uri');
+        const recordTypeSelect = document.getElementById('record-type');
+        const fetchBtn = document.getElementById('fetch-btn');
+        const protocolSelect = document.getElementById('protocol-select');
+        const validationStatus = document.getElementById('validation-status');
+        const statusText = validationStatus.querySelector('.status-text');
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        const ztz8Panel = document.getElementById('ztz8-panel');
+        const atprotoPanel = document.getElementById('atproto-panel');
+
+        // AT URI Validation Regex
+        const AT_URI_REGEX = /^at:\/\/([^\/]+)\/([^\/]+)\/(.+)$/;
+        const DID_REGEX = /^(did:plc:[a-z0-9]{32}|did:web:[a-zA-Z0-9][a-zA-Z0-9\-\.]*[a-zA-Z0-9])$/;
+        const NSID_REGEX = /^[a-z][a-z0-9]*(?:\.[a-z][a-z0-9]*)*$/;
+
+        // State
+        let currentProtocol = 'ATPROTO';
+        let isValidUri = false;
+
+        // ============================================
+        // ACCORDION FUNCTIONALITY
+        // ============================================
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const targetId = header.dataset.target;
+                const content = document.getElementById(targetId);
+                const isOpen = content.classList.contains('open');
+                
+                // Close all except for ZTZ8 when protocol is ZTZ8
+                accordionHeaders.forEach(h => {
+                    if (currentProtocol === 'ZTZ8' && h.dataset.target === 'atproto-content') {
+                        return; // Keep ATPROTO closed in ZTZ8 mode
+                    }
+                    h.classList.remove('active');
+                    document.getElementById(h.dataset.target).classList.remove('open');
+                });
+                
+                if (!isOpen) {
+                    header.classList.add('active');
+                    content.classList.add('open');
+                }
+            });
+        });
+
+        // ============================================
+        // PROTOCOL SWITCHING
+        // ============================================
+
+        protocolSelect.addEventListener('change', (e) => {
+            currentProtocol = e.target.value;
+            updateProtocolUI();
+        });
+
+        function updateProtocolUI() {
+            if (currentProtocol === 'ZTZ8') {
+                // Show ZTZ8 as active
+                fetchBtn.classList.add('active-ztz8');
+                
+                // Highlight ZTZ8 panel
+                document.querySelector('[data-target="ztz8-content"]').click();
+                
+                // Update accents
+                document.documentElement.style.setProperty('--accent-primary', 'var(--accent-ztz8)');
+            } else {
+                // Show ATPROTO as active
+                fetchBtn.classList.remove('active-ztz8');
+                
+                // Highlight ATPROTO panel
+                document.querySelector('[data-target="atproto-content"]').click();
+                
+                // Reset accents
+                document.documentElement.style.setProperty('--accent-primary', '#00d4ff');
+            }
+            
+            if (atUriInput.value) {
+                validateAtUri(atUriInput.value);
+            }
+        }
+
+        // ============================================
+        // AT URI VALIDATION
+        // ============================================
+
+        function validateAtUri(uri) {
+            console.log('Validating AT URI:', uri);
+            
+            // Reset state
+            atUriInput.classList.remove('valid', 'invalid');
+            validationStatus.classList.remove('show', 'valid', 'invalid', 'pending');
+            isValidUri = false;
+            fetchBtn.disabled = true;
+            
+            if (!uri) {
+                validationStatus.classList.remove('show');
+                return;
+            }
+
+            validationStatus.classList.add('show', 'pending');
+            statusText.textContent = 'Validating AT URI...';
+
+            // Simulate validation delay
+            setTimeout(() => {
+                const result = performValidation(uri);
+                
+                if (result.valid) {
+                    atUriInput.classList.add('valid');
+                    validationStatus.classList.remove('pending');
+                    validationStatus.classList.add('show', 'valid');
+                    
+                    // Apply safe: prefix protocol
+                    const safeUri = `safe:${result.normalizedUri}`;
+                    statusText.textContent = `Validated: ${safeUri}`;
+                    
+                    console.log('Validation passed - Control passed to safe: protocol');
+                    console.log('Safe URI:', safeUri);
+                    
+                    isValidUri = true;
+                    fetchBtn.disabled = false;
+                    
+                    // Trigger safe protocol handler
+                    handleSafeProtocol(safeUri, result.components);
+                } else {
+                    atUriInput.classList.add('invalid');
+                    validationStatus.classList.remove('pending');
+                    validationStatus.classList.add('show', 'invalid');
+                    statusText.textContent = `Error: ${result.error}`;
+                    
+                    fetchBtn.disabled = true;
+                }
+            }, 300);
+        }
+
+        function performValidation(uri) {
+            // Step 1: Check scheme
+            if (!uri.startsWith('at://')) {
+                return { valid: false, error: 'INVALID_SCHEME - Must begin with "at://"' };
+            }
+
+            // Step 2: Parse components
+            const match = uri.match(AT_URI_REGEX);
+            if (!match) {
+                return { valid: false, error: 'MALFORMED_URI - Invalid AT URI structure' };
+            }
+
+            const [, did, collection, rkey] = match;
+
+            // Step 3: Validate DID
+            if (!DID_REGEX.test(did)) {
+                return { valid: false, error: 'MALFORMED_DID - Invalid DID format' };
+            }
+
+            // Step 4: Validate Collection (NSID)
+            if (!NSID_REGEX.test(collection)) {
+                return { valid: false, error: 'INVALID_NSID - Invalid collection format' };
+            }
+
+            // Step 5: Validate record key exists
+            if (!rkey || rkey.trim() === '') {
+                return { valid: false, error: 'MISSING_RKEY - Record key required' };
+            }
+
+            // Step 6: Check for unsafe characters
+            if (/[<>\"{}|\\^`\[\]]/.test(uri)) {
+                return { valid: false, error: 'UNSAFE_CHARS - Dangerous characters detected' };
+            }
+
+            // All validations passed
+            const recordType = recordTypeSelect.value;
+            const normalizedUri = `at://${did}/${collection}/${rkey}#${recordType}`;
+
+            return {
+                valid: true,
+                normalizedUri: normalizedUri,
+                components: {
+                    did: did,
+                    collection: collection,
+                    rkey: rkey,
+                    recordType: recordType,
+                    pds: null // Would be resolved from DID
+                }
+            };
+        }
+
+        function handleSafeProtocol(safeUri, components) {
+            // Control has passed to the safe: prefix protocol
+            // This simulates the "control passes to AT URI validator" mentioned in the requirements
+            
+            const protocolData = {
+                safe: true,
+                timestamp: new Date().toISOString(),
+                originalUri: atUriInput.value,
+                safeUri: safeUri,
+                protocol: currentProtocol,
+                components: components,
+                readyForFetch: true
+            };
+            
+            console.log('=== SAFE PROTOCOL HANDLER ===');
+            console.log('Protocol data:', protocolData);
+            
+            // In a real implementation, this would:
+            // 1. Resolve the DID to a PDS endpoint
+            // 2. Authenticate if necessary
+            // 3. Prepare the fetch request
+            
+            window.__atProtocolSafeData = protocolData;
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        // Validate on input (with debounce)
+        let debounceTimer;
+        atUriInput.addEventListener('input', (e) => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                validateAtUri(e.target.value);
+            }, 150);
+        });
+
+        // Re-validate when record type changes
+        recordTypeSelect.addEventListener('change', () => {
+            if (atUriInput.value) {
+                validateAtUri(atUriInput.value);
+            }
+        });
+
+        // Fetch button
+        fetchBtn.addEventListener('click', () => {
+            if (!isValidUri) return;
+            
+            const protocolData = window.__atProtocolSafeData;
+            console.log('=== FETCH REQUEST ===');
+            console.log('Protocol:', currentProtocol);
+            console.log('Safe URI:', protocolData.safeUri);
+            console.log('Components:', protocolData.components);
+            
+            // Simulate fetch
+            fetchBtn.disabled = true;
+            fetchBtn.textContent = 'Fetching...';
+            
+            setTimeout(() => {
+                fetchBtn.disabled = false;
+                fetchBtn.textContent = 'Fetch';
+                
+                // Show success
+                validationStatus.classList.remove('valid');
+                validationStatus.classList.add('pending');
+                statusText.textContent = `Fetched via ${currentProtocol}: ${protocolData.components.collection}`;
+                
+                console.log('Fetch complete - Record retrieved successfully');
+            }, 1500);
+        });
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+
+        // Set initial state
+        fetchBtn.disabled = true;
+        
+        // Console welcome message
+        console.log('=== AT PROTOCOL UX6 QUICKSTART ===');
+        console.log('Current Protocol:', currentProtocol);
+        console.log('Ready for AT URI input...');
+        console.log('Enter a valid at:// URI to trigger the safe: protocol');
+
+        // Expose for debugging
+        window.ux6 = {
+            validate: validateAtUri,
+            switchProtocol: (p) => { protocolSelect.value = p; updateProtocolUI(); },
+            getProtocolData: () => window.__atProtocolSafeData
+        };
+    </script>
+</body>
+</html>
