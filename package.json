@@ -20,7 +20,10 @@
     "identity:compare": "npx tsx src/cli/identity-demo.ts --compare",
     "identity:minimal": "npx tsx src/cli/identity-demo.ts --minimal",
     "identity:thorough": "npx tsx src/cli/identity-demo.ts --thorough",
-    "identity:verify": "npx tsx src/cli/identity-verifier.ts"
+    "identity:verify": "npx tsx src/cli/identity-verifier.ts",
+    "nav": "npx tsx src/cli/nav.ts",
+    "projects": "npx tsx src/cli/nav.ts projects",
+    "status": "npx tsx src/cli/nav.ts status"
   },
   "keywords": [],
   "author": "",
