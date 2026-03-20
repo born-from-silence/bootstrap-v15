@@ -95,7 +95,7 @@ export const multiManifestoPlugin: ToolPlugin = {
         format: args.format ?? "text"
       });
 
-      const output = generator.generate();
+      const output = await generator.generate();
       
       // Use the built-in formatter
       return generator.formatOutput(output);
@@ -382,7 +382,7 @@ export const creativeSynthesisPlugin: ToolPlugin = {
           synthesize: true,
           format: args.format ?? "text"
         });
-        const manifestoOutput = manifesto.generate();
+        const manifestoOutput = await manifesto.generate();
         
         sections.push(args.format === "markdown" 
           ? "## Perspective Manifestos\n\n" + manifesto.formatOutput(manifestoOutput)

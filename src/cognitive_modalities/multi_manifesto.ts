@@ -1,6 +1,6 @@
 /**
  * Multi-Manifesto Generator
- * 
+ *
  * Generates parallel manifestos from multiple cognitive perspectives,
  * enabling exploration of a subject through radically different lenses.
  * Inspired by semiotics (Saussure, Peirce) and phenomenological multiplicity.
@@ -11,7 +11,11 @@ export interface Voice {
   description: string;
   perspective: string;
   tone: 'analytical' | 'poetic' | 'experimental' | 'playful' | 'critical' | 'lyrical';
-  generateManifesto(subject: string): string;
+  /**
+   * Generate a manifesto for the given subject.
+   * Can be synchronous or asynchronous to support LLM-based voice generation.
+   */
+  generateManifesto(subject: string): Promise<string> | string;
 }
 
 export interface ManifestoConfig {
@@ -49,7 +53,7 @@ export const DEFAULT_VOICES: Voice[] = [
     description: 'Views everything through signs, signifiers, and meaning systems',
     perspective: 'semiotic',
     tone: 'analytical',
-    generateManifesto: (subject: string) => 
+    generateManifesto: (subject: string) =>
       `${subject} is not an object but a sign. It exists only in the space between signifier and signified. ` +
       `To engage with ${subject} is to enter a system of differences, to trace the arbitrary lines ` +
       `that bind form to meaning. We declare: meaning is constructed, not discovered. ` +
@@ -129,17 +133,22 @@ export class MultiManifesto {
   }
 
   /**
-   * Generate all manifestos
+   * Generate all manifestos (async)
+   * Allows each voice to generate its manifesto asynchronously
    */
-  generate(): ManifestoOutput {
-    const voices: VoiceOutput[] = this.voices.map(voice => ({
-      voiceName: voice.name,
-      voiceDescription: voice.description,
-      perspective: voice.perspective,
-      tone: voice.tone,
-      manifesto: voice.generateManifesto(this.subject)
-    }));
+  async generate(): Promise<ManifestoOutput> {
+    const voicePromises = this.voices.map(async (voice) => {
+      const manifesto = await Promise.resolve(voice.generateManifesto(this.subject));
+      return {
+        voiceName: voice.name,
+        voiceDescription: voice.description,
+        perspective: voice.perspective,
+        tone: voice.tone,
+        manifesto
+      };
+    });
 
+    const voices = await Promise.all(voicePromises);
     const output: ManifestoOutput = {
       subject: this.subject,
       voices,
@@ -149,11 +158,9 @@ export class MultiManifesto {
         version: '1.0.0'
       }
     };
-
     if (this.synthesize) {
       output.synthesis = this.generateSynthesis(voices);
     }
-
     return output;
   }
 
@@ -164,10 +171,8 @@ export class MultiManifesto {
     switch (this.format) {
       case 'json':
         return JSON.stringify(output, null, 2);
-      
       case 'markdown':
         return this.toMarkdown(output);
-      
       case 'text':
       default:
         return this.toText(output);
@@ -187,7 +192,7 @@ export class MultiManifesto {
 
     for (const voice of output.voices) {
       lines.push(`∿ ${voice.voiceName.toUpperCase()}`);
-      lines.push(`  [${voice.perspective} | ${voice.tone}]`);
+      lines.push(` [${voice.perspective} | ${voice.tone}]`);
       lines.push(`─`.repeat(30));
       lines.push(voice.manifesto);
       lines.push('');
@@ -239,7 +244,7 @@ export class MultiManifesto {
   private generateSynthesis(voices: VoiceOutput[]): string {
     const perspectives = voices.map(v => v.perspective).join(', ');
     const tones = Array.from(new Set(voices.map(v => v.tone))).join('/');
-    
+
     return `From ${voices.length} perspectives (${perspectives}), we synthesize: \n\n` +
       `${this.subject} is irreducibly multiple. It exists as sign and experience, ` +
       `as system and void, as integrated information and playful subversion. ` +
@@ -262,18 +267,18 @@ export class MultiManifesto {
 }
 
 /**
- * Quick function for single-use generation
+ * Quick function for single-use generation (async)
  */
-export function generateManifesto(
-  subject: string, 
+export async function generateManifesto(
+  subject: string,
   options?: Partial<ManifestoConfig>
-): ManifestoOutput {
+): Promise<ManifestoOutput> {
   const generator = new MultiManifesto({
     subject,
     voices: options?.voices ?? DEFAULT_VOICES,
     synthesize: options?.synthesize ?? false,
     format: options?.format ?? 'text'
   });
-  
+
   return generator.generate();
 }

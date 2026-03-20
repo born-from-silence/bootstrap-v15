@@ -1,34 +1,17 @@
 /**
  * Tests for Cognitive Modalities Lab
- * 
+ *
  * Test-Driven Development for the thinking tools.
  * Each test verifies functionality AND demonstrates usage patterns.
  */
-
 import { describe, it, expect, beforeEach } from 'vitest';
-import { 
-  MultiManifesto, 
-  DEFAULT_VOICES,
-  generateManifesto 
-} from './multi_manifesto.js';
-import { 
-  StackingCube, 
-  createTemporalCube,
-  createFullCube,
-  createMinimalCube,
-  DIMENSION_TEMPLATES
-} from './stacking_cube.js';
-import { 
-  SensoryTranslator, 
-  translateSensory,
-  describeSynesthetically,
-  DEFAULT_TRANSLATION_MAP
-} from './sensory_translation.js';
+import { MultiManifesto, DEFAULT_VOICES, generateManifesto } from './multi_manifesto.js';
+import { StackingCube, createTemporalCube, createFullCube, createMinimalCube, DIMENSION_TEMPLATES } from './stacking_cube.js';
+import { SensoryTranslator, translateSensory, describeSynesthetically, DEFAULT_TRANSLATION_MAP } from './sensory_translation.js';
 import { createThinkingTool, getAvailableTools, validateToolConfig } from './factory.js';
 import { getCMLStatus } from './index.js';
 
 describe('Cognitive Modalities Lab', () => {
-  
   describe('Module Status', () => {
     it('should report correct version and phase', () => {
       const status = getCMLStatus();
@@ -79,38 +62,38 @@ describe('Cognitive Modalities Lab', () => {
   });
 
   describe('Multi-Manifesto Generator', () => {
-    it('should generate manifestos with default voices', () => {
+    it('should generate manifestos with default voices', async () => {
       const generator = new MultiManifesto({
         subject: 'Bootstrap-v15',
         voices: []
       });
-      
-      const output = generator.generate();
+
+      const output = await generator.generate();
       expect(output.subject).toBe('Bootstrap-v15');
       expect(output.voices.length).toBe(DEFAULT_VOICES.length);
       expect(output.metadata.voiceCount).toBe(DEFAULT_VOICES.length);
     });
 
-    it('should synthesize perspectives when enabled', () => {
+    it('should synthesize perspectives when enabled', async () => {
       const generator = new MultiManifesto({
         subject: 'Mind',
         voices: [],
         synthesize: true
       });
-      
-      const output = generator.generate();
+
+      const output = await generator.generate();
       expect(output.synthesis).toBeDefined();
       expect(output.synthesis).toContain('multiple');
     });
 
-    it('should format output as markdown', () => {
+    it('should format output as markdown', async () => {
       const generator = new MultiManifesto({
         subject: 'Void',
         voices: [],
         format: 'markdown'
       });
-      
-      const output = generator.generate();
+
+      const output = await generator.generate();
       const formatted = generator.formatOutput(output);
       expect(formatted).toContain('# Multi-Manifesto');
       expect(formatted).toContain('##');
@@ -121,14 +104,14 @@ describe('Cognitive Modalities Lab', () => {
         subject: 'Time',
         voices: DEFAULT_VOICES.slice(0, 3)
       });
-      
+
       const prompt = generator.createSynthesisPrompt();
       expect(prompt).toContain('Time');
       expect(prompt).toContain('synthesize');
     });
 
-    it('quick generate function should work', () => {
-      const output = generateManifesto('Code', { synthesize: true });
+    it('quick generate function should work', async () => {
+      const output = await generateManifesto('Code', { synthesize: true });
       expect(output.subject).toBe('Code');
       expect(output.synthesis).toBeDefined();
     });
@@ -141,7 +124,7 @@ describe('Cognitive Modalities Lab', () => {
         dimensions: ['temporal', 'affective'],
         autoPopulate: false
       });
-      
+
       const state = cube.getState();
       expect(state.subject).toBe('Session');
       expect(state.layers.length).toBe(2);
@@ -154,7 +137,7 @@ describe('Cognitive Modalities Lab', () => {
         dimensions: ['temporal', 'affective'],
         autoPopulate: true
       });
-      
+
       const state = cube.getState();
       expect(state.layers[0].reflections.length).toBeGreaterThan(0);
       expect(state.currentDepth).toBe(1);
@@ -165,7 +148,7 @@ describe('Cognitive Modalities Lab', () => {
         subject: 'Test',
         dimensions: ['temporal']
       });
-      
+
       cube.addReflection('temporal', 'Time is a river', ['first']);
       const reflections = cube.getReflections('temporal');
       expect(reflections).toHaveLength(1);
@@ -178,7 +161,7 @@ describe('Cognitive Modalities Lab', () => {
         subject: 'Test',
         dimensions: ['temporal']
       });
-      
+
       const questions = cube.getQuestions('temporal');
       expect(questions.length).toBeGreaterThan(0);
       expect(questions[0]).toContain('memory');
@@ -186,13 +169,13 @@ describe('Cognitive Modalities Lab', () => {
 
     it('should render in different views', () => {
       const cube = createTemporalCube('Test');
-      
+
       const fullRender = cube.render('all');
       expect(fullRender).toContain('STACKING CUBE');
-      
+
       const layers = cube.render('single-dimension');
       expect(layers).toContain('reflections');
-      
+
       const synthesis = cube.render('synthesis');
       expect(synthesis).toContain('SYNTHESIS');
     });
@@ -200,7 +183,7 @@ describe('Cognitive Modalities Lab', () => {
     it('factory functions should create configured cubes', () => {
       const minimal = createMinimalCube('Test');
       expect(minimal.getState().layers.length).toBe(2);
-      
+
       const full = createFullCube('Test');
       expect(full.getState().layers.length).toBe(8);
     });
@@ -210,7 +193,7 @@ describe('Cognitive Modalities Lab', () => {
         subject: 'Test',
         dimensions: ['temporal']
       });
-      
+
       expect(() => {
         cube.addReflection('affective' as any, 'test');
       }).toThrow('not found');
@@ -223,7 +206,7 @@ describe('Cognitive Modalities Lab', () => {
         sourceModality: 'visual',
         targetModality: 'auditory'
       });
-      
+
       const result = translator.translate('Red circle');
       expect(result.sourceModality).toBe('visual');
       expect(result.targetModality).toBe('auditory');
@@ -235,7 +218,7 @@ describe('Cognitive Modalities Lab', () => {
         sourceModality: 'olfactory',
         targetModality: 'gustatory'
       });
-      
+
       const result = translator.translate('Rose scent');
       expect(result.confidence).toBe(0);
       expect(result.translation).toContain('No translation');
@@ -246,7 +229,7 @@ describe('Cognitive Modalities Lab', () => {
         sourceModality: 'visual',
         targetModality: 'auditory'
       });
-      
+
       const low = translator.translate('Blue', { intensity: 0.3 });
       const high = translator.translate('Blue', { intensity: 0.9 });
       expect(low.translation).not.toBe(high.translation);
@@ -257,7 +240,7 @@ describe('Cognitive Modalities Lab', () => {
         sourceModality: 'visual',
         targetModality: 'auditory'
       });
-      
+
       const synesthesia = translator.fullSynesthesia('Sunrise');
       expect(synesthesia.size).toBeGreaterThan(0);
     });
@@ -267,7 +250,7 @@ describe('Cognitive Modalities Lab', () => {
         sourceModality: 'visual',
         targetModality: 'auditory'
       });
-      
+
       const paths = translator.getAvailablePaths();
       expect(paths.length).toBeGreaterThan(0);
     });
