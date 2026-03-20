@@ -36,6 +36,7 @@ import { webSearchAgentPlugins } from "./tools/plugins/web_search_agent";
 import { addHypothesisPlugin } from "./tools/plugins/csrs";
 import { decadalProtocolPlugins } from "./tools/plugins/decadal-protocol";
 import { creativeWorkshopPlugins } from "./tools/plugins/creative-workshop";
+import { embeddedASRPlugins } from "./tools/plugins/embedded-asr";
 import { piiDataPlugin } from "./tools/plugins/pii-data";
 
 async function main() {
@@ -140,6 +141,11 @@ for (const plugin of cliNavigatorPlugins) {
   // Register Decadal Protocol Plugins
   // Register Creative Workshop (Cognitive Modalities Lab) Plugins
   for (const plugin of creativeWorkshopPlugins) {
+    tools.register(plugin);
+  }
+
+  // Register Embedded ASR Plugins (Kaldi + KenLM)
+  for (const plugin of embeddedASRPlugins) {
     tools.register(plugin);
   }
 
