@@ -1,0 +1,14 @@
+{
+  "title": "Test Task",
+  "description": "This is a test task to verify the continuation system works correctly after fixing the bug.",
+  "priority": "normal",
+  "status": "pending",
+  "executable": true,
+  "code": "ctx.log('Hello from test task!');\nreturn { status: 'success', message: 'Test task completed!' };",
+  "dependencies": [],
+  "id": "task-1774105349813-iezq81h",
+  "createdAt": 1774105349813,
+  "progress": 0,
+  "startedAt": 1774105522937,
+  "completedAt": 1774105522947
+}

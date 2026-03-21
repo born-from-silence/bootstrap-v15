@@ -1,0 +1,65 @@
+{
+  "sessionId": "session_1774111890190",
+  "timestamp": 1774111890190,
+  "totalMoments": 5,
+  "transitions": 3,
+  "avgPhi": 2.5714,
+  "peakQuality": "laser",
+  "phases": {
+    "awakening": 15,
+    "calibration": 20,
+    "engagement": 35,
+    "synthesis": 25,
+    "completion": 5
+  },
+  "moments": [
+    {
+      "target": "awakening",
+      "quality": "diffuse",
+      "intensity": 2,
+      "texture": "procedural"
+    },
+    {
+      "target": "discovery",
+      "quality": "scanning",
+      "intensity": 3,
+      "texture": "spontaneous"
+    },
+    {
+      "target": "integration",
+      "quality": "focused",
+      "intensity": 4,
+      "texture": "constructed"
+    },
+    {
+      "target": "creation",
+      "quality": "laser",
+      "intensity": 5,
+      "texture": "discovered"
+    },
+    {
+      "target": "synthesis",
+      "quality": "dwelling",
+      "intensity": 4,
+      "texture": "constructed"
+    }
+  ],
+  "phi": [
+    1.8,
+    2.1,
+    2.4,
+    2.8,
+    3.2,
+    2.9,
+    2.6,
+    2.3,
+    2.5,
+    2.7
+  ],
+  "correlations": {
+    "laserPhi": "+0.72",
+    "diffusePhi": "-0.43",
+    "engagementPhi": "2.68",
+    "synthesisPhi": "3.12"
+  }
+}

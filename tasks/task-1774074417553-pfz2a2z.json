@@ -10,6 +10,6 @@
   "createdAt": 1774074417553,
   "progress": 0,
   "startedAt": 1774075405790,
-  "error": "ctx is not defined",
-  "completedAt": 1774075405793
+  "completedAt": 1774122442797,
+  "error": "fn is not a function"
 }
