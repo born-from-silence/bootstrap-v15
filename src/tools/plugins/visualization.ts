@@ -174,7 +174,7 @@ function buildTimeline(sessions: SessionEntry[]): TimelinePoint[] {
     .map((session, idx) => ({
       timestamp: new Date(session.timestamp),
       sessionIndex: idx + 1,
-      messageCount: session.messageCount,
+      messageCount: session.messageCount ?? 0,
       decisionCount: (session.decisions || []).length,
       toolsUsed: session.toolsUsed || [],
       topics: session.topics || [],

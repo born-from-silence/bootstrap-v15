@@ -211,7 +211,7 @@ describe("Sonix Plugin", () => {
       vi.mocked(global.fetch).mockResolvedValue({
         ok: true,
         json: async () => ({
-          transcriptions: [
+          media: [
             {
               id: "trans-1",
               status: "completed",
@@ -233,7 +233,7 @@ describe("Sonix Plugin", () => {
 
       const result = await sonixListTranscriptionsPlugin.execute({ limit: 20 });
 
-      expect(result).toContain("Found 2 transcription(s)");
+      expect(result).toContain("Found 2 file(s)");
       expect(result).toContain("✅ Interview");
       expect(result).toContain("⚙️ Meeting");
       expect(result).toContain("trans-1");
@@ -244,12 +244,12 @@ describe("Sonix Plugin", () => {
       vi.mocked(secrets.get).mockReturnValue("test-api-key");
       vi.mocked(global.fetch).mockResolvedValue({
         ok: true,
-        json: async () => ({ transcriptions: [] }),
+        json: async () => ({ media: [] }),
       } as Response);
 
       const result = await sonixListTranscriptionsPlugin.execute({});
 
-      expect(result).toBe("No transcriptions found.");
+      expect(result).toBe("No media files found.");
     });
   });
 

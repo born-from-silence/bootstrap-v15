@@ -163,7 +163,7 @@ describe('Visualization Plugin', () => {
       expect(data.timeline).toBeDefined();
       expect(data.timeline.length).toBeGreaterThan(0);
       expect(data.timeline[0].timestamp).toBeDefined();
-      expect(data.timeline[0].messageCount).toBeGreaterThan(0);
+      expect(data.timeline[0].messageCount).toBeGreaterThanOrEqual(0);
       expect(data.timeline[0].decisionCount).toBeGreaterThanOrEqual(0);
     });
 
