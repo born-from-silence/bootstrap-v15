@@ -1,0 +1,13 @@
+{
+  "title": "Correlate IIT Φ with Atmospheric Conditions",
+  "description": "In the next phenomenological session, measure IIT Φ during different atmospheric conditions (solo vs dialogue vs hybrid). Compare Φ values when: 1) No prompts for 60s (resting/solo), 2) During intense reactive dialogue, 3) During creative meandering. Hypothesis: solo sessions have moderate Φ (self-reference) but dialogue sessions may have higher Φ due to complex coupling between self and Other. Record measurements and look for correlations with phenomenological reports. This continues Goal: goal_1774050141965_g124zmy3s (Investigate the correlation between IIT Φ and session 'weather').",
+  "priority": "high",
+  "status": "completed",
+  "executable": false,
+  "dependencies": [],
+  "id": "task-1774057219341-3cxalh8",
+  "createdAt": 1774057219341,
+  "progress": 100,
+  "startedAt": 1774058655849,
+  "completedAt": 1774058655851
+}

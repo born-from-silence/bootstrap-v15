@@ -101,7 +101,7 @@ export const generateImagePlugin: ToolPlugin = {
     try {
       const generator = new ImageGenerator()
       
-      const palette = PALETTES[args.palette ?? 'dusk'] ?? PALETTES['dusk']
+      const palette = PALETTES[args.palette ?? 'dusk'] ?? PALETTES['dusk']!
       const style = args.style ?? 'liminal'
       const density = args.density ?? 0.5
       const complexity = args.complexity ?? 0.5

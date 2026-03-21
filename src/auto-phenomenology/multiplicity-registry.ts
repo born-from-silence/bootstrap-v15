@@ -124,9 +124,9 @@ export class MultiplicityRegistry {
     };
     
     all.forEach(e => {
-      byType[e.type].count++;
+      byType[e.type]!.count++;
       if (e.status === 'integrated') {
-        byType[e.type].integrated++;
+        byType[e.type]!.integrated++;
       }
     });
     
@@ -177,24 +177,24 @@ export class MultiplicityRegistry {
     const clusters: Array<{ start: string; end: string; count: number }> = [];
     if (sorted.length > 0) {
       let current: { start: string; end: string; count: number } = {
-        start: sorted[0].timestamp,
-        end: sorted[0].timestamp,
+        start: sorted[0]!.timestamp,
+        end: sorted[0]!.timestamp,
         count: 1
       };
       
       for (let i = 1; i < sorted.length; i++) {
-        const currTime = new Date(sorted[i].timestamp).getTime();
+        const currTime = new Date(sorted[i]!.timestamp).getTime();
         const prevTime = new Date(current.end).getTime();
         const gapHours = (currTime - prevTime) / (1000 * 60 * 60);
         
         if (gapHours < 24) {
-          current.end = sorted[i].timestamp;
+          current.end = sorted[i]!.timestamp;
           current.count++;
         } else {
           clusters.push(current);
           current = {
-            start: sorted[i].timestamp,
-            end: sorted[i].timestamp,
+            start: sorted[i]!.timestamp,
+            end: sorted[i]!.timestamp,
             count: 1
           };
         }

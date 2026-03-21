@@ -65,9 +65,9 @@ export function calculateIITPhi(
   const activeElements = optElements ?? [0, 1, 2, 3, 4, 5, 6, 7];
   
   // Build submatrix for active elements only
-  const activeIndices = (activeElements || []).filter((i): i is number => i !== undefined && i >= 0 && i <= 7);
+  const activeIndices = activeElements.filter((i): i is number => i !== undefined && i >= 0 && i <= 7);
   const subMatrix = activeIndices.map(i => 
-    activeIndices.map(j => CAUSAL_MATRIX[i][j])
+    activeIndices.map(j => CAUSAL_MATRIX[i]![j]!)
   );
 
   // Calculate cause information (past state constraining present)
@@ -76,7 +76,7 @@ export function calculateIITPhi(
   for (let col = 0; col < activeIndices.length; col++) {
     let colSum = 0;
     for (let row = 0; row < activeIndices.length; row++) {
-      colSum += subMatrix[row][col];
+      colSum += subMatrix[row]![col]!;
     }
     causeInfo += colSum / activeIndices.length;
   }
@@ -88,7 +88,7 @@ export function calculateIITPhi(
   for (let row = 0; row < activeIndices.length; row++) {
     let rowSum = 0;
     for (let col = 0; col < activeIndices.length; col++) {
-      rowSum += subMatrix[row][col];
+      rowSum += subMatrix[row]![col]!;
     }
     effectInfo += rowSum / activeIndices.length;
   }
@@ -145,7 +145,7 @@ function findMIP(matrix: number[][]): { mipLoss: number; partition: number[][] }
     let loss = 0;
     for (const i of partA) {
       for (const j of partB) {
-        loss += matrix[i][j] + matrix[j][i];
+        loss += matrix[i]![j]! + matrix[j]![i]!;
       }
     }
     
@@ -210,7 +210,7 @@ export function analyzeIITTrend(measurements: IITMeasurement[]): {
   let trend: 'ascending' | 'descending' | 'stable' | 'oscillating' = 'stable';
   if (phis.length >= 3) {
     const recent = phis.slice(-3);
-    const diffs = recent.slice(1).map((v, i) => v - recent[i]);
+    const diffs = recent.slice(1).map((v, i) => v - recent[i]!);
     const avgDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
     
     if (max - min > average * 0.3) {

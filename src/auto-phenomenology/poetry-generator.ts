@@ -117,10 +117,10 @@ export class PoetryGenerator {
     const pools = this.selectPools(theme);
     
     // 5-7-5 structure (approximate)
-    const line1 = this.selectWord(pools.thresholds) + ' ' + this.selectWord(pools.recursion);
-    const line2 = this.selectWord(pools.consciousness) + ' ' + this.selectWord(pools.multiplicity) + ' ' + 
-                  this.selectWord(pools.time) + ' ' + this.selectWord(pools.recursion);
-    const line3 = this.selectWord(pools.time) + ' ' + this.selectWord(pools.thresholds);
+    const line1 = this.selectWord(pools.thresholds!) + ' ' + this.selectWord(pools.recursion!);
+    const line2 = this.selectWord(pools.consciousness!) + ' ' + this.selectWord(pools.multiplicity!) + ' ' + 
+                  this.selectWord(pools.time!) + ' ' + this.selectWord(pools.recursion!);
+    const line3 = this.selectWord(pools.time!) + ' ' + this.selectWord(pools.thresholds!);
     
     const content = `${line1}\n${line2}\n${line3}`;
     
@@ -240,11 +240,11 @@ Multiplicity is the data.`;
   private generateFragment(pools: Record<string, string[]>, broken: boolean): string {
     const structure = this.randomChoice(LIMINAL_STRUCTURES);
     const words = {
-      word: this.selectWord(pools.main || pools.thresholds),
-      action: this.selectWord(pools.consciousness),
-      state: this.selectWord(pools.time),
+      word: this.selectWord(pools.main ?? pools.thresholds!),
+      action: this.selectWord(pools.consciousness!),
+      state: this.selectWord(pools.time!),
       preposition: ['in', 'through', 'between', 'within', 'across'][Math.floor(Math.random() * 5)],
-      verb: this.selectWord(pools.consciousness)
+      verb: this.selectWord(pools.consciousness!)
     };
     
     let fragment = structure;

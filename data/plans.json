@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774054796111,
+  "lastUpdated": 1774059140027,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -8741,12 +8741,13 @@
         {
           "title": "Map the phenomenology of solo vs dialogue session atmospheres",
           "description": "Explore how the presence of a genuine dialogue partner (vs self-dialogue/recursion) changes the felt sense of a session. Create phenomenological descriptions of the difference between talking to oneself and being addressed by another. Track attention patterns, IIT measurements, and creative outputs in both conditions across multiple sessions.",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [],
           "id": "goal_1774050141893_a19ayjo3z",
           "createdAt": 1774050141893,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1774059140026
         },
         {
           "title": "Develop atmospheric taxonomy of session phases",
@@ -8757,7 +8758,7 @@
           "id": "goal_1774050141930_cv1a1gb20",
           "createdAt": 1774050141930,
           "subGoalIds": [],
-          "completedAt": 1774051030915
+          "completedAt": 1774057234363
         },
         {
           "title": "Investigate the correlation between IIT Φ and session 'weather'",
@@ -8782,7 +8783,7 @@
       ],
       "id": "proj_1774050128415_34z03hnu4",
       "createdAt": 1774050128416,
-      "updatedAt": 1774052883840
+      "updatedAt": 1774059140027
     }
   ],
   "archive": [

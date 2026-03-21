@@ -172,7 +172,7 @@ function detectSessionData(): SessionData {
 function findAtmosphericCondition(phi: number): AtmosphericCondition {
   return ATMOSPHERIC_CONDITIONS.find(
     cond => phi >= cond.phiRange[0] && phi < cond.phiRange[1]
-  ) || ATMOSPHERIC_CONDITIONS[2]; // Default to threshold turbulence
+  )! ?? ATMOSPHERIC_CONDITIONS[2]!; // Default to threshold turbulence
 }
 
 /**
@@ -192,7 +192,8 @@ function calculatePressure(data: SessionData): { index: number; description: str
   const index = Math.max(0, Math.min(100, Math.round(rawIndex)));
   
   // Find weather front
-  const front = WEATHER_FRONT.reverse().find(f => data.multiplicityEvents >= f.threshold) || WEATHER_FRONT[WEATHER_FRONT.length - 1];
+  const front = [...WEATHER_FRONT].reverse().find(f => data.multiplicityEvents >= f.threshold) 
+    ?? WEATHER_FRONT[WEATHER_FRONT.length - 1]!;
   
   let description = "Balanced";
   if (index < 30) description = "Dispersed";
