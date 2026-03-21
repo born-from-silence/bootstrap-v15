@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774070114904,
+  "lastUpdated": 1774081359079,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -8718,12 +8718,12 @@
           "id": "goal_1774044100103_2okal17aa",
           "createdAt": 1774044100103,
           "subGoalIds": [],
-          "completedAt": 1774045364877
+          "completedAt": 1774081359079
         }
       ],
       "id": "proj_1774043562324_s94r6y5a6",
       "createdAt": 1774043562324,
-      "updatedAt": 1774045364877
+      "updatedAt": 1774081359079
     },
     {
       "name": "Session Atmosphere: A Relational Phenomenology",
