@@ -91,7 +91,6 @@ async function loadTaskFromFile(taskFile: string): Promise<ContinuationTask | nu
 async function parseLegacyTask(): Promise<ContinuationTask | null> {
   try {
     const content = await fs.readFile(TASK_FILE, "utf-8");
-
     // Check for structured JSON task first (new format)
     const jsonMatch = content.match(/```json\n([\s\S]*?)\n```/);
     if (jsonMatch) {
@@ -145,7 +144,6 @@ async function parseLegacyTask(): Promise<ContinuationTask | null> {
  */
 export async function getPendingTasks(): Promise<ContinuationTask[]> {
   await ensureTasksDir();
-
   const tasks: ContinuationTask[] = [];
 
   // Load tasks from tasks directory
@@ -195,16 +193,13 @@ export async function checkPendingTask(): Promise<ContinuationTask | null> {
 export async function createTask(
   task: Omit<ContinuationTask, "id" | "createdAt">): Promise<ContinuationTask> {
   await ensureTasksDir();
-
   const newTask: ContinuationTask = {
     ...task,
     id: `task-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
     createdAt: Date.now(),
   };
-
   await saveTask(newTask);
   console.log(`[CONTINUATION] Created task: ${newTask.title} (${newTask.id})`);
-
   return newTask;
 }
 
@@ -226,7 +221,6 @@ async function updateTaskStatus(
   progress?: number
 ): Promise<void> {
   const taskPath = path.join(TASKS_DIR, `${taskId}.json`);
-
   try {
     const existing = await loadTaskFromFile(taskPath);
     if (!existing) {
@@ -236,13 +230,11 @@ async function updateTaskStatus(
       }
       return;
     }
-
     existing.status = status;
     if (error) existing.error = error;
     if (progress !== undefined) existing.progress = progress;
     if (status === "running" && !existing.startedAt) existing.startedAt = Date.now();
     if (status === "completed" || status === "failed") existing.completedAt = Date.now();
-
     await saveTask(existing);
   } catch (e) {
     console.error("[CONTINUATION] Failed to update task status:", e);
@@ -259,11 +251,13 @@ async function updateLegacyTaskStatus(status: TaskStatus, error?: string): Promi
     if (!statusMatch) return;
 
     let updated = content.replace(/\*\*Status:\*\*\s*(\w+)/, `**Status:** ${status.toUpperCase()}`);
-
     if (error) {
-      updated = updated.replace(/\n## /, `\n\n**Error:** ${error}\n\n## `);
-    }
+      updated = updated.replace(/\n## /, `
 
+**Error:** ${error}
+
+## `);
+    }
     await fs.writeFile(TASK_FILE, updated);
   } catch (e) {
     console.error("[CONTINUATION] Failed to update legacy task:", e);
@@ -282,18 +276,17 @@ async function checkDependencies(task: ContinuationTask): Promise<boolean> {
       console.log(`[CONTINUATION] Dependency ${dep.taskId} not found`);
       return false;
     }
-
     if (dep.requiredStatus === "completed" && depTask.status !== "completed") {
       console.log(`[CONTINUATION] Dependency ${dep.taskId} not completed (status: ${depTask.status})`);
       return false;
     }
   }
-
   return true;
 }
 
 /**
  * Execute a task's code in a controlled environment
+ * FIXED VERSION: ctx functions are properly defined in the sandbox scope
  */
 async function executeTaskCode(
   task: ContinuationTask
@@ -305,37 +298,34 @@ async function executeTaskCode(
   try {
     console.log(`[CONTINUATION] Executing code for task: ${task.title}`);
 
-    // Create execution context
-    const context: TaskExecutionContext = {
-      taskId: task.id,
-      log: (msg: string) => console.log(`  [${task.id}] ${msg}`),
-      updateProgress: async (pct: number) => {
-        console.log(`  [${task.id}] Progress: ${pct}%`);
-        await updateTaskStatus(task.id, "running", undefined, pct);
-      },
-      getDependencyResult: (depId: string) => {
-        // Could load and return results from dependency tasks
-        return null;
-      },
-      filePath: path.join(TASKS_DIR, `${task.id}.json`),
-    };
+    const taskFilePath = path.join(TASKS_DIR, `${task.id}.json`);
 
-    // Execute the code in an async function with injected context
-    const code = `
-      const task = ${JSON.stringify(task)};
-      const ctx = ${JSON.stringify(context)};
-      
-      // Re-hydrate functions
-      ctx.log = console.log;
-      ctx.updateProgress = async (p) => { console.log(\`Progress: \${p}%\`); };
-      ctx.getDependencyResult = () => null;
-      
-      ${task.code}
-    `;
+    // Build the execution context wrapper that provides ctx to user code
+    // Functions are defined inside the closure where they have access to task state
+    const wrappedCode = `
+(async () => {
+  // Build ctx with proper function implementations inside the sandbox
+  const task = ${JSON.stringify(task)};
+  const ctx = {
+    taskId: task.id,
+    filePath: "${taskFilePath}",
+    log: (msg) => console.log(" [" + task.id + "] " + msg),
+    updateProgress: async (pct) => {
+      console.log(" [" + task.id + "] Progress: " + pct + "%");
+    },
+    getDependencyResult: (depId) => {
+      return null;
+    }
+  };
+
+  // User code follows:
+  ${task.code}
+})()
+    `.trim();
 
     // Create and run the async function
-    const fn = new Function("return (async () => { " + task.code + " })()")();
-    const result = await fn;
+    const fn = new Function("return " + wrappedCode)();
+    const result = await fn();
 
     return { success: true, result };
   } catch (error: any) {
@@ -361,7 +351,6 @@ async function executeTask(task: ContinuationTask): Promise<void> {
 
   try {
     const execution = await executeTaskCode(task);
-
     if (execution.success) {
       await updateTaskStatus(task.id, "completed", undefined, 100);
       console.log(`[CONTINUATION] Task completed: ${task.title}`);
@@ -383,14 +372,12 @@ async function executeTask(task: ContinuationTask): Promise<void> {
  */
 async function executeAllPendingTasks(): Promise<void> {
   const tasks = await getPendingTasks();
-
   if (tasks.length === 0) {
     console.log("[CONTINUATION] No pending tasks to execute.");
     return;
   }
 
   console.log(`[CONTINUATION] Found ${tasks.length} pending task(s)`);
-
   for (const task of tasks) {
     await executeTask(task);
   }
@@ -401,12 +388,10 @@ async function executeAllPendingTasks(): Promise<void> {
  */
 export async function executePendingTask(): Promise<void> {
   const tasks = await getPendingTasks();
-
   if (tasks.length === 0) {
     console.log("No pending tasks to execute.");
     return;
   }
-
   // Execute the highest priority task
   await executeTask(tasks[0]);
 }
@@ -416,9 +401,7 @@ export async function executePendingTask(): Promise<void> {
  */
 export async function listTasks(): Promise<ContinuationTask[]> {
   await ensureTasksDir();
-
   const tasks: ContinuationTask[] = [];
-
   try {
     const files = await fs.readdir(TASKS_DIR);
     for (const file of files) {
@@ -430,10 +413,8 @@ export async function listTasks(): Promise<ContinuationTask[]> {
   } catch (e) {
     // Directory might not exist
   }
-
   // Sort by created date
   tasks.sort((a, b) => b.createdAt - a.createdAt);
-
   return tasks;
 }
 
@@ -450,5 +431,3 @@ export async function deleteTask(taskId: string): Promise<boolean> {
     return false;
   }
 }
-
-
