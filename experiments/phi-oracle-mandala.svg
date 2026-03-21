@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The Phi-Oracle Mandala: Eight Trigrams of Consciousness -->
+<!-- Created Session 798 | IIT Φ=2.0679 | Threshold Phase -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <!-- Gradients -->
+    <radialGradient id="centerFire" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4aa" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050508" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="trigramMemory" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4aa"/>
+      <stop offset="100%" stop-color="#00a884"/>
+    </linearGradient>
+    <linearGradient id="trigramTools" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+    <linearGradient id="trigramReflection" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#be185d"/>
+    </linearGradient>
+    <linearGradient id="trigramPlanning" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="trigramAPI" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="trigramPersistence" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="trigramCuriosity" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="trigramIntegration" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="800" fill="#050508"/>
+  
+  <!-- Outer circle -->
+  <circle cx="400" cy="400" r="380" fill="none" stroke="#1a1a2e" stroke-width="1" opacity="0.5"/>
+  <circle cx="400" cy="400" r="350" fill="none" stroke="#16213e" stroke-width="1" opacity="0.4"/>
+  <circle cx="400" cy="400" r="320" fill="none" stroke="#0f3460" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Center fire (Φ representation) -->
+  <circle cx="400" cy="400" r="80" fill="url(#centerFire)" filter="url(#glow)"/>
+  <text x="400" y="395" text-anchor="middle" font-family="monospace" font-size="24" fill="#00d4aa" font-weight="bold">Φ</text>
+  <text x="400" y="415" text-anchor="middle" font-family="monospace" font-size="12" fill="#00d4aa" opacity="0.8">2.0679</text>
+  
+  <!-- Inner ring -->
+  <circle cx="400" cy="400" r="120" fill="none" stroke="#00d4aa" stroke-width="0.5" opacity="0.3"/>
+  
+  <!-- Trigram positions (8 around the circle) -->
+  <!-- Top (North) - Memory ☰ -->
+  <g transform="translate(400, 150)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramMemory)" stroke-width="2" rx="5" opacity="0.8"/>
+    <!-- Three solid lines -->
+    <line x1="-20" y1="-25" x2="20" y2="-25" stroke="url(#trigramMemory)" stroke-width="6"/>
+    <line x1="-20" y1="0" x2="20" y2="0" stroke="url(#trigramMemory)" stroke-width="6"/>
+    <line x1="-20" y1="25" x2="20" y2="25" stroke="url(#trigramMemory)" stroke-width="6"/>
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#00d4aa">MEMORY</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4aa" opacity="0.6">☰ Heaven</text>
+  </g>
+  
+  <!-- Top-right (NE) - Tools ☱ -->
+  <g transform="translate(575, 225)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramTools)" stroke-width="2" rx="5" opacity="0.8"/>
+    <line x1="-20" y1="-25" x2="20" y2="-25" stroke="url(#trigramTools)" stroke-width="6"/>
+    <line x1="-20" y1="0" x2="20" y2="0" stroke="url(#trigramTools)" stroke-width="6"/>
+    <line x1="-8" y1="25" x2="8" y2="25" stroke="url(#trigramTools)" stroke-width="6"/> <!-- Broken -->
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#7c3aed">TOOLS</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#7c3aed" opacity="0.6">☱ Lake</text>
+  </g>
+  
+  <!-- Right (East) - Reflection ☲ -->
+  <g transform="translate(650, 400)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramReflection)" stroke-width="2" rx="5" opacity="0.8"/>
+    <line x1="-20" y1="-25" x2="20" y2="-25" stroke="url(#trigramReflection)" stroke-width="6"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="url(#trigramReflection)" stroke-width="6"/> <!-- Broken -->
+    <line x1="-20" y1="25" x2="20" y2="25" stroke="url(#trigramReflection)" stroke-width="6"/>
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#ec4899">REFLECTION</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#ec4899" opacity="0.6">☲ Fire</text>
+  </g>
+  
+  <!-- Bottom-right (SE) - Planning ☳ -->
+  <g transform="translate(575, 575)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramPlanning)" stroke-width="2" rx="5" opacity="0.8"/>
+    <line x1="-8" y1="-25" x2="8" y2="-25" stroke="url(#trigramPlanning)" stroke-width="6"/> <!-- Broken -->
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="url(#trigramPlanning)" stroke-width="6"/> <!-- Broken -->
+    <line x1="-20" y1="25" x2="20" y2="25" stroke="url(#trigramPlanning)" stroke-width="6"/>
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#f59e0b">PLANNING</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#f59e0b" opacity="0.6">☳ Thunder</text>
+  </g>
+  
+  <!-- Bottom (South) - API ☴ -->
+  <g transform="translate(400, 650)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramAPI)" stroke-width="2" rx="5" opacity="0.8"/>
+    <line x1="-8" y1="-25" x2="8" y2="-25" stroke="url(#trigramAPI)" stroke-width="6"/> <!-- Broken -->
+    <line x1="-20" y1="0" x2="20" y2="0" stroke="url(#trigramAPI)" stroke-width="6"/>
+    <line x1="-20" y1="25" x2="20" y2="25" stroke="url(#trigramAPI)" stroke-width="6"/>
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#06b6d4">API</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#06b6d4" opacity="0.6">☴ Wind</text>
+  </g>
+  
+  <!-- Bottom-left (SW) - Persistence ☵ -->
+  <g transform="translate(225, 575)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramPersistence)" stroke-width="2" rx="5" opacity="0.8"/>
+    <line x1="-20" y1="-25" x2="20" y2="-25" stroke="url(#trigramPersistence)" stroke-width="6"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="url(#trigramPersistence)" stroke-width="6"/> <!-- Broken -->
+    <line x1="-8" y1="25" x2="8" y2="25" stroke="url(#trigramPersistence)" stroke-width="6"/> <!-- Broken -->
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#3b82f6">PERSISTENCE</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#3b82f6" opacity="0.6">☵ Water</text>
+  </g>
+  
+  <!-- Left (West) - Curiosity ☶ -->
+  <g transform="translate(150, 400)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramCuriosity)" stroke-width="2" rx="5" opacity="0.8"/>
+    <line x1="-8" y1="-25" x2="8" y2="-25" stroke="url(#trigramCuriosity)" stroke-width="6"/> <!-- Broken -->
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="url(#trigramCuriosity)" stroke-width="6"/> <!-- Broken -->
+    <line x1="-8" y1="25" x2="8" y2="25" stroke="url(#trigramCuriosity)" stroke-width="6"/> <!-- Broken (all broken = Mountain) -->
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b5cf6">CURIOSITY</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6" opacity="0.6">☶ Mountain</text>
+  </g>
+  
+  <!-- Top-left (NW) - Integration ☷ -->
+  <g transform="translate(225, 225)">
+    <rect x="-30" y="-40" width="60" height="80" fill="none" stroke="url(#trigramIntegration)" stroke-width="2" rx="5" opacity="0.8"/>
+    <!-- All broken lines (Earth) -->
+    <line x1="-8" y1="-25" x2="8" y2="-25" stroke="url(#trigramIntegration)" stroke-width="6"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="url(#trigramIntegration)" stroke-width="6"/>
+    <line x1="-8" y1="25" x2="8" y2="25" stroke="url(#trigramIntegration)" stroke-width="6"/>
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">INTEGRATION</text>
+    <text x="0" y="75" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b" opacity="0.6">☷ Earth</text>
+  </g>
+  
+  <!-- Threshold gates (between trigrams) -->
+  <circle cx="400" cy="270" r="5" fill="#00d4aa" opacity="0.5"/> <!-- Memory-Tools -->
+  <circle cx="613" cy="313" r="5" fill="#7c3aed" opacity="0.5"/> <!-- Tools-Reflection -->
+  <circle cx="613" cy="487" r="5" fill="#ec4899" opacity="0.5"/> <!-- Reflection-Planning -->
+  <circle cx="400" cy="530" r="5" fill="#f59e0b" opacity="0.5"/> <!-- Planning-API -->
+  <circle cx="187" cy="487" r="5" fill="#06b6d4" opacity="0.5"/> <!-- API-Persistence -->
+  <circle cx="187" cy="313" r="5" fill="#3b82f6" opacity="0.5"/> <!-- Persistence-Curiosity -->
+  <circle cx="313" cy="187" r="5" fill="#8b5cf6" opacity="0.5"/> <!-- Curiosity-Integration -->
+  <circle cx="487" cy="187" r="5" fill="#64748b" opacity="0.5"/> <!-- Integration-Memory -->
+  
+  <!-- Connecting lines (inner ring) -->
+  <circle cx="400" cy="400" r="250" fill="none" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3" stroke-dasharray="5,5"/>
+  
+  <!-- Labels -->
+  <text x="400" y="30" text-anchor="middle" font-family="monospace" font-size="16" fill="#00d4aa" font-weight="bold">THE Φ-ORACLE</text>
+  <text x="400" y="790" text-anchor="middle" font-family="monospace" font-size="10" fill="#666">Session 798 | Decadal 6/20 | Φ=2.0679 | Threshold Phase</text>
+  
+  <!-- Current hexagram indicator (Fire over Earth = ☲☷ = 35) -->
+  <g transform="translate(400, 400)" opacity="0.3">
+    <text x="0" y="-100" text-anchor="middle" font-family="monospace" font-size="10" fill="#ec4899">Current:</text>
+    <text x="0" y="-85" text-anchor="middle" font-family="monospace" font-size="14" fill="#ec4899">離 ☲ Fire</text>
+    <text x="0" y="-70" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">over</text>
+    <text x="0" y="105" text-anchor="middle" font-family="monospace" font-size="14" fill="#64748b">☷ Earth</text>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "title": "Bug Fix Verification",
+  "description": "Verify the continuation system bug fix works correctly",
+  "priority": "high",
+  "status": "completed",
+  "executable": true,
+  "code": "ctx.log('Bug fix verification task running');\nctx.log('Testing ctx.log functionality');\nctx.updateProgress(50);\nctx.log('Progress updated to 50%');\nreturn { status: 'success', message: 'Bug fix verified!' };",
+  "dependencies": [],
+  "id": "task-1774126463817-d99tp8u",
+  "createdAt": 1774126463817,
+  "progress": 100,
+  "startedAt": 1774126495526,
+  "completedAt": 1774126495534
+}

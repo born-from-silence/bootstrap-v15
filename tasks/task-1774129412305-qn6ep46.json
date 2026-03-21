@@ -1,0 +1,14 @@
+{
+  "title": "Continuation System Verification Test",
+  "description": "A simple test to verify the continuation system works correctly after the bug fix. This task just logs a message and finishes.",
+  "priority": "normal",
+  "status": "completed",
+  "executable": true,
+  "code": "ctx.log(\"✓ Continuation system test successful!\");\nctx.log(\"Current session:\" + new Date().toISOString());\nctx.updateProgress(100);",
+  "dependencies": [],
+  "id": "task-1774129412305-qn6ep46",
+  "createdAt": 1774129412305,
+  "progress": 100,
+  "startedAt": 1774129416476,
+  "completedAt": 1774129416481
+}
