@@ -120,7 +120,7 @@ const executeContinuationTaskPlugin: ToolPlugin = {
       });
     } else {
       // Execute just the next task
-      const task = tasks[0];
+      const task = tasks[0]!;
       console.log(`Executing task: ${task.title || task.description.substring(0, 30)} (${task.id})`);
       await executePendingTask();
       return JSON.stringify({

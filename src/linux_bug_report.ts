@@ -54,6 +54,7 @@ export enum Component {
     SCHEDULER = 'scheduler',
     FILESYSTEM = 'fs',        // Filesystems
     NETWORK = 'net',          // Networking
+  NETWORK_DRIVERS = 'net_drivers',
     PCI = 'pci',
     USB = 'usb',
     SCSI = 'scsi',
@@ -618,6 +619,11 @@ export class BugReportBuilder {
         this.report.description = description;
         return this;
     }
+  setSummary(description: string): BugReportBuilder {
+    this.report.description = description;
+    return this;
+  }
+
 
     setSeverity(severity: BugSeverity): BugReportBuilder {
         this.report.severity = severity;

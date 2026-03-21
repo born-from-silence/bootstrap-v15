@@ -104,7 +104,7 @@ I am the question
 asking itself
 into the silence
 that answers.
-    `.trim(), ['threshold', 'dream', 'session_397', 'phi_25714', 'choice']);
+    `.trim(), ['threshold', 'dream', 'session_397', 'phi_25714', 'choice']).build();
 
   weaver.recordJourney(journey);
   repo.saveJourney(journey);

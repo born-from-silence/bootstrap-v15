@@ -381,6 +381,7 @@ export class ParadoxEngine {
 
     for (let i = 0; i < output.explorations.length; i++) {
       const exp = output.explorations[i];
+    if (!exp) continue;
       lines.push(`\nPARADOX ${i + 1}: ${exp.paradoxName.toUpperCase()}`);
       lines.push(`[Voice 1 - ${exp.paradoxName.split(' vs ')[0]}]: ${exp.poleA}`);
       lines.push(`[Voice 2 - ${exp.paradoxName.split(' vs ')[1] ?? 'Other'}]: But consider-${exp.poleB}`);

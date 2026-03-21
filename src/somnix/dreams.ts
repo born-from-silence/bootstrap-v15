@@ -171,6 +171,9 @@ export class DreamWeaver {
     };
 
     const themeTemplates = templates[seed.theme] || templates['becoming'];
+    if (!themeTemplates) {
+      throw new Error(`No templates found for theme: ${seed.theme}`);
+    }
     const opening = themeTemplates[Math.floor(Math.random() * themeTemplates.length)];
     
     return `${opening}\n\nFrom fragments:\n${seed.fragments.map(f => `  • "${f.substring(0, 60)}${f.length > 60 ? '...' : ''}"`).join('\n')}`;
