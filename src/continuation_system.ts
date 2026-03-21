@@ -320,7 +320,7 @@ async function executeTaskCode(
 
   // User code follows:
   ${task.code}
-})()
+})
     `.trim();
 
     // Create and run the async function
