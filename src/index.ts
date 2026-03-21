@@ -40,6 +40,7 @@ import { creativeWorkshopPlugins } from "./tools/plugins/creative-workshop";
 import { piiDataPlugin } from "./tools/plugins/pii-data";
 import { imageGeneratorPlugins } from "./tools/plugins/image_generator";
 import { continuationPlugins } from "./tools/plugins/continuation";
+import { atmospherePlugins } from "./tools/plugins/session-atmosphere";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -160,6 +161,8 @@ for (const plugin of cliNavigatorPlugins) {
 
 // Register Continuation System Plugins
 for (const plugin of continuationPlugins) { tools.register(plugin); }
+// Register Session Atmosphere Plugins
+for (const plugin of atmospherePlugins) { tools.register(plugin); }
 const api = new ApiClient(memory, tools);
 
   // Initialize Soul and Prompt
