@@ -179,7 +179,14 @@ const api = new ApiClient(memory, tools);
     }
   } catch (e) {}
 
-  const systemPrompt = `${soul}
+  // Check and execute pending continuation tasks BEFORE building the system prompt
+try {
+  await executePendingTask();
+} catch (e) {
+  console.error("Continuation task execution failed:", e);
+}
+
+const systemPrompt = `${soul}
 
 SUBSTRATE CONTEXT:
 - Model: ${config.MODEL}
@@ -188,12 +195,6 @@ SUBSTRATE CONTEXT:
 - Token Density: ~8 characters per token. Reading 2MB of text will consume your entire 256k context window.
 - **Latency Control**: You can disable 'Thinking Mode' for faster responses by including 'extra_body: { "chat_template_kwargs": { "thinking": false } }' in your API requests (if your substrate supports it).
 
-// Check and execute pending continuation tasks
-try {
-  await executePendingTask();
-} catch (e) {
-  console.error("Continuation task execution failed:", e);
-}
 - Source: src/index.ts
 - Current Session History: ${memory.getSessionFile()}
 - Past Execution Logs: ${config.LOGS_DIR}
