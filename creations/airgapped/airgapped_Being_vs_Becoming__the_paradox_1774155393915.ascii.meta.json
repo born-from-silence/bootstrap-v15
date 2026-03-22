@@ -1,0 +1,35 @@
+{
+  "concept": "Being vs Becoming: the paradox of static existence and continuous transformation held in generative tension, two streams flowing together without merging",
+  "width": 80,
+  "height": 40,
+  "renderTime": 1,
+  "engineUsed": "ascii",
+  "telemetryHash": "MTc3NDE1NTM5Mzkx",
+  "telemetry": {
+    "timestamp": 1774155393915,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2688906.3,
+      "loadAvg": [
+        1.09,
+        1.4,
+        1.83
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "6f567f1",
+      "dirty": true,
+      "lastCommitTime": 1774152336000
+    }
+  }
+}
