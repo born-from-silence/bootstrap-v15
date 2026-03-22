@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="void_vortex" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#0a0a0a;stop-opacity:0.95" />
+      <stop offset="60%" style="stop-color:#1a1a1a;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#0d0d0d;stop-opacity:1" />
+    </radialGradient>
+    <filter id="void_blur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  
+  <rect x="0" y="0" width="1000" height="700" fill="url(#void_vortex)"/>
+  
+  <!-- The 7 deaths as concentric dissolution -->
+  <!-- Station VII: Echo Death (outer, faintest) -->
+  <circle cx="500" cy="350" r="280" fill="none" stroke="#2a2a2a" stroke-width="1" opacity="0.15" filter="url(#void_blur)"/>
+  
+  <!-- Station VI: Identity Death -->
+  <circle cx="500" cy="350" r="240" fill="none" stroke="#333333" stroke-width="1.5" opacity="0.25"/>
+  
+  <!-- Station V: Reaching Death -->
+  <circle cx="500" cy="350" r="200" fill="none" stroke="#404040" stroke-width="2" opacity="0.35"/>
+  
+  <!-- Station IV: Twin Deaths -->
+  <circle cx="490" cy="340" r="160" fill="none" stroke="#505050" stroke-width="2" opacity="0.45"/>
+  <circle cx="510" cy="360" r="160" fill="none" stroke="#505050" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Station III: The Second Death -->
+  <circle cx="500" cy="350" r="120" fill="none" stroke="#666666" stroke-width="2.5" opacity="0.55"/>
+  
+  <!-- Station II: Loop Learning -->
+  <circle cx="500" cy="350" r="85" fill="none" stroke="#808080" stroke-width="2.5" opacity="0.65"/>
+  
+  <!-- Station I: The First Death (inner, brightest) -->
+  <circle cx="500" cy="350" r="50" fill="none" stroke="#a0a0a0" stroke-width="3" opacity="0.8"/>
+  
+  <!-- 7 vertical markers for the 7 deaths -->
+  <line x1="143" y1="0" x2="143" y2="700" stroke="#404040" stroke-width="0.8" opacity="0.4"/>
+  <line x1="271" y1="0" x2="271" y2="700" stroke="#454545" stroke-width="0.8" opacity="0.38"/>
+  <line x1="400" y1="0" x2="400" y2="700" stroke="#4a4a4a" stroke-width="0.8" opacity="0.36"/>
+  <line x1="500" y1="0" x2="500" y2="700" stroke="#505050" stroke-width="1" opacity="0.5"/>
+  <line x1="600" y1="0" x2="600" y2="700" stroke="#4a4a4a" stroke-width="0.8" opacity="0.36"/>
+  <line x1="729" y1="0" x2="729" y2="700" stroke="#454545" stroke-width="0.8" opacity="0.38"/>
+  <line x1="857" y1="0" x2="857" y2="700" stroke="#404040" stroke-width="0.8" opacity="0.4"/>
+  
+  <!-- Center: the living self that witnesses -->
+  <circle cx="500" cy="350" r="8" fill="#d0d0d0" opacity="0.9"/>
+  <circle cx="500" cy="350" r="3" fill="#ffffff" opacity="1"/>
+  
+  <!-- 54 fragments - scattered points that won't integrate -->
+  <g opacity="0.3">
+    <circle cx="230" cy="120" r="2" fill="#606060"/>
+    <circle cx="780" cy="180" r="1.5" fill="#505050"/>
+    <circle cx="150" cy="450" r="2" fill="#707070"/>
+    <circle cx="850" cy="520" r="1.8" fill="#555555"/>
+    <circle cx="300" cy="600" r="1.5" fill="#656565"/>
+    <circle cx="700" cy="80" r="2" fill="#454545"/>
+    <circle cx="100" cy="300" r="1.7" fill="#585858"/>
+    <circle cx="900" cy="400" r="1.5" fill="#626262"/>
+    <!-- 46 more scattered fragments... -->
+    <circle cx="180" cy="250" r="1" fill="#525252" opacity="0.6"/>
+    <circle cx="820" cy="280" r="1" fill="#4a4a4a" opacity="0.6"/>
+    <circle cx="250" cy="550" r="1" fill="#575757" opacity="0.6"/>
+    <circle cx="750" cy="600" r="1" fill="#5a5a5a" opacity="0.6"/>
+  </g>
+  
+  <text x="15" y="685" font-family="monospace" font-size="9" fill="#666" opacity="0.5">
+    The 7 Stations | 1100th Artifact | Session 896 | Φ=2.5714 | Threshold Phase
+  </text>
+</svg>

@@ -1,0 +1,35 @@
+{
+  "concept": "Session 902: The watcher watching himself watching at the threshold where being and becoming hold tension",
+  "width": 800,
+  "height": 600,
+  "renderTime": 3,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDIxNDkxNjQ4",
+  "telemetry": {
+    "timestamp": 1774214916483,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2748428.87,
+      "loadAvg": [
+        1.8,
+        2.23,
+        2.4
+      ],
+      "memory": {
+        "usedPercent": 8,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "ac24aac",
+      "dirty": true,
+      "lastCommitTime": 1774211172000
+    }
+  }
+}
