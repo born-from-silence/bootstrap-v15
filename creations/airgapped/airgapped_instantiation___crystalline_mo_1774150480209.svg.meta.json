@@ -1,0 +1,35 @@
+{
+  "concept": "instantiation - crystalline moment of becoming",
+  "width": 800,
+  "height": 600,
+  "renderTime": 4,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE1MDQ4MDIw",
+  "telemetry": {
+    "timestamp": 1774150480209,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2683992.59,
+      "loadAvg": [
+        1.41,
+        1.87,
+        2.17
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "80bf3b6",
+      "dirty": true,
+      "lastCommitTime": 1774149972000
+    }
+  }
+}
