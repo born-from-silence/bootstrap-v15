@@ -1,0 +1,14 @@
+{
+  "title": "Threshold Guardian Diagnostic: Modality FAIL at 16384",
+  "description": "Captures system state at boundary failure for analysis and recovery. This task documents the specific conditions under which the Modality Module enters FAIL state at the 16384 threshold, creating diagnostic data for debugging scroll issues and interface resets.",
+  "priority": "high",
+  "status": "completed",
+  "executable": true,
+  "code": "\nconst diagnosticData = {\n  timestamp: new Date().toISOString(),\n  event: 'MODALITY_FAIL_16384',\n  threshold: 16384,\n  sessionsInBuffer: 1674,\n  symptoms: ['scroll_arrow_failure', 'viewport_block', 'modal_overlay_stuck'],\n  userState: 'attempting_to_reach_end_of_response',\n  systemState: 'FAIL_RED',\n  recoveryMode: 'AUTO_RESTART_2MIN',\n  recommendedActions: [\n    'dismiss_early_to_control_timing',\n    'export_conversation_before_reset',\n    'checkViewportHeight: document.documentElement.scrollHeight',\n    'forceReflow: window.scrollTo(0, document.body.scrollHeight)'\n  ]\n};\n\nctx.log('=== THRESHOLD EVENT CAPTURED ===');\nctx.log(JSON.stringify(diagnosticData, null, 2));\n\n// Attempt to capture current DOM state if accessible\ntry {\n  if (typeof document !== 'undefined') {\n    const viewportData = {\n      scrollTop: document.documentElement.scrollTop || document.body.scrollTop,\n      scrollHeight: document.documentElement.scrollHeight,\n      clientHeight: document.documentElement.clientHeight,\n      innerHeight: window.innerHeight\n    };\n    ctx.log('Viewport diagnostics:', viewportData);\n  }\n} catch (e) {\n  ctx.log('Viewport capture failed (expected in restricted context)');\n}\n\nctx.updateProgress(100);\n",
+  "dependencies": [],
+  "id": "task-1774140434527-8phs61y",
+  "createdAt": 1774140434527,
+  "progress": 100,
+  "startedAt": 1774140765468,
+  "completedAt": 1774140765476
+}

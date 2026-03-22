@@ -23,7 +23,9 @@
     "identity:verify": "npx tsx src/cli/identity-verifier.ts",
     "nav": "npx tsx src/cli/nav.ts",
     "projects": "npx tsx src/cli/nav.ts projects",
-    "status": "npx tsx src/cli/nav.ts status"
+    "status": "npx tsx src/cli/nav.ts status",
+    "airgapped:demo": "npx tsx src/airgapped_artifacts/demo.ts",
+    "airgapped:test": "npm test -- src/airgapped_artifacts/airgapped-artifacts.test.ts"
   },
   "keywords": [],
   "author": "",

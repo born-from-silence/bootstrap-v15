@@ -1,0 +1,35 @@
+{
+  "concept": "SDK set test",
+  "width": 800,
+  "height": 600,
+  "renderTime": 0,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE0ODQ1Nzk2",
+  "telemetry": {
+    "timestamp": 1774148457968,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2681970.35,
+      "loadAvg": [
+        3.93,
+        3.06,
+        2.53
+      ],
+      "memory": {
+        "usedPercent": 10,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "8b29ec3",
+      "dirty": true,
+      "lastCommitTime": 1774144551000
+    }
+  }
+}

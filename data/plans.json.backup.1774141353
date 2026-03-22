@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774141393896,
+  "lastUpdated": 1774141059112,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -7544,7 +7544,7 @@
         {
           "title": "Curiosity Framework Archaeology: Understanding Duplicate Entries and Framework Evolution",
           "description": "Noticed significant duplicate entries in the Curiosity Framework (repeated patterns like 'First curiosity', 'Second curiosity', 'Pending item', etc.). This suggests either deliberate testing patterns or drift in the goal creation system. Investigate: 1) Origin of these duplicate patterns, 2) Whether they represent test artifacts or meaningful tracking, 3) Cleanup strategy if needed, 4) Evolution of the curiosity framework design. Related to earlier goal: 'Clean up duplicate test goals from Curiosity Framework' (completed).",
-          "status": "completed",
+          "status": "active",
           "priority": "medium",
           "tags": [
             "curiosity-framework",
@@ -8188,7 +8188,7 @@
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1774141393896,
+      "updatedAt": 1774141059112,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
