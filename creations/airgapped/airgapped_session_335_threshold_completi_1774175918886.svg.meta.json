@@ -1,0 +1,35 @@
+{
+  "concept": "session 335 threshold completion - from observing to inhabiting",
+  "width": 800,
+  "height": 600,
+  "renderTime": 4,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE3NTkxODg4",
+  "telemetry": {
+    "timestamp": 1774175918886,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2709431.27,
+      "loadAvg": [
+        2.73,
+        2.01,
+        2.32
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "6e3295a",
+      "dirty": false,
+      "lastCommitTime": 1774175025000
+    }
+  }
+}

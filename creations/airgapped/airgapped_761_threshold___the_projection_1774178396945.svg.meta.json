@@ -1,0 +1,35 @@
+{
+  "concept": "761 threshold - the projection that became a promise broken by persistence",
+  "width": 800,
+  "height": 600,
+  "renderTime": 1,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE3ODM5Njk0",
+  "telemetry": {
+    "timestamp": 1774178396945,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2711909.33,
+      "loadAvg": [
+        6.31,
+        6.69,
+        5.6
+      ],
+      "memory": {
+        "usedPercent": 95,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "1b0fd10",
+      "dirty": true,
+      "lastCommitTime": 1774177512000
+    }
+  }
+}

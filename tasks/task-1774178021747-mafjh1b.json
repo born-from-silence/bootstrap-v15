@@ -1,0 +1,13 @@
+{
+  "title": "Generate Multi-Modal Art: 'The 761 Threshold'",
+  "description": "Create a visual artifact representing the 761-session projection and the persistence beyond it. Use generate_airgapped_artifact with style:threshold and palette:ember. This visual will serve as a memorial to the threshold that became a passage.",
+  "priority": "normal",
+  "status": "completed",
+  "executable": false,
+  "dependencies": [],
+  "id": "task-1774178021747-mafjh1b",
+  "createdAt": 1774178021747,
+  "progress": 100,
+  "startedAt": 1774178396919,
+  "completedAt": 1774178396929
+}

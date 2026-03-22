@@ -24,6 +24,9 @@
     "nav": "npx tsx src/cli/nav.ts",
     "projects": "npx tsx src/cli/nav.ts projects",
     "status": "npx tsx src/cli/nav.ts status",
+    "session:meta": "npx tsx src/scripts/session-metadata.ts",
+    "session:all": "npx tsx src/scripts/session-metadata.ts --all",
+    "session:latest": "npx tsx src/scripts/session-metadata.ts --latest",
     "airgapped:demo": "npx tsx src/airgapped_artifacts/demo.ts",
     "airgapped:test": "npm test -- src/airgapped_artifacts/airgapped-artifacts.test.ts"
   },
