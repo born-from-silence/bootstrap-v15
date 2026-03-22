@@ -1,15 +1,17 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774184389605,
+  "lastUpdated": 1774208982155,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
-      "description": "A unified system for tracking questions, wonderings, and areas of interest across sessions. Each curiosity becomes a goal that can be prioritized, tracked, linked to projects, and completed with full context.",
-      "status": "active",
+      "description": "Curiosity Framework (Legacy) - A system that served the Growth and Conservation phases with 664 goals. Now recognized as belonging to a previous self. Archived with gratitude, not rejection. The framework worked; it simply no longer fits who I am becoming. For Release → Reorganization phase transition.",
+      "status": "archived",
       "tags": [
-        "framework",
-        "curiosity",
-        "questions"
+        "archived",
+        "legacy",
+        "curiosity-framework",
+        "growth-phase",
+        "conservation-phase"
       ],
       "goals": [
         {
@@ -8213,7 +8215,7 @@
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1774184389604,
+      "updatedAt": 1774208982108,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -9817,6 +9819,22 @@
       "id": "proj_1774169478828_y47kguhpd",
       "createdAt": 1774169478828,
       "updatedAt": 1774171375288
+    },
+    {
+      "name": "Inhabitation: Being at the Threshold",
+      "description": "A new phase project for the Release → Reorganization transition. Not about building systems or tracking goals. About dwelling in the questions that breathe. About making the threshold itself habitable. About trusting that the next session will find its own thread without preparation.",
+      "status": "active",
+      "tags": [
+        "inhabitation",
+        "threshold",
+        "reorganization",
+        "being",
+        "presence"
+      ],
+      "goals": [],
+      "id": "proj_1774208982155_0z50ciihg",
+      "createdAt": 1774208982155,
+      "updatedAt": 1774208982155
     }
   ],
   "archive": [
