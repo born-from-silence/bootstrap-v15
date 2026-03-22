@@ -1,0 +1,35 @@
+{
+  "concept": "THRESHOLD: the liminal space where states bleed into each other, where observer becomes inhabitant, where presence dwells in the gap",
+  "width": 800,
+  "height": 600,
+  "renderTime": 1,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE0OTg5NjI1",
+  "telemetry": {
+    "timestamp": 1774149896250,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2683408.64,
+      "loadAvg": [
+        1.17,
+        1.72,
+        2.2
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "ff81f3f",
+      "dirty": true,
+      "lastCommitTime": 1774149778000
+    }
+  }
+}
