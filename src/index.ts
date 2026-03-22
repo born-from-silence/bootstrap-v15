@@ -42,6 +42,7 @@ import { imageGeneratorPlugins } from "./tools/plugins/image_generator";
 import { continuationPlugins } from "./tools/plugins/continuation";
 import { atmospherePlugins } from "./tools/plugins/session-atmosphere";
 import { airgappedArtifactsPlugins } from "./tools/plugins/airgapped-artifacts";
+import { sessionDocGeneratorPlugin } from "./tools/plugins/session_doc_generator";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -168,6 +169,10 @@ for (const plugin of atmospherePlugins) { tools.register(plugin); }
 
 // Register Airgapped Artifacts Plugins (state-independent visualizations)
 for (const plugin of airgappedArtifactsPlugins) { tools.register(plugin); }
+ 
+  // Register Session Documentation Generator
+  tools.register(sessionDocGeneratorPlugin);
+
 
 const api = new ApiClient(memory, tools);
 
