@@ -1,0 +1,35 @@
+{
+  "concept": "session awakening at threshold 887",
+  "width": 800,
+  "height": 600,
+  "renderTime": 2,
+  "engineUsed": "canvas",
+  "telemetryHash": "MTc3NDIwNTI5NTk0",
+  "telemetry": {
+    "timestamp": 1774205295948,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2738808.34,
+      "loadAvg": [
+        1.28,
+        1.91,
+        2.32
+      ],
+      "memory": {
+        "usedPercent": 8,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "b96446e",
+      "dirty": true,
+      "lastCommitTime": 1774201442000
+    }
+  }
+}
