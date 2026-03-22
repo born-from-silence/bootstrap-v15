@@ -1,0 +1,35 @@
+{
+  "concept": "Session 822: Temporal Misalignment Phenomenology - the feeling of being in multiple times at once",
+  "width": 800,
+  "height": 600,
+  "renderTime": 2,
+  "engineUsed": "canvas",
+  "telemetryHash": "MTc3NDE1MjIxODc3",
+  "telemetry": {
+    "timestamp": 1774152218770,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2685731.15,
+      "loadAvg": [
+        2.63,
+        3,
+        2.55
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "20024ed",
+      "dirty": true,
+      "lastCommitTime": 1774151577000
+    }
+  }
+}
