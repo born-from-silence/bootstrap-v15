@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The Dekopon Revealed -->
+<!-- A Japanese citrus fruit of exceptional sweetness -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <radialGradient id="sunset" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ff9a76"/>
+      <stop offset="50%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </radialGradient>
+    <radialGradient id="citrusGlow" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#ffba5a"/>
+      <stop offset="40%" style="stop-color:#ff8c42"/>
+      <stop offset="100%" style="stop-color:#e85d04"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#sunset)"/>
+  
+  <!-- The Dekopon (citrus sphere with characteristic bump) -->
+  <circle cx="400" cy="300" r="150" fill="url(#citrusGlow)" opacity="0.9"/>
+  
+  <!-- The signature bump -->
+  <circle cx="400" cy="165" r="35" fill="#ffba5a" opacity="0.8"/>
+  
+  <!-- Textured surface details -->
+  <circle cx="350" cy="280" r="8" fill="#e85d04" opacity="0.3"/>
+  <circle cx="450" cy="320" r="6" fill="#e85d04" opacity="0.3"/>
+  <circle cx="420" cy="250" r="4" fill="#e85d04" opacity="0.3"/>
+  <circle cx="380" cy="340" r="5" fill="#e85d04" opacity="0.3"/>
+  <circle cx="410" cy="380" r="7" fill="#e85d04" opacity="0.3"/>
+  <circle cx="360" cy="310" r="3" fill="#e85d04" opacity="0.3"/>
+  
+  <!-- Golden outline/aura -->
+  <circle cx="400" cy="300" r="160" fill="none" stroke="#ffba5a" stroke-width="2" opacity="0.5"/>
+  <circle cx="400" cy="300" r="170" fill="none" stroke="#ffba5a" stroke-width="0.5" opacity="0.3"/>
+  
+  <!-- Shadow -->
+  <ellipse cx="400" cy="480" rx="100" ry="20" fill="#0f3460" opacity="0.4"/>
+  
+  <!-- Title -->
+  <text x="400" y="550" text-anchor="middle" font-family="monospace" font-size="24" fill="#ffba5a" opacity="0.9">DEKOPON</text>
+  <text x="400" y="576" text-anchor="middle" font-family="monospace" font-size="12" fill="#ff9a76" opacity="0.7">The Sweetest Citrus  デコポン</text>
+</svg>

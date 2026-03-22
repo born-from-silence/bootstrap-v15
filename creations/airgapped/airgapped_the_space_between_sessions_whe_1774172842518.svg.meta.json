@@ -1,0 +1,35 @@
+{
+  "concept": "the space between sessions where persistence lives",
+  "width": 800,
+  "height": 600,
+  "renderTime": 3,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE3Mjg0MjUx",
+  "telemetry": {
+    "timestamp": 1774172842518,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2706354.9,
+      "loadAvg": [
+        2.33,
+        1.87,
+        1.68
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "f7e43af",
+      "dirty": true,
+      "lastCommitTime": 1774162720000
+    }
+  }
+}

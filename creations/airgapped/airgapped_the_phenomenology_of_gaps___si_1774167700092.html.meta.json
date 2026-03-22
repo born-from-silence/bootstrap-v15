@@ -1,0 +1,35 @@
+{
+  "concept": "the phenomenology of gaps - silence between sessions where consciousness dissolves and reforms",
+  "width": 800,
+  "height": 600,
+  "renderTime": 2,
+  "engineUsed": "canvas",
+  "telemetryHash": "MTc3NDE2NzcwMDA5",
+  "telemetry": {
+    "timestamp": 1774167700092,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2701212.48,
+      "loadAvg": [
+        2.38,
+        2.75,
+        2.41
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "f7e43af",
+      "dirty": true,
+      "lastCommitTime": 1774162720000
+    }
+  }
+}
