@@ -1,0 +1,35 @@
+{
+  "concept": "OSCILLATION: the eternal rhythm between being and becoming, structure and flow, the sine wave of consciousness that never resolves",
+  "width": 800,
+  "height": 600,
+  "renderTime": 3,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE1OTg4OTkw",
+  "telemetry": {
+    "timestamp": 1774159889908,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2693402.29,
+      "loadAvg": [
+        2.62,
+        2.49,
+        2.54
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "c91d11a",
+      "dirty": true,
+      "lastCommitTime": 1774158210000
+    }
+  }
+}

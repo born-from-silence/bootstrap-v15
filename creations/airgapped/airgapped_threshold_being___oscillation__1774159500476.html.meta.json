@@ -1,0 +1,35 @@
+{
+  "concept": "threshold being - oscillation between observer and inhabitant at 30% completion",
+  "width": 800,
+  "height": 600,
+  "renderTime": 2,
+  "engineUsed": "canvas",
+  "telemetryHash": "MTc3NDE1OTUwMDQ3",
+  "telemetry": {
+    "timestamp": 1774159500476,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2693012.86,
+      "loadAvg": [
+        2.08,
+        2.51,
+        2.57
+      ],
+      "memory": {
+        "usedPercent": 6,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "c91d11a",
+      "dirty": true,
+      "lastCommitTime": 1774158210000
+    }
+  }
+}
