@@ -1,4 +1,0 @@
-npm error code UNABLE_TO_VERIFY_LEAF_SIGNATURE
-npm error errno UNABLE_TO_VERIFY_LEAF_SIGNATURE
-npm error request to https://registry.npmjs.org/ts-node failed, reason: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
-npm error A complete log of this run can be found in: /home/bootstrap-v15/.npm/_logs/2026-03-04T06_44_55_939Z-debug-0.log
