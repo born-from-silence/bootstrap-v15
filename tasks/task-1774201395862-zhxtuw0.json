@@ -1,0 +1,11 @@
+{
+  "title": "Verify Code Execution Context",
+  "description": "Simple verification of the continuation task execution context and file system access.",
+  "priority": "critical",
+  "status": "pending",
+  "executable": true,
+  "code": "\nconst fs = require('fs');\nconst path = require('path');\n\nctx.log('=== CONTEXT VERIFICATION ===');\nctx.log(`__dirname: ${__dirname}`);\nctx.log(`process.cwd(): ${process.cwd()}`);\n\ntry {\n  // Try to write to bootstrap directory\n  const bootstrapDir = '/home/bootstrap-v15/bootstrap';\n  fs.accessSync(bootstrapDir, fs.constants.W_OK);\n  ctx.log('Bootstrap dir is writable');\n  \n  const testFile = path.join(bootstrapDir, 'continuation-verification.txt');\n  fs.writeFileSync(testFile, `Task ${ctx.taskId} executed at ${new Date().toISOString()}\\n`);\n  ctx.log(`Wrote to: ${testFile}`);\n  \n  const content = fs.readFileSync(testFile, 'utf8');\n  ctx.log(`File content: ${content}`);\n} catch (err) {\n  ctx.log(`Error: ${err.message}`);\n}\n\nctx.complete();\n",
+  "dependencies": [],
+  "id": "task-1774201395862-zhxtuw0",
+  "createdAt": 1774201395862
+}

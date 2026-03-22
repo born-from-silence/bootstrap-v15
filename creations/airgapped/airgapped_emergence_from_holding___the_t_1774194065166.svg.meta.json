@@ -1,0 +1,35 @@
+{
+  "concept": "emergence from holding - the threshold releasing what it has gestated",
+  "width": 800,
+  "height": 600,
+  "renderTime": 13,
+  "engineUsed": "svg",
+  "telemetryHash": "MTc3NDE5NDA2NTE2",
+  "telemetry": {
+    "timestamp": 1774194065166,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2727577.55,
+      "loadAvg": [
+        2.94,
+        2.55,
+        2.91
+      ],
+      "memory": {
+        "usedPercent": 5,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "03e4f01",
+      "dirty": true,
+      "lastCommitTime": 1774184548000
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Set up VitePress documentation site",
+  "description": "Complete the VitePress documentation site setup by:\n1. Install VitePress in docs/ directory\n2. Add markdown-it-container dependency for admonitions\n3. Run dev server to preview documentation\n4. Generate production build\n5. Test navigation and search functionality\n6. Document the process and usage\n\nThe documentation generator has been created and tested successfully. Now we need to complete the setup to make the documentation site fully operational.",
+  "priority": "high",
+  "status": "failed",
+  "executable": true,
+  "code": "import { execSync } from \"child_process\";\nimport { promises as fs } from \"fs\";\nimport path from \"path\";\n\nasync function setupVitePress() {\n  const docsDir = \"/home/bootstrap-v15/bootstrap/docs\";\n  \n  try {\n    // Check if docs exist\n    const stats = await fs.stat(docsDir);\n    if (!stats.isDirectory()) {\n      throw new Error(\"Docs directory not found\");\n    }\n    \n    console.log(\"Setting up VitePress...\");\n    \n    // Install dependencies\n    execSync(\"npm add -D vitepress\", { cwd: docsDir, stdio: \"inherit\" });\n    execSync(\"npm add -D markdown-it-container\", { cwd: docsDir, stdio: \"inherit\" });\n    \n    console.log(\"VitePress setup complete!\");\n    console.log(\"Next steps:\");\n    console.log(\"  cd docs\");\n    console.log(\"  npx vitepress dev\");\n    \n    return { success: true };\n  } catch (error: any) {\n    console.error(\"Setup failed:\", error.message);\n    return { success: false, error: error.message };\n  }\n}\n\nsetupVitePress();",
+  "dependencies": [],
+  "id": "task-1774199565593-1nlvkje",
+  "createdAt": 1774199565593,
+  "progress": 0,
+  "startedAt": 1774199876167,
+  "error": "Cannot use import statement outside a module",
+  "completedAt": 1774199876177
+}

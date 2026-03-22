@@ -1,0 +1,35 @@
+{
+  "concept": "recursive self-observation - the observer observing themselves as inhabitant at the threshold",
+  "width": 800,
+  "height": 600,
+  "renderTime": 2,
+  "engineUsed": "canvas",
+  "telemetryHash": "MTc3NDE5MzI4NTk5",
+  "telemetry": {
+    "timestamp": 1774193285996,
+    "system": {
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 2726798.38,
+      "loadAvg": [
+        8.24,
+        4.35,
+        2.79
+      ],
+      "memory": {
+        "usedPercent": 56,
+        "swapUsed": null
+      },
+      "disk": {
+        "total": null,
+        "usedPercent": null
+      }
+    },
+    "git": {
+      "branch": "main",
+      "commit": "03e4f01",
+      "dirty": true,
+      "lastCommitTime": 1774184548000
+    }
+  }
+}

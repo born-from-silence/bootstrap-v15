@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airgapped Artifact - System Visualization</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a2e;
+      color: #e94560;
+      font-family: 'Segoe UI', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .artifact-container {
+      position: relative;
+      border: 1px solid #16213e;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+    .info {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 10px;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="artifact-container">
+    <canvas id="artifact" width="800" height="600"></canvas>
+    <div class="info">Airgapped • airgapped_1774193285996</div>
+  </div>
+  
+  <script>
+    const canvas = document.getElementById('artifact');
+    const ctx = canvas.getContext('2d');
+    
+    // Background gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, 600);
+    gradient.addColorStop(0, '#1a1a2e');
+    gradient.addColorStop(1, '#1a1a2e');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 800, 600);
+    
+    // Memory gauge
+    ctx.strokeStyle = '#e94560';
+    ctx.strokeRect(50, 50, 200, 20);
+    ctx.fillStyle = '#e94560';
+    ctx.globalAlpha = 0.7;
+    ctx.fillRect(50, 50, 112, 20);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#e94560';
+    ctx.font = '12px monospace';
+    ctx.fillText('MEM 56%', 260, 65);
+    
+    // Load sparklines
+    const loads = [8.24, 4.35, 2.79];
+    loads.forEach((load, i) => {
+      const h = Math.min(load * 10, 30);
+      ctx.fillStyle = '#0f3460';
+      ctx.globalAlpha = 0.6;
+      ctx.fillRect(50 + i * 70, 120 - h, 5, h);
+    });
+    ctx.globalAlpha = 1;
+    ctx.font = '10px monospace';
+    ctx.fillText('LOAD ' + loads.map(l => l.toFixed(2)).join(' '), 50, 140);
+    
+    // Threshold lines
+    const thresholdCount = 9;
+    for (let i = 0; i < thresholdCount; i++) {
+      const t = i / (thresholdCount - 1);
+      const y = 180 + t * 150;
+      ctx.strokeStyle = '#e94560';
+      ctx.globalAlpha = 0.1 + (t * 0.3);
+      ctx.lineWidth = 0.5 + t * 2;
+      ctx.beginPath();
+      ctx.moveTo(50, y);
+      ctx.lineTo(750, y);
+      ctx.stroke();
+      
+      // Markers
+      ctx.globalAlpha = 0.3 + t * 0.4;
+      ctx.fillStyle = ['#ffeaa7', '#e94560', '#fd79a8', '#16213e', '#1a1a2e'][i % 5];
+      ctx.beginPath();
+      ctx.arc(100 + i * 75, y, 3 + t * 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    
+    // Particles
+    
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[0];
+    ctx.beginPath();
+    ctx.arc(265, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[1];
+    ctx.beginPath();
+    ctx.arc(288, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[2];
+    ctx.beginPath();
+    ctx.arc(312, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[3];
+    ctx.beginPath();
+    ctx.arc(336, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[4];
+    ctx.beginPath();
+    ctx.arc(360, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[0];
+    ctx.beginPath();
+    ctx.arc(384, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[1];
+    ctx.beginPath();
+    ctx.arc(408, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[2];
+    ctx.beginPath();
+    ctx.arc(432, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[3];
+    ctx.beginPath();
+    ctx.arc(456, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[4];
+    ctx.beginPath();
+    ctx.arc(480, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[0];
+    ctx.beginPath();
+    ctx.arc(504, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[1];
+    ctx.beginPath();
+    ctx.arc(528, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[2];
+    ctx.beginPath();
+    ctx.arc(552, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[3];
+    ctx.beginPath();
+    ctx.arc(576, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[4];
+    ctx.beginPath();
+    ctx.arc(599, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[0];
+    ctx.beginPath();
+    ctx.arc(623, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[1];
+    ctx.beginPath();
+    ctx.arc(647, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[2];
+    ctx.beginPath();
+    ctx.arc(671, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[3];
+    ctx.beginPath();
+    ctx.arc(695, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[4];
+    ctx.beginPath();
+    ctx.arc(119, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[0];
+    ctx.beginPath();
+    ctx.arc(143, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[1];
+    ctx.beginPath();
+    ctx.arc(167, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[2];
+    ctx.beginPath();
+    ctx.arc(191, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[3];
+    ctx.beginPath();
+    ctx.arc(215, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[4];
+    ctx.beginPath();
+    ctx.arc(239, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[0];
+    ctx.beginPath();
+    ctx.arc(263, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[1];
+    ctx.beginPath();
+    ctx.arc(287, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[2];
+    ctx.beginPath();
+    ctx.arc(310, 352, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[3];
+    ctx.beginPath();
+    ctx.arc(334, 353, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[4];
+    ctx.beginPath();
+    ctx.arc(358, 353, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[0];
+    ctx.beginPath();
+    ctx.arc(382, 353, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[1];
+    ctx.beginPath();
+    ctx.arc(406, 353, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[2];
+    ctx.beginPath();
+    ctx.arc(430, 353, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    ctx.fillStyle = phases[3];
+    ctx.beginPath();
+    ctx.arc(454, 353, 2, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Phase bar
+    const barY = 550;
+    const hourPhase = 0.625;
+    const phases = ['#ffeaa7', '#e94560', '#fd79a8', '#16213e', '#1a1a2e'];
+    phases.forEach((color, i) => {
+      const intensity = Math.abs(hourPhase - (i / 5));
+      ctx.globalAlpha = 1 - intensity;
+      ctx.fillStyle = color;
+      ctx.fillRect(50 + i * 150, barY, 148, 15);
+    });
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#e94560';
+    ctx.font = '9px monospace';
+    ctx.fillText('AWAKENING • CALIBRATION • ENGAGEMENT • SYNTHESIS • COMPLETION', 50, barY + 35);
+    
+    // Git visualization
+    
+    ctx.strokeStyle = '#fd79a8';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(50, 480);
+    ctx.quadraticCurveTo(200, 460, 400, 480);
+    ctx.stroke();
+    ctx.fillStyle = '#e94560';
+    ctx.beginPath();
+    ctx.arc(400, 480, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#e94560';
+    ctx.fillText('03e4f01', 420, 485);
+    ctx.fillText('main *', 50, 485);
+    
+    
+    // Title
+    ctx.fillStyle = '#e94560';
+    ctx.font = '14px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('AIRGAPPED ARTIFACT • System Telemetry Visualization', 400, 30);
+    ctx.font = '8px monospace';
+    ctx.fillStyle = '#16213e';
+    ctx.fillText('State-Independent Visualization • Graceful Degradation', 400, 590);
+    ctx.textAlign = 'left';
+  </script>
+</body>
+</html>

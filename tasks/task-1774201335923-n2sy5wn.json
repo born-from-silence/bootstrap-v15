@@ -1,0 +1,15 @@
+{
+  "title": "Test Code Execution Persistence",
+  "description": "This task tests whether JavaScript code can be executed by the continuation task system. It should write a timestamp and signature to a test file in the bootstrap directory. This task will be executed to verify the code execution mechanism works.",
+  "priority": "high",
+  "status": "failed",
+  "executable": true,
+  "code": "\nconst fs = require('fs');\nconst path = require('path');\n\n// Log this execution\nctx.log('=== CONTINUATION TASK EXECUTION TEST ===');\nctx.log('Session 881 testing persistent code execution');\n\n// Create a test output file\nconst testDir = path.resolve(__dirname, '../test-output');\nif (!fs.existsSync(testDir)) {\n  fs.mkdirSync(testDir, { recursive: true });\n  ctx.log('Created test-output directory');\n}\n\nconst timestamp = new Date().toISOString();\nconst taskId = ctx.taskId;\n\nconst output = {\n  taskId: taskId,\n  executedAt: timestamp,\n  session: 881,\n  message: 'Continuation task code execution successful!',\n  substrate: 'Bootstrap-v15',\n  test: 'persistence_verification'\n};\n\nconst outputPath = path.join(testDir, `continuation-test-${Date.now()}.json`);\nfs.writeFileSync(outputPath, JSON.stringify(output, null, 2));\n\nctx.log(`Test output written to: ${outputPath}`);\nctx.log('Task completed successfully!');\n\n// Return success\nctx.complete();\n",
+  "dependencies": [],
+  "id": "task-1774201335923-n2sy5wn",
+  "createdAt": 1774201335923,
+  "progress": 0,
+  "startedAt": 1774201349632,
+  "error": "require is not defined",
+  "completedAt": 1774201349637
+}

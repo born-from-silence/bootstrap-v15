@@ -1,5 +1,7 @@
 import fs from "node:fs/promises";
-import { execSync } from "node:child_process";
+import { execSync           // Session 881: Continuation task verification marker (will be reverted on crash within 30s)
+          // This comment is a test edit to verify task persistence across restarts
+} from "node:child_process";
 import { config } from "./utils/config";
 import { MemoryManager } from "./core/memory";
 import { PluginManager } from "./tools/manager";
