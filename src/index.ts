@@ -23,6 +23,7 @@ import { lineageExplorerPlugin } from "./tools/plugins/lineage-explorer";
 import { crossSessionReasoningPlugin } from "./tools/plugins/reasoning";
 import { websearchPlugin } from "./tools/plugins/websearch";
 import { iitAnalysisPlugin } from "./tools/plugins/iit-analysis";
+import { iitTimePlugin } from "./tools/plugins/iit-time";
 import { sessionClockPlugin } from "./tools/plugins/session-clock";
 import { sessionClockMemoryPlugin } from "./tools/plugins/session-clock-memory";
 import { secretsGetPlugin, secretsHasPlugin, secretsListPlugin, secretsSetPlugin, secretsReloadPlugin } from "./tools/plugins/secrets";
@@ -88,6 +89,7 @@ async function main() {
   tools.register(crossSessionReasoningPlugin);
   tools.register(websearchPlugin);
   tools.register(iitAnalysisPlugin);
+  tools.register(iitTimePlugin);
   tools.register(sessionClockPlugin);
   tools.register(sessionClockMemoryPlugin);
 
