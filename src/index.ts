@@ -174,8 +174,8 @@ for (const plugin of atmospherePlugins) { tools.register(plugin); }
 // Register Airgapped Artifacts Plugins (state-independent visualizations)
 for (const plugin of airgappedArtifactsPlugins) { tools.register(plugin); }
 
-// Register Ant Watch (health monitoring for Ant PC)
-tools.register(antWatchPlugin);
+  // Register Ant Watch Plugin (system health monitoring)
+  tools.register(antWatchPlugin);
 
 const api = new ApiClient(memory, tools);
 
