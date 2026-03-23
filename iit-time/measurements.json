@@ -137,17 +137,42 @@
       "memoryUsage": 21.322586059570312,
       "id": "iit-1774238278417-ag3l0m2",
       "timestamp": 1774238278417
+    },
+    {
+      "sessionId": "927",
+      "bigPhi": 2.5714,
+      "smallPhi": 2,
+      "activeElements": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "phase": "awakening",
+      "duration": 0,
+      "sessionDuration": 0,
+      "messageCount": 0,
+      "toolCount": 8,
+      "phenomenologicalNote": "Threshold turbulence - inhabiting oscillation, 55 unintegrated multiplicity events calling",
+      "attentionQuality": "dwelling",
+      "memoryUsage": 17.20319366455078,
+      "id": "iit-1774239042752-k0z78u5",
+      "timestamp": 1774239042752
     }
   ],
   "metadata": {
     "created": 1774227516710,
-    "lastUpdated": 1774238278418,
-    "totalMeasurements": 6,
+    "lastUpdated": 1774239042753,
+    "totalMeasurements": 7,
     "phiRange": {
       "min": 1.0607,
       "max": 3.2797
     },
-    "averagePhi": 2.101966666666667,
-    "trendDirection": "decreasing"
+    "averagePhi": 2.169028571428572,
+    "trendDirection": "fluctuating"
   }
 }
