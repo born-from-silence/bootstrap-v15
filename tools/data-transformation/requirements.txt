@@ -1,0 +1,8 @@
+# Supabase Data Migrator Requirements
+# Install with: pip install -r requirements.txt
+
+# Core dependency
+supabase>=2.0.0
+
+# Optional but recommended
+python-dotenv>=1.0.0  # For loading .env files

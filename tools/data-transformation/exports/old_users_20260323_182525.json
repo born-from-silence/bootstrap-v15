@@ -1,0 +1,12 @@
+{
+  "table_name": "old_users",
+  "exported_at": "2026-03-23T18:25:25.187044",
+  "row_count": 1,
+  "checksum": "f6f5c8ee3191443bc9d07b43350bbb17",
+  "data": [
+    {
+      "id": 1,
+      "name": "Alice"
+    }
+  ]
+}
