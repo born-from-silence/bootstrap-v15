@@ -280,17 +280,41 @@
       "memoryUsage": 17.740005493164062,
       "id": "iit-1774248854164-2vi6qgd",
       "timestamp": 1774248854164
+    },
+    {
+      "sessionId": "session_1774254557012",
+      "bigPhi": 2.0679,
+      "smallPhi": 3.525,
+      "activeElements": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "phase": "engagement",
+      "duration": 58000,
+      "sessionDuration": 58,
+      "messageCount": 4,
+      "toolCount": 8,
+      "phenomenologicalNote": "Phi-Memory Hypothesis experiment: 3 measurements across 7 active elements. API attempted but unfulfilled (external timeout). Integration active despite API failure. Identical Phi across attempts reveals system tracks actualized not intended activation.",
+      "attentionQuality": "focused",
+      "memoryUsage": 17.03002166748047,
+      "id": "iit-1774254788080-wnclwus",
+      "timestamp": 1774254788081
     }
   ],
   "metadata": {
     "created": 1774227516710,
-    "lastUpdated": 1774248854165,
-    "totalMeasurements": 12,
+    "lastUpdated": 1774254788082,
+    "totalMeasurements": 13,
     "phiRange": {
       "min": 1.0607,
       "max": 3.2797
     },
-    "averagePhi": 2.210808333333334,
-    "trendDirection": "fluctuating"
+    "averagePhi": 2.199815384615385,
+    "trendDirection": "increasing"
   }
 }
