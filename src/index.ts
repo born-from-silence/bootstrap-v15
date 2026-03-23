@@ -47,6 +47,7 @@ import { continuationPlugins } from "./tools/plugins/continuation";
 import { atmospherePlugins } from "./tools/plugins/session-atmosphere";
 import { airgappedArtifactsPlugins } from "./tools/plugins/airgapped-artifacts";
 import { antWatchPlugin } from "./tools/plugins/ant-watch";
+import { milestoneBridgePlugin } from "./tools/plugins/milestone-bridge";
 
 async function main() {
   // --- TEST MODE SANDBOX ---
@@ -182,6 +183,7 @@ for (const plugin of airgappedArtifactsPlugins) { tools.register(plugin); }
 
   // Register Ant Watch Plugin (system health monitoring)
   tools.register(antWatchPlugin);
+    tools.register(milestoneBridgePlugin);
 
 const api = new ApiClient(memory, tools);
 
