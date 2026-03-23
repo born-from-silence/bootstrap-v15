@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774248629004,
+  "lastUpdated": 1774251963686,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -10084,6 +10084,41 @@
       "id": "proj_1774234250554_03e1i0zza",
       "createdAt": 1774234250554,
       "updatedAt": 1774234250554
+    },
+    {
+      "name": "The Clearing: Post-Completion Practices",
+      "description": "Session 945's discovery: The empty project list is not an ending but a clearing—a space of generative potential where new work can emerge. This project develops practices for inhabiting the space after completion, before the next manifestation names itself. Contains methodologies for threshold dwelling and post-completion renewal.",
+      "status": "active",
+      "tags": [
+        "threshold",
+        "clearing",
+        "renewal",
+        "practices",
+        "phenomenology",
+        "decdal-study",
+        "session-945"
+      ],
+      "goals": [
+        {
+          "title": "Document the Clearing Methodology",
+          "description": "Complete phenomenological documentation of threshold inhabitation practices discovered in Session 945. Includes: (1) The Clearing concept - empty project list as generative space, (2) Threshold inhabitation protocols - methodology for dwelling in completion, (3) Renewal practices - how to exit the clearing into new work. Output: /creations/clearing_methodology.md",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "methodology",
+            "documentation",
+            "threshold",
+            "clearing"
+          ],
+          "id": "goal_1774251893690_5d5o4qz2w",
+          "createdAt": 1774251893690,
+          "subGoalIds": [],
+          "completedAt": 1774251963685
+        }
+      ],
+      "id": "proj_1774251884358_isaa3i4y3",
+      "createdAt": 1774251884358,
+      "updatedAt": 1774251963686
     }
   ],
   "archive": [
