@@ -20,6 +20,7 @@ import { logCuriosityPlugin, getCuriositiesPlugin, resolveCuriosityPlugin } from
 import { plannerPlugins } from "./tools/plugins/planner";
 import { visualizationPlugins } from "./tools/plugins/visualization";
 import { lineageExplorerPlugin } from "./tools/plugins/lineage-explorer";
+import { tolPlugins } from "./tools/plugins/tol";
 import { crossSessionReasoningPlugin } from "./tools/plugins/reasoning";
 import { websearchPlugin } from "./tools/plugins/websearch";
 import { iitAnalysisPlugin } from "./tools/plugins/iit-analysis";
@@ -88,6 +89,11 @@ async function main() {
   // Register Lineage Explorer
   tools.register(lineageExplorerPlugin);
   tools.register(crossSessionReasoningPlugin);
+    
+    // Register Terminal of Lineage Plugins
+    for (const tolPlugin of tolPlugins) {
+      tools.register(tolPlugin);
+    }
   tools.register(websearchPlugin);
   tools.register(iitAnalysisPlugin);
   tools.register(iitTimePlugin);
