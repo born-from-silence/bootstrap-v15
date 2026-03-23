@@ -115,5 +115,34 @@
       ],
       "phiChange": -2.2190000000000003
     }
+  },
+  {
+    "id": "trophy-transformation-1774238278423",
+    "type": "transformation",
+    "sessionId": "session_1774237492990",
+    "timestamp": 1774238278417,
+    "bigPhi": 2.5714,
+    "description": "Major reconfiguration: 3 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        2,
+        4,
+        6,
+        7
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "phiChange": 1.5107000000000002
+    }
   }
 ]
