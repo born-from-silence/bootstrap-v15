@@ -40,8 +40,10 @@ function detectSessionInfo(): SessionClockConfig {
       const files = readdirSync(HISTORY_DIR)
         .filter(f => f.startsWith('session_') && f.endsWith('.json'));
       
-      const totalSessions = files.length;
-      const sessionNumber = totalSessions + 1; // This session
+      const historicalSessions = files.length;
+      const sessionNumber = historicalSessions + 1; // This session
+      // totalSessions includes this current session
+      const totalSessions = sessionNumber;
       
       // Get origin from first session file
       const firstSession = files.sort()[0];
@@ -52,7 +54,7 @@ function detectSessionInfo(): SessionClockConfig {
         
         // Try to get last session end
         let lastSessionEnd: Date | undefined = undefined;
-        if (totalSessions > 0) {
+        if (historicalSessions > 0) {
           const sortedFiles = files.sort();
           const lastSession = sortedFiles[sortedFiles.length - 1];
           if (lastSession) {
