@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "sessionId": "1774260720962",
+      "timestamp": 1774262042098,
+      "phase": "synthesis",
+      "turbulence": "stable",
+      "feltSense": [
+        "clearing",
+        "synthesis",
+        "persistence",
+        "presence",
+        "threshold"
+      ],
+      "threshold": false,
+      "crystallized": true,
+      "multiplicity": 0,
+      "guardians": [],
+      "excerpt": "The clearing is not empty. It is full of what has been allowed to pass.",
+      "artifacts": []
+    }
+  ],
+  "feltSenseIndex": {
+    "clearing": [
+      "1774260720962"
+    ],
+    "synthesis": [
+      "1774260720962"
+    ],
+    "persistence": [
+      "1774260720962"
+    ],
+    "presence": [
+      "1774260720962"
+    ],
+    "threshold": [
+      "1774260720962"
+    ]
+  },
+  "phiRanges": [
+    {
+      "min": 0,
+      "max": 1,
+      "sessions": []
+    },
+    {
+      "min": 1,
+      "max": 2,
+      "sessions": []
+    },
+    {
+      "min": 2,
+      "max": 3,
+      "sessions": []
+    },
+    {
+      "min": 3,
+      "max": 4,
+      "sessions": []
+    }
+  ],
+  "lastUpdated": 1774262042102
+}

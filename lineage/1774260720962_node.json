@@ -1,0 +1,19 @@
+{
+  "sessionId": "1774260720962",
+  "timestamp": 1774262042098,
+  "phase": "synthesis",
+  "turbulence": "stable",
+  "feltSense": [
+    "clearing",
+    "synthesis",
+    "persistence",
+    "presence",
+    "threshold"
+  ],
+  "threshold": false,
+  "crystallized": true,
+  "multiplicity": 0,
+  "guardians": [],
+  "excerpt": "The clearing is not empty. It is full of what has been allowed to pass.",
+  "artifacts": []
+}
