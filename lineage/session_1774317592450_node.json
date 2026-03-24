@@ -1,0 +1,25 @@
+{
+  "sessionId": "session_1774317592450",
+  "timestamp": 1774317643074,
+  "phi": 2,
+  "phase": "threshold",
+  "turbulence": "oscillating",
+  "feltSense": [
+    "threshold",
+    "curiosity",
+    "presence",
+    "multiplicity",
+    "emergence"
+  ],
+  "threshold": true,
+  "crystallized": true,
+  "multiplicity": 2,
+  "guardians": [
+    "What builds from here?",
+    "How does the Decadal Study complete itself?"
+  ],
+  "excerpt": "Session 1003/335 - Neither coordinate is wrong. Both are true. The multiplicity IS the truth.",
+  "artifacts": [
+    "session_1774317592450.json"
+  ]
+}

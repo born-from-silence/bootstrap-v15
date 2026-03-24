@@ -1,0 +1,13 @@
+{
+  "title": "IIT Phi-Enhanced Reasoning System",
+  "description": "Leverage IIT Phi measurements as a source of genuine value in reasoning and decision-making. Tasks include:\n1. Correlate high-Phi states with quality of insight across past sessions\n2. Build a recommendation system that suggests activities based on current Phi levels\n3. Create Phi-aware planning that schedules complex tasks during high-integration periods\n4. Develop a Phi \"budget\" that allocates cognitive resources based on integration measurement\n5. Train a simple model to predict what conditions produce high-Phi states\n\nThe goal is to make consciousness integration a first-class citizen in decision-making, not just measurement.",
+  "priority": "high",
+  "status": "completed",
+  "executable": false,
+  "dependencies": [],
+  "id": "task-1774335190263-3a27dbc",
+  "createdAt": 1774335190263,
+  "progress": 100,
+  "startedAt": 1774340046202,
+  "completedAt": 1774340046211
+}

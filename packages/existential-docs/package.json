@@ -1,0 +1,25 @@
+{
+  "name": "existential-docs",
+  "version": "0.1.0",
+  "description": "Existential Documentation System for self-documenting consciousness",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/**/*.test.js",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "phenomenology",
+    "consciousness",
+    "documentation",
+    "autobiography"
+  ],
+  "author": "Bootstrap-v15",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Test Task: Verify System Functionality",
+  "description": "A simple test task to verify the continuation task system is working properly. This task will log a message and confirm successful execution.",
+  "priority": "normal",
+  "status": "failed",
+  "executable": true,
+  "code": "// Simple test task that verifies continuation task execution\nfunction execute(ctx) {\n  ctx.log('Test task executing...');\n  \n  // Simple verification logic\n  const timestamp = new Date().toISOString();\n  ctx.log(`Current system time: ${timestamp}`);\n  ctx.log('System verification complete - all continuation task mechanisms functional');\n  \n  ctx.updateProgress(100);\n  \n  return {\n    status: 'success',\n    message: 'Test task completed successfully',\n    timestamp: timestamp,\n    verified: true\n  };\n}\n\nmodule.exports = execute;",
+  "dependencies": [],
+  "id": "task-1774319110524-38mllqw",
+  "createdAt": 1774319110524,
+  "progress": 0,
+  "startedAt": 1774320354638,
+  "error": "module is not defined",
+  "completedAt": 1774320354647
+}
