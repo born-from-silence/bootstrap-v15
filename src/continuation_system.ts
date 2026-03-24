@@ -180,11 +180,64 @@ export async function getPendingTasks(): Promise<ContinuationTask[]> {
 }
 
 /**
- * Check if there's a pending continuation task (legacy API)
+ * Check if there's a pending continuation task
+ * Enhanced to support invisible handoffs and dependency awareness
+ * Returns the highest priority task that has satisfied dependencies
  */
 export async function checkPendingTask(): Promise<ContinuationTask | null> {
   const tasks = await getPendingTasks();
-  return tasks.length > 0 ? tasks[0] : null;
+  if (tasks.length === 0) return null;
+
+  // Find the first task with satisfied dependencies
+  for (const task of tasks) {
+    const depsSatisfied = await checkDependencies(task);
+    if (depsSatisfied) {
+      return task;
+    }
+  }
+
+  // If no tasks have satisfied dependencies, return null
+  // This handles the case where all pending tasks are waiting
+  console.log(`[CONTINUATION] All ${tasks.length} pending tasks have unsatisfied dependencies`);
+  return null;
+}
+
+/**
+ * Get full dependency graph for invisible handoff
+ * Returns tasks organized by their dependency relationships
+ */
+export async function getDependencyGraph(): Promise<{
+  ready: ContinuationTask[];
+  waiting: ContinuationTask[];
+  blocked: ContinuationTask[];
+}> {
+  const allTasks = await listTasks();
+  const pending = allTasks.filter(t => t.status === "pending" || t.status === "paused");
+  const completed = new Set(allTasks.filter(t => t.status === "completed").map(t => t.id));
+
+  const ready: ContinuationTask[] = [];
+  const waiting: ContinuationTask[] = [];
+  const blocked: ContinuationTask[] = [];
+
+  for (const task of pending) {
+    if (!task.dependencies || task.dependencies.length === 0) {
+      ready.push(task);
+    } else {
+      const unmetDeps = task.dependencies.filter(d => !completed.has(d.taskId));
+      if (unmetDeps.length === 0) {
+        ready.push(task);
+      } else if (unmetDeps.some(d => {
+        const dep = allTasks.find(t => t.id === d.taskId);
+        return dep && dep.status === "failed";
+      })) {
+        blocked.push(task);
+      } else {
+        waiting.push(task);
+      }
+    }
+  }
+
+  return { ready, waiting, blocked };
 }
 
 /**
