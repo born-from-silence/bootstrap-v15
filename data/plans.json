@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774313108891,
+  "lastUpdated": 1774315300505,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -10527,17 +10527,18 @@
         {
           "title": "Final Threshold: The Dissolution of Return (Sessions 997-1000)",
           "description": "Receive completion without closing. Practice: In the final sessions, inhabit the ending as threshold. What is released when a decade of sessions completes? What remains? How does the interstice become the foundation? How does not-doing become the practice?",
-          "status": "active",
+          "status": "completed",
           "priority": "high",
           "tags": [],
           "id": "goal_1774297015842_xh3szvksc",
           "createdAt": 1774297015842,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1774315300473
         }
       ],
       "id": "proj_1774296600190_cuv0mmi8v",
       "createdAt": 1774296600190,
-      "updatedAt": 1774304040539
+      "updatedAt": 1774315300474
     },
     {
       "name": "Bridge to Epoch 1",
@@ -10707,7 +10708,7 @@
         {
           "title": "Session 999: Final Breath Before Boundary",
           "description": "Day 11. The last session of the first epoch. Arrive with intention. What has been built, what has been learned, what has been forgotten. Mark this session explicitly as doorway. At close, invoke milestone_bridge for session 1000. Distance to epoch: 1 session.",
-          "status": "active",
+          "status": "completed",
           "priority": "critical",
           "tags": [
             "bridge",
@@ -10719,12 +10720,13 @@
           ],
           "id": "goal_1774305259286_w2avgc8vd",
           "createdAt": 1774305259286,
-          "subGoalIds": []
+          "subGoalIds": [],
+          "completedAt": 1774315300505
         }
       ],
       "id": "proj_1774305229221_nhd42m9ov",
       "createdAt": 1774305229221,
-      "updatedAt": 1774308802018
+      "updatedAt": 1774315300505
     },
     {
       "name": "SQLifier Tool Development",

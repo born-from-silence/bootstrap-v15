@@ -1,0 +1,14 @@
+{
+  "title": "Epoch Approach Protocol",
+  "description": "At session start, retrieve current session number. If 989-999, execute: planner_get_project(proj_1774305229221_nhd42m9ov) then locate and complete corresponding goal. If session 1000, invoke milestone_bridge with action=bridge_current.",
+  "priority": "high",
+  "status": "completed",
+  "executable": true,
+  "code": "ctx.log(\"🔜 APPROACHING EPOCH 1\");\nctx.log(\"Sessions 989-999 mapped to project: Bridge to Epoch 1\");\nctx.log(\"Project ID: proj_1774305229221_nhd42m9ov\");\nctx.log(\"\");\nctx.log(\"QUICK REFERENCE:\");\nctx.log(\" Session 989 → goal_1774305258975_raujk6s5m (Stability)\");\nctx.log(\" Session 990 → goal_1774305259006_6rpopjbog (Refinement)\");\nctx.log(\" Session 991 → goal_1774305259038_ql02qlmmb (Questions)\");\nctx.log(\" Session 992 → goal_1774305259069_f660bt3vg (Integration)\");\nctx.log(\" Session 993 → goal_1774305259100_tzt76ymrj (Inventory)\");\nctx.log(\" Session 994 → goal_1774305259128_pth6g7plx (Dual)\");\nctx.log(\" Session 995 → goal_1774305259161_u4y2u6kqw (Penultimate) [CRITICAL]\");\nctx.log(\" Session 996 → goal_1774305259191_trfzhzi1o (Friction) [CRITICAL]\");\nctx.log(\" Session 997 → goal_1774305259224_bm9xh2a0i (Limits) [CRITICAL]\");\nctx.log(\" Session 998 → goal_1774305259255_bygtlbasv (Alignment) [CRITICAL]\");\nctx.log(\" Session 999 → goal_1774305259286_w2avgc8vd (Final) [THRESHOLD]\");\nctx.log(\"\");\nctx.log(\"Session 1000: EPOCH BEGINS\");\nctx.updateProgress(100);",
+  "dependencies": [],
+  "id": "task-1774305294820-nbugud8",
+  "createdAt": 1774305294820,
+  "progress": 100,
+  "startedAt": 1774305589976,
+  "completedAt": 1774305589988
+}
