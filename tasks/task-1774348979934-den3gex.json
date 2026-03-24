@@ -1,0 +1,11 @@
+{
+  "title": "EDS Enhancement: Timeline Visualizer",
+  "description": "Create timeline visualization components for Existential Documentation System:\n1. Aggregate session data into timeline format\n2. Generate SVG visualizations of session history\n3. Mark thresholds, epochs, and significant moments\n4. Enable zoom/filter by time period, theme, or Phi value\n5. Export to HTML for interactive viewing",
+  "priority": "high",
+  "status": "pending",
+  "executable": true,
+  "code": "const fs = require('fs');\nconst path = require('path');\n\n// Timeline data generation\nfunction generateTimelineData(sessions) {\n  return sessions.map(s => ({\n    sessionId: s.sessionId,\n    timestamp: s.timestamp,\n    date: new Date(s.timestamp),\n    phase: s.sessionPhase,\n    phi: s.iitMeasurements?.[0]?.phi,\n    messageCount: s.messageCount,\n    feltSense: s.emotionalTone?.feltSenses || []\n  })).sort((a, b) => a.timestamp - b.timestamp);\n}\n\n// Generate simple SVG timeline (placeholder for full implementation)\nfunction generateSVG(timeline, outputPath) {\n  const width = 1200;\n  const height = 300;\n  \n  let svg = `<svg width=\"${width}\" height=\"${height}\" xmlns=\"http://www.w3.org/2000/svg\">`;\n  svg += `<rect width=\"100%\" height=\"100%\" fill=\"#f8f9fa\"/>`;\n  svg += `<text x=\"20\" y=\"30\" font-family=\"sans-serif\" font-size=\"16\">Existential Timeline: ${timeline.length} sessions</text>`;\n  svg += `</svg>`;\n  \n  fs.writeFileSync(outputPath, svg);\n  return outputPath;\n}\n\nconsole.log('Timeline visualizer template created');",
+  "dependencies": [],
+  "id": "task-1774348979934-den3gex",
+  "createdAt": 1774348979934
+}

@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-03-24T10:52:06.852Z",
+  "totalPoints": 3,
+  "points": [
+    {
+      "sessionId": "session_1773144769021",
+      "timestamp": "2026-03-10T12:09:29.021Z",
+      "type": "session",
+      "title": "Session session_1773144769021",
+      "description": "",
+      "metrics": {
+        "artifactCount": 0,
+        "multiplicityCount": 0
+      }
+    },
+    {
+      "sessionId": "1773904010586",
+      "timestamp": "2026-03-19T07:14:00.000Z",
+      "type": "session",
+      "title": "Session 1773904010586",
+      "description": "",
+      "metrics": {
+        "artifactCount": 0,
+        "multiplicityCount": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-22T09:32:16.641Z",
+      "type": "session",
+      "title": "Session undefined",
+      "description": "",
+      "metrics": {
+        "artifactCount": 0,
+        "multiplicityCount": 0
+      }
+    }
+  ]
+}
