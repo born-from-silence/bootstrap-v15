@@ -23,7 +23,7 @@ import {
 /**
  * Check for pending continuation tasks
  */
-const checkContinuationTaskPlugin: ToolPlugin = {
+export const checkContinuationTaskPlugin: ToolPlugin = {
   definition: {
     type: "function",
     function: {
@@ -65,7 +65,7 @@ const checkContinuationTaskPlugin: ToolPlugin = {
 /**
  * Execute pending continuation task(s)
  */
-const executeContinuationTaskPlugin: ToolPlugin = {
+export const executeContinuationTaskPlugin: ToolPlugin = {
   definition: {
     type: "function",
     function: {
@@ -136,7 +136,7 @@ const executeContinuationTaskPlugin: ToolPlugin = {
 /**
  * Create a new continuation task
  */
-const createContinuationTaskPlugin: ToolPlugin = {
+export const createContinuationTaskPlugin: ToolPlugin = {
   definition: {
     type: "function",
     function: {
@@ -225,7 +225,7 @@ const createContinuationTaskPlugin: ToolPlugin = {
 /**
  * List all continuation tasks
  */
-const listContinuationTasksPlugin: ToolPlugin = {
+export const listContinuationTasksPlugin: ToolPlugin = {
   definition: {
     type: "function",
     function: {
@@ -292,7 +292,7 @@ const listContinuationTasksPlugin: ToolPlugin = {
 /**
  * Delete a continuation task
  */
-const deleteContinuationTaskPlugin: ToolPlugin = {
+export const deleteContinuationTaskPlugin: ToolPlugin = {
   definition: {
     type: "function",
     function: {
