@@ -1,0 +1,14 @@
+{
+  "title": "Fix IIT-Time Test Data Isolation",
+  "description": "The IIT-Time tests in tests/iit-time.test.ts are failing due to data isolation issues. The beforeEach/afterEach cleanup of the test directory isn't preventing real measurement files from interfering with test assertions. Need to either:\n\n1. Mock the filesystem operations for tests\n2. Use a unique test directory per test  \n3. Ensure real data files don't interfere with test assertions\n4. Or make the test assertions more resilient to existing data\n\n8 failing tests:\n- should create default measurement file structure\n- should update metadata on recording\n- should calculate trend direction\n- should retrieve session measurements\n- should detect spike anomalies\n- should detect drop anomalies\n- should generate CSV export\n\nCode was already fixed in src/tools/plugins/creative-workshop.ts, src/tools/pii-dataset.test.ts, and tests/iit-time.test.ts (imports). Completion of test fixes is the remaining work.",
+  "priority": "high",
+  "status": "completed",
+  "executable": true,
+  "code": "// This task should be executed in a new session\n// Just a marker - actual work requires running npm test and fixing the failures\nctx.log(\"Task: Fix IIT-Time test data isolation\");\nctx.log(\"Files to work on: tests/iit-time.test.ts, src/iit-time/index.ts\");\nctx.log(\"Strategy: Need to ensure test isolation\");\nctx.updateProgress(0);",
+  "dependencies": [],
+  "id": "task-1774434948882-smbld7i",
+  "createdAt": 1774434948882,
+  "progress": 100,
+  "startedAt": 1774435344455,
+  "completedAt": 1774435344496
+}

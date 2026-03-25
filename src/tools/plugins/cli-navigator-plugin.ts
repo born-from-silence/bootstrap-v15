@@ -99,6 +99,30 @@ const cliGoals: ToolPlugin = {
   },
 };
 
+const cliLs: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "cli_ls",
+      description: "List files and directories with emoji icons and colorized output",
+      parameters: {
+        type: "object",
+        properties: {
+          path: {
+            type: "string",
+            description: "Path to list (relative to project root). Defaults to current directory.",
+            default: ".",
+          },
+        },
+      },
+    },
+  },
+  async execute(args: { path?: string }) {
+    const pathArg = args?.path || ".";
+    return await navigator.executeCommand(`ls ${pathArg}`);
+  },
+};
+
 const cliStatus: ToolPlugin = {
   definition: {
     type: "function",
@@ -137,6 +161,7 @@ export const cliNavigatorPlugins = [
   cliProjects,
   cliProjectDetail,
   cliGoals,
+  cliLs,
   cliStatus,
   cliHelp,
 ];

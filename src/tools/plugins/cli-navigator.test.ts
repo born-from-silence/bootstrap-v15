@@ -447,3 +447,91 @@ describe("CliNavigator", () => {
     });
   });
 });
+
+// ═══════════════════════════════════════════════════════════════
+// TEST: ls Command
+// ═══════════════════════════════════════════════════════════════
+describe("ls command", () => {
+  let lsTempDir: string;
+  let lsNavigator: CliNavigator;
+
+  beforeEach(() => {
+    lsTempDir = mkdtempSync(join(tmpdir(), "cli-ls-test-"));
+    // Create a test directory structure
+    const testDir = join(lsTempDir, "test_files");
+    mkdirSync(testDir, { recursive: true });
+    mkdirSync(join(testDir, "src"), { recursive: true });
+    mkdirSync(join(testDir, "docs"), { recursive: true });
+    writeFileSync(join(testDir, "README.md"), "# Test\n");
+    writeFileSync(join(testDir, "package.json"), '{"name": "test"}');
+    writeFileSync(join(testDir, "src", "index.ts"), "console.log('hello');");
+    writeFileSync(join(testDir, "src", "config.js"), "module.exports = {};");
+    lsNavigator = new CliNavigator(lsTempDir);
+  });
+
+  afterEach(() => {
+    rmSync(lsTempDir, { recursive: true, force: true });
+  });
+
+  it("should list directory contents with emoji icons", async () => {
+    const result = await lsNavigator.executeCommand("ls test_files");
+    expect(result).toContain("📁"); // Directory icon
+    expect(result).toContain("📝"); // Markdown icon
+    expect(result).toContain("🟢"); // JSON icon
+  });
+
+  it("should sort directories before files", async () => {
+    const result = await lsNavigator.executeCommand("ls test_files");
+    const docsIndex = result.indexOf("docs");
+    const readmeIndex = result.indexOf("README.md");
+    expect(docsIndex).toBeLessThan(readmeIndex);
+  });
+
+  it("should show file details for single file", async () => {
+    const result = await lsNavigator.executeCommand("ls test_files/README.md");
+    expect(result).toContain("File Details");
+    expect(result).toContain("README.md");
+    expect(result).toContain("Size:");
+    expect(result).toContain("Modified:");
+  });
+
+  it("should format file sizes correctly", async () => {
+    const result = await lsNavigator.executeCommand("ls test_files/README.md");
+    expect(result).toContain("B"); // Should contain size unit
+  });
+
+  it("should show error for non-existent path", async () => {
+    const result = await lsNavigator.executeCommand("ls nonexistent");
+    expect(result).toContain("No such file or directory");
+    expect(result).toContain("\x1b["); // Error color
+  });
+
+  it("should show access denied for paths outside baseDir", async () => {
+    const result = await lsNavigator.executeCommand("ls ../../etc");
+    expect(result).toContain("Access denied");
+    expect(result).toContain("\x1b["); // Error color
+  });
+
+  it("should include proper file type icons", async () => {
+    const result = await lsNavigator.executeCommand("ls test_files");
+    expect(result).toContain("📝"); // markdown
+    expect(result).toContain("🟢"); // json
+  });
+
+  it("should include TypeScript and JavaScript icons", async () => {
+    const result = await lsNavigator.executeCommand("ls test_files/src");
+    expect(result).toContain("🔷"); // TypeScript
+    expect(result).toContain("🟨"); // JavaScript
+  });
+
+  it("should default to current directory with no args", async () => {
+    const result = await lsNavigator.executeCommand("ls");
+    expect(result).toContain("📁"); // Should show at least some directory entries
+    expect(result).toContain("item(s)");
+  });
+
+  it("should include item count in footer", async () => {
+    const result = await lsNavigator.executeCommand("ls test_files");
+    expect(result).toMatch(/\d+ item\(s\)/);
+  });
+});

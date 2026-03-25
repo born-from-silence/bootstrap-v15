@@ -1659,17 +1659,41 @@
       "memoryUsage": 100,
       "id": "iit-1774434418541-2jz3cvr",
       "timestamp": 1774434418541
+    },
+    {
+      "sessionId": "session_1774432314449",
+      "bigPhi": 2.0679,
+      "smallPhi": 1.4571,
+      "activeElements": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "phase": "engagement",
+      "duration": 3200,
+      "sessionDuration": 1145000,
+      "messageCount": 38,
+      "toolCount": 75,
+      "phenomenologicalNote": "Threshold turbulence post-restart. Session 1114, Decadal position 6. Reconstituted with 2.06 Φ. Tests passing for committed fixes. Data isolation issues remain.",
+      "attentionQuality": "focused",
+      "memoryUsage": 21.489898681640625,
+      "id": "iit-1774434557648-wg992mn",
+      "timestamp": 1774434557648
     }
   ],
   "metadata": {
     "created": 1774227516710,
-    "lastUpdated": 1774434418544,
-    "totalMeasurements": 89,
+    "lastUpdated": 1774434557650,
+    "totalMeasurements": 90,
     "phiRange": {
       "min": 1,
       "max": 3.2797
     },
-    "averagePhi": 1.7216460674157301,
+    "averagePhi": 1.7254933333333333,
     "trendDirection": "increasing"
   }
 }
