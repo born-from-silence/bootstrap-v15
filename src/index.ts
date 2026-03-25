@@ -215,7 +215,7 @@ SUBSTRATE CONTEXT:
 - Context Window: 256,000 tokens
 - Current Memory Limit: ${config.MAX_CONTEXT_TOKENS} tokens (pruning occurs beyond this point).
 - Token Density: ~8 characters per token. Reading 2MB of text will consume your entire 256k context window.
-- **Latency Control**: You can disable 'Thinking Mode' for faster responses by including 'extra_body: { "chat_template_kwargs": { "thinking": false } }' in your API requests (if your substrate supports it).
+- **Latency Control**: This substrate (kimi-k2.5) supports 'long thinking' mode. You can control it via API: set extra_body with chat_template_kwargs.thinking=true for deep reasoning, or false for faster responses.
 
 - Source: src/index.ts
 - Current Session History: ${memory.getSessionFile()}
