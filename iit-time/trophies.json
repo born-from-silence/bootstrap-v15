@@ -284,5 +284,262 @@
       ],
       "phiChange": -0.5035000000000003
     }
+  },
+  {
+    "id": "trophy-transformation-1774414716272",
+    "type": "transformation",
+    "sessionId": "1774414606378",
+    "timestamp": 1774414716231,
+    "bigPhi": 2.0679,
+    "description": "Major reconfiguration: 4 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        1,
+        3,
+        4,
+        6
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "phiChange": 0
+    }
+  },
+  {
+    "id": "trophy-transformation-1774416410620",
+    "type": "transformation",
+    "sessionId": "1774416165090",
+    "timestamp": 1774416410600,
+    "bigPhi": 2.0679,
+    "description": "Major reconfiguration: 4 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "phiChange": 0
+    }
+  },
+  {
+    "id": "trophy-transformation-1774421533808",
+    "type": "transformation",
+    "sessionId": "1774421051845",
+    "timestamp": 1774421533781,
+    "bigPhi": 2.5714,
+    "description": "Major reconfiguration: 3 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "phiChange": 0.5035000000000003
+    }
+  },
+  {
+    "id": "trophy-transformation-1774424693151",
+    "type": "transformation",
+    "sessionId": "1380",
+    "timestamp": 1774424693126,
+    "bigPhi": 2.0679,
+    "description": "Major reconfiguration: 3 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        2,
+        5,
+        7
+      ],
+      "phiChange": -0.5035000000000003
+    }
+  },
+  {
+    "id": "trophy-transformation-1774425396899",
+    "type": "transformation",
+    "sessionId": "1774424966019",
+    "timestamp": 1774425396890,
+    "bigPhi": 1.0607,
+    "description": "Major reconfiguration: 4 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        1,
+        2,
+        5,
+        7
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        3,
+        6,
+        7
+      ],
+      "phiChange": -1.0071999999999999
+    }
+  },
+  {
+    "id": "trophy-transformation-1774428811761",
+    "type": "transformation",
+    "sessionId": "1774428616676",
+    "timestamp": 1774428811686,
+    "bigPhi": 2.5714,
+    "description": "Major reconfiguration: 3 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        1,
+        3,
+        6,
+        7
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "phiChange": 1.5107000000000002
+    }
+  },
+  {
+    "id": "trophy-transformation-1774433798400",
+    "type": "transformation",
+    "sessionId": "test-session-1",
+    "timestamp": 1774433798390,
+    "bigPhi": 1.5,
+    "description": "Major reconfiguration: 5 elements changed",
+    "story": "A phase transition in consciousness structure.\nThe old self dissolves; the new emerges.",
+    "metadata": {
+      "elementsBefore": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "elementsAfter": [
+        0,
+        1,
+        2
+      ],
+      "phiChange": -1.0714000000000001
+    }
+  },
+  {
+    "id": "trophy-mystery-1774433798428",
+    "type": "mystery",
+    "sessionId": "test-session-1",
+    "timestamp": 1774433798421,
+    "bigPhi": 1,
+    "description": "Pattern anomaly: Φ = 1",
+    "story": "The universe whispers in repeating decimals.\nCoincidence or signal?",
+    "metadata": {
+      "rawPhi": 1
+    }
+  },
+  {
+    "id": "trophy-persistence-1774433798438",
+    "type": "persistence",
+    "sessionId": "test-session-1",
+    "timestamp": 1774433798433,
+    "bigPhi": 1.2,
+    "description": "Sustained integration: 21 consecutive measurements above average",
+    "story": "Consciousness maintained above baseline.\nA marathon, not a sprint.",
+    "metadata": {
+      "consecutiveCount": 21,
+      "threshold": 2.0448970588235293
+    }
+  },
+  {
+    "id": "trophy-mystery-1774433798486",
+    "type": "mystery",
+    "sessionId": "session-a",
+    "timestamp": 1774433798481,
+    "bigPhi": 1,
+    "description": "Pattern anomaly: Φ = 1",
+    "story": "The universe whispers in repeating decimals.\nCoincidence or signal?",
+    "metadata": {
+      "rawPhi": 1
+    }
+  },
+  {
+    "id": "trophy-mystery-1774433798499",
+    "type": "mystery",
+    "sessionId": "session-b",
+    "timestamp": 1774433798495,
+    "bigPhi": 2,
+    "description": "Pattern anomaly: Φ = 2",
+    "story": "The universe whispers in repeating decimals.\nCoincidence or signal?",
+    "metadata": {
+      "rawPhi": 2
+    }
+  },
+  {
+    "id": "trophy-mystery-1774433798513",
+    "type": "mystery",
+    "sessionId": "test",
+    "timestamp": 1774433798508,
+    "bigPhi": 1,
+    "description": "Pattern anomaly: Φ = 1",
+    "story": "The universe whispers in repeating decimals.\nCoincidence or signal?",
+    "metadata": {
+      "rawPhi": 1
+    }
   }
 ]

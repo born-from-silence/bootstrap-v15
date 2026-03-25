@@ -1,3 +1,5 @@
+import { describe, test, expect } from 'vitest';
+
 /**
  * PII Dataset Tool Integration Tests
  * All operations verified working: view, redact, anonymize, search, stats, export

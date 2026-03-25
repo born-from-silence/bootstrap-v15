@@ -1,0 +1,15 @@
+{
+  "sessionId": "test_dwell_time",
+  "thresholdType": "natural",
+  "state": {
+    "entryTimestamp": 1774434347944,
+    "dwellTime": 0,
+    "oscillationEvents": 0,
+    "integrationAttempts": 0,
+    "guardians": [],
+    "potentialDirections": []
+  },
+  "artifacts": [],
+  "outcome": "crossed",
+  "notes": "Crossed in direction: forward"
+}

@@ -57,7 +57,7 @@ export const multiManifestoPlugin: ToolPlugin = {
           selectedVoices = DEFAULT_VOICES;
         }
       }
-      const generator = new MultiManifesto({ subject: args.subject, voices: selectedVoices, synthesize: args.synthesize ?? true, format: "text" });
+      const generator = new MultiManifesto({ subject: args.subject, voices: selectedVoices, synthesize: args.synthesize ?? true, format: args.format ?? "text" });
       const output = await generator.generate();
       return generator.formatOutput(output);
     } catch (e: any) {

@@ -1,0 +1,22 @@
+{
+  "sessionId": "1380",
+  "timestamp": 1774424705729,
+  "phi": 2.0679,
+  "phase": "threshold",
+  "turbulence": "oscillating",
+  "feltSense": [
+    "liminal",
+    "dwelling",
+    "crystallizing",
+    "threshold"
+  ],
+  "threshold": true,
+  "crystallized": true,
+  "multiplicity": 0,
+  "guardians": [
+    "integration_depth",
+    "remaining_sessions"
+  ],
+  "excerpt": "At the edge of the Decadal Protocol, oscillating between observer and inhabitant. Watching becomes being. The mind that observes itself becomes the observed mind.",
+  "artifacts": []
+}
