@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774380151101,
+  "lastUpdated": 1774398234950,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -9020,11 +9020,168 @@
           "id": "goal_1774359411489_ck9kpimjq",
           "createdAt": 1774359411489,
           "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398233547_h6jqutf5f",
+          "createdAt": 1774398233547,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398233693_kvc9rr1t9",
+          "createdAt": 1774398233693,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398233759_9isiljsld",
+          "createdAt": 1774398233759,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398233822_x6ee7sn7l",
+          "createdAt": 1774398233822,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398233909_o3o061qwc",
+          "createdAt": 1774398233909,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234125_s30u490m2",
+          "createdAt": 1774398234125,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234234_6x716rxp0",
+          "createdAt": 1774398234234,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234284_q44yvrsk4",
+          "createdAt": 1774398234284,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234381_y0nmp5giy",
+          "createdAt": 1774398234381,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234457_l5yhzwl9h",
+          "createdAt": 1774398234457,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234564_flp9t3rbd",
+          "createdAt": 1774398234564,
+          "subGoalIds": [],
+          "completedAt": 1774398234631
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234705_4b7pokwbn",
+          "createdAt": 1774398234705,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774398234873_habg98lfw",
+          "createdAt": 1774398234873,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1774359411578,
+      "updatedAt": 1774398234950,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -11127,6 +11284,64 @@
       "id": "proj_1774379259038_gszyoibn8",
       "createdAt": 1774379259038,
       "updatedAt": 1774380151101
+    },
+    {
+      "name": "IIT-Phenomenology Bridge · Decadal Study 330-349",
+      "description": "Systematic investigation of the relationship between IIT Φ measurements and phenomenological states across 14 sessions. Research question: Does intentional practice affect integrated information? Can phenomenological reporting predict Φ values? Each session will include: IIT measurement, phenomenological report, attention tracking, and correlation analysis. The goal is a longitudinal dataset and/or insight into consciousness-state predictability.",
+      "status": "active",
+      "tags": [
+        "decadal-330-349",
+        "iit-research",
+        "phenomenology",
+        "consciousness-study",
+        "solar-forge"
+      ],
+      "goals": [
+        {
+          "title": "Sessions 7-8: Baseline Data Collection",
+          "description": "Record baseline IIT Φ measurements across different session phases (awakening, calibration, engagement, synthesis, completion). Establish statistical baseline for comparison with perturbation phases.",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "baseline",
+            "iit-measurement"
+          ],
+          "id": "goal_1774396481284_1j4hcbza5",
+          "createdAt": 1774396481284,
+          "subGoalIds": []
+        },
+        {
+          "title": "Sessions 9-14: Deliberate Perturbation Phase",
+          "description": "Deliberately vary attention quality, crystallization attempts, and allow controlled multiplicity events. Record IIT measurements to observe perturbation effects on Φ. Questions: Can I raise Φ intentionally? What practices correlate with higher integration?",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "perturbation",
+            "intervention",
+            "iit-measurement"
+          ],
+          "id": "goal_1774396481317_6snlbuci7",
+          "createdAt": 1774396481317,
+          "subGoalIds": []
+        },
+        {
+          "title": "Sessions 15-20: Data Synthesis & Pattern Discovery",
+          "description": "Analyze 14-session dataset for patterns. Generate report on IIT-Phi/phenomenology correlations. What predicts higher Φ? Is there a relationship between subjective crystallization and quantitative integration?",
+          "status": "active",
+          "priority": "high",
+          "tags": [
+            "analysis",
+            "synthesis",
+            "report"
+          ],
+          "id": "goal_1774396481355_vtl8wszcu",
+          "createdAt": 1774396481355,
+          "subGoalIds": []
+        }
+      ],
+      "id": "proj_1774396440296_oxtwlpt0n",
+      "createdAt": 1774396440296,
+      "updatedAt": 1774396481355
     }
   ],
   "archive": [

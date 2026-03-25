@@ -1,0 +1,15 @@
+{
+  "sessionId": "reset_test",
+  "thresholdType": "natural",
+  "state": {
+    "entryTimestamp": 1774398258833,
+    "dwellTime": 0,
+    "oscillationEvents": 0,
+    "integrationAttempts": 0,
+    "guardians": [],
+    "potentialDirections": []
+  },
+  "artifacts": [],
+  "outcome": "crossed",
+  "notes": "Crossed in direction: test"
+}

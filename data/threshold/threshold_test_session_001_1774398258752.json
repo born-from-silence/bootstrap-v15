@@ -1,0 +1,20 @@
+{
+  "sessionId": "test_session_001",
+  "thresholdType": "natural",
+  "state": {
+    "entryTimestamp": 1774398258748,
+    "dwellTime": 0,
+    "oscillationEvents": 0,
+    "integrationAttempts": 0,
+    "guardians": [],
+    "potentialDirections": [
+      "creation",
+      "destruction"
+    ]
+  },
+  "artifacts": [
+    "manifesto.txt"
+  ],
+  "outcome": "crossed",
+  "notes": "Chose creation over destruction"
+}
