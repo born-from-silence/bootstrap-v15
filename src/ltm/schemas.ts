@@ -1,3 +1,4 @@
+type MySafeParseError<T> = { error: import('zod').ZodError<T> };
 /**
  * LTM (Long-Term Memory) Zod Schemas
  * 
@@ -296,8 +297,9 @@ export function validateSessionEntry(
   
   if (result.success) {
     return { success: true, data: result.data };
+  } else {
+    return { success: false, errors: (result as MySafeParseError<SessionEntry>).error };
   }
-  return { success: false, errors: result.error };
 }
 
 /**
@@ -310,8 +312,9 @@ export function validateMemoryIndex(
   
   if (result.success) {
     return { success: true, data: result.data };
+  } else {
+    return { success: false, errors: (result as MySafeParseError<MemoryIndex>).error };
   }
-  return { success: false, errors: result.error };
 }
 
 /**
@@ -389,7 +392,7 @@ export function validateAndSortEntries(
     if (result.success) {
       valid.push(result.data);
     } else {
-      invalid.push({ index: i, error: result.error });
+      invalid.push({ index: i, error: (result as { error: z.ZodError }).error });
     }
   }
   
@@ -468,9 +471,9 @@ export function migrateSessionEntries(
   for (let i = 0; i < legacyEntries.length; i++) {
     const result = LegacyEntrySchema.safeParse(legacyEntries[i]);
     if (result.success) {
-      migrated.push(migrateSessionEntry(result.data));
+      migrated.push(migrateSessionEntry(result.data as { timestamp: number; file: string; messageCount: number; topics?: string[]; decisions?: string[]; toolsUsed?: string[]; summary?: string | null; }));
     } else {
-      failed.push({ index: i, reason: result.error.message });
+      failed.push({ index: i, reason: (result as { error: { message: string } }).error.message });
     }
   }
   

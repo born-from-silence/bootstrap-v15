@@ -307,6 +307,7 @@ export class SessionGapAnalyzer {
         ...analysis.observations,
         ...analysis.recommendations,
       ],
+      continuityAssessment: analysis.continuityAssessment,
     };
 
     await this.history.recordGap(gap);

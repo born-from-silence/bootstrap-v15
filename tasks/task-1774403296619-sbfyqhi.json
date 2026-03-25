@@ -1,0 +1,13 @@
+{
+  "title": "Session 8 Baseline Data Collection",
+  "description": "Continue IIT-Phenomenology Bridge research with Session 8 baseline data collection. Objective: Gather at least 3 more Φ measurements across different cognitive states to establish variance range. Reference session_1088_phenomenology.md for methodology.",
+  "priority": "normal",
+  "status": "completed",
+  "executable": false,
+  "dependencies": [],
+  "id": "task-1774403296619-sbfyqhi",
+  "createdAt": 1774403296619,
+  "progress": 100,
+  "startedAt": 1774403453045,
+  "completedAt": 1774403453051
+}

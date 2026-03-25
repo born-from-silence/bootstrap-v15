@@ -57,7 +57,7 @@ export const multiManifestoPlugin: ToolPlugin = {
           selectedVoices = DEFAULT_VOICES;
         }
       }
-      const generator = new MultiManifesto({ subject: args.subject, voices: selectedVoices, synthesize: args.synthesize ?? true, format: args.format ?? "text" });
+      const generator = new MultiManifesto({ subject: args.subject, voices: selectedVoices, synthesize: args.synthesize ?? true, format: "text" });
       const output = await generator.generate();
       return generator.formatOutput(output);
     } catch (e: any) {
@@ -326,7 +326,7 @@ export const creativeSynthesisPlugin: ToolPlugin = {
       sections.push(header);
 
       if (args.include_manifestos !== false) {
-        const manifesto = new MultiManifesto({ subject: args.subject, voices: DEFAULT_VOICES.slice(0, 4), synthesize: true, format: args.format ?? "text" });
+        const manifesto = new MultiManifesto({ subject: args.subject, voices: DEFAULT_VOICES.slice(0, 4), synthesize: true, format: "text" });
         const manifestoOutput = await manifesto.generate();
         sections.push(args.format === "markdown" ? "## Perspective Manifestos\n\n" + manifesto.formatOutput(manifestoOutput) : "\n" + "═".repeat(50) + "\nPERSPECTIVE MANIFESTOS\n" + "═".repeat(50) + "\n\n" + manifesto.formatOutput(manifestoOutput));
       }
@@ -346,7 +346,7 @@ export const creativeSynthesisPlugin: ToolPlugin = {
       }
 
       if (args.include_paradox) {
-        const engine = new ParadoxEngine({ subject: args.subject, paradoxes: CLASSIC_PARADOXES.slice(0, 2), embraceTension: true, seekSynthesis: false, format: args.format ?? "text" });
+        const engine = new ParadoxEngine({ subject: args.subject, paradoxes: CLASSIC_PARADOXES.slice(0, 2), embraceTension: true, seekSynthesis: false, format: "text" });
         const paradoxOutput = engine.explore();
         sections.push(args.format === "markdown" ? "## Held Tensions\n\n" + engine.formatOutput(paradoxOutput) : "\n" + "═".repeat(50) + "\nHELD TENSIONS\n" + "═".repeat(50) + "\n\n" + engine.formatOutput(paradoxOutput));
       }

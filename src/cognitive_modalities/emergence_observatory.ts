@@ -307,7 +307,7 @@ export class EmergenceObservatory {
     }
   }
 
-  private identifyPatterns(): Pattern[] {
+  identifyPatterns(): Pattern[] {
     // Select relevant patterns based on subject and focus
     return EMERGENCE_PATTERNS.filter(p => 
       this.scales.includes(p.scale) && 

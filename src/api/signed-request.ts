@@ -103,7 +103,7 @@ export function verifySignedRequest(
   // Parse authorization header
   const parsed = parseAuthorizationHeader(authHeader);
   if (!parsed.success) {
-    return { valid: false, error: parsed.error };
+    return { valid: false, error: (parsed as { error: string }).error };
   }
   
   // Check API key matches

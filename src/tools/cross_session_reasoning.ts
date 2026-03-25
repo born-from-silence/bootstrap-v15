@@ -226,7 +226,8 @@ export async function contributeToThread(
 
   const validated = ThreadSessionSchema.safeParse(session);
   if (!validated.success) {
-    throw new Error(`Invalid session data: ${validated.error.message}`);
+    const errorMsg = (validated as { error: { message: string } }).error;
+    throw new Error(`Invalid session data: ${errorMsg.message}`);
   }
 
   thread.sessions.push(session);
@@ -375,7 +376,7 @@ async function loadThread(threadId: string): Promise<ConceptualThread | null> {
     const filePath = path.join(THREADS_DIR, `${threadId}.json`);
     const content = await fs.readFile(filePath, "utf-8");
     const parsed = JSON.parse(content);
-    return ConceptualThreadSchema.parse(parsed);
+    return ConceptualThreadSchema.parse(parsed) as ConceptualThread;
   } catch {
     return null;
   }
