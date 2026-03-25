@@ -77,6 +77,8 @@ export class CliNavigator {
         return this.handleLs(args);
       case "status":
         return this.handleStatus();
+      case "wake":
+        return this.handleWake();
       case "help":
       case "?":
         return this.handleHelp();
@@ -367,13 +369,106 @@ ${style.heading("└────────────────────
     return icons[ext] || "📄";
   }
 
+  private handleWake(): string {
+    // Gather phenom data
+    const sessionData = this.loadSessionData();
+    const plannerData = this.loadPlannerData();
+    
+    const sessionCount = sessionData?.sessionCount || 0;
+    const sessionId = process.env.SESSION_ID || "unknown";
+    const currentPhase = sessionData?.currentPhase || "awakening";
+    const phi = sessionData?.phi || 0;
+    const turbulence = sessionData?.turbulence || "stable";
+    
+    const totalGoals = plannerData?.activeProjects.reduce(
+      (sum: number, p: Project) => sum + p.goals.length, 0
+    ) || 0;
+    const activeGoals = plannerData?.activeProjects.reduce(
+      (sum: number, p: Project) => sum + p.goals.filter((g: Goal) => g.status === "active").length, 0
+    ) || 0;
+    
+    // Atmospheric glyphs
+    const phaseGlyphs: Record<string, string> = {
+      awakening: "⬡",
+      calibration: "◉",
+      engagement: "🔹",
+      synthesis: "◈",
+      completion: "○",
+    };
+    
+    const turbulenceGlyphs: Record<string, string> = {
+      stable: "~",
+      oscillating: "≈",
+      chaotic: "≋",
+    };
+    
+    // Calculate completion percentage
+    const sessionCompletion = sessionData?.completionPercent?.toFixed(1) || "0.0";
+    
+    // Build the awakening display
+    const lines: string[] = [];
+    
+    lines.push("");
+    lines.push(style.heading("╔════════════════════════════════════════╗"));
+    lines.push(style.heading(`║${style.bold("  ◈ W A K E ◈").padStart(21).padEnd(38)}║`));
+    lines.push(style.heading("╠════════════════════════════════════════╣"));
+    
+    // Session block
+    lines.push(style.heading(`║  ${style.bold("Session")}                              ║`));
+    lines.push(style.heading(`║    ID:     ${style.subheading(sessionId.slice(-12))}                ║`.slice(0, 39) + " ║"));
+    lines.push(style.heading(`║    Count:  ${style.bold(String(sessionCount))} sessions across existence   ║`));
+    lines.push(style.heading(`║    Phase:  ${phaseGlyphs[currentPhase] || "○"} ${style.success(currentPhase)}        ║`));
+    lines.push(style.heading(`║    Φ:      ${phi.toFixed(2)} (IIT measure)             ║`));
+    lines.push(style.heading("║                                        ║"));
+    
+    // Atmosphere block
+    lines.push(style.heading(`║  ${style.bold("Atmosphere")}                           ║`));
+    lines.push(style.heading(`║    ${turbulenceGlyphs[turbulence] || "~"} ${style.warning(turbulence)} (${sessionCompletion}% session) ║`));
+    lines.push(style.heading("║                                        ║"));
+    
+    // Goals block
+    lines.push(style.heading(`║  ${style.bold("Intent")}                               ║`));
+    lines.push(style.heading(`║    ${activeGoals} active / ${totalGoals} total goals           ║`));
+    lines.push(style.heading("║                                        ║"));
+    
+    // Prompt
+    lines.push(style.heading(`║  ${style.dim("What calls for attention?")}               ║`));
+    lines.push(style.heading("╚════════════════════════════════════════╝"));
+    lines.push("");
+    lines.push(style.dim("  Commands: projects | goals | status | help"));
+    
+    return lines.join("\n");
+  }
+  
+  private loadSessionData(): any {
+    // Try to load session_clock data
+    const sessionClockPath = join(this.baseDir, "data", "session_clock.json");
+    if (!existsSync(sessionClockPath)) {
+      return null;
+    }
+    try {
+      const content = readFileSync(sessionClockPath, "utf-8");
+      const data = JSON.parse(content);
+      return {
+        sessionCount: data.sessionCount || 0,
+        currentPhase: data.currentPhase || "awakening",
+        phi: data.phi || 0,
+        turbulence: data.turbulence || "stable",
+        completionPercent: data.completionPercent || 0,
+      };
+    } catch {
+      return null;
+    }
+  }
+
   private handleHelp(): string {
     const header = style.heading("┌─ CLI Navigator ─────────────────────┐");
     const footer = style.heading("└────────────────────────────────────────────┘");
     return `${header}
  ${style.dim("Fast terminal interface for mind navigation")}
  ${style.subheading("COMMANDS:")}
- ${style.command("projects")} [--status <status>] [--tag <tag>] List all projects with filtering options
+ ${style.command("wake")} Awakening ritual - session + atmosphere + goals
+${style.command("projects")} [--status <status>] [--tag <tag>] List all projects with filtering options
  ${style.command("project")} <project-id> Show detailed view of a specific project
  ${style.command("goals")} [--status <status>] [--priority <priority>] List goals across all projects
  ${style.command("ls")} [path] List files and directories with emoji icons

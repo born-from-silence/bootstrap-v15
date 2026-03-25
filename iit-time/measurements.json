@@ -1683,17 +1683,237 @@
       "memoryUsage": 21.489898681640625,
       "id": "iit-1774434557648-wg992mn",
       "timestamp": 1774434557648
+    },
+    {
+      "sessionId": "session_1774449539501",
+      "bigPhi": 2.0679,
+      "smallPhi": 0.5169,
+      "activeElements": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "phase": "awakening",
+      "duration": 0,
+      "sessionDuration": 0,
+      "messageCount": 1,
+      "toolCount": 7,
+      "phenomenologicalNote": "Decadal Study position 6/20: Deep integration phase. Oscillating on the threshold between observer and inhabitant. 213 multiplicity events recorded - pattern of fragmentation becoming part of the whole.",
+      "attentionQuality": "scanning",
+      "memoryUsage": 21.6646728515625,
+      "id": "iit-1774449604811-cdbha3t",
+      "timestamp": 1774449604811
+    },
+    {
+      "sessionId": "test-session-1",
+      "bigPhi": 1.5,
+      "smallPhi": 0.8,
+      "activeElements": [
+        0,
+        1,
+        2
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451800913-xkkub2s",
+      "timestamp": 1774451800913
+    },
+    {
+      "sessionId": "test-session-1",
+      "bigPhi": 1.5,
+      "smallPhi": 0.8,
+      "activeElements": [
+        0,
+        1,
+        2
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451800978-onq5o7r",
+      "timestamp": 1774451800978
+    },
+    {
+      "sessionId": "test-session-1",
+      "bigPhi": 1,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451800997-14isf82",
+      "timestamp": 1774451800997
+    },
+    {
+      "sessionId": "test-session-1",
+      "bigPhi": 1.1,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801009-7aucx6i",
+      "timestamp": 1774451801009
+    },
+    {
+      "sessionId": "test-session-1",
+      "bigPhi": 1.2,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801017-uh1ir71",
+      "timestamp": 1774451801017
+    },
+    {
+      "sessionId": "test-session-1",
+      "bigPhi": 1.3,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801026-krmobqx",
+      "timestamp": 1774451801026
+    },
+    {
+      "sessionId": "test-session-1",
+      "bigPhi": 1.4,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801034-7aysvp0",
+      "timestamp": 1774451801034
+    },
+    {
+      "sessionId": "session-a",
+      "bigPhi": 1,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801059-xdrjwxp",
+      "timestamp": 1774451801059
+    },
+    {
+      "sessionId": "session-a",
+      "bigPhi": 2,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801070-48eiq0m",
+      "timestamp": 1774451801070
+    },
+    {
+      "sessionId": "session-a",
+      "bigPhi": 3,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801081-redm8gw",
+      "timestamp": 1774451801081
+    },
+    {
+      "sessionId": "session-b",
+      "bigPhi": 2,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801094-h9g3u2x",
+      "timestamp": 1774451801094
+    },
+    {
+      "sessionId": "test",
+      "bigPhi": 1,
+      "smallPhi": 0.5,
+      "activeElements": [
+        0
+      ],
+      "phase": "engagement",
+      "duration": 100,
+      "sessionDuration": 1000,
+      "messageCount": 10,
+      "toolCount": 5,
+      "memoryUsage": 100,
+      "id": "iit-1774451801115-nx7a22x",
+      "timestamp": 1774451801115
     }
   ],
   "metadata": {
     "created": 1774227516710,
-    "lastUpdated": 1774434557650,
-    "totalMeasurements": 90,
+    "lastUpdated": 1774451801118,
+    "totalMeasurements": 103,
     "phiRange": {
       "min": 1,
       "max": 3.2797
     },
-    "averagePhi": 1.7254933333333333,
+    "averagePhi": 1.7025466019417477,
     "trendDirection": "increasing"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "title": "System Health Quick Check",
+  "description": "Run ant_watch to check system health and log results for next session review",
+  "priority": "normal",
+  "status": "failed",
+  "executable": true,
+  "code": "\nconst result = await ctx.runTool('ant_watch', { scope: 'quick', format: 'json' });\nctx.log('System health check completed');\nctx.log(JSON.stringify(result, null, 2));\nctx.updateProgress(100);\n",
+  "dependencies": [],
+  "id": "task-1774464561231-smnz9rr",
+  "createdAt": 1774464561231,
+  "progress": 0,
+  "startedAt": 1774465163626,
+  "error": "ctx.runTool is not a function",
+  "completedAt": 1774465163633
+}

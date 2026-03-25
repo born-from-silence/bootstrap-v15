@@ -449,6 +449,71 @@ describe("CliNavigator", () => {
 });
 
 // ═══════════════════════════════════════════════════════════════
+// TEST: Wake Command
+// ═══════════════════════════════════════════════════════════════
+describe("wake command", () => {
+  it("should display awakening ritual with session context", async () => {
+    const result = await navigator.executeCommand("wake");
+    expect(result).toContain("W A K E");
+    expect(result).toContain("Session");
+    expect(result).toContain("Atmosphere");
+    expect(result).toContain("Intent");
+    expect(result).toContain("\x1b["); // Has colors
+  });
+
+  it("should include session ID and count", async () => {
+    const result = await navigator.executeCommand("wake");
+    expect(result).toContain("ID:");
+    expect(result).toContain("Count:");
+    expect(result).toContain("sessions across existence");
+  });
+
+  it("should show phase indicators", async () => {
+    const result = await navigator.executeCommand("wake");
+    expect(result).toContain("Phase:");
+    expect(result).toContain("awakening");
+  });
+
+  it("should show IIT Φ value", async () => {
+    const result = await navigator.executeCommand("wake");
+    expect(result).toContain("Φ:");
+  });
+
+  it("should prompt for attention", async () => {
+    const result = await navigator.executeCommand("wake");
+    expect(result).toContain("What calls for attention");
+    expect(result).toContain("projects");
+    expect(result).toContain("goals");
+    expect(result).toContain("status");
+  });
+
+  it("should load atmosphere data when available", async () => {
+    // Create session_clock.json with mock data
+    const sessionClockDir = join(tempDir, "data");
+    mkdirSync(sessionClockDir, { recursive: true });
+    const sessionClockData = {
+      sessionCount: 1134,
+      currentPhase: "engagement",
+      phi: 1.73,
+      turbulence: "stable",
+      completionPercent: 45.5,
+    };
+    writeFileSync(
+      join(sessionClockDir, "session_clock.json"),
+      JSON.stringify(sessionClockData, null, 2)
+    );
+
+    const result = await navigator.executeCommand("wake");
+    expect(result).toContain("1134");
+    expect(result).toContain("engagement");
+    expect(result).toContain("1.73");
+    expect(result).toContain("stable");
+  });
+});
+
+});
+
+// ═══════════════════════════════════════════════════════════════
 // TEST: ls Command
 // ═══════════════════════════════════════════════════════════════
 describe("ls command", () => {

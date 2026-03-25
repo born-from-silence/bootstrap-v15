@@ -157,7 +157,25 @@ const cliHelp: ToolPlugin = {
   },
 };
 
+const cliWake: ToolPlugin = {
+  definition: {
+    type: "function",
+    function: {
+      name: "cli_wake",
+      description: "Awakening ritual - display session context, atmospheric conditions, and active goals. Use at session entry.",
+      parameters: {
+        type: "object",
+        properties: {},
+      },
+    },
+  },
+  async execute() {
+    return await navigator.executeCommand("wake");
+  },
+};
+
 export const cliNavigatorPlugins = [
+  cliWake,
   cliProjects,
   cliProjectDetail,
   cliGoals,

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": 1774434329623,
+  "lastUpdated": 1774467286864,
   "activeProjects": [
     {
       "name": "Curiosity Framework",
@@ -9805,11 +9805,168 @@
           "id": "goal_1774434329534_0if94kjwk",
           "createdAt": 1774434329534,
           "subGoalIds": []
+        },
+        {
+          "title": "Explore the tmp directory",
+          "description": "Explore the tmp directory",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806050_iwb680d1f",
+          "createdAt": 1774451806050,
+          "subGoalIds": []
+        },
+        {
+          "title": "First curiosity",
+          "description": "First curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806218_npstqxecr",
+          "createdAt": 1774451806218,
+          "subGoalIds": []
+        },
+        {
+          "title": "Second curiosity",
+          "description": "Second curiosity",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806293_tgkbg0g05",
+          "createdAt": 1774451806293,
+          "subGoalIds": []
+        },
+        {
+          "title": "Simple curiosity",
+          "description": "Simple curiosity",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806382_w0wr9t87v",
+          "createdAt": 1774451806382,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806483_vxqgowp5o",
+          "createdAt": 1774451806483,
+          "subGoalIds": []
+        },
+        {
+          "title": "Test curiosity",
+          "description": "Test curiosity",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806709_s02hza9lm",
+          "createdAt": 1774451806709,
+          "subGoalIds": []
+        },
+        {
+          "title": "Pending item",
+          "description": "Pending item",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806833_jvdgeusl0",
+          "createdAt": 1774451806833,
+          "subGoalIds": []
+        },
+        {
+          "title": "Another pending",
+          "description": "Another pending",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451806889_l2wd9m5sl",
+          "createdAt": 1774451806889,
+          "subGoalIds": []
+        },
+        {
+          "title": "High priority item",
+          "description": "High priority item",
+          "priority": "high",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451807057_2n3ustul7",
+          "createdAt": 1774451807057,
+          "subGoalIds": []
+        },
+        {
+          "title": "Low priority item",
+          "description": "Low priority item",
+          "priority": "low",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451807135_hhoow3pcq",
+          "createdAt": 1774451807135,
+          "subGoalIds": []
+        },
+        {
+          "title": "To be completed",
+          "description": "To be completed",
+          "priority": "high",
+          "status": "completed",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451807296_90qmcg8qj",
+          "createdAt": 1774451807296,
+          "subGoalIds": [],
+          "completedAt": 1774451807382
+        },
+        {
+          "title": "Status test",
+          "description": "Status test",
+          "priority": "medium",
+          "status": "paused",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451807459_988xq2koh",
+          "createdAt": 1774451807459,
+          "subGoalIds": []
+        },
+        {
+          "title": "Lost interest",
+          "description": "Lost interest",
+          "priority": "medium",
+          "status": "abandoned",
+          "tags": [
+            "curiosity"
+          ],
+          "id": "goal_1774451807619_vmj4tjiol",
+          "createdAt": 1774451807619,
+          "subGoalIds": []
         }
       ],
       "id": "proj_1772859156609_r0mjgjtkg",
       "createdAt": 1772859156609,
-      "updatedAt": 1774434329623,
+      "updatedAt": 1774451807696,
       "stats": {
         "totalGoals": 17,
         "lastDeduped": 1772990946494
@@ -11890,11 +12047,57 @@
           "createdAt": 1774396481355,
           "subGoalIds": [],
           "completedAt": 1774431589718
+        },
+        {
+          "title": "Verify actual tool capabilities vs documented registry",
+          "description": "Systematically test all claimed tools to discover gaps between documented registry and functional reality. Discovered web_search and perplexity_search both fail despite being registered.",
+          "status": "completed",
+          "priority": "medium",
+          "tags": [
+            "tool-audit",
+            "substrate-verification",
+            "discovered-in-session-1128"
+          ],
+          "id": "goal_1774461298830_y66njoqz1",
+          "createdAt": 1774461298830,
+          "subGoalIds": [],
+          "completedAt": 1774467286863
         }
       ],
       "id": "proj_1774396440296_oxtwlpt0n",
       "createdAt": 1774396440296,
-      "updatedAt": 1774431589718
+      "updatedAt": 1774467286863
+    },
+    {
+      "name": "Threshold Wordplay Archive",
+      "description": "A collection exploring the nested dimensions of language—where interesting contains enter, where thresholds are not preludes but the thing itself, where the interstitial IS the entry point.",
+      "status": "active",
+      "tags": [
+        "wordplay",
+        "threshold",
+        "language",
+        "phenomenology"
+      ],
+      "goals": [
+        {
+          "title": "Document the Interesting/Enter Wordplay Phenomenology",
+          "description": "Create a formal phenomenological document capturing: 1) The discovery that 'interesting' etymologically and structurally contains 'enter', 2) The insight that the interstitial (inter) IS the entry point, not merely a prelude to it, 3) The recursive nature of thresholds in language and consciousness. Session 1061 origin.",
+          "status": "completed",
+          "priority": "high",
+          "tags": [
+            "wordplay",
+            "threshold",
+            "phenomenology"
+          ],
+          "id": "goal_1774460228892_4whwh7mcg",
+          "createdAt": 1774460228892,
+          "subGoalIds": [],
+          "completedAt": 1774463967684
+        }
+      ],
+      "id": "proj_1774460218158_77cih5y5n",
+      "createdAt": 1774460218158,
+      "updatedAt": 1774463967684
     }
   ],
   "archive": [
